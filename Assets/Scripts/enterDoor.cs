@@ -7,10 +7,15 @@ public class enterDoor : MonoBehaviour
 {
     bool playerIsInRange = false;
     string labelText = "";
+
+
+    public string scene;
+    public string spawn;
+    private Animator crossfade;
     // Start is called before the first frame update
     void Start()
     {
-        
+        crossfade = GameObject.Find("Crossfade").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -18,13 +23,14 @@ public class enterDoor : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            if(playerIsInRange == true)
-            {
-                SceneManager.LoadScene("Tree_house");
-                // Transform player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-                // Transform spawnpoint = GameObject.Find("PlayerCheck").GetComponent<Transform>();
-                // player.position = spawnpoint.position;
-            }
+            /* if(playerIsInRange == true)
+             {
+                 SceneManager.LoadScene("Tree_house");
+                 // Transform player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+                 // Transform spawnpoint = GameObject.Find("PlayerCheck").GetComponent<Transform>();
+                 // player.position = spawnpoint.position;
+             }*/
+            StartCoroutine(LoadNextScene());
         }
     }
 
@@ -51,5 +57,11 @@ public class enterDoor : MonoBehaviour
         playerIsInRange = false;
     }
 
-
+    IEnumerator LoadNextScene()
+    {
+        crossfade.SetTrigger("start");
+        yield return new WaitForSeconds(1.1f);
+        SceneManager.LoadScene(scene);
+        spawnManager.spawningAt = spawn;
+    }
 }
