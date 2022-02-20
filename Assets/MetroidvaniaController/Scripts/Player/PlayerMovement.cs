@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour {
 			jump = true;
 		}
 
-        if (Input.GetKey(KeyCode.Space) && controller.m_Grounded)
+        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Z)) && controller.m_Grounded)
         {
             jump = true;
 			//print("tries to reset point?");

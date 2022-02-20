@@ -62,13 +62,13 @@ public class Attack : MonoBehaviour
 			StartCoroutine(ShootCooldown());
 		}
 
-        if (specialCooldown > 3.0f && Input.GetKeyDown(KeyCode.Z) && !special_attack_hitbox.enabled)
+        if (specialCooldown > 3.0f && Input.GetKeyDown(KeyCode.Y) && !special_attack_hitbox.enabled)
         {
 			special_attack_hitbox.enabled = true;
             specialCooldown = 0.0f;
 			cam.GetComponentInChildren<CameraFollow>().ShakeCamera();
 		}
-		else if (Input.GetKeyUp(KeyCode.Z))
+		else if (Input.GetKeyUp(KeyCode.Y))
         {
 			special_attack_hitbox.enabled = false;
 		}
