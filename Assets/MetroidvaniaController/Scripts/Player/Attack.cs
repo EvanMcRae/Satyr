@@ -40,7 +40,7 @@ public class Attack : MonoBehaviour
         if (specialCooldown < 3.0f)
             specialCooldown += Time.deltaTime;
 
-		if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetMouseButtonDown(0)) && canAttack)
+		if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetMouseButtonDown(0) || Input.GetKeyDown("joystick button 2")) && canAttack)
 		{
 			canAttack = false;
 			animator.SetBool("IsAttacking", true);

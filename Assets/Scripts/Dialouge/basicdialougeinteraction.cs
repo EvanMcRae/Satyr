@@ -31,7 +31,7 @@ public class basicdialougeinteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && hasCollided == true && needsPrompt == true)
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown("joystick button 1")) && hasCollided == true && needsPrompt == true)
         {
            
             textBox.position = new Vector3(textBox.position.x, anchor.position.y, textBox.position.z);
@@ -45,7 +45,7 @@ public class basicdialougeinteraction : MonoBehaviour
             dialogueTriggers[0].TriggerDialogue();
    
         }
-        else if (Input.GetKeyDown(KeyCode.W) && hasCollided == true && needsPrompt == false)
+        else if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown("joystick button 1")) && hasCollided == true && needsPrompt == false)
         {
 
             GameObject.Find("Dialouge Manager").GetComponent<DialougeManager>().DisplayNextSentence();

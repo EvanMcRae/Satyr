@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour {
 			jump = true;
 		}
 
-        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Z)) && controller.m_Grounded)
+        if ((Input.GetKey("space") || Input.GetKey("z") || Input.GetKey("joystick button 0")) && controller.m_Grounded)
         {
             jump = true;
 			//print("tries to reset point?");
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour {
 			// controller.reset_point.position = controller.m_GroundCheck.position;
 		}
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp("z") || Input.GetKeyUp("joystick button 0"))
         {
             releaseJump = true;
         }

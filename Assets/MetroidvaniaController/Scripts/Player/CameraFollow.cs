@@ -51,11 +51,11 @@ public class CameraFollow : MonoBehaviour
         Vector3 newPosition = Target.position;
         newPosition.z = -10;
 
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow) || (Input.GetAxisRaw("Vertical") < 0))
         {
             Target.localPosition = new Vector3(0.0f, -2.0f, 0.0f);
         }
-        else if (Input.GetKey(KeyCode.UpArrow))
+        else if (Input.GetKey(KeyCode.UpArrow) || (Input.GetAxisRaw("Vertical") > 0))
         {
             Target.localPosition = new Vector3(0.0f, 4.0f, 0.0f);
         }
