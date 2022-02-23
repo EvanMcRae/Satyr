@@ -150,7 +150,6 @@ public class CharacterController2D : MonoBehaviour
 				{
 					OnLandEvent.Invoke();
 					if (!m_IsWall && !isDashing) {
-                        groundParticle.localPosition = new Vector3(0.0f, -1.06f, 0.0f);
                         particleJumpDown.Play();
                     }
 						
@@ -263,7 +262,6 @@ public class CharacterController2D : MonoBehaviour
                 m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
 				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 				if (doubleJump_Unlocked) { canDoubleJump = true; }
-                groundParticle.localPosition = new Vector3(transform.position.x - lastOnLandLocation.x, transform.position.y - lastOnLandLocation.y - 1.06f, lastOnLandLocation.z - transform.position.z);
 				particleJumpDown.Play();
 				particleJumpUp.Play();
 			}
