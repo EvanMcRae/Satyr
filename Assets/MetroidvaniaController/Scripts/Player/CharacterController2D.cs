@@ -256,14 +256,16 @@ public class CharacterController2D : MonoBehaviour
 				animator.SetBool("IsJumping", true);
 				
 				m_Grounded = false;
-                if (!isJumping)
+                if (!isJumping) {
+                    particleJumpDown.Play();
+                    particleJumpUp.Play();
                     holdingJump = true;
+                }
                 isJumping = true;
                 m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
 				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 				if (doubleJump_Unlocked) { canDoubleJump = true; }
-				particleJumpDown.Play();
-				particleJumpUp.Play();
+				
 			}
 			else if (!m_Grounded && jump && canDoubleJump && !isWallSliding && !isJumping)
 			{
