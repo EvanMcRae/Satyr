@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class PlaySoundBehaviour : StateMachineBehaviour
 {
-    private AudioSource audioSource;
+    private AudioSource[] audioSource;
+    private AudioSource currSource;
     public AudioClip audioSound;
     public bool loop = false;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        audioSource = animator.transform.GetComponent<AudioSource>();
-        audioSource.clip = audioSound;
-        audioSource.loop = loop;
-        audioSource.Play();
+        audioSource = animator.transform.GetComponents<AudioSource>();
+        foreach (AudioSource source in audioSource)
+        {
+            if (!source.isPlaying)
+            {
+                currSource = source;
+                break;
+            }
+        }
+        currSource.clip = audioSound;
+        currSource.loop = loop;
+        currSource.Play();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -26,8 +35,8 @@ public class PlaySoundBehaviour : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        audioSource.Stop();
-        audioSource.loop = false;
+        currSource.Stop();
+        currSource.loop = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
