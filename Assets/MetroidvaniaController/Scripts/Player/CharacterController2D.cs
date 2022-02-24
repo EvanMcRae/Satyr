@@ -135,12 +135,27 @@ public class CharacterController2D : MonoBehaviour
 				}
 		
 			}
-			if (colliders[i].gameObject != gameObject && (colliders[i].gameObject.tag == "Ground" || colliders[i].gameObject.tag == "Wall" || colliders[i].gameObject.tag == "Breakable Wall"))
-				m_Grounded = true;
+            if (colliders[i].gameObject != gameObject && (colliders[i].gameObject.tag == "obstacle"))
+            {
+                m_Grounded = true;
+                if (!wasGrounded)
+                {
+                    OnLandEvent.Invoke();
+                    if (!m_IsWall && !isDashing)
+                    {
+                        particleJumpDown.Play();
+                    }
+
+                    if (m_Rigidbody2D.velocity.y < 0f)
+                        limitVelOnWallJump = false;
+                }
+            }
+            else if (colliders[i].gameObject != gameObject && (colliders[i].gameObject.tag == "Ground" || colliders[i].gameObject.tag == "Wall" || colliders[i].gameObject.tag == "Breakable Wall"))
+                m_Grounded = true;
                 lastOnLand = 0f;
                 canDoubleJump = false;
 
-                if (reset_point_update >= 3f)
+                if (reset_point_update >= 3f && colliders[i].gameObject.tag != "obstacle")
                 {
                     reset_point_update = 0f;
                     reset_point.position = new Vector3(m_GroundCheck.position.x, m_GroundCheck.position.y + 2f, m_GroundCheck.position.z);
@@ -213,7 +228,7 @@ public class CharacterController2D : MonoBehaviour
             isJumping = false;
             jumpTime = 0;
         }
-
+        
 		if (canMove) {
 			if (dash && canDash && !isWallSliding)
 			{
@@ -364,8 +379,8 @@ public class CharacterController2D : MonoBehaviour
 				// if (doubleJump_Unlocked) { canDoubleJump = true; }
 			}
         }
-        else if (!dead)
-        { // fix being stuck unable to move
+        else if (!dead && !resetting) // fix being stuck unable to move
+        { 
             cantMove += 0.01f;
             if (cantMove > stunDuration) {
                 canMove = true;
@@ -423,7 +438,7 @@ public class CharacterController2D : MonoBehaviour
                                 // m_Rigidbody2D.velocity = Vector2.zero;
             //Debug.Log(damageDir);
             m_Rigidbody2D.AddForce(damageDir * knockBack);
-            if (this.GetComponent<health>().playerHealth <= 0)
+            if (this.GetComponent<health>().playerHealth <= 0 && !dead)
             {
                 StartCoroutine(WaitToDead());
             }
@@ -450,7 +465,8 @@ public class CharacterController2D : MonoBehaviour
 	{
 		canMove = false;
 		yield return new WaitForSeconds(time);
-		canMove = true;
+        if (!resetting)
+		    canMove = true;
 	}
 	IEnumerator MakeInvincible(float time) 
 	{
@@ -513,9 +529,9 @@ public class CharacterController2D : MonoBehaviour
 
     public void GoToResetPoint() {
         if (this.GetComponent<health>().playerHealth > 0) {
-            if (resetting)
+            if (resetting || dead)
             {
-                StopCoroutine(ResetPoint());
+                return;
             }
             StartCoroutine(ResetPoint());
         }
@@ -523,17 +539,19 @@ public class CharacterController2D : MonoBehaviour
 
     IEnumerator ResetPoint()
     {
+        animator.SetBool("IsDead", true);
+        m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
         resetting = true;
-        canMove = false;
+        StartCoroutine(WaitToMove(1));
         invincible = true;
         GameObject.Find("Crossfade").GetComponent<Animator>().SetTrigger("start");
         yield return new WaitForSeconds(1f);
+        animator.SetBool("IsDead", false);
         transform.position = reset_point.position;
         GameObject.Find("actual camera").GetComponent<CameraFollow>().Snap();
-        canMove = true;
         m_Rigidbody2D.velocity = Vector2.zero;
+        resetting = false;
         yield return new WaitForSeconds(2f);
         invincible = false;
-        resetting = false;
     }
 }
