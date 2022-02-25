@@ -232,6 +232,7 @@ public class patrol : Enemy
         yield return new WaitForSeconds(0.25f);
         rb.velocity = new Vector2(0, rb.velocity.y);
       //  yield return new WaitForSeconds(3f);
+        Instantiate(cordyceps, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 

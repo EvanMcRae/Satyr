@@ -21,16 +21,25 @@ public class Cordyceps : MonoBehaviour
     {
         bagSprites = GameObject.FindGameObjectsWithTag("Bag");
         UpdateBag();
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "CordycepsItem")
-        {
-            count++;
-            Destroy(gameObject);
+        
+        GameObject[] items = GameObject.FindGameObjectsWithTag("CordycepsItem");
+        foreach (GameObject item in items) {
+            if ((item.transform.position - transform.position).magnitude < 0.4f) 
+            {
+                count++;
+                Destroy(item);
+            }
         }
     }
+
+    // void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     if (collision.gameObject.tag == "CordycepsItem")
+    //     {
+    //         count++;
+    //         Destroy(gameObject);
+    //     }
+    // }
 
     public void UpdateBag()
     {
