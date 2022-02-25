@@ -7,12 +7,16 @@ public class Attack : MonoBehaviour
 	public float dmgValue = 4;
 	public GameObject throwableObject;
 	public Transform attackCheck;
+	public Transform botAttackCheck;
+	public Transform topAttackCheck;
+	public Transform currentAttackCheck;
 	public Transform wallCheck;
 	private Rigidbody2D m_Rigidbody2D;
 	public Animator animator;
 	public bool canAttack = true;
 	public bool canShoot = true;
 	public bool isTimeToCheck = false;
+	public ParticleSystem particleAttack;
 
 	public GameObject cam;
 
@@ -42,6 +46,14 @@ public class Attack : MonoBehaviour
 
 		if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetMouseButtonDown(0) || Input.GetKeyDown("joystick button 2")) && canAttack)
 		{
+			currentAttackCheck = attackCheck;
+			if (Input.GetAxisRaw("Vertical") < -0.3) {
+				currentAttackCheck = botAttackCheck;
+			}
+			if (Input.GetAxisRaw("Vertical") > 0.3) {
+				currentAttackCheck = topAttackCheck;
+			}
+			particleAttack.transform.position = currentAttackCheck.position;
 			canAttack = false;
 			animator.SetBool("IsAttacking", true);
 			StartCoroutine(AttackCooldown());
@@ -89,7 +101,8 @@ public class Attack : MonoBehaviour
 	public void DoDashDamage()
 	{
 		dmgValue = Mathf.Abs(dmgValue);
-		Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(attackCheck.position, 0.9f);
+		Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(currentAttackCheck.position, 0.9f);
+		particleAttack.Play();
 		for (int i = 0; i < collidersEnemies.Length; i++)
 		{
 			if (collidersEnemies[i].gameObject.tag == "Enemy")
