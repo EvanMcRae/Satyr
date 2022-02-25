@@ -23,7 +23,11 @@ public class Attack : MonoBehaviour
 	public BoxCollider2D special_attack_hitbox;
 
 	public bool shooting_Unlocked = false;
+
+	//public SpecialBar specialBar;
     public float specialCooldown = 0.0f;
+	public float specialMaxCooldown = 3.0f;
+
 
 	private void Awake()
 	{
@@ -41,8 +45,10 @@ public class Attack : MonoBehaviour
     {
         cam = GameObject.Find("actual camera");
 
-        if (specialCooldown < 3.0f)
-            specialCooldown += Time.deltaTime;
+        if (specialCooldown < specialMaxCooldown)
+            specialCooldown += Time.deltaTime;/////////////////////////////
+			//specialBarFill = ((3.0f - specialCooldown)/3.0f) * 100;
+			//specialBar.UpdateBar();
 
 		if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetMouseButtonDown(0) || Input.GetKeyDown("joystick button 2")) && canAttack)
 		{
@@ -74,7 +80,7 @@ public class Attack : MonoBehaviour
 			StartCoroutine(ShootCooldown());
 		}
 
-        if (specialCooldown > 3.0f && Input.GetKeyDown(KeyCode.Y) && !special_attack_hitbox.enabled)
+        if (specialCooldown > specialMaxCooldown && Input.GetKeyDown(KeyCode.Y) && !special_attack_hitbox.enabled)
         {
 			special_attack_hitbox.enabled = true;
             specialCooldown = 0.0f;
