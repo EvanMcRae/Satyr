@@ -12,6 +12,5 @@ public class SpecialBar : MonoBehaviour
   }
   void Update() {//was UpdateBar function, this implementation may tank performance
     specialBarImage.fillAmount = ((attack.specialCooldown)/attack.specialMaxCooldown);
-    Debug.Log(1 - ((attack.specialCooldown)/attack.specialMaxCooldown));
   }
 }
