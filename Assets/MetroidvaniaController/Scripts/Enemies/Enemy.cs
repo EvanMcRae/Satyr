@@ -11,6 +11,8 @@ public abstract class Enemy : MonoBehaviour {
 
 	public bool isInvincible = false;
 
+    public GameObject cordyceps;
+
 	void Awake () {
 	}
 	

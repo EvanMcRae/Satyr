@@ -7,19 +7,27 @@ public class Attack : MonoBehaviour
 	public float dmgValue = 4;
 	public GameObject throwableObject;
 	public Transform attackCheck;
+	public Transform botAttackCheck;
+	public Transform topAttackCheck;
+	public Transform currentAttackCheck;
 	public Transform wallCheck;
 	private Rigidbody2D m_Rigidbody2D;
 	public Animator animator;
 	public bool canAttack = true;
 	public bool canShoot = true;
 	public bool isTimeToCheck = false;
+	public ParticleSystem particleAttack;
 
 	public GameObject cam;
 
 	public BoxCollider2D special_attack_hitbox;
 
 	public bool shooting_Unlocked = false;
+
+	//public SpecialBar specialBar;
     public float specialCooldown = 0.0f;
+	public float specialMaxCooldown = 3.0f;
+
 
 	private void Awake()
 	{
@@ -37,11 +45,21 @@ public class Attack : MonoBehaviour
     {
         cam = GameObject.Find("actual camera");
 
-        if (specialCooldown < 3.0f)
-            specialCooldown += Time.deltaTime;
+        if (specialCooldown < specialMaxCooldown)
+            specialCooldown += Time.deltaTime;/////////////////////////////
+			//specialBarFill = ((3.0f - specialCooldown)/3.0f) * 100;
+			//specialBar.UpdateBar();
 
-		if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetMouseButtonDown(0)) && canAttack)
+		if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetMouseButtonDown(0) || Input.GetKeyDown("joystick button 2")) && canAttack)
 		{
+			currentAttackCheck = attackCheck;
+			if (Input.GetAxisRaw("Vertical") < -0.3) {
+				currentAttackCheck = botAttackCheck;
+			}
+			if (Input.GetAxisRaw("Vertical") > 0.3) {
+				currentAttackCheck = topAttackCheck;
+			}
+			particleAttack.transform.position = currentAttackCheck.position;
 			canAttack = false;
 			animator.SetBool("IsAttacking", true);
 			StartCoroutine(AttackCooldown());
@@ -62,13 +80,13 @@ public class Attack : MonoBehaviour
 			StartCoroutine(ShootCooldown());
 		}
 
-        if (specialCooldown > 3.0f && Input.GetKeyDown(KeyCode.Z) && !special_attack_hitbox.enabled)
+        if (specialCooldown > specialMaxCooldown && Input.GetKeyDown(KeyCode.Y) && !special_attack_hitbox.enabled)
         {
 			special_attack_hitbox.enabled = true;
             specialCooldown = 0.0f;
 			cam.GetComponentInChildren<CameraFollow>().ShakeCamera();
 		}
-		else if (Input.GetKeyUp(KeyCode.Z))
+		else if (Input.GetKeyUp(KeyCode.Y))
         {
 			special_attack_hitbox.enabled = false;
 		}
@@ -89,7 +107,8 @@ public class Attack : MonoBehaviour
 	public void DoDashDamage()
 	{
 		dmgValue = Mathf.Abs(dmgValue);
-		Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(attackCheck.position, 0.9f);
+		Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(currentAttackCheck.position, 0.9f);
+		particleAttack.Play();
 		for (int i = 0; i < collidersEnemies.Length; i++)
 		{
 			if (collidersEnemies[i].gameObject.tag == "Enemy")

@@ -21,7 +21,10 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+		if (Input.GetAxisRaw("Horizontal") > 0.3 || Input.GetAxisRaw("Horizontal") < -0.3)
+			horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+		else
+			horizontalMove = 0f;
 
 		animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
@@ -30,7 +33,7 @@ public class PlayerMovement : MonoBehaviour {
 			jump = true;
 		}
 
-        if (Input.GetKey(KeyCode.Space) && controller.m_Grounded)
+        if ((Input.GetKey("space") || Input.GetKey("z") || Input.GetKey("joystick button 0")) && controller.m_Grounded)
         {
             jump = true;
 			//print("tries to reset point?");
@@ -38,7 +41,7 @@ public class PlayerMovement : MonoBehaviour {
 			// controller.reset_point.position = controller.m_GroundCheck.position;
 		}
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp("z") || Input.GetKeyUp("joystick button 0"))
         {
             releaseJump = true;
         }

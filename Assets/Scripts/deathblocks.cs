@@ -20,7 +20,7 @@ public class deathblocks : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            col.gameObject.GetComponent<CharacterController2D>().ApplyDamage(1.0f, this.transform.position, 0f, true);
+            col.gameObject.GetComponent<CharacterController2D>().ApplyDamage(1.0f, this.transform.position, 0f);
             // print("this is working");
             col.gameObject.GetComponent<CharacterController2D>().GoToResetPoint();
             // col.gameObject.GetComponent<Transform>().position = new Vector3(col.gameObject.GetComponent<CharacterController2D>().reset_point.position.x, col.gameObject.GetComponent<CharacterController2D>().reset_point.position.y, col.gameObject.GetComponent<CharacterController2D>().reset_point.position.z);
@@ -31,7 +31,7 @@ public class deathblocks : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            col.gameObject.GetComponent<CharacterController2D>().ApplyDamage(1.0f, this.transform.position, 0f, true);
+            col.gameObject.GetComponent<CharacterController2D>().ApplyDamage(1.0f, this.transform.position, 0f);
             // print("this is working");
             col.gameObject.GetComponent<CharacterController2D>().GoToResetPoint();
             // col.gameObject.GetComponent<Transform>().position = new Vector3(col.gameObject.GetComponent<CharacterController2D>().reset_point.position.x, col.gameObject.GetComponent<CharacterController2D>().reset_point.position.y, col.gameObject.GetComponent<CharacterController2D>().reset_point.position.z);

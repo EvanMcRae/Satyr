@@ -21,7 +21,7 @@ public class enterDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) && playerIsInRange)
         {
             /* if(playerIsInRange == true)
              {

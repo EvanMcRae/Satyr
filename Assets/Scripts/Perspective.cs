@@ -5,7 +5,7 @@ using UnityEngine;
 public class Perspective : MonoBehaviour
 
 {
-    private float length, startpos;
+    private float startpos;
     public GameObject cam;
     public float perspectiveEffect;
     public float offset;
@@ -14,7 +14,6 @@ public class Perspective : MonoBehaviour
     {
         cam = GameObject.FindGameObjectWithTag("Player");
         startpos = transform.position.x;
-        length = GetComponent<SpriteRenderer>().bounds.size.x;
     }
     void Update()
     {

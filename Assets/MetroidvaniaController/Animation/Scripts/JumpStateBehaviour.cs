@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JumpStateBehaviour : StateMachineBehaviour
 {
-    private AudioSource audioSource;
+    private AudioSource[] audioSource;
     public AudioClip audioJump;
     public AudioClip audioLand;
 
@@ -14,9 +14,16 @@ public class JumpStateBehaviour : StateMachineBehaviour
         if (animator.GetBool("JumpUp") == true)
         {
             animator.SetBool("JumpUp", false);
-            audioSource = animator.transform.GetComponent<AudioSource>();
-            audioSource.clip = audioJump;
-            audioSource.Play();
+            audioSource = animator.transform.GetComponents<AudioSource>();
+            foreach (AudioSource source in audioSource)
+            {
+                if (!source.isPlaying)
+                {
+                    source.clip = audioJump;
+                    source.Play();
+                    return;
+                }
+            }
         }
     }
 
@@ -26,9 +33,16 @@ public class JumpStateBehaviour : StateMachineBehaviour
         if (animator.GetBool("JumpUp") == true)
         {
             animator.SetBool("JumpUp", false);
-            audioSource = animator.transform.GetComponent<AudioSource>();
-            audioSource.clip = audioJump;
-            audioSource.Play();
+            audioSource = animator.transform.GetComponents<AudioSource>();
+            foreach (AudioSource source in audioSource)
+            {
+                if (!source.isPlaying)
+                {
+                    source.clip = audioJump;
+                    source.Play();
+                    return;
+                }
+            }
         }
     }
 
