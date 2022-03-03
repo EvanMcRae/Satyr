@@ -53,12 +53,12 @@ public class CameraFollow : MonoBehaviour
 
         if (Input.GetAxisRaw("Vertical") < -0.5 && !Input.GetKey(KeyCode.S))
         {
-            Target.localPosition = new Vector3(0.0f, -2.0f, 0.0f);
+            Target.localPosition = new Vector3(0.0f, -3.0f, 0.0f); //originally -2
         }
         else if (Input.GetAxisRaw("Vertical") > 0.5 && !Input.GetKey(KeyCode.W))
         {
-            Target.localPosition = new Vector3(0.0f, 4.0f, 0.0f);
-        }
+            Target.localPosition = new Vector3(0.0f, 5.0f, 0.0f); //originally 4
+		}
         else
         {
             Target.localPosition = new Vector3(0.0f, 1.0f, 0.0f);
