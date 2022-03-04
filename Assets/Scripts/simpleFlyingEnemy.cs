@@ -25,7 +25,7 @@ public class simpleFlyingEnemy : Enemy
     // Update is called once per frame
     void Update()
     {
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        target = CharacterController2D.instance.gameObject.transform;
         
         if (playerIsInRange)
         {

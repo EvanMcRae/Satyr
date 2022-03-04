@@ -9,7 +9,7 @@ public class PlayerCheck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GameObject.FindGameObjectWithTag("Player"))
+        if (CharacterController2D.instance != null)
         {
             return;
         }

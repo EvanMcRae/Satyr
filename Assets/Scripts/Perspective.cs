@@ -12,7 +12,7 @@ public class Perspective : MonoBehaviour
 
     void Start()
     {
-        cam = GameObject.FindGameObjectWithTag("Player");
+        cam = CharacterController2D.instance.gameObject;
         startpos = transform.position.x;
     }
     void Update()

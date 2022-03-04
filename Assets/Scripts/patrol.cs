@@ -36,7 +36,7 @@ public class patrol : Enemy
     //update calls every frame?
     void Update()
     {
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        target = CharacterController2D.instance.gameObject.transform;
 
         if (Input.GetKeyDown(KeyCode.T))
         {
