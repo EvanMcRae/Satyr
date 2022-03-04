@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 804186747}
   m_Layer: 1
   m_Name: HIghCameraTarget
-  m_TagString: Untagged
+  m_TagString: CamTarget
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 804186746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4232074252533964263}
@@ -37,6 +37,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 995076533692046740, guid: 9e248904c75a8d747b372a0ffb179a8a, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1103051507148083086, guid: 9e248904c75a8d747b372a0ffb179a8a, type: 3}
       propertyPath: hearts.Array.data[0]
       value: 
@@ -57,9 +61,21 @@ PrefabInstance:
       propertyPath: hearts.Array.data[4]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2522068471316943870, guid: 9e248904c75a8d747b372a0ffb179a8a, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3370787294193082911, guid: 9e248904c75a8d747b372a0ffb179a8a, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370787294193082911, guid: 9e248904c75a8d747b372a0ffb179a8a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 7830463536805984983, guid: 9e248904c75a8d747b372a0ffb179a8a, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7883002866759495958, guid: 9e248904c75a8d747b372a0ffb179a8a, type: 3}
       propertyPath: m_SortingOrder

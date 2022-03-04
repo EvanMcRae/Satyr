@@ -61,7 +61,7 @@ public class CameraFollow : MonoBehaviour
 		}
         else
         {
-            Target.localPosition = new Vector3(0.0f, 1.0f, 0.0f);
+            Target.localPosition = new Vector3(0.0f, 4.0f, 0.0f);
         }
 
         transform.parent.position = Vector3.Slerp(transform.position, newPosition, FollowSpeed * Time.deltaTime);
