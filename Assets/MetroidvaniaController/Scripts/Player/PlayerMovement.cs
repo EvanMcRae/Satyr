@@ -74,13 +74,17 @@ public class PlayerMovement : MonoBehaviour {
 
 	public void OnLanding()
 	{
-		animator.SetBool("IsJumping", false);
+        if (!controller.isJumping)
+		    animator.SetBool("IsJumping", false);
 	}
 
 	void FixedUpdate ()
 	{
 		// Move our character
 		controller.Move(horizontalMove * Time.fixedDeltaTime, jump, dash, releaseJump);
+        if (animator.GetBool("IsJumping") && controller.m_Grounded && !controller.isJumping) {
+            animator.SetBool("IsJumping", false);
+        }
 		jump = false;
 		dash = false;
         releaseJump = false;

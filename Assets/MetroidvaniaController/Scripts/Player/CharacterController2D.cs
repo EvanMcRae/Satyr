@@ -46,7 +46,7 @@ public class CharacterController2D : MonoBehaviour
 	public bool invincible = false; //If player can die
     private bool dead = false; // Dead status
 	private bool canMove = true; //If player can move
-    private bool isJumping = false;
+    public bool isJumping = false;
     private bool resetting = false;
     private float jumpTime;
     private bool holdingJump = false;

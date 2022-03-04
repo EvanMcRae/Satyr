@@ -26,7 +26,7 @@ public class Attack : MonoBehaviour
 
 	//public SpecialBar specialBar;
     public float specialCooldown = 0.0f;
-	public float specialMaxCooldown = 3.0f;
+	public float specialMaxCooldown = 10.0f;
 
 
 	private void Awake()
