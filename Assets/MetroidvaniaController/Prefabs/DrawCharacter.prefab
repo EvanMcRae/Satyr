@@ -157,15 +157,20 @@ MonoBehaviour:
   dmgValue: 4
   throwableObject: {fileID: 5532974359214069763, guid: 340067e8e5a097546ad175f1d00a6ece, type: 3}
   attackCheck: {fileID: 4370582630649528}
+  botAttackCheck: {fileID: 0}
+  topAttackCheck: {fileID: 0}
+  currentAttackCheck: {fileID: 0}
   wallCheck: {fileID: 0}
   animator: {fileID: 95975118031919256}
   canAttack: 1
   canShoot: 1
   isTimeToCheck: 0
+  particleAttack: {fileID: 0}
   cam: {fileID: 0}
   special_attack_hitbox: {fileID: 0}
   shooting_Unlocked: 0
   specialCooldown: 0
+  specialMaxCooldown: 3
 --- !u!114 &114145887554720856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +332,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 1.2984366
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
