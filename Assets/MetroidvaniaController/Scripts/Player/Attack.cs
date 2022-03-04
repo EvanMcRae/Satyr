@@ -80,13 +80,13 @@ public class Attack : MonoBehaviour
 			StartCoroutine(ShootCooldown());
 		}
 
-        if (specialCooldown > specialMaxCooldown && Input.GetKeyDown(KeyCode.Y) && !special_attack_hitbox.enabled)
+        if (specialCooldown > specialMaxCooldown && (Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown("joystick button 3")) && !special_attack_hitbox.enabled)
         {
 			special_attack_hitbox.enabled = true;
             specialCooldown = 0.0f;
 			cam.GetComponentInChildren<CameraFollow>().ShakeCamera();
 		}
-		else if (Input.GetKeyUp(KeyCode.Y))
+		else if (Input.GetKeyUp(KeyCode.Y) || Input.GetKeyUp("joystick button 3"))
         {
 			special_attack_hitbox.enabled = false;
 		}
