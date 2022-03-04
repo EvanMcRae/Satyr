@@ -17,6 +17,7 @@ public class Attack : MonoBehaviour
 	public bool canShoot = true;
 	public bool isTimeToCheck = false;
 	public ParticleSystem particleAttack;
+	public List<Collider2D> ignoredEnemies = new List<Collider2D>();
 
 	public GameObject cam;
 
@@ -95,6 +96,7 @@ public class Attack : MonoBehaviour
 	IEnumerator AttackCooldown()
 	{
 		yield return new WaitForSeconds(0.25f);
+		ignoredEnemies.Clear();
 		canAttack = true;
 	}
 
@@ -111,7 +113,7 @@ public class Attack : MonoBehaviour
 		particleAttack.Play();
 		for (int i = 0; i < collidersEnemies.Length; i++)
 		{
-			if (collidersEnemies[i].gameObject.tag == "Enemy")
+			if (collidersEnemies[i].gameObject.tag == "Enemy" && !(ignoredEnemies.Contains(collidersEnemies[i])))
 			{
 				if (collidersEnemies[i].transform.position.x - transform.position.x < 0)
 				{
@@ -135,7 +137,7 @@ public class Attack : MonoBehaviour
 				m_Rigidbody2D.AddForce(new Vector2(direction * 2000f, 200f));
 				//m_Rigidbody2D.AddForce(damageDir * 10);
 			}
-			else if(collidersEnemies[i].gameObject.tag == "Breakable Wall")
+			else if(collidersEnemies[i].gameObject.tag == "Breakable Wall" && !(ignoredEnemies.Contains(collidersEnemies[i])))
             {
 				if (collidersEnemies[i].GetComponent<breakableWall>() != null)
 				{
@@ -147,9 +149,9 @@ public class Attack : MonoBehaviour
 				m_Rigidbody2D.velocity = Vector2.zero;
 				m_Rigidbody2D.AddForce(damageDir * 10);
 			}
+			ignoredEnemies.Add(collidersEnemies[i]);
 			
 		}
-
 
 		Collider2D[] collidersWalls = Physics2D.OverlapCircleAll(wallCheck.position, 0.6f);
 		for (int i = 0; i < collidersWalls.Length; i++)
