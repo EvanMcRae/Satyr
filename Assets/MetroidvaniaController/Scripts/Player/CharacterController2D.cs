@@ -162,7 +162,7 @@ public class CharacterController2D : MonoBehaviour
                 if (!wasGrounded)
                 {
                     OnLandEvent.Invoke();
-                    jumpCooldown = 2f;
+                    jumpCooldown = 0.1f;
                     if (!m_IsWall && !isDashing)
                     {
                         particleJumpDown.Play();
@@ -417,7 +417,8 @@ public class CharacterController2D : MonoBehaviour
         if (isJumping) // this code is absolutely gross but necessary
         {
             jumpTime += 0.1f;
-            if (jumpTime > 4f) {
+            if (jumpTime > 4.5f) {
+                jumpCooldown = 0.1f;
                 isJumping = false;
                 jumpTime = 0f;
             }
@@ -431,7 +432,7 @@ public class CharacterController2D : MonoBehaviour
 		//hold jump distance extentions
         if (holdingJump) {
 			if(isJumping){
-				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 60));
+				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 80 / jumpTime));
 			}
 			else{
 				//falling while still holding jump
