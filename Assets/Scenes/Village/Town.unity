@@ -202,11 +202,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5570792371113530276, guid: b2041302b735587489bb72c073c9254d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 34.5614
+      value: 36.47
       objectReference: {fileID: 0}
     - target: {fileID: 5570792371113530276, guid: b2041302b735587489bb72c073c9254d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.31
+      value: -9.45
       objectReference: {fileID: 0}
     - target: {fileID: 5570792371113530276, guid: b2041302b735587489bb72c073c9254d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -252,6 +252,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: room transition
       objectReference: {fileID: 0}
+    - target: {fileID: 5570792371113530278, guid: b2041302b735587489bb72c073c9254d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5570792371113530299, guid: b2041302b735587489bb72c073c9254d, type: 3}
       propertyPath: scene
       value: underground village connection
@@ -259,6 +263,10 @@ PrefabInstance:
     - target: {fileID: 5570792371113530299, guid: b2041302b735587489bb72c073c9254d, type: 3}
       propertyPath: spawn
       value: well_bottom
+      objectReference: {fileID: 0}
+    - target: {fileID: 5570792371113530299, guid: b2041302b735587489bb72c073c9254d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2041302b735587489bb72c073c9254d, type: 3}
@@ -3184,7 +3192,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1919833521}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50.1537, y: -12.9745, z: 0}
+  m_LocalPosition: {x: 52.15, y: -9.9, z: 0}
   m_LocalScale: {x: 11.157122, y: 1.6077157, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
