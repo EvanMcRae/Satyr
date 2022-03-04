@@ -292,7 +292,7 @@ public class CharacterController2D : MonoBehaviour
                 }
                 isJumping = true;
                 m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
-				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * .7f)); //force added during a jump
 				if (doubleJump_Unlocked) { canDoubleJump = true; }
 				
 			}
@@ -416,9 +416,17 @@ public class CharacterController2D : MonoBehaviour
             holdingJump = false;
         }
 
+		//hold jump distance extentions
         if (holdingJump) {
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 200));
+			if(isJumping){
+				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 60));
+			}
+			else{
+				//falling while still holding jump
+				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 200));
+			}
         }
+
 	}
 
 
