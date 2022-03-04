@@ -834,9 +834,13 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 496845275
-  m_SortingLayer: 3
+  m_SortingLayerID: -368620725
+  m_SortingLayer: 2
+<<<<<<< Updated upstream
+  m_SortingOrder: 1
+=======
   m_SortingOrder: 14
+>>>>>>> Stashed changes
   m_Sprite: {fileID: 21300000, guid: 815578d6568472041b5ff4f2bc34659d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -856,7 +860,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619100487}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -67.56, y: -3.28, z: 0}
+  m_LocalPosition: {x: -67.56, y: -3.64, z: 0}
   m_LocalScale: {x: 0.09788992, y: 0.09788992, z: 0.19577985}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1513,6 +1517,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3204635493806502994, guid: 89579be3ca1af9740ae9b54b6e9b6d25, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.57254905
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204635493806502994, guid: 89579be3ca1af9740ae9b54b6e9b6d25, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.89019614
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204635493806502994, guid: 89579be3ca1af9740ae9b54b6e9b6d25, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.81568635
+      objectReference: {fileID: 0}
     - target: {fileID: 6108917266863479052, guid: 89579be3ca1af9740ae9b54b6e9b6d25, type: 3}
       propertyPath: m_RootOrder
       value: 6
