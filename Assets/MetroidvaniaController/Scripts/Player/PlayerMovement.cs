@@ -35,7 +35,8 @@ public class PlayerMovement : MonoBehaviour {
 
         if ((Input.GetKey("space") || Input.GetKey("z") || Input.GetKey("joystick button 0")) && controller.m_Grounded)
         {
-            jump = true;
+            if (controller.jumpCooldown <= 0f)
+                jump = true;
 			//print("tries to reset point?");
 			//reset_point.position = new Vector3(m_GroundCheck.position.x, m_GroundCheck.position.y, m_GroundCheck.position.z);
 			// controller.reset_point.position = controller.m_GroundCheck.position;

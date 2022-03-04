@@ -21,6 +21,7 @@ public class CordycepsItem : MonoBehaviour
 
         if (playerIsInRange == true)
         {
+            // Debug.Log("in range");
             transform.position = Vector2.MoveTowards(transform.position, playerPos.position, 0.03f);
         }
     }

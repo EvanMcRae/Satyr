@@ -54,6 +54,7 @@ public class CharacterController2D : MonoBehaviour
 	public float stunDuration = 0.25f;
 	public float iFrames = 1f;
     public float lastOnLand = 0f;
+    public float jumpCooldown = 0f;
     private Transform reset_point;
     private float reset_point_update = 0f;
     private Vector3 lastOnLandLocation;
@@ -93,7 +94,7 @@ public class CharacterController2D : MonoBehaviour
         // Singleton design pattern
         if (instance != null && instance != this) 
         {
-            Destroy(gameObject);  
+            // Destroy(gameObject);
         }
         else
         {
@@ -115,6 +116,11 @@ public class CharacterController2D : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+        if (instance == null) {
+            instance = this;
+            camTarget = GameObject.FindGameObjectWithTag("CamTarget").transform;
+        }
+
         reset_point = GameObject.FindGameObjectWithTag("Reset Point").transform;
         
         if (lastOnLand == 0.0f) {
@@ -136,6 +142,7 @@ public class CharacterController2D : MonoBehaviour
             {
                 m_Grounded = true;
                 lastOnLand = 0f;
+
 				if(colliders[i].gameObject.transform.position.x > this.transform.position.x)
                 {
 					//ApplyDamage(1.0f, new Vector3(colliders[i].gameObject.transform.position.x * 1.01f, colliders[i].gameObject.transform.position.y, colliders[i].gameObject.transform.position.z), 100f);
@@ -155,6 +162,7 @@ public class CharacterController2D : MonoBehaviour
                 if (!wasGrounded)
                 {
                     OnLandEvent.Invoke();
+                    jumpCooldown = 2f;
                     if (!m_IsWall && !isDashing)
                     {
                         particleJumpDown.Play();
@@ -178,6 +186,7 @@ public class CharacterController2D : MonoBehaviour
 				if (!wasGrounded)
 				{
 					OnLandEvent.Invoke();
+                    jumpCooldown = 0.1f;
 					if (!m_IsWall && !isDashing) {
                         particleJumpDown.Play();
                     }
@@ -202,7 +211,10 @@ public class CharacterController2D : MonoBehaviour
 				}
 			}
 			prevVelocityX = m_Rigidbody2D.velocity.x;
-		}
+		} else {
+            if (jumpCooldown > 0f)
+                jumpCooldown -= Time.fixedDeltaTime;
+        }
 
 		if (limitVelOnWallJump)
 		{
