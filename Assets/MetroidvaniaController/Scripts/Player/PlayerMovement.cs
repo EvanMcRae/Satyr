@@ -45,6 +45,7 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp("z") || Input.GetKeyUp("joystick button 0"))
         {
             releaseJump = true;
+            controller.jumpCooldown = 0f;
         }
 
 		if ((Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.LeftShift)) && dash_Unlocked == true)
