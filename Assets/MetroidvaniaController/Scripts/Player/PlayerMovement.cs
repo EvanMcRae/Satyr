@@ -35,7 +35,8 @@ public class PlayerMovement : MonoBehaviour {
 
         if ((Input.GetKey("space") || Input.GetKey("z") || Input.GetKey("joystick button 0")) && controller.m_Grounded)
         {
-            jump = true;
+            if (controller.jumpCooldown <= 0f)
+                jump = true;
 			//print("tries to reset point?");
 			//reset_point.position = new Vector3(m_GroundCheck.position.x, m_GroundCheck.position.y, m_GroundCheck.position.z);
 			// controller.reset_point.position = controller.m_GroundCheck.position;
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp("z") || Input.GetKeyUp("joystick button 0"))
         {
             releaseJump = true;
+            controller.jumpCooldown = 0f;
         }
 
 		if ((Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.LeftShift)) && dash_Unlocked == true)
@@ -74,13 +76,17 @@ public class PlayerMovement : MonoBehaviour {
 
 	public void OnLanding()
 	{
-		animator.SetBool("IsJumping", false);
+        if (!controller.isJumping)
+		    animator.SetBool("IsJumping", false);
 	}
 
 	void FixedUpdate ()
 	{
 		// Move our character
 		controller.Move(horizontalMove * Time.fixedDeltaTime, jump, dash, releaseJump);
+        if (animator.GetBool("IsJumping") && controller.m_Grounded && !controller.isJumping) {
+            animator.SetBool("IsJumping", false);
+        }
 		jump = false;
 		dash = false;
         releaseJump = false;

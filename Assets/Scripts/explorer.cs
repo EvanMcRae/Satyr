@@ -27,7 +27,7 @@ public class explorer : MonoBehaviour
         textBox.position = new Vector3(textBox.position.x, 5000f, textBox.position.z);
 
         dialogueTriggers = GetComponents<DialougeTrigger>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = CharacterController2D.instance.gameObject;
     }
 
     // Update is called once per frame

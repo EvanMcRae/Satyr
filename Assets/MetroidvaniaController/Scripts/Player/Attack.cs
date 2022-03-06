@@ -17,6 +17,7 @@ public class Attack : MonoBehaviour
 	public bool canShoot = true;
 	public bool isTimeToCheck = false;
 	public ParticleSystem particleAttack;
+	public List<Collider2D> ignoredEnemies = new List<Collider2D>();
 
 	public GameObject cam;
 
@@ -26,7 +27,7 @@ public class Attack : MonoBehaviour
 
 	//public SpecialBar specialBar;
     public float specialCooldown = 0.0f;
-	public float specialMaxCooldown = 3.0f;
+	public float specialMaxCooldown = 10.0f;
 
 
 	private void Awake()
@@ -80,13 +81,13 @@ public class Attack : MonoBehaviour
 			StartCoroutine(ShootCooldown());
 		}
 
-        if (specialCooldown > specialMaxCooldown && Input.GetKeyDown(KeyCode.Y) && !special_attack_hitbox.enabled)
+        if (specialCooldown > specialMaxCooldown && (Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown("joystick button 3")) && !special_attack_hitbox.enabled)
         {
 			special_attack_hitbox.enabled = true;
             specialCooldown = 0.0f;
 			cam.GetComponentInChildren<CameraFollow>().ShakeCamera();
 		}
-		else if (Input.GetKeyUp(KeyCode.Y))
+		else if (Input.GetKeyUp(KeyCode.Y) || Input.GetKeyUp("joystick button 3"))
         {
 			special_attack_hitbox.enabled = false;
 		}
@@ -95,6 +96,7 @@ public class Attack : MonoBehaviour
 	IEnumerator AttackCooldown()
 	{
 		yield return new WaitForSeconds(0.25f);
+		ignoredEnemies.Clear();
 		canAttack = true;
 	}
 
@@ -111,7 +113,7 @@ public class Attack : MonoBehaviour
 		particleAttack.Play();
 		for (int i = 0; i < collidersEnemies.Length; i++)
 		{
-			if (collidersEnemies[i].gameObject.tag == "Enemy")
+			if (collidersEnemies[i].gameObject.tag == "Enemy" && !(ignoredEnemies.Contains(collidersEnemies[i])))
 			{
 				if (collidersEnemies[i].transform.position.x - transform.position.x < 0)
 				{
@@ -135,7 +137,7 @@ public class Attack : MonoBehaviour
 				m_Rigidbody2D.AddForce(new Vector2(direction * 2000f, 200f));
 				//m_Rigidbody2D.AddForce(damageDir * 10);
 			}
-			else if(collidersEnemies[i].gameObject.tag == "Breakable Wall")
+			else if(collidersEnemies[i].gameObject.tag == "Breakable Wall" && !(ignoredEnemies.Contains(collidersEnemies[i])))
             {
 				if (collidersEnemies[i].GetComponent<breakableWall>() != null)
 				{
@@ -147,9 +149,9 @@ public class Attack : MonoBehaviour
 				m_Rigidbody2D.velocity = Vector2.zero;
 				m_Rigidbody2D.AddForce(damageDir * 10);
 			}
+			ignoredEnemies.Add(collidersEnemies[i]);
 			
 		}
-
 
 		Collider2D[] collidersWalls = Physics2D.OverlapCircleAll(wallCheck.position, 0.6f);
 		for (int i = 0; i < collidersWalls.Length; i++)

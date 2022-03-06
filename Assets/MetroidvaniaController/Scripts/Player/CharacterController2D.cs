@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class CharacterController2D : MonoBehaviour
 {
+
+    public static CharacterController2D instance;
+    public static Transform camTarget;
+
 	[SerializeField] private float m_JumpForce = 2000f;							// Amount of force added when the player jumps.
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
 	[SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
@@ -42,7 +46,7 @@ public class CharacterController2D : MonoBehaviour
 	public bool invincible = false; //If player can die
     private bool dead = false; // Dead status
 	private bool canMove = true; //If player can move
-    private bool isJumping = false;
+    public bool isJumping = false;
     private bool resetting = false;
     private float jumpTime;
     private bool holdingJump = false;
@@ -50,6 +54,7 @@ public class CharacterController2D : MonoBehaviour
 	public float stunDuration = 0.25f;
 	public float iFrames = 1f;
     public float lastOnLand = 0f;
+    public float jumpCooldown = 0f;
     private Transform reset_point;
     private float reset_point_update = 0f;
     private Vector3 lastOnLandLocation;
@@ -86,14 +91,24 @@ public class CharacterController2D : MonoBehaviour
 
 		// reset_point.position = new Vector3(m_GroundCheck.position.x, m_GroundCheck.position.y + 2f, m_GroundCheck.position.z);
 
-        DontDestroyOnLoad(gameObject);
-
-        // TODO this code may be redundant/useless and possibly problematic if we want to do multiplayer someday
-        // keeping it in for now cause it's pretty standard but yeah
-        if (FindObjectsOfType<CharacterController2D>().Length > 1)
+        // Singleton design pattern
+        if (instance != null && instance != this) 
         {
-            Destroy(gameObject);
+            // Destroy(gameObject);
         }
+        else
+        {
+            instance = this;
+            camTarget = GameObject.FindGameObjectWithTag("CamTarget").transform;
+            DontDestroyOnLoad(gameObject);
+        }
+
+        // // TODO this code may be redundant/useless and possibly problematic if we want to do multiplayer someday
+        // // keeping it in for now cause it's pretty standard but yeah
+        // if (FindObjectsOfType<CharacterController2D>().Length > 1)
+        // {
+        //     Destroy(gameObject);
+        // }
 
 
 	}
@@ -101,7 +116,12 @@ public class CharacterController2D : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-        reset_point = GameObject.FindGameObjectWithTag("Reset Point").GetComponent<Transform>();
+        if (instance == null) {
+            instance = this;
+            camTarget = GameObject.FindGameObjectWithTag("CamTarget").transform;
+        }
+
+        reset_point = GameObject.FindGameObjectWithTag("Reset Point").transform;
         
         if (lastOnLand == 0.0f) {
             lastOnLandLocation = transform.position;
@@ -122,6 +142,7 @@ public class CharacterController2D : MonoBehaviour
             {
                 m_Grounded = true;
                 lastOnLand = 0f;
+
 				if(colliders[i].gameObject.transform.position.x > this.transform.position.x)
                 {
 					//ApplyDamage(1.0f, new Vector3(colliders[i].gameObject.transform.position.x * 1.01f, colliders[i].gameObject.transform.position.y, colliders[i].gameObject.transform.position.z), 100f);
@@ -141,6 +162,7 @@ public class CharacterController2D : MonoBehaviour
                 if (!wasGrounded)
                 {
                     OnLandEvent.Invoke();
+                    jumpCooldown = 0.1f;
                     if (!m_IsWall && !isDashing)
                     {
                         particleJumpDown.Play();
@@ -164,6 +186,7 @@ public class CharacterController2D : MonoBehaviour
 				if (!wasGrounded)
 				{
 					OnLandEvent.Invoke();
+                    jumpCooldown = 0.1f;
 					if (!m_IsWall && !isDashing) {
                         particleJumpDown.Play();
                     }
@@ -188,7 +211,10 @@ public class CharacterController2D : MonoBehaviour
 				}
 			}
 			prevVelocityX = m_Rigidbody2D.velocity.x;
-		}
+		} else {
+            if (jumpCooldown > 0f)
+                jumpCooldown -= Time.fixedDeltaTime;
+        }
 
 		if (limitVelOnWallJump)
 		{
@@ -278,7 +304,7 @@ public class CharacterController2D : MonoBehaviour
                 }
                 isJumping = true;
                 m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
-				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * .7f)); //force added during a jump
 				if (doubleJump_Unlocked) { canDoubleJump = true; }
 				
 			}
@@ -391,7 +417,8 @@ public class CharacterController2D : MonoBehaviour
         if (isJumping) // this code is absolutely gross but necessary
         {
             jumpTime += 0.1f;
-            if (jumpTime > 4f) {
+            if (jumpTime > 4.5f) {
+                jumpCooldown = 0.1f;
                 isJumping = false;
                 jumpTime = 0f;
             }
@@ -402,9 +429,17 @@ public class CharacterController2D : MonoBehaviour
             holdingJump = false;
         }
 
+		//hold jump distance extentions
         if (holdingJump) {
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 200));
+			if(isJumping){
+				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 80 / jumpTime));
+			}
+			else{
+				//falling while still holding jump
+				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 200));
+			}
         }
+
 	}
 
 
@@ -519,7 +554,7 @@ public class CharacterController2D : MonoBehaviour
         animator.SetBool("IsDead", false);
         canMove = true;
         invincible = false;
-        transform.position = GameObject.Find("PlayerCheck").GetComponent<Transform>().position;
+        transform.position = GameObject.Find("PlayerCheck").transform.position;
         // TODO may want to change these depending on if we have health boost effects
         GetComponent<health>().playerHealth = 5;
         GetComponent<health>().numberOfHearts = 5;

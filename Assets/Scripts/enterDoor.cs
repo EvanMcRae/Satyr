@@ -23,13 +23,6 @@ public class enterDoor : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W) && playerIsInRange)
         {
-            /* if(playerIsInRange == true)
-             {
-                 SceneManager.LoadScene("Tree_house");
-                 // Transform player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-                 // Transform spawnpoint = GameObject.Find("PlayerCheck").GetComponent<Transform>();
-                 // player.position = spawnpoint.position;
-             }*/
             StartCoroutine(LoadNextScene());
         }
     }
