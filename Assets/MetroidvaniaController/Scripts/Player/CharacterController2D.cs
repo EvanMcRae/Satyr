@@ -373,7 +373,7 @@ public class CharacterController2D : MonoBehaviour
                         holdingJump = true;
                     isJumping = true;
 					m_Rigidbody2D.velocity = new Vector2(0f, 0f);
-					m_Rigidbody2D.AddForce(new Vector2(transform.localScale.x * m_JumpForce *0.5f, m_JumpForce));
+					m_Rigidbody2D.AddForce(new Vector2(transform.localScale.x * m_JumpForce *0.5f, m_JumpForce * 0.8f));
 					jumpWallStartX = transform.position.x;
                     if ((move > 0 && !m_FacingRight) || (move < 0 && m_FacingRight) && move != 0) {
                         limitVelOnWallJump = true;
