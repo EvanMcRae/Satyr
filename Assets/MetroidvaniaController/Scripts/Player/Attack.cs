@@ -85,6 +85,7 @@ public class Attack : MonoBehaviour
         {
 			special_attack_hitbox.enabled = true;
             specialCooldown = 0.0f;
+			animator.SetBool("IsSattacking", true);
 			cam.GetComponentInChildren<CameraFollow>().ShakeCamera();
 		}
 		else if (Input.GetKeyUp(KeyCode.Y) || Input.GetKeyUp("joystick button 3"))
