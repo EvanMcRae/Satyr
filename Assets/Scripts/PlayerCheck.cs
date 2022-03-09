@@ -15,6 +15,8 @@ public class PlayerCheck : MonoBehaviour
         }
         else
         {
+            // get save data here
+            
             Instantiate(player, transform.position, transform.rotation);
         }
     }

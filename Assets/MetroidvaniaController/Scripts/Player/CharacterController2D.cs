@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+[Serializable]
 public class CharacterController2D : MonoBehaviour
 {
 
@@ -113,15 +115,20 @@ public class CharacterController2D : MonoBehaviour
 
 	}
 
-
-	private void FixedUpdate()
-	{
-        if (instance == null) {
+    public void RelinkObject()
+    {
+        if (instance == null)
+        {
             instance = this;
             camTarget = GameObject.FindGameObjectWithTag("CamTarget").transform;
         }
 
         reset_point = GameObject.FindGameObjectWithTag("Reset Point").transform;
+    }
+
+	private void FixedUpdate()
+	{
+        RelinkObject();
         
         if (lastOnLand == 0.0f) {
             lastOnLandLocation = transform.position;
