@@ -71,7 +71,7 @@ public class FullEnemy : Enemy
     {
         if (collision.gameObject.tag == "Player" && life > 0)
         {
-            collision.gameObject.GetComponent<CharacterController2D>().ApplyDamage(2f, transform.position, 60f);
+            collision.gameObject.GetComponent<Player>().ApplyDamage(2f, transform.position, 60f);
         }
     }
 

@@ -14,7 +14,7 @@ public class SaveSystem : MonoBehaviour
     {
         if (WriteToFile(saveName + saveDataIndex, dataToSave))
         {
-            Debug.Log("Successfully saved data");
+            // Debug.Log("Successfully saved data");
         }
     }
 
@@ -35,6 +35,7 @@ public class SaveSystem : MonoBehaviour
         try
         {
             File.WriteAllText(fullPath, content);
+            Debug.Log("Successfully saved data to " + fullPath);
             return true;
         }
         catch (Exception e)

@@ -25,7 +25,7 @@ public class simpleFlyingEnemy : Enemy
     // Update is called once per frame
     void Update()
     {
-        target = CharacterController2D.instance.gameObject.transform;
+        target = Player.instance.transform;
         
         if (playerIsInRange)
         {
@@ -51,7 +51,7 @@ public class simpleFlyingEnemy : Enemy
         //  print(col.gameObject.tag);
         if (col.gameObject.tag == "Player")
         {
-            col.gameObject.GetComponent<CharacterController2D>().ApplyDamage(1.0f, this.transform.position,30f);
+            col.gameObject.GetComponent<Player>().ApplyDamage(1.0f, this.transform.position,30f);
         }
         
     }

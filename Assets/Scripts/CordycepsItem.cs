@@ -17,7 +17,7 @@ public class CordycepsItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerPos = CharacterController2D.instance.gameObject.transform;
+        playerPos = Player.instance.transform;
 
         if (playerIsInRange == true)
         {

@@ -11,8 +11,8 @@ public class spawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = CharacterController2D.instance.gameObject.transform;
-        if (spawningAt != null) {
+        player = Player.instance.transform;
+        if (spawningAt != null && !PlayerSaver.loading) {
             spawnPoint = GameObject.Find(spawningAt).transform;
             player.position = new Vector3(spawnPoint.position.x, spawnPoint.position.y, spawnPoint.position.z);
             transform.position = player.position;

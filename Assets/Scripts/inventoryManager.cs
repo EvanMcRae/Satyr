@@ -35,7 +35,7 @@ public class inventoryManager : MonoBehaviour
             if (item.name == "DoubleJump")
             {
                 //print("Double Jump is in the inventory");
-                if (GetComponent<CharacterController2D>().doubleJump_Unlocked != true)
+                if (GetComponent<Player>().doubleJump_Unlocked != true)
                 {
                     gameObject.GetComponent<Image>().enabled = false;
                 }
@@ -52,7 +52,7 @@ public class inventoryManager : MonoBehaviour
             else if (item.name == "WallJump")
             {
                 //print("WallJump is in the inventory");
-                if (GetComponent<CharacterController2D>().wallSlide_Unlocked != true)
+                if (GetComponent<Player>().wallSlide_Unlocked != true)
                 {
                     gameObject.GetComponent<Image>().enabled = false;
                 }
@@ -82,7 +82,7 @@ public class inventoryManager : MonoBehaviour
             else if (item.name == "DoubleJump")
             {
                 // print("Double Jump is in the inventory");
-                if (GetComponent<CharacterController2D>().doubleJump_Unlocked == true)
+                if (GetComponent<Player>().doubleJump_Unlocked == true)
                 {
                     gameObject.GetComponent<Image>().enabled = true;
                 }
@@ -99,7 +99,7 @@ public class inventoryManager : MonoBehaviour
             else if (item.name == "WallJump")
             {
                 // print("WallJump is in the inventory");
-                if (GetComponent<CharacterController2D>().wallSlide_Unlocked == true)
+                if (GetComponent<Player>().wallSlide_Unlocked == true)
                 {
                     gameObject.GetComponent<Image>().enabled = true;
                 }

@@ -106,9 +106,11 @@ MonoBehaviour:
   wallSlideSpeed: 0
   life: 10
   invincible: 0
+  isJumping: 0
   stunDuration: 0.25
   iFrames: 1
   lastOnLand: 0
+  jumpCooldown: 0
   particleJumpUp: {fileID: 198584872278178884}
   particleJumpDown: {fileID: 198967111524372206}
   explorer: 0
@@ -166,11 +168,14 @@ MonoBehaviour:
   canShoot: 1
   isTimeToCheck: 0
   particleAttack: {fileID: 0}
+  ignoredEnemies: []
   cam: {fileID: 0}
   special_attack_hitbox: {fileID: 0}
   shooting_Unlocked: 0
   specialCooldown: 0
   specialMaxCooldown: 3
+  playerHealth: {fileID: 0}
+  cordyceps: {fileID: 0}
 --- !u!114 &114145887554720856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8644d33345e77614ba3ace9c18398d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 114231493902538710}
+  controller: {fileID: 0}
   animator: {fileID: 95975118031919256}
   runSpeed: 40
   dash_Unlocked: 0

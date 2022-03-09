@@ -9,7 +9,7 @@ public class SpecialBar : MonoBehaviour
 
     void Start()
     {
-        attack = CharacterController2D.instance.gameObject.GetComponent<Attack>();
+        attack = Player.instance.GetComponent<Attack>();
     }
     void Update()
     {//was UpdateBar function, this implementation may tank performance

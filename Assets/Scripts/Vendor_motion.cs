@@ -37,7 +37,7 @@ public class Vendor_motion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        player = CharacterController2D.instance.gameObject.transform;
+        player = Player.instance.transform;
         if(player.transform.position.x > this.transform.position.x)
         {
             // transform.eulerAngles = new Vector3(0, -180, 0);
@@ -66,7 +66,7 @@ public class Vendor_motion : MonoBehaviour
                   break;
               }  */
 
-            if(CharacterController2D.instance.doubleJump_Unlocked == false)
+            if(Player.controller.doubleJump_Unlocked == false)
             {
                 dialogueTriggers[0].TriggerDialogue();
             }
@@ -83,8 +83,8 @@ public class Vendor_motion : MonoBehaviour
             GameObject.Find("Dialouge Manager").GetComponent<DialougeManager>().DisplayNextSentence();
 
             // for unlocking movement in the test scene
-            CharacterController2D.instance.gameObject.GetComponent<PlayerMovement>().dash_Unlocked = true;
-            CharacterController2D.instance.doubleJump_Unlocked = true;
+            Player.instance.GetComponent<PlayerMovement>().dash_Unlocked = true;
+            Player.controller.doubleJump_Unlocked = true;
 
             if (DialougeManager.convoEnded == true)
             {

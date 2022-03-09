@@ -30,7 +30,7 @@ public class CameraFollow : MonoBehaviour
 		}
         transform.parent.position = Target.position;
 
-        Target = CharacterController2D.camTarget;
+        Target = Player.camTarget;
     }
 
 	void OnEnable()
@@ -40,15 +40,20 @@ public class CameraFollow : MonoBehaviour
 
 	private void Update()
 	{
-        Target = CharacterController2D.camTarget;
+        Target = Player.camTarget;
+        if (Target == null) {
+            Target = GameObject.FindGameObjectWithTag("CamTarget").transform;
+            Player.camTarget = Target;
+        }
 
         var cam = FindObjectOfType<Camera>();
-        var player = CharacterController2D.instance;
+        var player = Player.instance;
         var m_renderer = player.GetComponent<Renderer>();
         var screenPos = cam.WorldToScreenPoint(player.transform.position);
         bool onScreen = screenPos.x > 0f && screenPos.x < Screen.width && screenPos.y > 0f && screenPos.y < Screen.height;
 
         Vector3 newPosition = Target.position;
+        
         newPosition.z = -10;
 
         if (Input.GetAxisRaw("Vertical") < -0.5) //&& !Input.GetKey(KeyCode.S)

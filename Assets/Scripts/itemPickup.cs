@@ -23,7 +23,7 @@ public class itemPickup : MonoBehaviour
             {
                 //add item to players inventory
                 print(item);
-                playerInventory inventory = CharacterController2D.instance.gameObject.GetComponent<playerInventory>();
+                playerInventory inventory = Player.instance.GetComponent<playerInventory>();
                 if (inventory.addToInventory(item))
                 {
                     Destroy(this.gameObject);
