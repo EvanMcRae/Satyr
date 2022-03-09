@@ -28,6 +28,9 @@ public class Attack : MonoBehaviour
 	//public SpecialBar specialBar;
     public float specialCooldown = 0.0f;
 	public float specialMaxCooldown = 10.0f;
+	public health playerHealth;
+	public Cordyceps cordyceps;
+	private int countToHeal = 5;
 
 
 	private void Awake()
@@ -92,6 +95,13 @@ public class Attack : MonoBehaviour
         {
 			special_attack_hitbox.enabled = false;
 		}
+		
+		if (Input.GetKeyUp(KeyCode.H) && cordyceps.count >= countToHeal && playerHealth.playerHealth < playerHealth.numberOfHearts)
+        {
+			playerHealth.playerHealth += 1;
+			cordyceps.count -= 5;
+		}
+
 	}
 
 	IEnumerator AttackCooldown()
