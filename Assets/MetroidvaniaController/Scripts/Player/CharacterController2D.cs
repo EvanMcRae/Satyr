@@ -159,9 +159,10 @@ public class CharacterController2D : MonoBehaviour
             if (colliders[i].gameObject != gameObject && (colliders[i].gameObject.tag == "obstacle"))
             {
                 m_Grounded = true;
-                if (!wasGrounded)
+                if (!wasGrounded && !holdingJump)
                 {
                     OnLandEvent.Invoke();
+                    m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * .07f));
                     jumpCooldown = 0.1f;
                     if (!m_IsWall && !isDashing)
                     {
@@ -183,9 +184,10 @@ public class CharacterController2D : MonoBehaviour
                     reset_point.position = new Vector3(m_GroundCheck.position.x, m_GroundCheck.position.y + 2f, m_GroundCheck.position.z);
                 }
 
-				if (!wasGrounded)
+				if (!wasGrounded && !holdingJump)
 				{
 					OnLandEvent.Invoke();
+                    m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * .07f));
                     jumpCooldown = 0.1f;
 					if (!m_IsWall && !isDashing) {
                         particleJumpDown.Play();
