@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 
@@ -40,6 +41,11 @@ public class changeScene : MonoBehaviour
     IEnumerator LoadNextScene() {
         crossfade.SetTrigger("start");
         yield return new WaitForSeconds(0.9f);
+        EventSystem eventSystem = GameObject.FindObjectOfType<EventSystem>();
+        if (eventSystem != null)
+        {
+            GameObject.Destroy(eventSystem.gameObject);
+        }
         SceneHelper.LoadScene(scene);
         spawnManager.spawningAt = spawn;
     }

@@ -9,7 +9,6 @@ public static partial class SceneHelper
     {
         PendingPreviousScene = SceneManager.GetActiveScene().name;
         SceneManager.sceneLoaded += ActivatorAndUnloader;
-        GameObject.Find("EventSystem").SetActive(false);
         SceneManager.LoadScene(SceneNameToLoad, LoadSceneMode.Additive);
     }
 

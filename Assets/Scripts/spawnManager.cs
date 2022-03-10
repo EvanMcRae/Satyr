@@ -17,6 +17,7 @@ public class spawnManager : MonoBehaviour
             player.position = new Vector3(spawnPoint.position.x, spawnPoint.position.y, spawnPoint.position.z);
             transform.position = player.position;
         }
+        PlayerSaver.loading = false;
     }
 
     // Update is called once per frame

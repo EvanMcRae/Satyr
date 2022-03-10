@@ -59,10 +59,7 @@ public class PlayerSaver : MonoBehaviour
             Player.instance = newPlayer;
             Player.controller = newPlayer.GetComponent<Player>();
             Player.camTarget = GameObject.FindGameObjectWithTag("CamTarget").transform;
-
-            yield return new WaitForSeconds(0.2f);
         }
-        loading = false;
     }
 
     [Serializable]
