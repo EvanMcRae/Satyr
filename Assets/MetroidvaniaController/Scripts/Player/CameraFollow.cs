@@ -31,6 +31,7 @@ public class CameraFollow : MonoBehaviour
         transform.parent.position = Target.position;
 
         Target = Player.camTarget;
+        Snap();
     }
 
 	void OnEnable()
