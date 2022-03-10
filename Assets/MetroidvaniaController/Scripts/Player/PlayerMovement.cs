@@ -20,8 +20,6 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        Debug.Log(Input.GetAxisRaw("Horizontal"));
-
 		if (Input.GetAxisRaw("Horizontal") > 0.3 || Input.GetAxisRaw("Horizontal") < -0.3)
 			horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 		else
