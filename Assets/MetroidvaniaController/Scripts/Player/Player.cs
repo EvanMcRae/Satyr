@@ -175,29 +175,30 @@ public class Player : MonoBehaviour
                         limitVelOnWallJump = false;
                 }
             }
-            else if (colliders[i].gameObject != gameObject && (colliders[i].gameObject.tag == "Ground" || colliders[i].gameObject.tag == "Wall" || colliders[i].gameObject.tag == "Breakable Wall"))
+            else if (colliders[i].gameObject != gameObject && (colliders[i].gameObject.tag == "Ground" || colliders[i].gameObject.tag == "Wall" || colliders[i].gameObject.tag == "Breakable Wall")) {
                 m_Grounded = true;
-            lastOnLand = 0f;
-            canDoubleJump = false;
+                lastOnLand = 0f;
+                canDoubleJump = false;
 
-            if (reset_point_update >= 3f && colliders[i].gameObject.tag != "obstacle")
-            {
-                reset_point_update = 0f;
-                reset_point.position = new Vector3(m_GroundCheck.position.x, m_GroundCheck.position.y + 2f, m_GroundCheck.position.z);
-            }
-
-            if (!wasGrounded && !holdingJump)
-            {
-                OnLandEvent.Invoke();
-                m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * .07f));
-                jumpCooldown = 0.1f;
-                if (!m_IsWall && !isDashing)
+                if (reset_point_update >= 3f && colliders[i].gameObject.tag != "obstacle")
                 {
-                    particleJumpDown.Play();
+                    reset_point_update = 0f;
+                    reset_point.position = new Vector3(m_GroundCheck.position.x, m_GroundCheck.position.y + 2f, m_GroundCheck.position.z);
                 }
 
-                if (m_Rigidbody2D.velocity.y < 0f)
-                    limitVelOnWallJump = false;
+                if (!wasGrounded && !holdingJump)
+                {
+                    OnLandEvent.Invoke();
+                    m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * .07f));
+                    jumpCooldown = 0.1f;
+                    if (!m_IsWall && !isDashing)
+                    {
+                        particleJumpDown.Play();
+                    }
+
+                    if (m_Rigidbody2D.velocity.y < 0f)
+                        limitVelOnWallJump = false;
+                }
             }
         }
 

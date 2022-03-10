@@ -40,7 +40,7 @@ public class changeScene : MonoBehaviour
     IEnumerator LoadNextScene() {
         crossfade.SetTrigger("start");
         yield return new WaitForSeconds(0.9f);
-        SceneManager.LoadScene(scene);
+        SceneHelper.LoadScene(scene);
         spawnManager.spawningAt = spawn;
     }
 

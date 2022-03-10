@@ -30,7 +30,10 @@ public class Parallaxing : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-
+        if (cam == null) {
+            Awake();
+            Start();
+        }
 		// for each background
 		for (int i = 0; i < backgrounds.Length; i++) {
 			// the parallax is the opposite of the camera movement because the previous frame multiplied by the scale

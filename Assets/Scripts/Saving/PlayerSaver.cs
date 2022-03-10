@@ -17,12 +17,6 @@ public class PlayerSaver : MonoBehaviour
         Player.controller = null;
     }
 
-    // public void SpawnPrefab()
-    // {
-    //     var position = Random.insideUnitSphere * 5;
-    //     createdPrefabs.Add(Instantiate(prefab, position, Quaternion.identity));
-    // }
-
     public void SaveGame()
     {
         SaveData data = new SaveData();
@@ -45,7 +39,7 @@ public class PlayerSaver : MonoBehaviour
         if (String.IsNullOrEmpty(dataToLoad) == false)
         {
             GameObject.Find("Crossfade").GetComponent<Animator>().SetTrigger("start");
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.9f);
             Clear();
             SaveData data = JsonUtility.FromJson<SaveData>(dataToLoad);
             SceneManager.LoadSceneAsync(data.sceneIndex);
