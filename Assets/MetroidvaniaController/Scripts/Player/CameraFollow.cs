@@ -70,7 +70,7 @@ public class CameraFollow : MonoBehaviour
             Target.localPosition = new Vector3(0.0f, 4.0f, 0.0f);
         }
 
-        transform.parent.position = Vector3.Slerp(transform.position, newPosition, FollowSpeed * Time.deltaTime);
+        transform.parent.position = Vector3.Lerp(transform.position, newPosition, FollowSpeed * Time.deltaTime);
 
 		if (shakeDuration > 0)
 		{
