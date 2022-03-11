@@ -24,7 +24,7 @@ public class Cordyceps : MonoBehaviour
         
         GameObject[] items = GameObject.FindGameObjectsWithTag("CordycepsItem");
         foreach (GameObject item in items) {
-            if ((item.transform.position - transform.position).magnitude < 0.03f) 
+            if ((item.transform.position - transform.position).magnitude < 0.5f) 
             {
                 count++;
                 Destroy(item);
@@ -40,6 +40,14 @@ public class Cordyceps : MonoBehaviour
     //         Destroy(gameObject);
     //     }
     // }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "CordycepsItem")
+        {
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
+    }
 
     public void UpdateBag()
     {
