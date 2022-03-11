@@ -25,6 +25,11 @@ public class PlayerMovement : MonoBehaviour {
 		else
 			horizontalMove = 0f;
 
+        if (Player.controller.dead || Player.controller.resetting) {
+            animator.SetBool("IsDead", true);
+            horizontalMove = 0f;
+        }
+
 		animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
 		if (Input.GetKeyDown(KeyCode.Space))
