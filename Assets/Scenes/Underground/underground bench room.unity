@@ -430,6 +430,7 @@ GameObject:
   - component: {fileID: 88176608}
   - component: {fileID: 88176607}
   - component: {fileID: 88176610}
+  - component: {fileID: 88176611}
   m_Layer: 0
   m_Name: rock_platforms_2 (1)
   m_TagString: Ground
@@ -444,7 +445,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88176606}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -544,10 +545,32 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!68 &88176611
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88176606}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -2.31, y: 1.5}
+  - {x: 2.31, y: 1.5}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1001 &95873821
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1013,6 +1036,7 @@ GameObject:
   - component: {fileID: 149007316}
   - component: {fileID: 149007315}
   - component: {fileID: 149007314}
+  - component: {fileID: 149007318}
   m_Layer: 0
   m_Name: rock_platforms_0 (1)
   m_TagString: Ground
@@ -1027,7 +1051,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149007313}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1061,7 +1085,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -1131,6 +1155,28 @@ Transform:
   m_Father: {fileID: 1468998158}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &149007318
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149007313}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -2.3449998, y: 1}
+  - {x: 2.3449998, y: 1}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &159955638
 GameObject:
   m_ObjectHideFlags: 0
@@ -1518,6 +1564,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6743093074308911235, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
   m_PrefabInstance: {fileID: 1895095937}
   m_PrefabAsset: {fileID: 0}
+--- !u!68 &331774711
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331774710}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.49999905, y: 0.25}
+  - {x: 0.50000095, y: 0.25}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!251 &331774713
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -1533,7 +1601,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -1547,6 +1615,10 @@ PrefabInstance:
     - target: {fileID: 6743093074308911235, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_Name
       value: Square (42)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6743093074308911236, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911237, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_Color.a
@@ -2278,7 +2350,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 8.075186, y: 0.9620545}
+  m_Offset: {x: 8.075186, y: 0.101534605}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2289,7 +2361,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 35.32223, y: 3.7870097}
+  m_Size: {x: 35.32223, y: 5.5080495}
   m_EdgeRadius: 0
 --- !u!212 &441273194
 SpriteRenderer:
@@ -2450,6 +2522,10 @@ PrefabInstance:
     - target: {fileID: 6743093074308911235, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_Name
       value: Square (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6743093074308911236, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911236, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_UsedByEffector
@@ -3066,6 +3142,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6743093074308911235, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
   m_PrefabInstance: {fileID: 1351286992}
   m_PrefabAsset: {fileID: 0}
+--- !u!68 &695819589
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695819588}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -2.1650016, y: 0.5}
+  - {x: 2.1649978, y: 0.5}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!251 &695819591
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -3081,7 +3179,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -3097,6 +3195,7 @@ GameObject:
   - component: {fileID: 697044437}
   - component: {fileID: 697044436}
   - component: {fileID: 697044439}
+  - component: {fileID: 697044440}
   m_Layer: 0
   m_Name: rock_platforms_2 (2)
   m_TagString: Ground
@@ -3111,7 +3210,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 697044435}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -3211,10 +3310,32 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!68 &697044440
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697044435}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -2.060002, y: 1.5}
+  - {x: 2.0959346, y: 1.5}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &707045136
 GameObject:
   m_ObjectHideFlags: 0
@@ -3760,6 +3881,7 @@ GameObject:
   - component: {fileID: 733870681}
   - component: {fileID: 733870680}
   - component: {fileID: 733870683}
+  - component: {fileID: 733870684}
   m_Layer: 0
   m_Name: rock_platforms_0 (9)
   m_TagString: Ground
@@ -3774,7 +3896,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733870679}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -3874,10 +3996,32 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!68 &733870684
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733870679}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -2.3449998, y: 1}
+  - {x: 2.0949998, y: 1}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &760742581 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6743093074308911235, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
@@ -4479,10 +4623,32 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!68 &851312330
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851312328}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.5000005, y: 0.5000038}
+  - {x: 0.49999952, y: 0.5000038}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &861759058
 GameObject:
   m_ObjectHideFlags: 0
@@ -4538,8 +4704,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 912248643
-  m_SortingLayer: 1
+  m_SortingLayerID: -368620725
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 2707480845749460018, guid: 9391e84dcfee08d429cb314bf538223e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4659,6 +4825,10 @@ PrefabInstance:
     - target: {fileID: 6743093074308911235, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_Name
       value: Square (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6743093074308911236, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911236, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_UsedByEffector
@@ -5331,7 +5501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911238, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5.6277657
+      value: 47.533787
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911238, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_LocalScale.y
@@ -5339,7 +5509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911238, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -115.24
+      value: -94.2874
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911238, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5533,10 +5703,32 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!68 &989827155
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989827153}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.49999997, y: 0.25}
+  - {x: 0.49999997, y: 0.25}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!4 &1029722418 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6244070820782136750, guid: e0bf9aa00cb755d4c9cc24c5a6cc34a3, type: 3}
@@ -5671,9 +5863,9 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 1
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 8.075186, y: 0.9620545}
+  m_Offset: {x: 8.075186, y: 0.11461508}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5684,7 +5876,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 35.32223, y: 3.7870097}
+  m_Size: {x: 35.32223, y: 5.481889}
   m_EdgeRadius: 0
 --- !u!212 &1052679105
 SpriteRenderer:
@@ -6510,6 +6702,7 @@ GameObject:
   - component: {fileID: 1235218539}
   - component: {fileID: 1235218538}
   - component: {fileID: 1235218541}
+  - component: {fileID: 1235218542}
   m_Layer: 0
   m_Name: rock_platforms_0 (3)
   m_TagString: Ground
@@ -6524,7 +6717,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1235218537}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -6624,10 +6817,32 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!68 &1235218542
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235218537}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -2.345, y: 1}
+  - {x: 2.095, y: 1}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &1291005131
 GameObject:
   m_ObjectHideFlags: 0
@@ -6750,6 +6965,10 @@ PrefabInstance:
       value: Square (39)
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911236, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6743093074308911236, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_UsedByEffector
       value: 1
       objectReference: {fileID: 0}
@@ -6840,6 +7059,7 @@ GameObject:
   - component: {fileID: 1336342701}
   - component: {fileID: 1336342700}
   - component: {fileID: 1336342703}
+  - component: {fileID: 1336342704}
   m_Layer: 0
   m_Name: rock_platforms_0 (7)
   m_TagString: Ground
@@ -6854,7 +7074,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1336342699}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -6954,10 +7174,32 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!68 &1336342704
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336342699}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -2.345, y: 1}
+  - {x: 2.345, y: 1}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &1346258077
 GameObject:
   m_ObjectHideFlags: 0
@@ -7071,6 +7313,10 @@ PrefabInstance:
     - target: {fileID: 6743093074308911236, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_Size.x
       value: 4.2403517
+      objectReference: {fileID: 0}
+    - target: {fileID: 6743093074308911236, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911236, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_Offset.x
@@ -7218,8 +7464,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 912248643
-  m_SortingLayer: 1
+  m_SortingLayerID: -368620725
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1858419116859017703, guid: 7562e549bc4003648bdcbd27a7ff0b4b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -43061,6 +43307,7 @@ GameObject:
   - component: {fileID: 1444781983}
   - component: {fileID: 1444781982}
   - component: {fileID: 1444781985}
+  - component: {fileID: 1444781986}
   m_Layer: 0
   m_Name: rock_platforms_2 (3)
   m_TagString: Ground
@@ -43075,7 +43322,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444781981}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -43175,10 +43422,32 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!68 &1444781986
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444781981}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -2.0600002, y: 1.5}
+  - {x: 2.0600002, y: 1.5}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1001 &1456552116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43456,7 +43725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911238, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -112.13
+      value: -117.84
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911238, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -44104,10 +44373,32 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!68 &1590495585
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590495583}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.5, y: 0.50000095}
+  - {x: 0.5, y: 0.50000095}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &1592016689
 GameObject:
   m_ObjectHideFlags: 0
@@ -44157,6 +44448,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6743093074308911235, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
   m_PrefabInstance: {fileID: 1602241371}
   m_PrefabAsset: {fileID: 0}
+--- !u!68 &1599505998
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599505997}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.5, y: 0.2500019}
+  - {x: 0.5, y: 0.2500019}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!251 &1599506000
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -44172,7 +44485,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -44186,6 +44499,10 @@ PrefabInstance:
     - target: {fileID: 6743093074308911235, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_Name
       value: Square (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6743093074308911236, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911236, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_UsedByEffector
@@ -44374,7 +44691,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5222355474244051916, guid: ea0d6a5ad81464a4e9b3e9619753076c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.28
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: -5222355474244051916, guid: ea0d6a5ad81464a4e9b3e9619753076c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -44470,6 +44787,7 @@ GameObject:
   - component: {fileID: 1653196953}
   - component: {fileID: 1653196952}
   - component: {fileID: 1653196955}
+  - component: {fileID: 1653196956}
   m_Layer: 0
   m_Name: rock_platforms_0 (8)
   m_TagString: Ground
@@ -44484,7 +44802,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653196951}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -44584,10 +44902,32 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!68 &1653196956
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653196951}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -2.5950003, y: 1}
+  - {x: 2.3761754, y: 1}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1001 &1664773348
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44951,8 +45291,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 912248643
-  m_SortingLayer: 1
+  m_SortingLayerID: -368620725
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 2707480845749460018, guid: 9391e84dcfee08d429cb314bf538223e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -45176,6 +45516,7 @@ GameObject:
   - component: {fileID: 1746529841}
   - component: {fileID: 1746529840}
   - component: {fileID: 1746529843}
+  - component: {fileID: 1746529844}
   m_Layer: 0
   m_Name: rock_platforms_0 (10)
   m_TagString: Ground
@@ -45190,7 +45531,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746529839}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -45290,10 +45631,32 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!68 &1746529844
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746529839}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -2.595, y: 1}
+  - {x: 2.595, y: 1}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1001 &1754085862
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45558,6 +45921,7 @@ GameObject:
   - component: {fileID: 1798078547}
   - component: {fileID: 1798078549}
   - component: {fileID: 1798078550}
+  - component: {fileID: 1798078551}
   m_Layer: 0
   m_Name: rock_platforms_3
   m_TagString: Ground
@@ -45638,7 +46002,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1798078546}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -45672,7 +46036,75 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
+--- !u!68 &1798078551
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798078546}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -9.164997, y: 3}
+  - {x: 8.915001, y: 3}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!1 &1820050501 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6743093074308911235, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
+  m_PrefabInstance: {fileID: 342678006}
+  m_PrefabAsset: {fileID: 0}
+--- !u!68 &1820050502
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820050501}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.49999988, y: 0.24999952}
+  - {x: 0.5000001, y: 0.24999952}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!251 &1820050503
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820050501}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -45721,7 +46153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911238, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5.6277657
+      value: 52.42599
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911238, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_LocalScale.y
@@ -45729,7 +46161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911238, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -109
+      value: -91.7669
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911238, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -46004,6 +46436,7 @@ GameObject:
   - component: {fileID: 1865630285}
   - component: {fileID: 1865630284}
   - component: {fileID: 1865630287}
+  - component: {fileID: 1865630288}
   m_Layer: 0
   m_Name: rock_platforms_0 (4)
   m_TagString: Ground
@@ -46018,7 +46451,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865630283}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -46118,10 +46551,32 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!68 &1865630288
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865630283}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -2.3449998, y: 1.0000001}
+  - {x: 2.0949998, y: 1.0000001}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1001 &1895095937
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46132,6 +46587,10 @@ PrefabInstance:
     - target: {fileID: 6743093074308911235, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_Name
       value: Square (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6743093074308911236, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911236, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_UsedByEffector
@@ -46224,6 +46683,7 @@ GameObject:
   - component: {fileID: 1897976601}
   - component: {fileID: 1897976600}
   - component: {fileID: 1897976603}
+  - component: {fileID: 1897976604}
   m_Layer: 0
   m_Name: rock_platforms_0 (5)
   m_TagString: Ground
@@ -46238,7 +46698,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897976599}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -46338,10 +46798,32 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!68 &1897976604
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897976599}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -2.3449998, y: 0.99999976}
+  - {x: 2.3449998, y: 0.99999976}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &1910697771
 GameObject:
   m_ObjectHideFlags: 0
@@ -46354,6 +46836,7 @@ GameObject:
   - component: {fileID: 1910697773}
   - component: {fileID: 1910697772}
   - component: {fileID: 1910697775}
+  - component: {fileID: 1910697776}
   m_Layer: 0
   m_Name: rock_platforms_1 (4)
   m_TagString: Ground
@@ -46368,7 +46851,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1910697771}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -46468,10 +46951,32 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!68 &1910697776
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910697771}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -1.915, y: 0.5}
+  - {x: 1.915, y: 0.5}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1001 &1915559248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47073,6 +47578,7 @@ GameObject:
   - component: {fileID: 1958273062}
   - component: {fileID: 1958273061}
   - component: {fileID: 1958273064}
+  - component: {fileID: 1958273065}
   m_Layer: 0
   m_Name: rock_platforms_0 (6)
   m_TagString: Ground
@@ -47087,7 +47593,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1958273060}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -47187,10 +47693,32 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!68 &1958273065
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958273060}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -2.345, y: 1.0000001}
+  - {x: 2.095, y: 1.0000001}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &1965799306
 GameObject:
   m_ObjectHideFlags: 0
