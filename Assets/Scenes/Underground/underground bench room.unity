@@ -4937,6 +4937,18 @@ PrefabInstance:
       value: blue_gradient
       objectReference: {fileID: 0}
     - target: {fileID: 6245388452350891247, guid: ea0d6a5ad81464a4e9b3e9619753076c, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245388452350891247, guid: ea0d6a5ad81464a4e9b3e9619753076c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9784993
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245388452350891247, guid: ea0d6a5ad81464a4e9b3e9619753076c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9685534
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245388452350891247, guid: ea0d6a5ad81464a4e9b3e9619753076c, type: 3}
       propertyPath: m_SortingLayer
       value: 2
       objectReference: {fileID: 0}
@@ -17702,6 +17714,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 106, y: 13, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: 107, y: 13, z: 0}
     second:
       serializedVersion: 2
@@ -21593,6 +21615,16 @@ Tilemap:
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
   - first: {x: 102, y: 21, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 103, y: 21, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -43244,13 +43276,13 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 3552
+  - m_RefCount: 3554
     m_Data: {fileID: 11400000, guid: 270a66c6ef0abb244b02de5c21f1678a, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 3552
+  - m_RefCount: 3554
     m_Data: {fileID: 21300000, guid: 2f2be2c0b2072be439011c741303f7b0, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 3552
+  - m_RefCount: 3554
     m_Data:
       e00: 1
       e01: 0
@@ -43269,7 +43301,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 3552
+  - m_RefCount: 3554
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -44691,7 +44723,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5222355474244051916, guid: ea0d6a5ad81464a4e9b3e9619753076c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12
+      value: -11.77
       objectReference: {fileID: 0}
     - target: {fileID: -5222355474244051916, guid: ea0d6a5ad81464a4e9b3e9619753076c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -44720,6 +44752,22 @@ PrefabInstance:
     - target: {fileID: -4309959301767685233, guid: ea0d6a5ad81464a4e9b3e9619753076c, type: 3}
       propertyPath: m_Name
       value: blue_gradient (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 778218229507891696, guid: ea0d6a5ad81464a4e9b3e9619753076c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245388452350891247, guid: ea0d6a5ad81464a4e9b3e9619753076c, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245388452350891247, guid: ea0d6a5ad81464a4e9b3e9619753076c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.96927124
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245388452350891247, guid: ea0d6a5ad81464a4e9b3e9619753076c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9308176
       objectReference: {fileID: 0}
     - target: {fileID: 6245388452350891247, guid: ea0d6a5ad81464a4e9b3e9619753076c, type: 3}
       propertyPath: m_SortingLayer
