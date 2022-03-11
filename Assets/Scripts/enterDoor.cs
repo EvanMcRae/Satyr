@@ -52,9 +52,11 @@ public class enterDoor : MonoBehaviour
 
     IEnumerator LoadNextScene()
     {
+        changeScene.changingScene = true;
         crossfade.SetTrigger("start");
-        yield return new WaitForSeconds(1.1f);
+        yield return new WaitForSeconds(0.9f);
         SceneManager.LoadScene(scene);
         spawnManager.spawningAt = spawn;
+        changeScene.changingScene = false;
     }
 }
