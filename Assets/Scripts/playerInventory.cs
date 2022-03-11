@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerInventory : MonoBehaviour
 {
@@ -57,7 +58,10 @@ public class playerInventory : MonoBehaviour
         // display current items
         for (int index = 0; index < items_added.Count; index++)
         {
-            inventory_spaces[index].GetComponent<inventoryManager>().item = items_added[index];
+            inventoryManager im = inventory_spaces[index].GetComponent<inventoryManager>();
+            im.item = items_added[index];
+            im.buttonImage.sprite = im.item.itemSprite;
+            inventory_spaces[index].GetComponent<Image>().enabled = true;
         }
     }
 }

@@ -78,30 +78,20 @@ public class InventorySerialization
     }
 }
 
-// TODO: FIGURE OUT HOW TO SERIALIZE SPRITES!!
-// maybe there's a better organizational strategy for serializing items as prefabs or something
-// better yet: associate sprites WITH ID!!! banger idea
 [Serializable]
 public class ItemSerialization
 {
-    public string itemID, itemName, itemDescription;
-    public int itemCount, maxStack;
+    public string itemID;
+    public int itemCount;
 
     public ItemSerialization(Item item) {
         itemID = item.itemID;
-        itemName = item.itemName;
-        itemDescription = item.itemDescription;
         itemCount = item.itemCount;
-        maxStack = item.maxStack;
     }
 
     public Item GetValue() {
-        Item newItem = new Item();
-        newItem.itemID = itemID;
-        newItem.itemName = itemName;
-        newItem.itemDescription = itemDescription;
+        Item newItem = Database.GetItemByID(itemID);
         newItem.itemCount = itemCount;
-        newItem.maxStack = maxStack;
         return newItem;
     }
 }
