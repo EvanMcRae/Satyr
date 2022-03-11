@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
     public bool dead = false; // Dead status
     private bool canMove = true; //If player can move
     public bool isJumping = false;
+    public bool isJumpingDJ = false;
     public bool resetting = false;
     private float jumpTime;
     private bool holdingJump = false;
@@ -56,6 +57,7 @@ public class Player : MonoBehaviour
     public float iFrames = 1f;
     public float lastOnLand = 0f;
     public float jumpCooldown = 0f;
+    public float beenOnLand = 0f;
     private Transform reset_point;
     private float reset_point_update = 0f;
     private Vector3 lastOnLandLocation;
@@ -161,11 +163,15 @@ public class Player : MonoBehaviour
             if (colliders[i].gameObject != gameObject && (colliders[i].gameObject.tag == "obstacle"))
             {
                 m_Grounded = true;
+                canDoubleJump = false;
+
+                if (!wasGrounded && jumpCooldown <= 0.1f)
+                    jumpCooldown = 0.1f;
+
                 if (!wasGrounded && !holdingJump)
                 {
                     OnLandEvent.Invoke();
                     m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * .07f));
-                    jumpCooldown = 0.1f;
                     if (!m_IsWall && !isDashing)
                     {
                         particleJumpDown.Play();
@@ -186,11 +192,14 @@ public class Player : MonoBehaviour
                     reset_point.position = new Vector3(m_GroundCheck.position.x, m_GroundCheck.position.y + 2f, m_GroundCheck.position.z);
                 }
 
+                if (!wasGrounded && jumpCooldown <= 0.1f) {
+                    jumpCooldown = 0.1f;
+                }
+                    
                 if (!wasGrounded && !holdingJump)
                 {
                     OnLandEvent.Invoke();
                     m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * .07f));
-                    jumpCooldown = 0.1f;
                     if (!m_IsWall && !isDashing)
                     {
                         particleJumpDown.Play();
@@ -206,6 +215,7 @@ public class Player : MonoBehaviour
 
         if (!m_Grounded)
         {
+            beenOnLand = 0f;
             OnFallEvent.Invoke();
             Collider2D[] collidersWall = Physics2D.OverlapCircleAll(m_WallCheck.position, k_GroundedRadius, m_WhatIsGround);
             for (int i = 0; i < collidersWall.Length; i++)
@@ -220,6 +230,19 @@ public class Player : MonoBehaviour
         }
         else
         {
+            if (beenOnLand < 5f)
+                beenOnLand += Time.fixedDeltaTime;
+            if (beenOnLand >= 0.2f && (isJumping || isJumpingDJ) && jumpTime > 0.1f) {
+                isJumping = false;
+                jumpTime = 0f;
+                isJumpingDJ = false;
+            }
+            if (beenOnLand >= 0.1f && (isJumping || isJumpingDJ) && jumpTime > 0.1f && velocity.y == 0f) {
+                isJumping = false;
+                isJumpingDJ = false;
+                jumpTime = 0f;
+                jumpCooldown = 0.1f;
+            }
             if (jumpCooldown > 0f)
                 jumpCooldown -= Time.fixedDeltaTime;
         }
@@ -261,6 +284,8 @@ public class Player : MonoBehaviour
 
         if (releaseJump && canDoubleJump)
         {
+            if (isJumping)
+                isJumpingDJ = true;
             isJumping = false;
             jumpTime = 0;
         }
@@ -438,13 +463,15 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (isJumping) // this code is absolutely gross but necessary
+        if (isJumping || isJumpingDJ) // this code is absolutely gross but necessary
         {
             jumpTime += 0.1f;
             if (jumpTime > 4.5f)
             {
-                jumpCooldown = 0.1f;
+                if (jumpCooldown <= 0.1f)
+                    jumpCooldown = 0.1f;
                 isJumping = false;
+                isJumpingDJ = false;
                 jumpTime = 0f;
             }
         }
@@ -457,7 +484,7 @@ public class Player : MonoBehaviour
         //hold jump distance extentions
         if (holdingJump)
         {
-            if (isJumping)
+            if (isJumping || isJumpingDJ)
             {
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 80 / jumpTime));
             }
