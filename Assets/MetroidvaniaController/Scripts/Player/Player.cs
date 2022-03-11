@@ -117,6 +117,10 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!dead) {
+            animator.SetBool("IsDead", false);
+        }
+        
         if (controller == null)
         {
             controller = this;
