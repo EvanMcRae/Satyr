@@ -613,7 +613,7 @@ public class Player : MonoBehaviour
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         dead = false;
         animator.SetBool("IsDead", false);
-        canMove = true;
+        //canMove = true;
         invincible = false;
         transform.position = GameObject.Find("PlayerCheck").transform.position;
         // TODO may want to change these depending on if we have health boost effects
@@ -621,6 +621,8 @@ public class Player : MonoBehaviour
         GetComponent<health>().numberOfHearts = 5;
         GetComponent<Attack>().enabled = true;
         yield return new WaitForSeconds(1f);
+        animator.SetBool("Iddle", true);
+        canMove = true;
     }
 
     public void GoToResetPoint()
