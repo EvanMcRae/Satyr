@@ -31,7 +31,7 @@ public class GameSaver : MonoBehaviour
 
     public void LoadGame()
     {
-        if (!loading && !Player.controller.resetting && !Player.controller.dead)
+        if (!loading && !Player.controller.resetting && !Player.controller.dead && !changeScene.changingScene)
             StartCoroutine(LoadSaveFile());
     }
 

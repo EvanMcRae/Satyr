@@ -10,6 +10,7 @@ public class changeScene : MonoBehaviour
     public string scene;
     public string spawn;
     private Animator crossfade;
+    public static bool changingScene;
 
     // Start is called before the first frame update
     void Start()
@@ -33,12 +34,13 @@ public class changeScene : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && !Player.controller.dead && !Player.controller.resetting && !GameSaver.loading)
+        if (!changingScene && collision.gameObject.tag == "Player" && !Player.controller.dead && !Player.controller.resetting && !GameSaver.loading)
         {
             StartCoroutine(LoadNextScene());
         }
     }
     IEnumerator LoadNextScene() {
+        changingScene = true;
         crossfade.SetTrigger("start");
         yield return new WaitForSeconds(0.9f);
         EventSystem eventSystem = GameObject.FindObjectOfType<EventSystem>();
@@ -48,6 +50,7 @@ public class changeScene : MonoBehaviour
         }
         SceneHelper.LoadScene(scene);
         spawnManager.spawningAt = spawn;
+        changingScene = false;
     }
 
 }

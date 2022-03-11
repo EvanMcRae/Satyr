@@ -31,6 +31,11 @@ public class CameraFollow : MonoBehaviour
         transform.parent.position = Target.position;
 
         Target = Player.camTarget;
+        if (Target == null)
+        {
+            Target = GameObject.FindGameObjectWithTag("CamTarget").transform;
+            Player.camTarget = Target;
+        }
         Snap();
     }
 
@@ -42,7 +47,8 @@ public class CameraFollow : MonoBehaviour
 	private void FixedUpdate()
 	{
         Target = Player.camTarget;
-        if (Target == null) {
+        if (Target == null)
+        {
             Target = GameObject.FindGameObjectWithTag("CamTarget").transform;
             Player.camTarget = Target;
         }
