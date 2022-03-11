@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerSaver : MonoBehaviour
+public class GameSaver : MonoBehaviour
 {
     public SaveSystem saveSystem;
     public GameObject prefab;
@@ -19,16 +19,20 @@ public class PlayerSaver : MonoBehaviour
 
     public void SaveGame()
     {
-        SaveData data = new SaveData();
-        data.sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        data.SetPlayer(Player.instance);
-        var dataToSave = JsonUtility.ToJson(data);
-        saveSystem.SaveData(dataToSave);
+        if (!Player.controller.dead && !Player.controller.resetting && !loading) {
+            SaveData data = new SaveData();
+            data.sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            data.SetPlayer(Player.instance);
+            data.SetOptions(AudioManager.instance);
+            var dataToSave = JsonUtility.ToJson(data);
+            saveSystem.SaveData(dataToSave);
+        }
     }
 
     public void LoadGame()
     {
-        StartCoroutine(LoadSaveFile());
+        if (!loading && !Player.controller.resetting && !Player.controller.dead)
+            StartCoroutine(LoadSaveFile());
     }
 
     IEnumerator LoadSaveFile()
@@ -51,6 +55,7 @@ public class PlayerSaver : MonoBehaviour
             data.player.inventory.SetValues(newPlayer);
             data.player.health.SetValues(newPlayer);
             data.player.attack.SetValues(newPlayer);
+            data.options.SetValues();
 
             // single value transfers
             newPlayer.GetComponent<PlayerMovement>().runSpeed = data.player.movement.runSpeed;
@@ -66,11 +71,13 @@ public class PlayerSaver : MonoBehaviour
     public class SaveData
     {
         public PlayerSerialization player;
+        public OptionsSerialization options;
         public int sceneIndex;
         public void SetPlayer(GameObject playerObj) {
             player = new PlayerSerialization(playerObj);
         }
+        public void SetOptions(AudioManager am) {
+            options = new OptionsSerialization(am);
+        }
     }
-
-
 }

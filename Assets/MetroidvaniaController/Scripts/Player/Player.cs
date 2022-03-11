@@ -45,10 +45,10 @@ public class Player : MonoBehaviour
     private float cantMove = 0f;
     public float life = 10f; //Life of the player
     public bool invincible = false; //If player can die
-    private bool dead = false; // Dead status
+    public bool dead = false; // Dead status
     private bool canMove = true; //If player can move
     public bool isJumping = false;
-    private bool resetting = false;
+    public bool resetting = false;
     private float jumpTime;
     private bool holdingJump = false;
 

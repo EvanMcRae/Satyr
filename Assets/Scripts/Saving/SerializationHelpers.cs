@@ -199,3 +199,19 @@ public class Vector2Serialization
         return new Vector2(x, y);
     }
 }
+
+[Serializable]
+public class OptionsSerialization {
+    public bool musicMute;
+    public float musicVolume;
+
+    public OptionsSerialization(AudioManager am) {
+        musicMute = am.mute;
+        musicVolume = am.volume;
+    }
+
+    public void SetValues() {
+        AudioManager.instance.mute = musicMute;
+        AudioManager.instance.volume = musicVolume;
+    }
+}

@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager instance;
     public AudioMixer mixer;
     public AudioMixerGroup mixerGroup;
     private AudioClip currentSong;
@@ -55,10 +56,12 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         DontDestroyOnLoad(gameObject);
 
         if (FindObjectsOfType<AudioManager>().Length > 1)
         {
+            instance = null;
             Destroy(gameObject);
         }
     }
@@ -100,6 +103,9 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (instance == null) {
+            instance = this;
+        }
         //Manages looping tracks
         if (firstSet)
         {

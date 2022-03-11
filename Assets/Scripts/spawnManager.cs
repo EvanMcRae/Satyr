@@ -12,12 +12,12 @@ public class spawnManager : MonoBehaviour
     void Start()
     {
         player = Player.instance.transform;
-        if (spawningAt != null && !PlayerSaver.loading) {
+        if (spawningAt != null && !GameSaver.loading) {
             spawnPoint = GameObject.Find(spawningAt).transform;
             player.position = new Vector3(spawnPoint.position.x, spawnPoint.position.y, spawnPoint.position.z);
             transform.position = player.position;
         }
-        PlayerSaver.loading = false;
+        GameSaver.loading = false;
     }
 
     // Update is called once per frame
