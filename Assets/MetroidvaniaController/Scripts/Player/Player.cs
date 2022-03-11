@@ -124,7 +124,9 @@ public class Player : MonoBehaviour
             camTarget = GameObject.FindGameObjectWithTag("CamTarget").transform;
         }
 
-        reset_point = GameObject.FindGameObjectWithTag("Reset Point").transform;
+        GameObject rp = GameObject.FindGameObjectWithTag("Reset Point");
+        if (rp != null)
+            reset_point = rp.transform;
 
         if (lastOnLand == 0.0f)
         {

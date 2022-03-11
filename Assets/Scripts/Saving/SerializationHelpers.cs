@@ -91,7 +91,8 @@ public class ItemSerialization
 
     public Item GetValue() {
         Item newItem = Database.GetItemByID(itemID);
-        newItem.itemCount = itemCount;
+        if (newItem != null)
+            newItem.itemCount = itemCount;
         return newItem;
     }
 }

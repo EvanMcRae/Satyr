@@ -59,7 +59,8 @@ public class Cordyceps : MonoBehaviour
         {
             if (count >= FILL_LEVELS[i])
             {
-                bagSprites[i].GetComponent<Image>().enabled = true;
+                if (bagSprites.Length > i)
+                    bagSprites[i].GetComponent<Image>().enabled = true;
                 return;
             }
         }
