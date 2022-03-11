@@ -20,6 +20,11 @@ public class CameraFollow : MonoBehaviour
 
 	Vector3 originalPos;
 
+	public bool bounds;
+
+	public Vector3 MinCameraPos;
+	public Vector3 MaxCameraPos;
+
 	void Start()
 	{
         originalPos = new Vector3(0.0f, 0.0f, 0.0f);
@@ -64,20 +69,25 @@ public class CameraFollow : MonoBehaviour
 
         if (Input.GetAxisRaw("Vertical") < -0.5) //&& !Input.GetKey(KeyCode.S)
 		{
-            Target.localPosition = new Vector3(0.0f, -3.0f, 0.0f); //originally -2
+            Target.localPosition = new Vector3(0.0f, -6.0f, 0.0f); //originally -2
         }
         else if (Input.GetAxisRaw("Vertical") > 0.5) //&& !Input.GetKey(KeyCode.W)
 
 		{
-            Target.localPosition = new Vector3(0.0f, 7.0f, 0.0f); //originally 4
+            Target.localPosition = new Vector3(0.0f, 4.0f, 0.0f); //originally 4
 		}
         else
         {
-            Target.localPosition = new Vector3(0.0f, 4.0f, 0.0f);
+            Target.localPosition = new Vector3(0.0f, 1.0f, 0.0f);
         }
 
         transform.parent.position = Vector3.Lerp(transform.position, newPosition, FollowSpeed * Time.deltaTime);
 
+		if (bounds) {
+			transform.parent.position = new Vector3(Mathf.Clamp(transform.parent.position.x, MinCameraPos.x, MaxCameraPos.x),
+				Mathf.Clamp(transform.parent.position.y, MinCameraPos.y, MaxCameraPos.y),
+				Mathf.Clamp(transform.parent.position.z, MinCameraPos.z, MaxCameraPos.z));
+		}
 		if (shakeDuration > 0)
 		{
 			camTransform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
