@@ -23,13 +23,6 @@ public class enterDoor : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W) && playerIsInRange)
         {
-            /* if(playerIsInRange == true)
-             {
-                 SceneManager.LoadScene("Tree_house");
-                 // Transform player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-                 // Transform spawnpoint = GameObject.Find("PlayerCheck").GetComponent<Transform>();
-                 // player.position = spawnpoint.position;
-             }*/
             StartCoroutine(LoadNextScene());
         }
     }
@@ -59,9 +52,11 @@ public class enterDoor : MonoBehaviour
 
     IEnumerator LoadNextScene()
     {
+        changeScene.changingScene = true;
         crossfade.SetTrigger("start");
-        yield return new WaitForSeconds(1.1f);
+        yield return new WaitForSeconds(0.9f);
         SceneManager.LoadScene(scene);
         spawnManager.spawningAt = spawn;
+        changeScene.changingScene = false;
     }
 }

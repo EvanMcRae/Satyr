@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-	public CharacterController2D controller;
 	public Animator animator;
 
 	public float runSpeed = 40f;
@@ -30,20 +29,23 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			jump = true;
+            if (Player.controller.beenOnLand >= 0.1f || Player.controller.canDoubleJump || Player.controller.lastOnLand < 0.1f)
+			    jump = true;
 		}
 
-        if ((Input.GetKey("space") || Input.GetKey("z") || Input.GetKey("joystick button 0")) && controller.m_Grounded)
+        if ((Input.GetKey("space") || Input.GetKey("z") || Input.GetKey("joystick button 0")) && Player.controller.m_Grounded)
         {
-            jump = true;
+            if (Player.controller.jumpCooldown <= 0f && !Player.controller.isJumping && !Player.controller.isJumpingDJ)
+                jump = true;
 			//print("tries to reset point?");
 			//reset_point.position = new Vector3(m_GroundCheck.position.x, m_GroundCheck.position.y, m_GroundCheck.position.z);
-			// controller.reset_point.position = controller.m_GroundCheck.position;
+			// Player.controller.reset_point.position = Player.controller.m_GroundCheck.position;
 		}
 
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp("z") || Input.GetKeyUp("joystick button 0"))
         {
             releaseJump = true;
+            Player.controller.jumpCooldown = 0f;
         }
 
 		if ((Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.LeftShift)) && dash_Unlocked == true)
@@ -74,13 +76,19 @@ public class PlayerMovement : MonoBehaviour {
 
 	public void OnLanding()
 	{
-		animator.SetBool("IsJumping", false);
+        // this might have caused more sprite flickering
+        // if (!Player.controller.isJumping && !Player.controller.isJumpingDJ) {
+        //     animator.SetBool("IsJumping", false);
+        // }
 	}
 
 	void FixedUpdate ()
 	{
 		// Move our character
-		controller.Move(horizontalMove * Time.fixedDeltaTime, jump, dash, releaseJump);
+		Player.controller.Move(horizontalMove * Time.fixedDeltaTime, jump, dash, releaseJump);
+        if (animator.GetBool("IsJumping") && Player.controller.m_Grounded && !Player.controller.isJumping && !Player.controller.isJumpingDJ) {
+            animator.SetBool("IsJumping", false);
+        }
 		jump = false;
 		dash = false;
         releaseJump = false;

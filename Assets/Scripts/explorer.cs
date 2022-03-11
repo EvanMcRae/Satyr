@@ -27,7 +27,7 @@ public class explorer : MonoBehaviour
         textBox.position = new Vector3(textBox.position.x, 5000f, textBox.position.z);
 
         dialogueTriggers = GetComponents<DialougeTrigger>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = Player.instance;
     }
 
     // Update is called once per frame
@@ -37,11 +37,11 @@ public class explorer : MonoBehaviour
         {
             textBox.position = new Vector3(textBox.position.x, anchor.position.y, textBox.position.z);
             needsPrompt = false;
-            if(player.GetComponent<CharacterController2D>().explorer == false)
+            if(player.GetComponent<Player>().explorer == false)
             {
                 dialogueTriggers[0].TriggerDialogue();
             }
-            else if(player.GetComponent<CharacterController2D>().explorer == true)
+            else if(player.GetComponent<Player>().explorer == true)
             {
               
                 dialogueTriggers[1].TriggerDialogue();
@@ -56,7 +56,7 @@ public class explorer : MonoBehaviour
 
             if (DialougeManager.convoEnded == true)
             {
-                player.GetComponent<CharacterController2D>().explorer = true;
+                player.GetComponent<Player>().explorer = true;
                 textBox.position = new Vector3(textBox.position.x, 5000f, textBox.position.z);
                 
             }

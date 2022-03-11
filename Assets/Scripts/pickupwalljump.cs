@@ -19,7 +19,7 @@ public class pickupwalljump : MonoBehaviour
         {
             if (playerIsInRange == true)
             {
-                GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>().wallSlide_Unlocked = true;
+                Player.controller.wallSlide_Unlocked = true;
                 Destroy(this.gameObject);
             }
         }

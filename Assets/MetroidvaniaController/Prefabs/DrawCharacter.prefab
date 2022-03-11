@@ -106,9 +106,11 @@ MonoBehaviour:
   wallSlideSpeed: 0
   life: 10
   invincible: 0
+  isJumping: 0
   stunDuration: 0.25
   iFrames: 1
   lastOnLand: 0
+  jumpCooldown: 0
   particleJumpUp: {fileID: 198584872278178884}
   particleJumpDown: {fileID: 198967111524372206}
   explorer: 0
@@ -157,15 +159,23 @@ MonoBehaviour:
   dmgValue: 4
   throwableObject: {fileID: 5532974359214069763, guid: 340067e8e5a097546ad175f1d00a6ece, type: 3}
   attackCheck: {fileID: 4370582630649528}
+  botAttackCheck: {fileID: 0}
+  topAttackCheck: {fileID: 0}
+  currentAttackCheck: {fileID: 0}
   wallCheck: {fileID: 0}
   animator: {fileID: 95975118031919256}
   canAttack: 1
   canShoot: 1
   isTimeToCheck: 0
+  particleAttack: {fileID: 0}
+  ignoredEnemies: []
   cam: {fileID: 0}
   special_attack_hitbox: {fileID: 0}
   shooting_Unlocked: 0
   specialCooldown: 0
+  specialMaxCooldown: 3
+  playerHealth: {fileID: 0}
+  cordyceps: {fileID: 0}
 --- !u!114 &114145887554720856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8644d33345e77614ba3ace9c18398d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 114231493902538710}
+  controller: {fileID: 0}
   animator: {fileID: 95975118031919256}
   runSpeed: 40
   dash_Unlocked: 0
@@ -327,7 +337,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 1.2984366
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

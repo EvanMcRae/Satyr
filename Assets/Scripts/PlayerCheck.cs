@@ -9,12 +9,13 @@ public class PlayerCheck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GameObject.FindGameObjectWithTag("Player"))
+        if (Player.controller != null)
         {
             return;
         }
         else
         {
+            // get save data here ok
             Instantiate(player, transform.position, transform.rotation);
         }
     }

@@ -17,10 +17,11 @@ public class CordycepsItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        playerPos = Player.instance.transform;
 
         if (playerIsInRange == true)
         {
+            // Debug.Log("in range");
             transform.position = Vector2.MoveTowards(transform.position, playerPos.position, 0.03f);
         }
     }

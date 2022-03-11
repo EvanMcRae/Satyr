@@ -20,7 +20,7 @@ public class ThrowableProjectile : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Player")
 		{
-			collision.gameObject.GetComponent<CharacterController2D>().ApplyDamage(2f, transform.position, 60f);
+			collision.gameObject.GetComponent<Player>().ApplyDamage(2f, transform.position, 60f);
 			Destroy(gameObject);
 		}
 		else if ( owner != null && collision.gameObject != owner && collision.gameObject.tag == "Enemy" )

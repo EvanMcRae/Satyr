@@ -36,13 +36,13 @@ public class patrol : Enemy
     //update calls every frame?
     void Update()
     {
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        target = Player.instance.transform;
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            print(isHunterMode);
+        // if (Input.GetKeyDown(KeyCode.T))
+        // {
+        //     print(isHunterMode);
         
-        }
+        // }
 
         if (!frozen)
         {
@@ -147,7 +147,7 @@ public class patrol : Enemy
       //  print(col.gameObject.tag);
         if (col.gameObject.tag == "Player")
         {
-            col.gameObject.GetComponent<CharacterController2D>().ApplyDamage(1.0f, this.transform.position,60f);
+            col.gameObject.GetComponent<Player>().ApplyDamage(1.0f, this.transform.position,60f);
             StartCoroutine(Freeze());
         }
         else if ((col.gameObject.tag == "Wall" || col.gameObject.tag == "Breakable Wall") && isHunterMode == false)

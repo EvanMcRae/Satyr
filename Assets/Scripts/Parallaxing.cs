@@ -19,6 +19,9 @@ public class Parallaxing : MonoBehaviour
 	// Use this for initialization
 	void Start () {
 		// The previous frame had the current frame's camera position
+        if (cam == null) {
+            cam = Camera.main.transform;
+        }
 		previousCamPos = cam.position;
 
 		// asigning coresponding parallaxScales
@@ -30,7 +33,10 @@ public class Parallaxing : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-
+        if (cam == null) {
+            Awake();
+            Start();
+        }
 		// for each background
 		for (int i = 0; i < backgrounds.Length; i++) {
 			// the parallax is the opposite of the camera movement because the previous frame multiplied by the scale

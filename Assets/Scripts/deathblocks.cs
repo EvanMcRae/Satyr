@@ -20,10 +20,10 @@ public class deathblocks : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            col.gameObject.GetComponent<CharacterController2D>().ApplyDamage(1.0f, this.transform.position, 0f);
+            col.gameObject.GetComponent<Player>().ApplyDamage(1.0f, this.transform.position, 0f);
             // print("this is working");
-            col.gameObject.GetComponent<CharacterController2D>().GoToResetPoint();
-            // col.gameObject.GetComponent<Transform>().position = new Vector3(col.gameObject.GetComponent<CharacterController2D>().reset_point.position.x, col.gameObject.GetComponent<CharacterController2D>().reset_point.position.y, col.gameObject.GetComponent<CharacterController2D>().reset_point.position.z);
+            col.gameObject.GetComponent<Player>().GoToResetPoint();
+            // col.gameObject.transform.position = new Vector3(col.gameObject.GetComponent<Player>().reset_point.position.x, col.gameObject.GetComponent<Player>().reset_point.position.y, col.gameObject.GetComponent<Player>().reset_point.position.z);
         }
     }
 
@@ -31,10 +31,10 @@ public class deathblocks : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            col.gameObject.GetComponent<CharacterController2D>().ApplyDamage(1.0f, this.transform.position, 0f);
+            col.gameObject.GetComponent<Player>().ApplyDamage(1.0f, this.transform.position, 0f);
             // print("this is working");
-            col.gameObject.GetComponent<CharacterController2D>().GoToResetPoint();
-            // col.gameObject.GetComponent<Transform>().position = new Vector3(col.gameObject.GetComponent<CharacterController2D>().reset_point.position.x, col.gameObject.GetComponent<CharacterController2D>().reset_point.position.y, col.gameObject.GetComponent<CharacterController2D>().reset_point.position.z);
+            col.gameObject.GetComponent<Player>().GoToResetPoint();
+            // col.gameObject.transform.position = new Vector3(col.gameObject.GetComponent<Player>().reset_point.position.x, col.gameObject.GetComponent<Player>().reset_point.position.y, col.gameObject.GetComponent<Player>().reset_point.position.z);
         }
     }
 

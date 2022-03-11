@@ -19,7 +19,7 @@ public class pickupdoublejump : MonoBehaviour
         {
             if (playerIsInRange == true)
             {
-                GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>().doubleJump_Unlocked = true;
+                Player.controller.doubleJump_Unlocked = true;
                 Destroy(this.gameObject);
             }
         }

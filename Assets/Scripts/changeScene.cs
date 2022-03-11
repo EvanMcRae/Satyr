@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 
@@ -9,6 +10,7 @@ public class changeScene : MonoBehaviour
     public string scene;
     public string spawn;
     private Animator crossfade;
+    public static bool changingScene;
 
     // Start is called before the first frame update
     void Start()
@@ -32,16 +34,23 @@ public class changeScene : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (!changingScene && collision.gameObject.tag == "Player" && !Player.controller.dead && !Player.controller.resetting && !GameSaver.loading)
         {
             StartCoroutine(LoadNextScene());
         }
     }
     IEnumerator LoadNextScene() {
+        changingScene = true;
         crossfade.SetTrigger("start");
         yield return new WaitForSeconds(0.9f);
-        SceneManager.LoadScene(scene);
+        EventSystem eventSystem = GameObject.FindObjectOfType<EventSystem>();
+        if (eventSystem != null)
+        {
+            GameObject.Destroy(eventSystem.gameObject);
+        }
+        SceneHelper.LoadScene(scene);
         spawnManager.spawningAt = spawn;
+        changingScene = false;
     }
 
 }

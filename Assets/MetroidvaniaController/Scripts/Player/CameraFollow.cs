@@ -30,7 +30,13 @@ public class CameraFollow : MonoBehaviour
 		}
         transform.parent.position = Target.position;
 
-        Target = GameObject.FindGameObjectWithTag("CamTarget").GetComponent<Transform>();
+        Target = Player.camTarget;
+        if (Target == null)
+        {
+            Target = GameObject.FindGameObjectWithTag("CamTarget").transform;
+            Player.camTarget = Target;
+        }
+        Snap();
     }
 
 	void OnEnable()
@@ -38,33 +44,40 @@ public class CameraFollow : MonoBehaviour
 		// originalPos = camTransform.localPosition;
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
-        Target = GameObject.FindGameObjectWithTag("CamTarget").GetComponent<Transform>();
+        Target = Player.camTarget;
+        if (Target == null)
+        {
+            Target = GameObject.FindGameObjectWithTag("CamTarget").transform;
+            Player.camTarget = Target;
+        }
 
         var cam = FindObjectOfType<Camera>();
-        var player = GameObject.FindGameObjectWithTag("Player");
+        var player = Player.instance;
         var m_renderer = player.GetComponent<Renderer>();
         var screenPos = cam.WorldToScreenPoint(player.transform.position);
         bool onScreen = screenPos.x > 0f && screenPos.x < Screen.width && screenPos.y > 0f && screenPos.y < Screen.height;
 
         Vector3 newPosition = Target.position;
+        
         newPosition.z = -10;
 
-        if (Input.GetAxisRaw("Vertical") < -0.5 && !Input.GetKey(KeyCode.S))
-        {
+        if (Input.GetAxisRaw("Vertical") < -0.5) //&& !Input.GetKey(KeyCode.S)
+		{
             Target.localPosition = new Vector3(0.0f, -3.0f, 0.0f); //originally -2
         }
-        else if (Input.GetAxisRaw("Vertical") > 0.5 && !Input.GetKey(KeyCode.W))
-        {
-            Target.localPosition = new Vector3(0.0f, 5.0f, 0.0f); //originally 4
+        else if (Input.GetAxisRaw("Vertical") > 0.5) //&& !Input.GetKey(KeyCode.W)
+
+		{
+            Target.localPosition = new Vector3(0.0f, 7.0f, 0.0f); //originally 4
 		}
         else
         {
             Target.localPosition = new Vector3(0.0f, 4.0f, 0.0f);
         }
 
-        transform.parent.position = Vector3.Slerp(transform.position, newPosition, FollowSpeed * Time.deltaTime);
+        transform.parent.position = Vector3.Lerp(transform.position, newPosition, FollowSpeed * Time.deltaTime);
 
 		if (shakeDuration > 0)
 		{
