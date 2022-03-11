@@ -24,7 +24,7 @@ public class Cordyceps : MonoBehaviour
         
         GameObject[] items = GameObject.FindGameObjectsWithTag("CordycepsItem");
         foreach (GameObject item in items) {
-            if ((item.transform.position - transform.position).magnitude < 0.01f) 
+            if ((item.transform.position - transform.position).magnitude < 0.03f) 
             {
                 count++;
                 Destroy(item);
