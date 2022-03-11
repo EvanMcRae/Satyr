@@ -21,7 +21,7 @@ public class GameSaver : MonoBehaviour
     {
         if (!Player.controller.dead && !Player.controller.resetting && !loading) {
             SaveData data = new SaveData();
-            data.sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            // data.sceneIndex = SceneManager.GetActiveScene().buildIndex;
             data.SetPlayer(Player.instance);
             data.SetOptions(AudioManager.instance);
             var dataToSave = JsonUtility.ToJson(data);
@@ -52,9 +52,9 @@ public class GameSaver : MonoBehaviour
             yield return new WaitForSeconds(0.9f);
             Clear();
             SaveData data = JsonUtility.FromJson<SaveData>(dataToLoad);
-            SceneManager.LoadSceneAsync(data.sceneIndex);
+            SceneManager.LoadSceneAsync(data.player.spawnpoint.scene);
             var newPlayer = Instantiate(prefab);
-            newPlayer.transform.position = data.player.position.GetValue();
+            newPlayer.transform.position = data.player.spawnpoint.position;
 
             // multi value transfers
             data.player.controller.SetValues(newPlayer);
@@ -78,7 +78,7 @@ public class GameSaver : MonoBehaviour
     {
         public PlayerSerialization player;
         public OptionsSerialization options;
-        public int sceneIndex;
+        
         public void SetPlayer(GameObject playerObj) {
             player = new PlayerSerialization(playerObj);
         }
