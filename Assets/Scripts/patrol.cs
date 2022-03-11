@@ -38,11 +38,11 @@ public class patrol : Enemy
     {
         target = Player.instance.transform;
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            print(isHunterMode);
+        // if (Input.GetKeyDown(KeyCode.T))
+        // {
+        //     print(isHunterMode);
         
-        }
+        // }
 
         if (!frozen)
         {

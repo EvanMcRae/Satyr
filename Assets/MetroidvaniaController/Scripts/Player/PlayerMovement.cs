@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-            if (Player.controller.beenOnLand >= 0.1f || Player.controller.canDoubleJump)
+            if (Player.controller.beenOnLand >= 0.1f || Player.controller.canDoubleJump || Player.controller.lastOnLand < 0.1f)
 			    jump = true;
 		}
 

@@ -232,7 +232,7 @@ public class Player : MonoBehaviour
         {
             if (beenOnLand < 5f)
                 beenOnLand += Time.fixedDeltaTime;
-            if (beenOnLand >= 0.2f && (isJumping || isJumpingDJ) && jumpTime > 0.1f) {
+            if (beenOnLand >= 0.25f && (isJumping || isJumpingDJ) && jumpTime > 0.1f) {
                 isJumping = false;
                 jumpTime = 0f;
                 isJumpingDJ = false;
