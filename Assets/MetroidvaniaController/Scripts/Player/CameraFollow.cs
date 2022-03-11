@@ -28,7 +28,6 @@ public class CameraFollow : MonoBehaviour
 		{
 			camTransform = GetComponent(typeof(Transform)) as Transform;
 		}
-        transform.parent.position = Target.position;
 
         Target = Player.camTarget;
         if (Target == null)
