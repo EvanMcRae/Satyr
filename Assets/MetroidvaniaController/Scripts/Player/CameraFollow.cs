@@ -39,7 +39,7 @@ public class CameraFollow : MonoBehaviour
 		// originalPos = camTransform.localPosition;
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
         Target = Player.camTarget;
         if (Target == null) {
