@@ -12,7 +12,7 @@ public class PlayerSerialization
     public AttackSerialization attack;
     public MovementSerialization movement;
     public CordycepsSerialization cordyceps;
-    public Vector2Serialization position;
+    public SpawnpointSerialization spawnpoint;
 
     public PlayerSerialization(GameObject playerObj) {
         controller = new ControllerSerialization(playerObj.GetComponent<Player>());
@@ -21,7 +21,7 @@ public class PlayerSerialization
         attack = new AttackSerialization(playerObj.GetComponent<Attack>());
         movement = new MovementSerialization(playerObj.GetComponent<PlayerMovement>());
         cordyceps = new CordycepsSerialization(playerObj.GetComponent<Cordyceps>());
-        position = new Vector2Serialization(playerObj.transform.position);
+        spawnpoint = new SpawnpointSerialization(playerObj.GetComponent<Spawnpoint>());
     }
 
 }
@@ -155,6 +155,17 @@ public class CordycepsSerialization
     }
 }
 
+[Serializable]
+public class SpawnpointSerialization 
+{
+    public int scene;
+    public Vector2 position;
+
+    public SpawnpointSerialization(Spawnpoint spawnpoint) {
+        scene = spawnpoint.scene;
+        position = spawnpoint.position;
+    }
+}
 
 [Serializable]
 public class Vector3Serialization
