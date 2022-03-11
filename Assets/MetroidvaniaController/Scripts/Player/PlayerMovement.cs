@@ -76,9 +76,10 @@ public class PlayerMovement : MonoBehaviour {
 
 	public void OnLanding()
 	{
-        if (!Player.controller.isJumping && !Player.controller.isJumpingDJ) {
-            animator.SetBool("IsJumping", false);
-        }
+        // this might have caused more sprite flickering
+        // if (!Player.controller.isJumping && !Player.controller.isJumpingDJ) {
+        //     animator.SetBool("IsJumping", false);
+        // }
 	}
 
 	void FixedUpdate ()
