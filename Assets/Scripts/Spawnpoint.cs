@@ -9,6 +9,10 @@ public class Spawnpoint : MonoBehaviour
     public int scene;
     public Vector2 position;
 
+    private void Start() {
+        scene = 2;
+        position = GameObject.Find("PlayerCheck").transform.position;
+    }
     // Update is called once per frame
     void Update()
     {

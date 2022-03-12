@@ -48,7 +48,7 @@ public class GameSaver : MonoBehaviour
         if (String.IsNullOrEmpty(dataToLoad) == false)
         {
             GameObject.Find("Crossfade").GetComponent<Animator>().SetTrigger("start");
-            yield return new WaitForSeconds(0.9f);
+            yield return new WaitForSeconds(0.85f);
             Clear();
             SaveData data = JsonUtility.FromJson<SaveData>(dataToLoad);
             SceneManager.LoadSceneAsync(data.player.spawnpoint.scene);

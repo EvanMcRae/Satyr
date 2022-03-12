@@ -7,14 +7,18 @@ public class spawnManager : MonoBehaviour
     public static string spawningAt;
     private Transform player;
 
+    private GameObject spawnPointObj;
     private Transform spawnPoint;
     // Start is called before the first frame update
     void Start()
     {
         player = Player.instance.transform;
         if (spawningAt != null && !GameSaver.loading) {
-            spawnPoint = GameObject.Find(spawningAt).transform;
-            player.position = new Vector3(spawnPoint.position.x, spawnPoint.position.y, spawnPoint.position.z);
+            spawnPointObj = GameObject.Find(spawningAt);
+            if (spawnPointObj != null) {
+                spawnPoint = spawnPointObj.transform;
+                player.position = new Vector3(spawnPoint.position.x, spawnPoint.position.y, spawnPoint.position.z);
+            }
             transform.position = player.position;
         }
         GameSaver.loading = false;

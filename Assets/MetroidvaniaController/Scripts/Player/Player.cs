@@ -120,7 +120,7 @@ public class Player : MonoBehaviour
         if (!dead) {
             animator.SetBool("IsDead", false);
         }
-        
+
         if (controller == null)
         {
             controller = this;
@@ -610,18 +610,19 @@ public class Player : MonoBehaviour
         GameObject.Find("Crossfade").GetComponent<Animator>().SetTrigger("start");
         StartCoroutine(am.PitchDown());
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadSceneAsync(GetComponent<Spawnpoint>().scene);
+        // SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         dead = false;
         animator.SetBool("IsDead", false);
         //canMove = true;
         invincible = false;
-        transform.position = GameObject.Find("PlayerCheck").transform.position;
+        // transform.position = GameObject.Find("PlayerCheck").transform.position;
+        transform.position = GetComponent<Spawnpoint>().position;
         // TODO may want to change these depending on if we have health boost effects
         GetComponent<health>().playerHealth = 5;
         GetComponent<health>().numberOfHearts = 5;
         GetComponent<Attack>().enabled = true;
         yield return new WaitForSeconds(1f);
-        animator.SetBool("Iddle", true);
         canMove = true;
     }
 
