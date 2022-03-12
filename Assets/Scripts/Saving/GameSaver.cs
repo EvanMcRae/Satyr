@@ -21,7 +21,6 @@ public class GameSaver : MonoBehaviour
     {
         if (!Player.controller.dead && !Player.controller.resetting && !loading) {
             SaveData data = new SaveData();
-            // data.sceneIndex = SceneManager.GetActiveScene().buildIndex;
             data.SetPlayer(Player.instance);
             data.SetOptions(AudioManager.instance);
             var dataToSave = JsonUtility.ToJson(data);
@@ -78,7 +77,7 @@ public class GameSaver : MonoBehaviour
     {
         public PlayerSerialization player;
         public OptionsSerialization options;
-        
+
         public void SetPlayer(GameObject playerObj) {
             player = new PlayerSerialization(playerObj);
         }

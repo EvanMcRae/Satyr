@@ -12,10 +12,7 @@ public class SaveSystem : MonoBehaviour
 
     public void SaveData(string dataToSave)
     {
-        if (WriteToFile(saveName + saveDataIndex, dataToSave))
-        {
-            GameObject.Find("SaveText").GetComponent<Animator>().SetTrigger("start");
-        }
+        WriteToFile(saveName + saveDataIndex, dataToSave);
     }
 
     public string LoadData()

@@ -5,19 +5,10 @@ using UnityEngine;
 public class Statue : MonoBehaviour
 {
     public bool beenUsed = false;
+    public static bool cutscening = false;
+    public static Transform currStatue;
+    public GameObject cam;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!beenUsed)
@@ -26,8 +17,21 @@ public class Statue : MonoBehaviour
             {
                 other.gameObject.GetComponent<Spawnpoint>().SetSpawnpoint(transform);
                 GetComponent<GameSaver>().SaveGame();
+                StartCoroutine(StatueCutscene());
             }
             beenUsed = true;
         }
+    }
+
+    IEnumerator StatueCutscene() {
+        cutscening = true;
+        currStatue = this.transform;
+        cam.GetComponentInChildren<CameraFollow>().ShakeCamera();
+        cam.GetComponentInChildren<CameraFollow>().shakeDuration = 5f;
+        yield return new WaitForSeconds(10.0f);
+        cutscening = false;
+        currStatue = null;
+        GameObject.Find("SaveText").GetComponent<Animator>().SetTrigger("start");
+        yield return null;
     }
 }
