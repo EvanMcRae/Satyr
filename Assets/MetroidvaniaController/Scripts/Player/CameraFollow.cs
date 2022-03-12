@@ -62,8 +62,9 @@ public class CameraFollow : MonoBehaviour
             if (m_camera.orthographicSize != 4.0f)
             {
                 m_camera.orthographicSize = Mathf.Lerp(m_camera.orthographicSize, 4, 0.01f);
+                m_camera.orthographicSize -= 0.001f;
             }
-            if (m_camera.orthographicSize < 4.02f)
+            if (m_camera.orthographicSize < 4.005f)
             {
                 m_camera.orthographicSize = 4;
             }
@@ -73,8 +74,9 @@ public class CameraFollow : MonoBehaviour
             if (m_camera.orthographicSize != 7.0f)
             {
                 m_camera.orthographicSize = Mathf.Lerp(m_camera.orthographicSize, 7, 0.01f);
+                m_camera.orthographicSize += 0.001f;
             }
-            if (m_camera.orthographicSize > 6.98f)
+            if (m_camera.orthographicSize > 6.995f)
             {
                 m_camera.orthographicSize = 7;
             }

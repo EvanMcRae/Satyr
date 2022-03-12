@@ -9,12 +9,24 @@ public class Statue : MonoBehaviour
     public static Transform currStatue;
     public GameObject cam;
     public int ID = 0;
+    public Sprite activeSprite;
+
+    private void Start()
+    {
+        gameObject.GetComponentInChildren<ParticleSystem>().Stop();
+    }
 
     private void Update()
     {
         if (Player.instance.GetComponent<Spawnpoint>().statuesUsed.Contains(ID))
         {
             beenUsed = true;
+        }
+        if (beenUsed && !cutscening)
+        {
+            if (!gameObject.GetComponentInChildren<ParticleSystem>().isPlaying)
+                gameObject.GetComponentInChildren<ParticleSystem>().Play();
+            GetComponent<SpriteRenderer>().sprite = activeSprite;
         }
     }
 
@@ -46,7 +58,10 @@ public class Statue : MonoBehaviour
         GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(1.1f);
         AudioManager.instance.PauseCurrent();
-        yield return new WaitForSeconds(8.9f);
+        yield return new WaitForSeconds(3.9f);
+        gameObject.GetComponentInChildren<ParticleSystem>().Play();
+        GetComponent<SpriteRenderer>().sprite = activeSprite;
+        yield return new WaitForSeconds(5f);
         cutscening = false;
         currStatue = null;
         AudioManager.instance.UnPauseCurrent();
