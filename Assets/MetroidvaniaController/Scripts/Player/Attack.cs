@@ -170,10 +170,10 @@ public class Attack : MonoBehaviour
             
 				if (collidersWalls[i].gameObject.tag == "Wall" || collidersWalls[i].gameObject.tag == "Ground")
 				{
-				m_Rigidbody2D.velocity = Vector2.zero;
+				m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
 				int direction = 0;
 				if (collidersWalls[i].transform.position.x > transform.position.x) { direction = -1; } else { direction = 1; }
-				m_Rigidbody2D.AddForce(new Vector2(direction * 1000f, 200f));
+				m_Rigidbody2D.AddForce(new Vector2(direction * 1000f, 0f));
 			}
 			
 			
