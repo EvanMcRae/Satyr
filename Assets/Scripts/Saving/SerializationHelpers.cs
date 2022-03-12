@@ -108,8 +108,9 @@ public class HealthSerialization
     }
 
     public void SetValues(GameObject playerObj) {
-        playerObj.GetComponent<health>().playerHealth = playerHealth;
+        // playerObj.GetComponent<health>().playerHealth = playerHealth;
         playerObj.GetComponent<health>().numberOfHearts = numberOfHearts;
+        playerObj.GetComponent<health>().playerHealth = numberOfHearts;
     }
 }
 
