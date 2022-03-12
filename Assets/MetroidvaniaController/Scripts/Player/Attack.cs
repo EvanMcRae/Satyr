@@ -164,36 +164,37 @@ public class Attack : MonoBehaviour
 				m_Rigidbody2D.AddForce(damageDir * 10);
 			}
 			ignoredEnemies.Add(collidersEnemies[i]);
-			
 		}
 
 		Collider2D[] collidersWalls = Physics2D.OverlapCircleAll(wallCheck.position, 0.6f);
 		for (int i = 0; i < collidersWalls.Length; i++)
 		{
-            
-				if (collidersWalls[i].gameObject.tag == "Wall" || collidersWalls[i].gameObject.tag == "Ground")
-				{
+			if (collidersWalls[i].gameObject.tag == "Wall" || collidersWalls[i].gameObject.tag == "Ground")
+			{
 				m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
 				int direction = 0;
 				if (collidersWalls[i].transform.position.x > transform.position.x) { direction = -1; } else { direction = 1; }
 				m_Rigidbody2D.AddForce(new Vector2(direction * 1000f, 0f));
-
                 AudioSource[] audioSource = transform.GetComponents<AudioSource>();
+                foreach (AudioSource source in audioSource)
+                {
+                    if (source.clip == swordClash && source.isPlaying)
+                    {
+                        if (source.time < 0.1f) return;
+                        else source.Stop();
+                    } 
+                }
                 foreach (AudioSource source in audioSource)
                 {
                     if (!source.isPlaying)
                     {
+                        // Debug.Log(playingClash);
                         source.clip = swordClash;
                         source.loop = false;
                         source.Play();
-                        return;
                     }
                 }
 			}
-			
-			
 		}
-		
-
 	}
 }
