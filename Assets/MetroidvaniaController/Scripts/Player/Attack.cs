@@ -31,6 +31,8 @@ public class Attack : MonoBehaviour
 	public health playerHealth;
 	public Cordyceps cordyceps;
 	private int countToHeal = 5;
+    public AudioClip swordClash;
+
 
 
 	private void Awake()
@@ -174,6 +176,18 @@ public class Attack : MonoBehaviour
 				int direction = 0;
 				if (collidersWalls[i].transform.position.x > transform.position.x) { direction = -1; } else { direction = 1; }
 				m_Rigidbody2D.AddForce(new Vector2(direction * 1000f, 0f));
+
+                AudioSource[] audioSource = transform.GetComponents<AudioSource>();
+                foreach (AudioSource source in audioSource)
+                {
+                    if (!source.isPlaying)
+                    {
+                        source.clip = swordClash;
+                        source.loop = false;
+                        source.Play();
+                        return;
+                    }
+                }
 			}
 			
 			
