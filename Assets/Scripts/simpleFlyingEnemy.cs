@@ -13,6 +13,7 @@ public class simpleFlyingEnemy : Enemy
 
     public Transform target;
     public int dropsCordycep = 1;
+    bool dead = false;
 
     float x = 0;
     // Start is called before the first frame update
@@ -37,9 +38,10 @@ public class simpleFlyingEnemy : Enemy
 
         if (life <= 0)
         {
-           // print("enemy died");
-           // isHitted = true;
-            StartCoroutine(DestroyEnemy());
+            // print("enemy died");
+            // isHitted = true;
+            if (!dead)
+                StartCoroutine(DestroyEnemy());
 
         }
 
@@ -111,6 +113,7 @@ public class simpleFlyingEnemy : Enemy
 
     IEnumerator DestroyEnemy()
     {
+        dead = true;
         //CapsuleCollider2D capsule = GetComponent<CapsuleCollider2D>();
         //  capsule.size = new Vector2(1f, 0.25f);
         //   capsule.offset = new Vector2(0f, -0.8f);

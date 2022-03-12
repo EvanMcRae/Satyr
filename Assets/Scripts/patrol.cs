@@ -17,6 +17,7 @@ public class patrol : Enemy
     private bool isHitted = false;
 
     bool frozen = false;
+    bool dead = false;
 
 
   // bool rayCast_hits_player = false;
@@ -110,7 +111,8 @@ public class patrol : Enemy
         {
            // print("enemy died");
             isHitted = true;
-            StartCoroutine(DestroyEnemy());
+            if (!dead)
+                StartCoroutine(DestroyEnemy());
 
         }
 
@@ -226,6 +228,7 @@ public class patrol : Enemy
 
     IEnumerator DestroyEnemy()
     {
+        dead = true;
         //CapsuleCollider2D capsule = GetComponent<CapsuleCollider2D>();
       //  capsule.size = new Vector2(1f, 0.25f);
      //   capsule.offset = new Vector2(0f, -0.8f);

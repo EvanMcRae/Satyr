@@ -28,7 +28,16 @@ public class Cordyceps : MonoBehaviour
             if ((item.transform.position - transform.position).magnitude < 0.5f) 
             {
                 count++;
+                Destroy(item);
                 AudioSource[] audioSource = transform.GetComponents<AudioSource>();
+                foreach (AudioSource source in audioSource)
+                {
+                    if (source.clip == harvestCordyceps && source.isPlaying)
+                    {
+                        if (source.time < 0.2f) return;
+                        else source.Stop();
+                    }
+                }
                 foreach (AudioSource source in audioSource)
                 {
                     if (!source.isPlaying)
@@ -39,7 +48,6 @@ public class Cordyceps : MonoBehaviour
                         return;
                     }
                 }
-                Destroy(item);
             }
         }
     }
