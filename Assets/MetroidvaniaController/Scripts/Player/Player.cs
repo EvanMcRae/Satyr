@@ -636,7 +636,7 @@ public class Player : MonoBehaviour
         m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
         GameObject.Find("Crossfade").GetComponent<Animator>().SetTrigger("start");
         StartCoroutine(am.PitchDown());
-        yield return new WaitForSeconds(0.85f);
+        yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene(GetComponent<Spawnpoint>().scene);
         // SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         dead = false;
