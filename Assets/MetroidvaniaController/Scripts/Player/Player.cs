@@ -280,7 +280,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
     public void Move(float move, bool jump, bool dash, bool releaseJump)
     {
         if (isJumping && !canDoubleJump && doubleJump_Unlocked)
@@ -300,21 +299,49 @@ public class Player : MonoBehaviour
         {
             if (dash && canDash && !isWallSliding)
             {
-                m_Rigidbody2D.AddForce(new Vector2(transform.localScale.x * m_DashForce, 0f));
+                // m_Rigidbody2D.AddForce(new Vector2(transform.localScale.x * m_DashForce, 0f));
                 StartCoroutine(DashCooldown());
             }
             // If crouching, check to see if the character can stand up
             if (isDashing)
             {
                 m_Rigidbody2D.velocity = new Vector2(transform.localScale.x * m_DashForce, 0);
+                // Prevent moving off screen during cutscenes
+                if (Statue.cutscening)
+                {
+                    if (transform.position.x <= (Statue.currStatue.position.x - 6.5f) && m_Rigidbody2D.velocity.x < 0)
+                    {
+                        m_Rigidbody2D.velocity = Vector2.zero;
+                    }
+                    if (transform.position.x >= (Statue.currStatue.position.x + 6.5f) && m_Rigidbody2D.velocity.x > 0)
+                    {
+                        m_Rigidbody2D.velocity = Vector2.zero;
+                    }
+                }
             }
             //only control the player if grounded or airControl is turned on
             else if (m_Grounded || m_AirControl)
             {
                 if (m_Rigidbody2D.velocity.y < -limitFallSpeed)
                     m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, -limitFallSpeed);
+                
                 // Move the character by finding the target velocity
                 Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
+
+                // Prevent moving off screen during cutscenes
+                if (Statue.cutscening)
+                {
+                    if (transform.position.x <= (Statue.currStatue.position.x - 6.5f) && targetVelocity.x < 0)
+                    {
+                        targetVelocity.x = 0;
+                        m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
+                    }
+                    if (transform.position.x >= (Statue.currStatue.position.x + 6.5f) && targetVelocity.x > 0)
+                    {
+                        targetVelocity.x = 0;
+                        m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
+                    }
+                }
 
                 // And then smoothing it out and applying it to the character
                 if (move == 0.0 && m_Rigidbody2D.velocity.x != 0.0f)

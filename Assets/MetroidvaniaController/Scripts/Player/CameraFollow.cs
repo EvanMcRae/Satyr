@@ -18,6 +18,7 @@ public class CameraFollow : MonoBehaviour
 	// Amplitude of the shake. A larger value shakes the camera harder.
 	public float shakeAmount = 0.1f;
 	public float decreaseFactor = 1.0f;
+    public static Vector3 screenPos;
 
 	Vector3 originalPos;
 
@@ -84,14 +85,7 @@ public class CameraFollow : MonoBehaviour
                 Player.camTarget = Target;
             }
 
-            var cam = FindObjectOfType<Camera>();
-            var player = Player.instance;
-            var m_renderer = player.GetComponent<Renderer>();
-            var screenPos = cam.WorldToScreenPoint(player.transform.position);
-            bool onScreen = screenPos.x > 0f && screenPos.x < Screen.width && screenPos.y > 0f && screenPos.y < Screen.height;
-
             Vector3 newPosition = Target.position;
-
             newPosition.z = -10;
 
             if (Input.GetAxisRaw("Vertical") < -0.5) //&& !Input.GetKey(KeyCode.S)
@@ -120,14 +114,18 @@ public class CameraFollow : MonoBehaviour
         if (shakeDuration > 0)
         {
             camTransform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
-
             shakeDuration -= Time.deltaTime * decreaseFactor;
         }
         else
         {
             camTransform.localPosition = originalPos;
         }
-	}
+
+        // on screen checks
+        var cam = FindObjectOfType<Camera>();
+        screenPos = cam.WorldToScreenPoint(Player.instance.transform.position);
+        bool onScreen = screenPos.x > 0f && screenPos.x < Screen.width && screenPos.y > 0f && screenPos.y < Screen.height;
+    }
 
 	public void ShakeCamera()
 	{
