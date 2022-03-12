@@ -180,7 +180,7 @@ public class Attack : MonoBehaviour
                 {
                     if (source.clip == swordClash && source.isPlaying)
                     {
-                        if (source.time < 0.1f) return;
+                        if (source.time < 0.2f) return;
                         else source.Stop();
                     } 
                 }
