@@ -4838,7 +4838,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -368620725
   m_SortingLayer: 2
-  m_SortingOrder: 20
+  m_SortingOrder: 14
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -5116,6 +5116,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1384378231344901043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8040695297566312888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a301d9832eaa64481f2e38eb8873aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene: 0
+  position: {x: 0, y: 0}
 --- !u!114 &2086969591400885875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5144,20 +5158,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   count: 0
   bagSprites: []
---- !u!114 &1384378231344901043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8040695297566312888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2a301d9832eaa64481f2e38eb8873aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scene: 0
-  position: {x: 0, y: 0}
 --- !u!1 &8852420988973870456
 GameObject:
   m_ObjectHideFlags: 0
@@ -5392,6 +5392,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8035295129027942028}
     - target: {fileID: 114435281327171648, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
+      propertyPath: swordClash
+      value: 
+      objectReference: {fileID: 8300000, guid: 21523b0268497954fb68e7aaa399cc6b, type: 3}
+    - target: {fileID: 114435281327171648, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
+      propertyPath: swordStrike
+      value: 
+      objectReference: {fileID: 8300000, guid: 21523b0268497954fb68e7aaa399cc6b, type: 3}
+    - target: {fileID: 114435281327171648, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: playerHealth
       value: 
       objectReference: {fileID: 1103051507148083086}
@@ -5621,7 +5629,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 199702487371442802, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_SortingOrder
-      value: 20
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 199702487371442802, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_SortingLayerID
@@ -5649,7 +5657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 199720515671813628, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_SortingOrder
-      value: 20
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 199720515671813628, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_SortingLayerID
