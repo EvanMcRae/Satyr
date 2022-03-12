@@ -14,7 +14,7 @@ public class SaveSystem : MonoBehaviour
     {
         if (WriteToFile(saveName + saveDataIndex, dataToSave))
         {
-            // Debug.Log("Successfully saved data");
+            GameObject.Find("SaveText").GetComponent<Animator>().SetTrigger("start");
         }
     }
 
