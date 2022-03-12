@@ -610,7 +610,7 @@ public class Player : MonoBehaviour
         GameObject.Find("Crossfade").GetComponent<Animator>().SetTrigger("start");
         StartCoroutine(am.PitchDown());
         yield return new WaitForSeconds(0.85f);
-        SceneManager.LoadSceneAsync(GetComponent<Spawnpoint>().scene);
+        SceneManager.LoadScene(GetComponent<Spawnpoint>().scene);
         // SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         dead = false;
         animator.SetBool("IsDead", false);
