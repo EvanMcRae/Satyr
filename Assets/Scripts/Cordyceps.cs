@@ -9,6 +9,7 @@ public class Cordyceps : MonoBehaviour
     // can be used to define bag thresholds
     public readonly int[] FILL_LEVELS = {0, 5, 10, 20, 40};
     public GameObject[] bagSprites;
+    public AudioClip harvestCordyceps;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,17 @@ public class Cordyceps : MonoBehaviour
             if ((item.transform.position - transform.position).magnitude < 0.5f) 
             {
                 count++;
+                AudioSource[] audioSource = transform.GetComponents<AudioSource>();
+                foreach (AudioSource source in audioSource)
+                {
+                    if (!source.isPlaying)
+                    {
+                        source.clip = harvestCordyceps;
+                        source.loop = false;
+                        source.Play();
+                        return;
+                    }
+                }
                 Destroy(item);
             }
         }

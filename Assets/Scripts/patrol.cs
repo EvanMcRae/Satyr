@@ -26,6 +26,7 @@ public class patrol : Enemy
     public Transform target;
 
     public bool justPatrols = false;
+    public int dropsCordycep = 1;
 
     void Awake()
     {
@@ -232,7 +233,10 @@ public class patrol : Enemy
         yield return new WaitForSeconds(0.25f);
         rb.velocity = new Vector2(0, rb.velocity.y);
         //  yield return new WaitForSeconds(3f);
-        Instantiate(cordyceps, transform.position, transform.rotation);
+        for (int i = 0; i < dropsCordycep; i++)
+        {
+            Instantiate(cordyceps, transform.position, transform.rotation);
+        }
         Destroy(gameObject);
     }
 

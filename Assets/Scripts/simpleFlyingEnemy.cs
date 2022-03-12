@@ -12,6 +12,7 @@ public class simpleFlyingEnemy : Enemy
     public CircleCollider2D cc;
 
     public Transform target;
+    public int dropsCordycep = 1;
 
     float x = 0;
     // Start is called before the first frame update
@@ -117,7 +118,10 @@ public class simpleFlyingEnemy : Enemy
         yield return new WaitForSeconds(0.25f);
         rb.velocity = new Vector2(0, rb.velocity.y);
         //  yield return new WaitForSeconds(3f);
-        Instantiate(cordyceps, transform.position, transform.rotation);
+        for (int i = 0; i < dropsCordycep; i++)
+        {
+            Instantiate(cordyceps, transform.position, transform.rotation);
+        }
         Destroy(gameObject);
     }
 

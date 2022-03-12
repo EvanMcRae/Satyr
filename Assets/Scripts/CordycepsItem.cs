@@ -8,6 +8,7 @@ public class CordycepsItem : MonoBehaviour
     private Transform playerPos;
     public Sprite[] sprites;
     private Rigidbody2D rb;
+    private BoxCollider2D boxCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,13 @@ public class CordycepsItem : MonoBehaviour
         var bounds = GetComponent<SpriteRenderer>().sprite.bounds;
         var factor = 0.75f / bounds.size.y;
         transform.localScale = new Vector3(factor, factor, factor);
+
+        boxCollider = GetComponent<BoxCollider2D>();
+        var S = bounds.size;
+        boxCollider.size = S;
+        boxCollider.offset = new Vector2((S.x / 2), 0);
+
+        rb.velocity = Random.insideUnitCircle * 5f;
     }
 
     // Update is called once per frame
