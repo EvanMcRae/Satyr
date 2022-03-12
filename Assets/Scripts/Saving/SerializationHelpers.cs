@@ -158,12 +158,20 @@ public class CordycepsSerialization
 [Serializable]
 public class SpawnpointSerialization 
 {
-    public int scene;
+    public string scene;
     public Vector2 position;
+    public List<int> statuesUsed;
 
     public SpawnpointSerialization(Spawnpoint spawnpoint) {
         scene = spawnpoint.scene;
         position = spawnpoint.position;
+        statuesUsed = spawnpoint.statuesUsed;
+    }
+
+    public void SetValues(GameObject playerObj) {
+        playerObj.GetComponent<Spawnpoint>().scene = scene;
+        playerObj.GetComponent<Spawnpoint>().position = position;
+        playerObj.GetComponent<Spawnpoint>().statuesUsed = statuesUsed;
     }
 }
 

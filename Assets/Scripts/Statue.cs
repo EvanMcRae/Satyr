@@ -8,14 +8,19 @@ public class Statue : MonoBehaviour
     public static bool cutscening = false;
     public static Transform currStatue;
     public GameObject cam;
+    public int ID = 0;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (Player.instance.GetComponent<Spawnpoint>().statuesUsed.Contains(ID))
+        {
+            beenUsed = true;
+        }
         if (!beenUsed)
         {
             if (other.gameObject.tag == "Player")
             {
-                other.gameObject.GetComponent<Spawnpoint>().SetSpawnpoint(transform);
+                other.gameObject.GetComponent<Spawnpoint>().SetSpawnpoint(transform, ID);
                 GetComponent<GameSaver>().SaveGame();
                 StartCoroutine(StatueCutscene());
             }
@@ -28,9 +33,14 @@ public class Statue : MonoBehaviour
         currStatue = this.transform;
         cam.GetComponentInChildren<CameraFollow>().ShakeCamera();
         cam.GetComponentInChildren<CameraFollow>().shakeDuration = 5f;
-        yield return new WaitForSeconds(10.0f);
+        AudioManager.instance.FadeOutCurrent();
+        yield return new WaitForSeconds(1.1f);
+        AudioManager.instance.PauseCurrent();
+        yield return new WaitForSeconds(8.9f);
         cutscening = false;
         currStatue = null;
+        AudioManager.instance.UnPauseCurrent();
+        AudioManager.instance.FadeInCurrent();
         GameObject.Find("SaveText").GetComponent<Animator>().SetTrigger("start");
         yield return null;
     }

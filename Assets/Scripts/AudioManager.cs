@@ -294,4 +294,45 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void FadeOutCurrent() {
+        if (firstSet)
+        {
+            fader[0] = FadeAudioSource(BGM1[activePlayer], fadeDuration, 0.0f, () => { fader[0] = null; });
+            StartCoroutine(fader[0]);
+        }
+        else
+        {
+            fader[0] = FadeAudioSource(BGM2[activePlayer], fadeDuration, 0.0f, () => { fader[0] = null; });
+            StartCoroutine(fader[0]);
+        }
+    }
+
+    public void FadeInCurrent()
+    {
+        if (firstSet)
+        {
+            fader[0] = FadeAudioSource(BGM1[activePlayer], fadeDuration, volume, () => { fader[0] = null; });
+            StartCoroutine(fader[0]);
+        }
+        else
+        {
+            fader[0] = FadeAudioSource(BGM2[activePlayer], fadeDuration, volume, () => { fader[0] = null; });
+            StartCoroutine(fader[0]);
+        }
+    }
+    
+    public void PauseCurrent() {
+        if (firstSet)
+        {
+            BGM1[activePlayer].Pause();
+        }
+    }
+
+    public void UnPauseCurrent() {
+        if (firstSet)
+        {
+            BGM1[activePlayer].UnPause();
+        }
+    }
+
 }

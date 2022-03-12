@@ -30,7 +30,7 @@ public class GameSaver : MonoBehaviour
 
     public void LoadGame()
     {
-        if (!loading && !changeScene.changingScene) {
+        if (!loading && !changeScene.changingScene && !Statue.cutscening) {
             if (Player.controller == null) {
                 StartCoroutine(LoadSaveFile()); 
             } else if (!Player.controller.resetting && !Player.controller.dead) {
@@ -60,6 +60,7 @@ public class GameSaver : MonoBehaviour
             data.player.inventory.SetValues(newPlayer);
             data.player.health.SetValues(newPlayer);
             data.player.attack.SetValues(newPlayer);
+            data.player.spawnpoint.SetValues(newPlayer);
             data.options.SetValues();
 
             // single value transfers
