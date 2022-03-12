@@ -10,6 +10,14 @@ public class Statue : MonoBehaviour
     public GameObject cam;
     public int ID = 0;
 
+    private void Update()
+    {
+        if (Player.instance.GetComponent<Spawnpoint>().statuesUsed.Contains(ID))
+        {
+            beenUsed = true;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (Player.instance.GetComponent<Spawnpoint>().statuesUsed.Contains(ID))
