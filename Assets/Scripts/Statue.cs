@@ -41,6 +41,7 @@ public class Statue : MonoBehaviour
         currStatue = this.transform;
         cam.GetComponentInChildren<CameraFollow>().ShakeCamera();
         cam.GetComponentInChildren<CameraFollow>().shakeDuration = 5f;
+        GameObject.FindObjectOfType<CinematicBars>().Show(200, .3f);
         AudioManager.instance.FadeOutCurrent();
         yield return new WaitForSeconds(1.1f);
         AudioManager.instance.PauseCurrent();
@@ -49,6 +50,7 @@ public class Statue : MonoBehaviour
         currStatue = null;
         AudioManager.instance.UnPauseCurrent();
         AudioManager.instance.FadeInCurrent();
+        GameObject.FindObjectOfType<CinematicBars>().Hide(.3f);
         GameObject.Find("SaveText").GetComponent<Animator>().SetTrigger("start");
         yield return null;
     }
