@@ -130,8 +130,9 @@ public class AttackSerialization
     public void SetValues(GameObject playerObj) {
         playerObj.GetComponent<Attack>().dmgValue = dmgValue;
         playerObj.GetComponent<Attack>().shooting_Unlocked = shooting_Unlocked;
-        playerObj.GetComponent<Attack>().specialCooldown = specialCooldown;
+        // playerObj.GetComponent<Attack>().specialCooldown = specialCooldown;
         playerObj.GetComponent<Attack>().specialMaxCooldown = specialMaxCooldown;
+        playerObj.GetComponent<Attack>().specialCooldown = specialMaxCooldown;
     }
 }
 

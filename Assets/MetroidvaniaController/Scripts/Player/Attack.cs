@@ -37,6 +37,7 @@ public class Attack : MonoBehaviour
 
 	private void Awake()
 	{
+        specialCooldown = specialMaxCooldown;
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 	}
 
@@ -86,7 +87,7 @@ public class Attack : MonoBehaviour
 			StartCoroutine(ShootCooldown());
 		}
 
-        if (specialCooldown > specialMaxCooldown && (Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown("joystick button 3")) && !special_attack_hitbox.enabled)
+        if (specialCooldown >= specialMaxCooldown && (Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown("joystick button 3")) && !special_attack_hitbox.enabled)
         {
 			special_attack_hitbox.enabled = true;
             specialCooldown = 0.0f;
