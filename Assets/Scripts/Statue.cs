@@ -43,6 +43,7 @@ public class Statue : MonoBehaviour
         cam.GetComponentInChildren<CameraFollow>().shakeDuration = 5f;
         GameObject.FindObjectOfType<CinematicBars>().Show(200, .3f);
         AudioManager.instance.FadeOutCurrent();
+        GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(1.1f);
         AudioManager.instance.PauseCurrent();
         yield return new WaitForSeconds(8.9f);
