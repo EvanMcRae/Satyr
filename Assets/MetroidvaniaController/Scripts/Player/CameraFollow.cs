@@ -53,6 +53,10 @@ public class CameraFollow : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+        if (m_camera == null) {
+            m_camera = transform.parent.GetComponent<Camera>();
+        }
+        
         if (Statue.cutscening)
         {
             Target = Statue.currStatue;
