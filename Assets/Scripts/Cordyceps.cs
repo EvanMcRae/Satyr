@@ -10,6 +10,8 @@ public class Cordyceps : MonoBehaviour
     public readonly int[] FILL_LEVELS = {0, 5, 10, 20, 40};
     public GameObject[] bagSprites;
     public AudioClip harvestCordyceps;
+    public bool animating;
+    private GameObject currentSprite;
 
     // Start is called before the first frame update
     void Start()
@@ -21,14 +23,9 @@ public class Cordyceps : MonoBehaviour
     void Update()
     {
         bagSprites = GameObject.FindGameObjectsWithTag("Bag");
-        
+        UpdateBag();
+
         GameObject[] items = GameObject.FindGameObjectsWithTag("CordycepsItem");
-        if (items.Length == 0)
-        {
-            UpdateBag();
-            return;
-        }
-        
         foreach (GameObject item in items)
         {
             if ((item.transform.position - transform.position).magnitude < 0.5f) 
@@ -38,13 +35,8 @@ public class Cordyceps : MonoBehaviour
                 UpdateBag();
 
                 // squishy animation
-                foreach (GameObject sprite in bagSprites)
-                {
-                    if (sprite.GetComponent<Image>().enabled)
-                    {
-                        sprite.GetComponent<Animator>().SetTrigger("start");
-                    }
-                }
+                if (!animating)
+                    StartCoroutine(BagAnimation());
 
                 // play sound
                 AudioSource[] audioSource = transform.GetComponents<AudioSource>();
@@ -98,9 +90,19 @@ public class Cordyceps : MonoBehaviour
             if (count >= FILL_LEVELS[i])
             {
                 if (bagSprites.Length > i)
+                {
                     bagSprites[i].GetComponent<Image>().enabled = true;
+                    currentSprite = bagSprites[i];
+                }
                 return;
             }
         }
+    }
+
+    IEnumerator BagAnimation() {
+        animating = true;
+        currentSprite.GetComponent<Animator>().SetTrigger("start");
+        yield return new WaitForSeconds(0.25f);
+        animating = false;
     }
 }
