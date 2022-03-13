@@ -297,9 +297,11 @@ public class Player : MonoBehaviour
 
         if (canMove)
         {
+            if (GetComponent<Attack>().specialCooldown > 5f) {
+                canDash = true;
+            }
             if (dash && canDash && !isWallSliding)
             {
-                // m_Rigidbody2D.AddForce(new Vector2(transform.localScale.x * m_DashForce, 0f));
                 StartCoroutine(DashCooldown());
             }
             // If crouching, check to see if the character can stand up
@@ -578,10 +580,10 @@ public class Player : MonoBehaviour
         animator.SetBool("IsDashing", true);
         isDashing = true;
         canDash = false;
+        if (GetComponent<Attack>().specialCooldown >= 5f)
+            GetComponent<Attack>().specialCooldown -= 5f;
         yield return new WaitForSeconds(0.1f);
         isDashing = false;
-        yield return new WaitForSeconds(0.5f);
-        canDash = true;
     }
 
     IEnumerator Stun(float time)
