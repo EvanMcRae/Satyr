@@ -173,6 +173,10 @@ public class Attack : MonoBehaviour
 			{
 				m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
 				int direction = 0;
+                if (collidersWalls[i] is EdgeCollider2D)
+                {
+                    continue;
+                }
 				if (collidersWalls[i].transform.position.x > transform.position.x) { direction = -1; } else { direction = 1; }
 				m_Rigidbody2D.AddForce(new Vector2(direction * 1000f, 0f));
                 AudioSource[] audioSource = transform.GetComponents<AudioSource>();
