@@ -1967,6 +1967,7 @@ GameObject:
   - component: {fileID: 809013486206422565}
   - component: {fileID: 2086635449539996612}
   - component: {fileID: 8578604973761186409}
+  - component: {fileID: 7033622581417702309}
   m_Layer: 0
   m_Name: bag
   m_TagString: Bag
@@ -2031,6 +2032,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &7033622581417702309
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4005072425853340754}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a569ecccb4f4ac24f8ae4b189ad8bd33, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4026297749951352691
 GameObject:
   m_ObjectHideFlags: 0
@@ -2042,6 +2062,7 @@ GameObject:
   - component: {fileID: 1693605158274818992}
   - component: {fileID: 3290806791717747718}
   - component: {fileID: 7273429710609266180}
+  - component: {fileID: 4663915511860937115}
   m_Layer: 0
   m_Name: bag (2)
   m_TagString: Bag
@@ -2106,6 +2127,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &4663915511860937115
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4026297749951352691}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a569ecccb4f4ac24f8ae4b189ad8bd33, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4139975543735312290
 GameObject:
   m_ObjectHideFlags: 0
@@ -2348,6 +2388,7 @@ GameObject:
   - component: {fileID: 1745620543207499858}
   - component: {fileID: 8226814794190788803}
   - component: {fileID: 1567988057790489926}
+  - component: {fileID: 3570607716037831662}
   m_Layer: 0
   m_Name: bag (1)
   m_TagString: Bag
@@ -2412,6 +2453,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &3570607716037831662
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4327148299320604737}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a569ecccb4f4ac24f8ae4b189ad8bd33, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4413759857151335000
 GameObject:
   m_ObjectHideFlags: 0
@@ -2601,6 +2661,7 @@ GameObject:
   - component: {fileID: 6883025823248751988}
   - component: {fileID: 5685737055979781494}
   - component: {fileID: 1719992185106887413}
+  - component: {fileID: 5293876028622444968}
   m_Layer: 0
   m_Name: bag (3)
   m_TagString: Bag
@@ -2665,6 +2726,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &5293876028622444968
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4564673471066371798}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a569ecccb4f4ac24f8ae4b189ad8bd33, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4719276947383612980
 GameObject:
   m_ObjectHideFlags: 0
@@ -3293,6 +3373,7 @@ GameObject:
   - component: {fileID: 1724338858199080016}
   - component: {fileID: 3172144118607134860}
   - component: {fileID: 165928789683051039}
+  - component: {fileID: 2754453217482784478}
   m_Layer: 0
   m_Name: bag (4)
   m_TagString: Bag
@@ -3357,6 +3438,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &2754453217482784478
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5430077080170427797}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a569ecccb4f4ac24f8ae4b189ad8bd33, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5491895293560874122
 GameObject:
   m_ObjectHideFlags: 0

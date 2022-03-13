@@ -21,14 +21,32 @@ public class Cordyceps : MonoBehaviour
     void Update()
     {
         bagSprites = GameObject.FindGameObjectsWithTag("Bag");
-        UpdateBag();
         
         GameObject[] items = GameObject.FindGameObjectsWithTag("CordycepsItem");
-        foreach (GameObject item in items) {
+        if (items.Length == 0)
+        {
+            UpdateBag();
+            return;
+        }
+        
+        foreach (GameObject item in items)
+        {
             if ((item.transform.position - transform.position).magnitude < 0.5f) 
             {
-                count++;
                 Destroy(item);
+                count++;
+                UpdateBag();
+
+                // squishy animation
+                foreach (GameObject sprite in bagSprites)
+                {
+                    if (sprite.GetComponent<Image>().enabled)
+                    {
+                        sprite.GetComponent<Animator>().SetTrigger("start");
+                    }
+                }
+
+                // play sound
                 AudioSource[] audioSource = transform.GetComponents<AudioSource>();
                 foreach (AudioSource source in audioSource)
                 {
