@@ -278,6 +278,15 @@ public class Player : MonoBehaviour
                 m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
             }
         }
+
+        // Prevent jumping off screen during cutscenes
+        if (Statue.cutscening)
+        {
+            if (transform.position.y >= (Statue.currStatue.position.y + 1.75f) && m_Rigidbody2D.velocity.y > 0)
+            {
+                m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
+            }
+        }
     }
 
     public void Move(float move, bool jump, bool dash, bool releaseJump)
