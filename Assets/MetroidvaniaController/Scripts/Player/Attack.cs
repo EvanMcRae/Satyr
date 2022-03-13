@@ -123,7 +123,7 @@ public class Attack : MonoBehaviour
 	public void DoDashDamage()
 	{
 		dmgValue = Mathf.Abs(dmgValue);
-		Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(currentAttackCheck.position, 0.9f);
+		Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(currentAttackCheck.position, 1.4f);
 		particleAttack.Play();
 		for (int i = 0; i < collidersEnemies.Length; i++)
 		{
