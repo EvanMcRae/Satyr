@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioManager am;
     [SerializeField] private Transform groundParticle;
 
-    const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
+    const float k_GroundedRadius = .11f; // Radius of the overlap circle to determine if grounded
     public bool m_Grounded;            // Whether or not the player is grounded.
     private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
     public bool isJumping = false;
     public bool isJumpingDJ = false;
     public bool resetting = false;
-    private float jumpTime;
+    public float jumpTime;
     private bool holdingJump = false;
 
     public float stunDuration = 0.25f;
@@ -172,12 +172,10 @@ public class Player : MonoBehaviour
                 canDoubleJump = false;
 
                 if (!wasGrounded && jumpCooldown <= 0.1f)
-                    jumpCooldown = 0.1f;
+                    jumpCooldown = 0.05f;
 
-                if (!wasGrounded && !holdingJump)
+                if (!wasGrounded && !holdingJump && !(m_Rigidbody2D.velocity.y > 0f))
                 {
-                    OnLandEvent.Invoke();
-                    m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * .07f));
                     if (!m_IsWall && !isDashing)
                     {
                         particleJumpDown.Play();
@@ -199,13 +197,11 @@ public class Player : MonoBehaviour
                 }
 
                 if (!wasGrounded && jumpCooldown <= 0.1f) {
-                    jumpCooldown = 0.1f;
+                    jumpCooldown = 0.05f;
                 }
                     
-                if (!wasGrounded && !holdingJump)
+                if (!wasGrounded && !holdingJump && !(m_Rigidbody2D.velocity.y > 0f))
                 {
-                    OnLandEvent.Invoke();
-                    m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * .07f));
                     if (!m_IsWall && !isDashing)
                     {
                         particleJumpDown.Play();
@@ -238,16 +234,11 @@ public class Player : MonoBehaviour
         {
             if (beenOnLand < 5f)
                 beenOnLand += Time.fixedDeltaTime;
-            if (beenOnLand >= 0.2f && (isJumping || isJumpingDJ) && jumpTime > 0.1f) {
-                isJumping = false;
-                jumpTime = 0f;
-                isJumpingDJ = false;
-            }
-            if (beenOnLand >= 0.1f && (isJumping || isJumpingDJ) && jumpTime > 0.1f && velocity.y == 0f) {
+            if (!(m_Rigidbody2D.velocity.y > 0f)) {
+                OnLandEvent.Invoke();
                 isJumping = false;
                 isJumpingDJ = false;
                 jumpTime = 0f;
-                jumpCooldown = 0.1f;
             }
             if (jumpCooldown > 0f)
                 jumpCooldown -= Time.fixedDeltaTime;
@@ -395,19 +386,17 @@ public class Player : MonoBehaviour
                 m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * .7f)); //force added during a jump
                 if (doubleJump_Unlocked) { canDoubleJump = true; }
-
             }
             else if (!m_Grounded && jump && canDoubleJump && !isWallSliding && !isJumping)
             {
                 if (doubleJump_Unlocked) { canDoubleJump = false; }
-                if (!isJumping)
-                    holdingJump = true;
+                holdingJump = true;
                 m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 1.2f));
                 animator.SetBool("IsDoubleJumping", true);
             }
 
-            else if (m_IsWall && !m_Grounded && wallSlide_Unlocked == true) // looks like this is where wall sliding is managed
+            else if (m_IsWall && !m_Grounded && wallSlide_Unlocked) // looks like this is where wall sliding is managed
             {
                 if (!oldWallSlidding && m_Rigidbody2D.velocity.y < 0 || isDashing)
                 {
@@ -510,14 +499,14 @@ public class Player : MonoBehaviour
         if (isJumping || isJumpingDJ) // this code is absolutely gross but necessary
         {
             jumpTime += 0.1f;
-            if (jumpTime > 4.5f)
-            {
-                if (jumpCooldown <= 0.1f)
-                    jumpCooldown = 0.1f;
-                isJumping = false;
-                isJumpingDJ = false;
-                jumpTime = 0f;
-            }
+            // if (jumpTime > 4.5f)
+            // {
+            //     if (jumpCooldown <= 0.1f)
+            //         jumpCooldown = 0.1f;
+            //     isJumping = false;
+            //     isJumpingDJ = false;
+            //     jumpTime = 0f;
+            // }
         }
 
         if (releaseJump)
@@ -531,11 +520,6 @@ public class Player : MonoBehaviour
             if (isJumping || isJumpingDJ)
             {
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 80 / jumpTime));
-            }
-            else
-            {
-                //falling while still holding jump
-                m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 200));
             }
         }
 

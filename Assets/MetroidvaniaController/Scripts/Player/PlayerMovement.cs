@@ -38,9 +38,13 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-            if (Player.controller.beenOnLand >= 0.1f || Player.controller.canDoubleJump || Player.controller.lastOnLand < 0.1f)
-			    jump = true;
-		}
+            if (Player.controller.beenOnLand >= 0.05f || Player.controller.lastOnLand < 0.1f || Player.controller.canDoubleJump)
+                jump = true;
+
+            // fixes multi double jumping on rock platforms
+            if (Player.controller.isJumpingDJ && !Player.controller.canDoubleJump)
+                jump = false;
+        }
 
         if ((Input.GetKey("space") || Input.GetKey("z") || Input.GetKey("joystick button 0")) && Player.controller.m_Grounded)
         {
