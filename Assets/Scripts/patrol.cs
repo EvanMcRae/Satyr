@@ -192,6 +192,11 @@ public class patrol : Enemy
                 }
             }
         }
+        else if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<Player>().ApplyDamage(1.0f, this.transform.position, 60f);
+            StartCoroutine(Freeze());
+        }
        
         
     }

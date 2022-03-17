@@ -152,6 +152,7 @@ public class Player : MonoBehaviour
             {
                 m_Grounded = true;
                 lastOnLand = 0f;
+                OnLandEvent.Invoke();
 
                 if (colliders[i].gameObject.transform.position.x > this.transform.position.x)
                 {
