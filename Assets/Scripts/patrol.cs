@@ -40,6 +40,9 @@ public class patrol : Enemy
     {
         target = Player.instance.transform;
 
+        // collision with player depends on player's invincible state
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), Player.instance.GetComponent<Collider2D>(), Player.controller.invincible);
+
         // if (Input.GetKeyDown(KeyCode.T))
         // {
         //     print(isHunterMode);

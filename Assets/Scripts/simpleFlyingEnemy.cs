@@ -28,7 +28,10 @@ public class simpleFlyingEnemy : Enemy
     void Update()
     {
         target = Player.instance.transform;
-        
+
+        // collision with player depends on player's invincible state
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), Player.instance.GetComponent<Collider2D>(), Player.controller.invincible);
+
         if (playerIsInRange)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
