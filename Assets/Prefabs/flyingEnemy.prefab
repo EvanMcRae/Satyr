@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3634732434474587598}
   - component: {fileID: 3634732434474587597}
   - component: {fileID: 3634732434474587602}
+  - component: {fileID: 1875805379650043881}
   m_Layer: 3
   m_Name: flyingEnemy
   m_TagString: Enemy
@@ -100,7 +101,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.028775811, y: -0.12469572}
+  m_Offset: {x: -0.17998171, y: -0.021601915}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -111,7 +112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.4610226, y: 2.7295952}
+  m_Size: {x: 3.450728, y: 2.0972838}
   m_EdgeRadius: 0
 --- !u!114 &3634732434474587598
 MonoBehaviour:
@@ -170,3 +171,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &1875805379650043881
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3634732434474587596}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bb9a358462006e845a5b6ebfb1a3f0a6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
