@@ -39,6 +39,17 @@ public class simpleFlyingEnemy : Enemy
           //  transform.position = new Vector3(x, .3f * Mathf.Sin(Time.time * verticalSpeed), 0f);
         }
 
+        if (target.position.x > this.transform.position.x && !facingRight)
+        {
+            Flip();
+        }
+        else if (target.position.x < this.transform.position.x && facingRight)
+        {
+            Flip();
+        }
+
+        if (facingRight)
+
         if (life <= 0)
         {
             // print("enemy died");

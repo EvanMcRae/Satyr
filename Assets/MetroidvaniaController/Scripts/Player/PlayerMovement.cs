@@ -20,10 +20,6 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKeyDown(KeyCode.E)) {
-            GameObject.Find("SaveText").GetComponent<Animator>().SetTrigger("start");
-        }
-
 		if (Input.GetAxisRaw("Horizontal") > 0.3 || Input.GetAxisRaw("Horizontal") < -0.3)
 			horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 		else
