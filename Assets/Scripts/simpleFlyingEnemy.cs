@@ -48,11 +48,9 @@ public class simpleFlyingEnemy : Enemy
             Flip();
         }
 
-        if (facingRight)
-
         if (life <= 0)
         {
-            // print("enemy died");
+            print("enemy died");
             // isHitted = true;
             if (!dead)
                 StartCoroutine(DestroyEnemy());
