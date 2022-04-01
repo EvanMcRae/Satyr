@@ -36,7 +36,9 @@ public class spitter : Enemy
     {
         target = Player.instance.transform;
 
-        
+        // collision with player depends on player's invincible state
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), Player.instance.GetComponent<Collider2D>(), Player.controller.invincible || Player.controller.isDashing);
+
         if (playerIsInRange)
         {
             if (Vector2.Distance(transform.position, target.position) > stoppingDistance)
@@ -62,6 +64,15 @@ public class spitter : Enemy
                 timeBtwShots -= Time.deltaTime;
             }
 
+        }
+
+        if (target.position.x > this.transform.position.x && !facingRight)
+        {
+            Flip();
+        }
+        else if (target.position.x < this.transform.position.x && facingRight)
+        {
+            Flip();
         }
 
 
@@ -107,7 +118,7 @@ public class spitter : Enemy
     }
 
 
-    public override void ApplyDamage(float damage)
+    public override void ApplyDamage(float damage, float knockback = 1.0f)
     {
 
         float direction = damage / Mathf.Abs(damage);
@@ -115,7 +126,7 @@ public class spitter : Enemy
         // transform.GetComponent<Animator>().SetBool("Hit", true);
         life -= damage;
         rb.velocity = Vector2.zero;
-        rb.AddForce(new Vector2(direction * (1500f + (speed * 800)), 300f));
+        rb.AddForce(new Vector2(direction * (1500f + (speed * 800)), 300f)*knockback);
         StartCoroutine(HitTime());
 
     }
@@ -123,6 +134,7 @@ public class spitter : Enemy
 
     IEnumerator HitTime()
     {
+        GetComponent<SimpleFlash>().Flash(0.4f, 1, true);
         //  isHitted = true;
         //   isInvincible = true;
         speed -= 3;

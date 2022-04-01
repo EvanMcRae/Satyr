@@ -41,7 +41,7 @@ public class patrol : Enemy
         target = Player.instance.transform;
 
         // collision with player depends on player's invincible state
-        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), Player.instance.GetComponent<Collider2D>(), Player.controller.invincible);
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), Player.instance.GetComponent<Collider2D>(), Player.controller.invincible || Player.controller.isDashing);
 
         // if (Input.GetKeyDown(KeyCode.T))
         // {
@@ -204,7 +204,7 @@ public class patrol : Enemy
         
     }
 
-    public override void ApplyDamage(float damage)
+    public override void ApplyDamage(float damage, float knockback = 1.0f)
     {
        // MethodBase methodBase = MethodBase.GetCurrentMethod();
        // Debug.Log(methodBase.Name);
@@ -213,7 +213,7 @@ public class patrol : Enemy
            // transform.GetComponent<Animator>().SetBool("Hit", true);
             life -= damage;
             rb.velocity = Vector2.zero;
-            rb.AddForce(new Vector2(direction * 1000f, 200f));
+            rb.AddForce(new Vector2(direction * 1000f, 200f)*knockback);
             StartCoroutine(HitTime());
         
     }

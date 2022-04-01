@@ -33,7 +33,8 @@ public class Player : MonoBehaviour
     public bool canDoubleJump = false; //If player can double jump
     [SerializeField] private float m_DashForce = 25f;
     public bool canDash = false;
-    private bool isDashing = false; //If player is dashing
+    public bool isDashing = false; //If player is dashing
+    private bool speedBoost = false; //Gives player speed boost during dash
     private bool m_IsWall = false; //If there is a wall in front of the player
     private bool isWallSliding = false; //If player is sliding in a wall
     private bool oldWallSlidding = false; //If player is sliding in a wall in the previous frame
@@ -117,6 +118,10 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDashing) {
+            GetComponent<Attack>().DoDashDamage(0.0f);
+        }
+
         if (!dead) {
             animator.SetBool("IsDead", false);
         }
@@ -306,7 +311,7 @@ public class Player : MonoBehaviour
                 StartCoroutine(DashCooldown());
             }
             // If crouching, check to see if the character can stand up
-            if (isDashing)
+            if (speedBoost)
             {
                 m_Rigidbody2D.velocity = new Vector2(transform.localScale.x * m_DashForce, 0);
                 // Prevent moving off screen during cutscenes
@@ -571,13 +576,17 @@ public class Player : MonoBehaviour
 
     IEnumerator DashCooldown()
     {
-        animator.SetBool("IsDashing", true);
         isDashing = true;
+        speedBoost = true;
+        animator.SetBool("IsDashing", true);
         canDash = false;
         if (GetComponent<Attack>().specialCooldown >= 5f)
             GetComponent<Attack>().specialCooldown -= 5f;
         yield return new WaitForSeconds(0.1f);
+        speedBoost = false;
+        yield return new WaitForSeconds(0.3f);
         isDashing = false;
+        GetComponent<Attack>().ignoredEnemies.Clear();
     }
 
     IEnumerator Stun(float time)

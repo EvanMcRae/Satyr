@@ -53,7 +53,7 @@ public class FullEnemy : Enemy
         }
     }
 
-    public override void ApplyDamage(float damage)
+    public override void ApplyDamage(float damage, float knockback = 1.0f)
     {
         if (!isInvincible)
         {
@@ -62,7 +62,7 @@ public class FullEnemy : Enemy
             transform.GetComponent<Animator>().SetBool("Hit", true);
             life -= damage;
             rb.velocity = Vector2.zero;
-            rb.AddForce(new Vector2(direction * 500f, 100f));
+            rb.AddForce(new Vector2(direction * 500f, 100f)*knockback);
             StartCoroutine(HitTime());
         }
     }

@@ -30,7 +30,7 @@ public abstract class Enemy : MonoBehaviour {
 		transform.localScale = theScale;
 	}
 
-    public virtual void ApplyDamage(float damage) {}
+    public virtual void ApplyDamage(float damage, float knockback = 1.0f) {}
 
 	void OnCollisionStay2D(Collision2D collision)
 	{

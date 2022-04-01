@@ -45,6 +45,7 @@ public class Attack : MonoBehaviour
 	void Start()
     {
 		special_attack_hitbox.enabled = false;
+        currentAttackCheck = attackCheck;
     }
 
     // Update is called once per frame
@@ -120,13 +121,14 @@ public class Attack : MonoBehaviour
 		canShoot = true;
     }
 
-	public void DoDashDamage()
+	public void DoDashDamage(float knockback = 1.0f)
 	{
 		dmgValue = Mathf.Abs(dmgValue);
 		Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(currentAttackCheck.position, 1.4f);
+
 		particleAttack.Play();
 		for (int i = 0; i < collidersEnemies.Length; i++)
-		{
+		{   
 			if (collidersEnemies[i].gameObject.tag == "Enemy" && !(ignoredEnemies.Contains(collidersEnemies[i])))
 			{
 				if (collidersEnemies[i].transform.position.x - transform.position.x < 0)
@@ -136,7 +138,7 @@ public class Attack : MonoBehaviour
 
 				if (collidersEnemies[i].GetComponent<Enemy>() != null)
 				{
-					collidersEnemies[i].GetComponent<Enemy>().ApplyDamage(dmgValue);
+					collidersEnemies[i].GetComponent<Enemy>().ApplyDamage(dmgValue, knockback);
 				}
 
                 //collidersEnemies[i].gameObject.SendMessage("ApplyDamage", dmgValue);

@@ -30,7 +30,7 @@ public class simpleFlyingEnemy : Enemy
         target = Player.instance.transform;
 
         // collision with player depends on player's invincible state
-        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), Player.instance.GetComponent<Collider2D>(), Player.controller.invincible);
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), Player.instance.GetComponent<Collider2D>(), Player.controller.invincible || Player.controller.isDashing);
 
         if (playerIsInRange)
         {
@@ -98,7 +98,7 @@ public class simpleFlyingEnemy : Enemy
     }
 
 
-    public override void ApplyDamage(float damage)
+    public override void ApplyDamage(float damage, float knockback = 1.0f)
     {
 
         float direction = damage / Mathf.Abs(damage);
@@ -106,7 +106,7 @@ public class simpleFlyingEnemy : Enemy
         // transform.GetComponent<Animator>().SetBool("Hit", true);
         life -= damage;
         rb.velocity = Vector2.zero;
-        rb.AddForce(new Vector2(direction * (1500f + (speed * 800)), 300f));
+        rb.AddForce(new Vector2(direction * (1500f + (speed * 800)), 300f)*knockback);
         StartCoroutine(HitTime());
 
     }
