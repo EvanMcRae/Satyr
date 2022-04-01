@@ -5239,8 +5239,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a4da2f8ae004d41aa8907f6024160a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items_added: []
+  items_added:
+  - {fileID: 11400000, guid: 1866a727314614f8f85d52178275c969, type: 2}
   inventory_spaces: []
+--- !u!114 &3802425154517166730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8040695297566312888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b612d9e32e783a489f5ded600b2b2bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: f48c11c1d88e39a49b5a727880050983, type: 2}
 --- !u!114 &7642398621126495836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5257,19 +5271,6 @@ MonoBehaviour:
   bagSprites: []
   harvestCordyceps: {fileID: 8300000, guid: eec581d72fb207a48a9cd33d29ad6ba0, type: 3}
   animating: 0
---- !u!114 &3802425154517166730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8040695297566312888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b612d9e32e783a489f5ded600b2b2bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashMaterial: {fileID: 2100000, guid: f48c11c1d88e39a49b5a727880050983, type: 2}
 --- !u!1 &8852420988973870456
 GameObject:
   m_ObjectHideFlags: 0

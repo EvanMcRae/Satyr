@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//keeps track of the player's inventory
+//connected to DrawCharacter Variant
 public class playerInventory : MonoBehaviour
 {
     public List<Item> items_added = new List<Item>();
@@ -21,6 +23,8 @@ public class playerInventory : MonoBehaviour
         updateInventory();
     }
 
+    //adds an item to inventory
+    //used by item pickup objects?
     public bool addToInventory(Item item)
     {
         // first tries to stack item in existing slot
@@ -45,6 +49,8 @@ public class playerInventory : MonoBehaviour
         return false;
     }
 
+    //updates the veiw of the inventory
+    //used by 
     public void updateInventory()
     {
         inventory_spaces = new List<GameObject>(GameObject.FindGameObjectsWithTag("Slot"));
