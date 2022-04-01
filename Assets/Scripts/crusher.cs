@@ -18,17 +18,34 @@ public class crusher : MonoBehaviour
     void FixedUpdate()
     {
         timer += 1;
-        if(timer > 400 && hitBox.enabled == true)
+        if(timer > 200 && hitBox.enabled == true)
         {
             timer = 0;
             hitBox.enabled = false;
             sr.enabled = false;
         }
-        else if(timer > 400 && hitBox.enabled == false)
+        else if(timer > 200 && hitBox.enabled == false)
         {
             timer = 0;
             hitBox.enabled = true;
             sr.enabled = true;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<Player>().ApplyDamage(1.0f, this.transform.position, 30f);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<Player>().ApplyDamage(1.0f, this.transform.position, 30f);
+        }
+    }
+
 }
