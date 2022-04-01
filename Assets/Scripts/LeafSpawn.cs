@@ -25,7 +25,6 @@ public class LeafSpawn : MonoBehaviour
             leaves.position = currentPosition;
 
             foreach (GameObject leaf in GameObject.FindGameObjectsWithTag("Leaf")) {
-                Debug.Log("bruh");
                 leaf.GetComponent<ParticleSystem>().Play();
             }
         }
