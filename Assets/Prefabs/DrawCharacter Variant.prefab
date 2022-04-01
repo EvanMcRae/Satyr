@@ -4924,6 +4924,22 @@ Transform:
   m_Father: {fileID: 8035023180137202226}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &8407028423954733443
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8040695297566312888}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: a8261b6cf8f073f48a6bbe890b0f0304, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.09665823, y: -0.60641795}
+  m_Size: {x: 0.5250683, y: 0.8134638}
+  m_Direction: 0
 --- !u!82 &-2241083713761805709
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5271,22 +5287,6 @@ MonoBehaviour:
   bagSprites: []
   harvestCordyceps: {fileID: 8300000, guid: eec581d72fb207a48a9cd33d29ad6ba0, type: 3}
   animating: 0
---- !u!70 &8407028423954733443
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8040695297566312888}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: a8261b6cf8f073f48a6bbe890b0f0304, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.09665823, y: -0.7172325}
-  m_Size: {x: 0.5250683, y: 0.59183466}
-  m_Direction: 0
 --- !u!1 &8852420988973870456
 GameObject:
   m_ObjectHideFlags: 0
@@ -5434,7 +5434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 70405055242815152, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_Size.y
-      value: 1.6217023
+      value: 1.7208968
       objectReference: {fileID: 0}
     - target: {fileID: 70405055242815152, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_Enabled
@@ -5450,7 +5450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 70405055242815152, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_Offset.y
-      value: -0.13490206
+      value: -0.18449932
       objectReference: {fileID: 0}
     - target: {fileID: 70405055242815152, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_IsTrigger
