@@ -114,6 +114,7 @@ public class simpleFlyingEnemy : Enemy
 
     IEnumerator HitTime()
     {
+        GetComponent<SimpleFlash>().Flash(0.4f, 1, true);
         //  isHitted = true;
         //   isInvincible = true;
         speed -= 3;

@@ -227,6 +227,7 @@ public class patrol : Enemy
 
     IEnumerator HitTime()
     {
+        GetComponent<SimpleFlash>().Flash(0.4f, 1, true);
         isHitted = true;
      //   isInvincible = true;
         yield return new WaitForSeconds(.2f);

@@ -589,6 +589,7 @@ public class Player : MonoBehaviour
     }
     IEnumerator MakeInvincible(float time)
     {
+        GetComponent<SimpleFlash>().Flash(time, 3);
         invincible = true;
 
         yield return new WaitForSeconds(time);
