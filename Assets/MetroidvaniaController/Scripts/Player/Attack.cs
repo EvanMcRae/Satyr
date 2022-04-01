@@ -46,6 +46,7 @@ public class Attack : MonoBehaviour
     {
 		special_attack_hitbox.enabled = false;
         currentAttackCheck = attackCheck;
+        particleAttack.transform.position = currentAttackCheck.position;
     }
 
     // Update is called once per frame
