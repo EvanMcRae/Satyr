@@ -30,6 +30,15 @@ public class Projectile : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             DestroyProjectile();
+            collision.gameObject.GetComponent<Player>().ApplyDamage(1.0f, this.transform.position, 30f);
+        }
+        else if (collision.CompareTag("Wall"))
+        {
+            DestroyProjectile();
+        }
+        else if (collision.CompareTag("Ground"))
+        {
+            DestroyProjectile();
         }
     }
 
@@ -37,4 +46,7 @@ public class Projectile : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    
+
 }
