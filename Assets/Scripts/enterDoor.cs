@@ -21,7 +21,7 @@ public class enterDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W) && playerIsInRange)
+        if ((Input.GetKey(KeyCode.T) || Input.GetKeyDown("joystick button 1")) && playerIsInRange)
         {
             StartCoroutine(LoadNextScene());
         }
@@ -41,7 +41,7 @@ public class enterDoor : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             playerIsInRange = true;
-            labelText = "Enter";
+            labelText = "Press T to Enter";
         }
     }
 

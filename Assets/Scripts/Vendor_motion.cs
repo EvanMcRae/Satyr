@@ -54,7 +54,7 @@ public class Vendor_motion : MonoBehaviour
 
         transform.position = new Vector3(x, .3f * Mathf.Sin(Time.time * verticalSpeed), 0f);
 
-        if(Input.GetKeyDown(KeyCode.W) && hasCollided == true && needsPrompt == true)
+        if((Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown("joystick button 1")) && hasCollided == true && needsPrompt == true)
         {
             
             textBox.position = new Vector3(textBox.position.x, anchor.position.y, textBox.position.z);
@@ -77,7 +77,7 @@ public class Vendor_motion : MonoBehaviour
             
 
         }
-        else if (Input.GetKeyDown(KeyCode.W) && hasCollided == true && needsPrompt == false)
+        else if ((Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown("joystick button 1")) && hasCollided == true && needsPrompt == false)
         {
             
             GameObject.Find("Dialouge Manager").GetComponent<DialougeManager>().DisplayNextSentence();
@@ -110,7 +110,7 @@ public class Vendor_motion : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             hasCollided = true;
-            labelText = "Hit W to listen";
+            labelText = "Press T to listen";
         }
     }
 

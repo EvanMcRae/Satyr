@@ -17,7 +17,7 @@ public class itemPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.T) || Input.GetKeyDown("joystick button 1"))
         {
             if (playerIsInRange == true)
             {
@@ -47,7 +47,7 @@ public class itemPickup : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             playerIsInRange = true;
-            labelText = "Press W to pick up item";
+            labelText = "Press T to pick up item";
         }
     }
 
