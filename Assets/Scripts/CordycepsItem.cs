@@ -38,9 +38,16 @@ public class CordycepsItem : MonoBehaviour
         {
             rb.AddForce((playerPos.transform.position - transform.position).normalized * 750f * Time.smoothDeltaTime);
             transform.position = Vector2.MoveTowards(transform.position, playerPos.position, 0.03f / distance);
-            if (distance < 0.3f) // move twice as fast if in close range
+            if (distance < 3f) // move twice as fast if in close range
             {
+                Debug.Log("close range");
+                rb.gravityScale = 0.0f;
                 rb.AddForce((playerPos.transform.position - transform.position).normalized * 1000f * Time.smoothDeltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, playerPos.position, 0.1f);
+            }
+            else
+            {
+                rb.gravityScale = 1.0f;
             }
         }
     }
