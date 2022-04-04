@@ -20,7 +20,7 @@ public class special_attack : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<Enemy>().life -= 3;
+            collision.gameObject.GetComponent<Enemy>().ApplyDamage(3, 1);
         }
         else if (collision.gameObject.tag == "Breakable Wall")
         {

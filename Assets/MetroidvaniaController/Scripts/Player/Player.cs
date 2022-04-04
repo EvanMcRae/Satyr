@@ -568,6 +568,7 @@ public class Player : MonoBehaviour
             }
             else
             {
+                GetComponent<SimpleFlash>().Flash(iFrames, 3);
                 StartCoroutine(Stun(stunDuration));
                 StartCoroutine(MakeInvincible(iFrames));
             }
@@ -596,9 +597,13 @@ public class Player : MonoBehaviour
         if (!resetting)
             canMove = true;
     }
+
+    public void Invincible(float time) {
+        StartCoroutine(MakeInvincible(time));
+    }
+    
     IEnumerator MakeInvincible(float time)
     {
-        GetComponent<SimpleFlash>().Flash(time, 3);
         invincible = true;
 
         yield return new WaitForSeconds(time);
