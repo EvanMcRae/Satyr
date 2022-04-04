@@ -18,13 +18,19 @@ public class special_attack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        float dmgValue = 3;
+        if (collision.transform.position.x - transform.position.x < 0)
+        {
+            dmgValue = -dmgValue;
+        }
+
         if (collision.gameObject.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<Enemy>().ApplyDamage(3, 1);
+            collision.gameObject.GetComponent<Enemy>().ApplyDamage(dmgValue, 1);
         }
         else if (collision.gameObject.tag == "Breakable Wall")
         {
-            collision.gameObject.GetComponent<breakableWall>().life -= 3;
+            collision.gameObject.GetComponent<breakableWall>().life -= dmgValue;
         }
     }
 
