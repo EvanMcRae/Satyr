@@ -17,6 +17,8 @@ public class Attack : MonoBehaviour
 	public bool canShoot = true;
 	public bool isTimeToCheck = false;
 	public ParticleSystem particleAttack;
+    public ParticleSystem particleSpecialAttack;
+
 	public List<Collider2D> ignoredEnemies = new List<Collider2D>();
 
 	public GameObject cam;
@@ -92,6 +94,7 @@ public class Attack : MonoBehaviour
         if (specialCooldown >= specialMaxCooldown && (Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown("joystick button 3")) && !special_attack_hitbox.enabled)
         {
 			special_attack_hitbox.enabled = true;
+            particleSpecialAttack.Play();
             specialCooldown = 0.0f;
 			animator.SetBool("IsSattacking", true);
 			cam.GetComponentInChildren<CameraFollow>().ShakeCamera();
