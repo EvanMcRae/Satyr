@@ -106,6 +106,7 @@ public class AudioManager : MonoBehaviour
         if (instance == null) {
             instance = this;
         }
+
         //Manages looping tracks
         if (firstSet)
         {
