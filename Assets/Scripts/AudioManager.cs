@@ -8,7 +8,8 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     public AudioMixer mixer;
     public AudioMixerGroup mixerGroup;
-    private AudioClip currentSong;
+    public AudioClip currentSong;
+    public GameArea currentArea;
 
     private int activePlayer = 0;
     public AudioSource[] BGM1, BGM2;
@@ -22,6 +23,13 @@ public class AudioManager : MonoBehaviour
     private float loopPointSeconds;
     private bool firstSet = true;
     private bool firstSongPlayed = false;
+
+    /// <summary>
+    /// List of all different game areas that may have different sets of music
+    /// </summary>
+    public enum GameArea {
+        MENU, TUTORIAL, VILLAGE, FOREST, UNDERGROUND, TREETOPS, SEWER, DESERT, CITY, BOSS
+    }
 
     /// <summary>
     /// Mutes all AudioSources, but does not stop them!
@@ -175,8 +183,12 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    public void ChangeBGM(AudioClip music, int BPM, int timeSignature, int barsLength, bool carryOn)
+    public void ChangeBGM(AudioClip music, int BPM, int timeSignature, int barsLength, GameArea newArea)
     {
+        // carry on music if area has not changed
+        bool carryOn = newArea == currentArea;
+        currentArea = newArea;
+
         //Calculate loop point
         loopPointSeconds = 60.0f * (barsLength * timeSignature) / BPM;
 

@@ -6,16 +6,17 @@ public class SwitchMusicOnLoad : MonoBehaviour
 {
     public AudioClip newTrack;
     public int BPM, timeSignature, barsLength;
-    public bool carryOn = true;
-
+    public AudioManager.GameArea newArea;
     private AudioManager theAM;
 
     // Start is called before the first frame update
     void Start()
     {
-        theAM = FindObjectOfType<AudioManager>();
         if (newTrack != null)
-            theAM.ChangeBGM(newTrack, BPM, timeSignature, barsLength, carryOn);
+        {
+            theAM = FindObjectOfType<AudioManager>();
+            theAM.ChangeBGM(newTrack, BPM, timeSignature, barsLength, newArea);
+        }
     }
 
     // Update is called once per frame
