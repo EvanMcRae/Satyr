@@ -43,8 +43,8 @@ public class Statue : MonoBehaviour
                 other.gameObject.GetComponent<Spawnpoint>().SetSpawnpoint(transform, ID);
                 GetComponent<GameSaver>().SaveGame();
                 StartCoroutine(StatueCutscene());
+                beenUsed = true;
             }
-            beenUsed = true;
         }
     }
 
