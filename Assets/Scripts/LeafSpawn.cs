@@ -20,7 +20,7 @@ public class LeafSpawn : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other) {
         if (other.gameObject.tag == "Player") {
-            GetComponent<AudioSource>().PlayDelayed(0.2f);
+            GetComponent<AudioSource>().PlayDelayed(0.3f);
             Vector3 currentPosition = leaves.transform.position;
             currentPosition.x = Player.instance.transform.position.x;
             leaves.position = currentPosition;
