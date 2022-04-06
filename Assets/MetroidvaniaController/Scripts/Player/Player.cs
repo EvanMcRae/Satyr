@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
     private Animator animator;
     public ParticleSystem particleJumpUp; //Trail particles
     public ParticleSystem particleJumpDown; //Explosion particles
+    public ParticleSystem particleLand; //Big landing particles
 
     private float jumpWallStartX = 0;
     private float jumpWallDistX = 0; //Distance between player and wall
@@ -696,6 +697,10 @@ public class Player : MonoBehaviour
         resetting = false;
         yield return new WaitForSeconds(2f);
         invincible = false;
+    }
+    
+    public void LandParticles() { 
+        particleLand.Play();
     }
 
 }

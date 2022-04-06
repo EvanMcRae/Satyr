@@ -22,6 +22,7 @@ public class LandingSound : MonoBehaviour
         if (other.gameObject.tag == "Player" && !triggered)
         {
             GetComponent<AudioSource>().Play();
+            Player.controller.LandParticles();
             AudioManager.instance.FadeInCurrent();
             triggered = true;
         }

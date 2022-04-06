@@ -104,6 +104,7 @@ MonoBehaviour:
   canDoubleJump: 0
   m_DashForce: 25
   canDash: 0
+  isDashing: 0
   wallSlideSpeed: 0
   life: 10
   invincible: 0
@@ -111,6 +112,7 @@ MonoBehaviour:
   isJumping: 0
   isJumpingDJ: 0
   resetting: 0
+  jumpTime: 0
   stunDuration: 0.25
   iFrames: 1
   lastOnLand: 0
@@ -118,7 +120,10 @@ MonoBehaviour:
   beenOnLand: 0
   particleJumpUp: {fileID: 198584872278178884}
   particleJumpDown: {fileID: 198967111524372206}
+  particleLand: {fileID: 0}
   explorer: 0
+  slippery: {fileID: 0}
+  friction: {fileID: 0}
   OnFallEvent:
     m_PersistentCalls:
       m_Calls:
@@ -173,6 +178,7 @@ MonoBehaviour:
   canShoot: 1
   isTimeToCheck: 0
   particleAttack: {fileID: 0}
+  particleSpecialAttack: {fileID: 0}
   ignoredEnemies: []
   cam: {fileID: 0}
   special_attack_hitbox: {fileID: 0}
