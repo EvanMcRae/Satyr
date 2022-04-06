@@ -166,36 +166,31 @@ public class patrol : Enemy
             }
             else if(movingRight == false)
             {
-                
                 transform.eulerAngles = new Vector3(0, 0, 0);
                 movingRight = true;
-               
             }
         }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if(isHunterMode == false)
-        {
-            if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Breakable Wall")
-            {
-
-                if (movingRight == true)
-                {
-                    transform.eulerAngles = new Vector3(0, -180, 0);
-                    movingRight = false;
-                }
-                else if (movingRight == false)
-                {
-
-                    transform.eulerAngles = new Vector3(0, 0, 0);
-                    movingRight = true;
-
-                }
-            }
-        }
-        else if (collision.gameObject.tag == "Player")
+        // if(isHunterMode == false)
+        // {
+        //     if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Breakable Wall")
+        //     {
+        //         if (movingRight == true)
+        //         {
+        //             transform.eulerAngles = new Vector3(0, -180, 0);
+        //             movingRight = false;
+        //         }
+        //         else if (movingRight == false)
+        //         {
+        //             transform.eulerAngles = new Vector3(0, 0, 0);
+        //             movingRight = true;
+        //         }
+        //     }
+        // }
+        if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<Player>().ApplyDamage(1.0f, this.transform.position, 60f);
             StartCoroutine(Freeze());
