@@ -73,6 +73,8 @@ public class Player : MonoBehaviour
 
     public bool explorer = false;
 
+    public PhysicsMaterial2D slippery, friction;
+
     [Header("Events")]
     [Space]
 
@@ -354,10 +356,12 @@ public class Player : MonoBehaviour
                 // And then smoothing it out and applying it to the character
                 if (move == 0.0 && m_Rigidbody2D.velocity.x != 0.0f)
                 {
+                    GetComponent<CapsuleCollider2D>().sharedMaterial = friction;
                     m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref velocity, m_MovementSmoothing*2.5f);
                 }
                 else
                 {
+                    GetComponent<CapsuleCollider2D>().sharedMaterial = slippery;
                     m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref velocity, m_MovementSmoothing);
                 }
 
@@ -601,7 +605,7 @@ public class Player : MonoBehaviour
     public void Invincible(float time) {
         StartCoroutine(MakeInvincible(time));
     }
-    
+
     IEnumerator MakeInvincible(float time)
     {
         invincible = true;
