@@ -14,7 +14,7 @@ public class spitter : Enemy
     public int dropsCordycep = 1;
     bool dead = false;
 
-    float x = 0;
+    // float x = 0;
 
     public float stoppingDistance;
     public float retreatDistance;

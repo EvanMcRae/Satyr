@@ -72,7 +72,9 @@ public class Player : MonoBehaviour
     private float jumpWallDistX = 0; //Distance between player and wall
     private bool limitVelOnWallJump = false; //For limit wall jump distance with low fps
 
+    // one time events
     public bool explorer = false;
+    public bool initialFall = false;
 
     public PhysicsMaterial2D slippery, friction;
 

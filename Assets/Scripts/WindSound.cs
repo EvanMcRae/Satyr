@@ -15,7 +15,10 @@ public class WindSound : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Player.controller.initialFall) {
+            triggeredEnter = true;
+            triggeredExit = true;
+        }
     }
     
     private void OnTriggerEnter2D(Collider2D other) {

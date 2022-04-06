@@ -15,7 +15,7 @@ public class LandingSound : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Player.controller.initialFall) triggered = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -25,6 +25,7 @@ public class LandingSound : MonoBehaviour
             Player.controller.LandParticles();
             AudioManager.instance.FadeInCurrent();
             triggered = true;
+            Player.controller.initialFall = true;
         }
     }
 }

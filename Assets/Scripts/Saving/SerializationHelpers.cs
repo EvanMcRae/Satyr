@@ -29,7 +29,7 @@ public class PlayerSerialization
 [Serializable]
 public class ControllerSerialization
 {
-    public bool m_Grounded, wallSlide_Unlocked, doubleJump_Unlocked, canDoubleJump, canDash, invincible, isJumping, explorer;
+    public bool m_Grounded, wallSlide_Unlocked, doubleJump_Unlocked, canDoubleJump, canDash, invincible, isJumping, explorer, initialFall;
     public float stunDuration, iFrames, lastOnLand, jumpCooldown, life;
 
     public ControllerSerialization(Player controller) {
@@ -41,6 +41,7 @@ public class ControllerSerialization
         invincible = controller.invincible;
         isJumping = controller.isJumping;
         explorer = controller.explorer;
+        initialFall = controller.initialFall;
         life = controller.life;
     }
     
@@ -53,6 +54,7 @@ public class ControllerSerialization
         playerObj.GetComponent<Player>().invincible = invincible;
         playerObj.GetComponent<Player>().isJumping = isJumping;
         playerObj.GetComponent<Player>().explorer = explorer;
+        playerObj.GetComponent<Player>().initialFall = initialFall;
         playerObj.GetComponent<Player>().life = life;
     }
 }
