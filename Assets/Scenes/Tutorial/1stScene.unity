@@ -55102,7 +55102,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 796300036}
-  - component: {fileID: 796300035}
   m_Layer: 0
   m_Name: New CCDSolver2D (1)
   m_TagString: Untagged
@@ -55110,29 +55109,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &796300035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796300034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1293225921}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ConstrainRotation: 1
-  m_SolveFromDefaultPose: 1
-  m_Weight: 1
-  m_Chain: {m_EffectorTransform: {fileID: 0}, m_TargetTransform: {fileID: 0}, m_TransformCount: 0, m_Transforms: []
-, m_DefaultLocalRotations: []
-, m_StoredLocalRotations: []
-}
-  m_Flip: 0
-  m_Iterations: 10
-  m_Tolerance: 0.01
-  m_Velocity: 0.5
 --- !u!4 &796300036
 Transform:
   m_ObjectHideFlags: 0
@@ -62811,20 +62787,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278593950}
   m_CullTransparentMesh: 1
---- !u!115 &1293225921
-MonoScript:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 5
-  m_Script: 
-  m_DefaultReferences: {}
-  m_Icon: {fileID: 0}
-  m_ExecutionOrder: 0
-  m_ClassName: CCDSolver2D
-  m_Namespace: UnityEngine.U2D.IK
 --- !u!1 &1300215783
 GameObject:
   m_ObjectHideFlags: 0
