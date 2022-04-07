@@ -51,7 +51,7 @@ public class Statue : MonoBehaviour
             }
             else if (cutsceneTime > 5f && cutsceneTime < 7.5f)
             {
-                bloom.intensity.value = Mathf.Lerp(20, 10, (cutsceneTime - 5) / 2.5f);
+                bloom.intensity.value = Mathf.Lerp(40, 10, (cutsceneTime - 5) / 2.5f);
                 chromaticAberration.intensity.value = 1;
             }
             else if (cutsceneTime > 7.5f)
