@@ -54,7 +54,7 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cam = GameObject.Find("Main Camera pre variant");
+        cam = GameObject.Find("Main Camera pre Variant");
 
         if (specialCooldown < specialMaxCooldown)
             specialCooldown += Time.deltaTime;/////////////////////////////
