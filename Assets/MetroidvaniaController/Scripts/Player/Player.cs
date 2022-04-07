@@ -575,7 +575,8 @@ public class Player : MonoBehaviour
             }
             else
             {
-                GetComponent<SimpleFlash>().Flash(iFrames, 3);
+                if (!bypass)
+                    GetComponent<SimpleFlash>().Flash(iFrames, 3);
                 StartCoroutine(Stun(stunDuration));
                 StartCoroutine(MakeInvincible(iFrames));
             }

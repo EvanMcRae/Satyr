@@ -20,7 +20,7 @@ public class deathblocks : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            col.gameObject.GetComponent<Player>().ApplyDamage(1.0f, this.transform.position, 0f);
+            col.gameObject.GetComponent<Player>().ApplyDamage(1.0f, this.transform.position, 0f, true);
             // print("this is working");
             col.gameObject.GetComponent<Player>().GoToResetPoint();
             // col.gameObject.transform.position = new Vector3(col.gameObject.GetComponent<Player>().reset_point.position.x, col.gameObject.GetComponent<Player>().reset_point.position.y, col.gameObject.GetComponent<Player>().reset_point.position.z);
@@ -31,7 +31,7 @@ public class deathblocks : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            col.gameObject.GetComponent<Player>().ApplyDamage(1.0f, this.transform.position, 0f);
+            col.gameObject.GetComponent<Player>().ApplyDamage(1.0f, this.transform.position, 0f, true);
             // print("this is working");
             col.gameObject.GetComponent<Player>().GoToResetPoint();
             // col.gameObject.transform.position = new Vector3(col.gameObject.GetComponent<Player>().reset_point.position.x, col.gameObject.GetComponent<Player>().reset_point.position.y, col.gameObject.GetComponent<Player>().reset_point.position.z);
