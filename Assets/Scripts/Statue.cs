@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class Statue : MonoBehaviour
 {
@@ -10,6 +12,11 @@ public class Statue : MonoBehaviour
     public GameObject cam;
     public int ID = 0;
     public Sprite activeSprite;
+    public Volume volume;
+    MotionBlur motionBlur;
+    Bloom bloom;
+    ChromaticAberration chromaticAberration;
+    public float cutsceneTime;
 
     private void Start()
     {
@@ -27,6 +34,41 @@ public class Statue : MonoBehaviour
             if (!gameObject.GetComponentInChildren<ParticleSystem>().isPlaying)
                 gameObject.GetComponentInChildren<ParticleSystem>().Play();
             GetComponent<SpriteRenderer>().sprite = activeSprite;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (cutscening)
+        {
+            cutsceneTime += Time.fixedDeltaTime;
+            
+            if (cutsceneTime < 5f)
+            {
+                chromaticAberration.intensity.value = Mathf.Lerp(0, 0.25f, cutsceneTime / 5f);
+                motionBlur.intensity.value = Mathf.Lerp(0, 1, cutsceneTime / 5f);
+                bloom.intensity.value = Mathf.Lerp(0, 20, cutsceneTime / 5f);
+            }
+            else if (cutsceneTime > 5f && cutsceneTime < 7.5f)
+            {
+                bloom.intensity.value = Mathf.Lerp(40, 10, (cutsceneTime - 5) / 2.5f);
+                chromaticAberration.intensity.value = 1;
+            }
+            else if (cutsceneTime > 7.5f)
+            {
+                bloom.intensity.value = Mathf.Lerp(10, 0, (cutsceneTime - 7.5f) / 2.5f);
+                chromaticAberration.intensity.value = Mathf.Lerp(1, 0, (cutsceneTime - 7.5f) / 2.5f);
+            }
+            else if (cutsceneTime > 10f || cutsceneTime <= 0f)
+            {
+                motionBlur.intensity.value = 0;
+                bloom.intensity.value = 0;
+                chromaticAberration.intensity.value = 0;
+            }
+        }
+        else
+        {
+            cutsceneTime = 0.0f;
         }
     }
 
@@ -51,8 +93,14 @@ public class Statue : MonoBehaviour
     IEnumerator StatueCutscene() {
         cutscening = true;
         currStatue = this.transform;
-        cam.GetComponentInChildren<CameraFollow>().ShakeCamera();
-        cam.GetComponentInChildren<CameraFollow>().shakeDuration = 5f;
+
+        // postprocessing
+        volume.enabled = true;
+        volume.profile.TryGet<MotionBlur>(out motionBlur);
+        volume.profile.TryGet<Bloom>(out bloom);
+        volume.profile.TryGet<ChromaticAberration>(out chromaticAberration);
+
+        cam.GetComponent<CameraFollow>().ShakeCamera(5f);
         GameObject.FindObjectOfType<CinematicBars>().Show(200, .3f);
         AudioManager.instance.FadeOutCurrent();
         GetComponent<AudioSource>().Play();
@@ -62,6 +110,7 @@ public class Statue : MonoBehaviour
         gameObject.GetComponentInChildren<ParticleSystem>().Play();
         GetComponent<SpriteRenderer>().sprite = activeSprite;
         yield return new WaitForSeconds(5f);
+        GetComponentInChildren<Volume>().enabled = false;
         cutscening = false;
         currStatue = null;
         AudioManager.instance.UnPauseCurrent();

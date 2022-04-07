@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 {
     public static Player controller;
     public static GameObject instance;
-    public static Transform camTarget;
+    public Transform camTarget;
 
     [SerializeField] private float m_JumpForce = 2000f;                         // Amount of force added when the player jumps.
     [Range(0, .3f)][SerializeField] private float m_MovementSmoothing = .05f;   // How much to smooth out the movement
@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 velocity = Vector3.zero;
-    private float limitFallSpeed = 25f; // Limit fall speed
+    private float limitFallSpeed = 30f; // Limit fall speed
 
 
     public bool wallSlide_Unlocked = false;
@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
         {
             controller = this;
             instance = gameObject;
-            camTarget = GameObject.FindGameObjectWithTag("CamTarget").transform;
+            // camTarget = GameObject.FindGameObjectWithTag("CamTarget").transform;
             DontDestroyOnLoad(gameObject);
         }
 
@@ -135,7 +135,7 @@ public class Player : MonoBehaviour
         {
             controller = this;
             instance = gameObject;
-            camTarget = GameObject.FindGameObjectWithTag("CamTarget").transform;
+            // camTarget = GameObject.FindGameObjectWithTag("CamTarget").transform;
         }
 
         GameObject rp = GameObject.FindGameObjectWithTag("Reset Point");
@@ -575,7 +575,8 @@ public class Player : MonoBehaviour
             }
             else
             {
-                GetComponent<SimpleFlash>().Flash(iFrames, 3);
+                if (!bypass)
+                    GetComponent<SimpleFlash>().Flash(iFrames, 3);
                 StartCoroutine(Stun(stunDuration));
                 StartCoroutine(MakeInvincible(iFrames));
             }
@@ -694,7 +695,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1f);
         animator.SetBool("IsDead", false);
         transform.position = reset_point.position;
-        GameObject.Find("actual camera").GetComponent<CameraFollow>().Snap();
+        FindObjectOfType<CameraFollow>().Snap(transform.position);
         m_Rigidbody2D.velocity = Vector2.zero;
         resetting = false;
         yield return new WaitForSeconds(2f);

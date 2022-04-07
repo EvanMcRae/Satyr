@@ -69,7 +69,8 @@ public class GameSaver : MonoBehaviour
             
             Player.instance = newPlayer;
             Player.controller = newPlayer.GetComponent<Player>();
-            Player.camTarget = GameObject.FindGameObjectWithTag("CamTarget").transform;
+            // TODO this line may be either broken or unnecessary :I
+            Player.controller.camTarget = GameObject.FindGameObjectWithTag("CamTarget").transform;
         }
     }
 

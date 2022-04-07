@@ -54,7 +54,7 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cam = GameObject.Find("actual camera");
+        cam = GameObject.Find("Main Camera pre Variant");
 
         if (specialCooldown < specialMaxCooldown)
             specialCooldown += Time.deltaTime;/////////////////////////////
@@ -97,7 +97,7 @@ public class Attack : MonoBehaviour
             particleSpecialAttack.Play();
             specialCooldown = 0.0f;
 			animator.SetBool("IsSattacking", true);
-			cam.GetComponentInChildren<CameraFollow>().ShakeCamera();
+			cam.GetComponent<CameraFollow>().ShakeCamera(0.2f);
             gameObject.GetComponent<Player>().Invincible(1f);
 		}
 		else if (Input.GetKeyUp(KeyCode.Y) || Input.GetKeyUp("joystick button 3"))
@@ -148,7 +148,7 @@ public class Attack : MonoBehaviour
 
                 //collidersEnemies[i].gameObject.SendMessage("ApplyDamage", dmgValue);
                 // this code is for camera shake on attack?
-                //cam.GetComponentInChildren<CameraFollow>().ShakeCamera();
+                //cam.GetComponent<CameraFollow>().ShakeCamera();
 
 
                 Vector2 damageDir = Vector3.Normalize(transform.position - collidersEnemies[i].transform.position) * 85f;
@@ -165,7 +165,7 @@ public class Attack : MonoBehaviour
 					collidersEnemies[i].GetComponent<breakableWall>().ApplyDamage(dmgValue);
 				}
 
-				cam.GetComponentInChildren<CameraFollow>().ShakeCamera();
+				cam.GetComponent<CameraFollow>().ShakeCamera(0.2f);
 				Vector2 damageDir = Vector3.Normalize(transform.position - collidersEnemies[i].transform.position) * 85f;
 				m_Rigidbody2D.velocity = Vector2.zero;
 				m_Rigidbody2D.AddForce(damageDir * 10);
