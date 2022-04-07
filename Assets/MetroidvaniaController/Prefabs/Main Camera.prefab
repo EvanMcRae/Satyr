@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4550523820536806}
   - component: {fileID: 20290961051787748}
   - component: {fileID: 81780910946213854}
-  - component: {fileID: 114743086845943066}
   - component: {fileID: -8416310430635040941}
   m_Layer: 0
   m_Name: Main Camera
@@ -85,26 +84,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025145325119744}
   m_Enabled: 1
---- !u!114 &114743086845943066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1025145325119744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59d11666ee1aeff4dbb0ae6b9f495a22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FollowSpeed: 5
-  Target: {fileID: 0}
-  shakeDuration: 0
-  shakeAmount: 0.1
-  decreaseFactor: 1
-  bounds: 0
-  MinCameraPos: {x: 0, y: 0, z: 0}
-  MaxCameraPos: {x: 0, y: 0, z: 0}
 --- !u!114 &-8416310430635040941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +106,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
