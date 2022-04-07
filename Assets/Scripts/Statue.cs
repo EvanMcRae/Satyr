@@ -47,11 +47,11 @@ public class Statue : MonoBehaviour
             {
                 chromaticAberration.intensity.value = Mathf.Lerp(0, 0.25f, cutsceneTime / 5f);
                 motionBlur.intensity.value = Mathf.Lerp(0, 1, cutsceneTime / 5f);
-                bloom.threshold.value = Mathf.Lerp(1.25f, 0.8f, cutsceneTime / 5f);
+                bloom.threshold.value = Mathf.Lerp(1.25f, 0.9f, cutsceneTime / 5f);
             }
             else if (cutsceneTime > 5f && cutsceneTime < 7.5f)
             {
-                bloom.threshold.value = Mathf.Lerp(0.75f, 1.25f, (cutsceneTime - 5) / 2.5f);
+                bloom.threshold.value = Mathf.Lerp(0.85f, 1.25f, (cutsceneTime - 5) / 2.5f);
                 chromaticAberration.intensity.value = 1;
             }
             else if (cutsceneTime > 7.5f)
