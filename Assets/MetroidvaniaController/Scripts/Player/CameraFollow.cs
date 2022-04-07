@@ -95,7 +95,6 @@ public class CameraFollow : MonoBehaviour
             float speedMultiplier = 1.0f;
             if (Player.instance.GetComponent<Rigidbody2D>().velocity.magnitude > 30f) {
                 speedMultiplier = Player.instance.GetComponent<Rigidbody2D>().velocity.magnitude/25f;
-                Debug.Log(speedMultiplier);
             }
             originalPos = Vector3.Lerp(originalPos, newPosition, FollowSpeed * Time.deltaTime * speedMultiplier);
             transform.position = originalPos;
