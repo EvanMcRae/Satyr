@@ -112,10 +112,10 @@ public class CameraFollow : MonoBehaviour
             transform.position = originalPos + Random.insideUnitSphere * shakeAmount;
             shakeDuration -= Time.deltaTime * decreaseFactor;
         }
-        else if (shakeDuration != -1)
+        else if (shakeDuration != 0)
         {
             transform.position = originalPos;
-            shakeDuration = -1;
+            shakeDuration = 0;
         }
 
         // on screen checks
@@ -124,10 +124,10 @@ public class CameraFollow : MonoBehaviour
         bool onScreen = screenPos.x > 0f && screenPos.x < Screen.width && screenPos.y > 0f && screenPos.y < Screen.height;
     }
 
-	public void ShakeCamera()
+	public void ShakeCamera(float duration)
 	{
 		originalPos = transform.position;
-		shakeDuration = 0.2f;
+		shakeDuration = duration;
 	}
 
     public void Snap(Vector3 position)

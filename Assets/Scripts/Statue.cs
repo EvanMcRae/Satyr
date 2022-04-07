@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Statue : MonoBehaviour
 {
@@ -51,8 +52,8 @@ public class Statue : MonoBehaviour
     IEnumerator StatueCutscene() {
         cutscening = true;
         currStatue = this.transform;
-        cam.GetComponentInChildren<CameraFollow>().ShakeCamera();
-        cam.GetComponentInChildren<CameraFollow>().shakeDuration = 5f;
+        GetComponentInChildren<Volume>().enabled = true;
+        cam.GetComponent<CameraFollow>().ShakeCamera(5f);
         GameObject.FindObjectOfType<CinematicBars>().Show(200, .3f);
         AudioManager.instance.FadeOutCurrent();
         GetComponent<AudioSource>().Play();
@@ -62,6 +63,7 @@ public class Statue : MonoBehaviour
         gameObject.GetComponentInChildren<ParticleSystem>().Play();
         GetComponent<SpriteRenderer>().sprite = activeSprite;
         yield return new WaitForSeconds(5f);
+        GetComponentInChildren<Volume>().enabled = false;
         cutscening = false;
         currStatue = null;
         AudioManager.instance.UnPauseCurrent();
