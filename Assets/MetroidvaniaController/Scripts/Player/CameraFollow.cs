@@ -15,6 +15,7 @@ public class CameraFollow : MonoBehaviour
 	// Amplitude of the shake. A larger value shakes the camera harder.
 	public float shakeAmount = 0.1f;
 	public float decreaseFactor = 1.0f;
+    public float speedMultiplier = 1.0f;
     public static Vector3 screenPos;
 
 	Vector3 originalPos;
@@ -92,19 +93,13 @@ public class CameraFollow : MonoBehaviour
                 Target.localPosition = new Vector3(0.0f, 1.0f, 0.0f);
             }
 
-            float speedMultiplier = 1.0f;
-            if (Player.instance.GetComponent<Rigidbody2D>().velocity.magnitude > 30f) {
-                speedMultiplier = Player.instance.GetComponent<Rigidbody2D>().velocity.magnitude/25f;
+            if (Player.instance.GetComponent<Rigidbody2D>().velocity.magnitude > 25f) {
+                speedMultiplier = Mathf.Lerp(speedMultiplier, 2, 0.01f);
+            } else {
+                speedMultiplier = Mathf.Lerp(speedMultiplier, 1, 0.01f);
             }
             originalPos = Vector3.Lerp(originalPos, newPosition, FollowSpeed * Time.deltaTime * speedMultiplier);
             transform.position = originalPos;
-
-            if (bounds)
-            {
-                transform.position = new Vector3(Mathf.Clamp(transform.position.x, MinCameraPos.x, MaxCameraPos.x),
-                    Mathf.Clamp(transform.position.y, MinCameraPos.y, MaxCameraPos.y),
-                    Mathf.Clamp(transform.position.z, MinCameraPos.z, MaxCameraPos.z));
-            }
         }
 
         if (shakeDuration > 0)
@@ -116,6 +111,13 @@ public class CameraFollow : MonoBehaviour
         {
             transform.position = originalPos;
             shakeDuration = 0;
+        }
+
+        if (bounds)
+        {
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, MinCameraPos.x, MaxCameraPos.x),
+                Mathf.Clamp(transform.position.y, MinCameraPos.y, MaxCameraPos.y),
+                Mathf.Clamp(transform.position.z, MinCameraPos.z, MaxCameraPos.z));
         }
 
         // on screen checks
