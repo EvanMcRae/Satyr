@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class WindSound : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class WindSound : MonoBehaviour
         if (Player.controller.initialFall) {
             triggeredEnter = true;
             triggeredExit = true;
+            GetComponentInChildren<Volume>().enabled = false;
         }
     }
     
@@ -35,6 +37,7 @@ public class WindSound : MonoBehaviour
         {
             GetComponent<AudioSource>().Stop();
             triggeredExit = true;
+            GetComponentInChildren<Volume>().enabled = false;
         }
     }
 }
