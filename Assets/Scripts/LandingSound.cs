@@ -24,7 +24,7 @@ public class LandingSound : MonoBehaviour
             GetComponent<AudioSource>().Play();
             Player.controller.LandParticles();
             AudioManager.instance.FadeInCurrent();
-            FindObjectOfType<CameraFollow>().ShakeCamera(0.2f);
+            FindObjectOfType<CameraFollow>().ShakeCamera(0.3f);
             triggered = true;
             Player.controller.initialFall = true;
         }
