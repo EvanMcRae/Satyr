@@ -14652,7 +14652,7 @@ AudioSource:
   m_GameObject: {fileID: 8040695297566312888}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 4723501192cffb04db45c9a347ac0b90, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -14748,7 +14748,7 @@ AudioSource:
   m_GameObject: {fileID: 8040695297566312888}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 4723501192cffb04db45c9a347ac0b90, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -14844,7 +14844,7 @@ AudioSource:
   m_GameObject: {fileID: 8040695297566312888}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 4723501192cffb04db45c9a347ac0b90, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -15222,6 +15222,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 82701611152381692, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 4723501192cffb04db45c9a347ac0b90, type: 2}
     - target: {fileID: 114145887554720856, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: runSpeed
       value: 80
@@ -15598,6 +15602,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 1319033339220200713, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 4723501192cffb04db45c9a347ac0b90, type: 2}
     - target: {fileID: 4707911415314211923, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.832
