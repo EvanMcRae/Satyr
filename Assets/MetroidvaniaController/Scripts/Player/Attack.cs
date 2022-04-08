@@ -33,8 +33,7 @@ public class Attack : MonoBehaviour
 	public health playerHealth;
 	public Cordyceps cordyceps;
 	private int countToHeal = 5;
-    public AudioClip swordClash;
-
+    public AudioClip swordClash, specialSound;
 
 
 	private void Awake()
@@ -99,6 +98,25 @@ public class Attack : MonoBehaviour
 			animator.SetBool("IsSattacking", true);
 			cam.GetComponent<CameraFollow>().ShakeCamera(0.2f);
             gameObject.GetComponent<Player>().Invincible(1f);
+
+            AudioSource[] audioSource = transform.GetComponents<AudioSource>();
+            foreach (AudioSource source in audioSource)
+            {
+                if (source.clip == swordClash && source.isPlaying)
+                {
+                    if (source.time < 0.2f) return;
+                    else source.Stop();
+                }
+            }
+            foreach (AudioSource source in audioSource)
+            {
+                if (!source.isPlaying)
+                {
+                    source.clip = specialSound;
+                    source.loop = false;
+                    source.Play();
+                }
+            }
 		}
 		else if (Input.GetKeyUp(KeyCode.Y) || Input.GetKeyUp("joystick button 3"))
         {
