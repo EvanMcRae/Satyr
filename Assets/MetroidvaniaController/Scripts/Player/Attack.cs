@@ -23,7 +23,7 @@ public class Attack : MonoBehaviour
 
 	public GameObject cam;
 
-	public BoxCollider2D special_attack_hitbox;
+	public CircleCollider2D special_attack_hitbox;
 
 	public bool shooting_Unlocked = false;
 

@@ -14,7 +14,8 @@ public class Player : MonoBehaviour
     [Range(0, .3f)][SerializeField] private float m_MovementSmoothing = .05f;   // How much to smooth out the movement
     [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
-    [SerializeField] public Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
+    [SerializeField] public Transform m_GroundCheck;                            // A position marking where to check if the player is grounded.
+    [SerializeField] public Transform m_LeftGroundCheck, m_RightGroundCheck;    // Positions marking where to check if the player is solidly grounded.
     [SerializeField] private Transform m_WallCheck;								//Posicion que controla si el personaje toca una pared
 
     [SerializeField] private AudioManager am;
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
 
     const float k_GroundedRadius = .12f; // Radius of the overlap circle to determine if grounded
     public bool m_Grounded;            // Whether or not the player is grounded.
+    public bool m_leftGrounded, m_rightGrounded; // Whether or not the player is solidly grounded.
     private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 velocity = Vector3.zero;
@@ -60,7 +62,7 @@ public class Player : MonoBehaviour
     public float jumpCooldown = 0f;
     public float beenOnLand = 0f;
     private Transform reset_point;
-    private float reset_point_update = 0f;
+    public bool inDeathZone;
     private Vector3 lastOnLandLocation;
 
     public Ground.GroundType currentGround = Ground.GroundType.ROCK;
@@ -93,6 +95,8 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        inDeathZone = false;
+
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
@@ -152,7 +156,6 @@ public class Player : MonoBehaviour
         }
 
         lastOnLand += Time.fixedDeltaTime;
-        reset_point_update += Time.fixedDeltaTime;
 
         bool wasGrounded = m_Grounded;
         m_Grounded = false;
@@ -219,12 +222,6 @@ public class Player : MonoBehaviour
                     identifiedGround = true;
                 }
 
-                if (reset_point_update >= 3f && colliders[i].gameObject.tag != "obstacle")
-                {
-                    reset_point_update = 0f;
-                    reset_point.position = new Vector3(m_GroundCheck.position.x, m_GroundCheck.position.y + 2f, m_GroundCheck.position.z);
-                }
-
                 if (!wasGrounded && jumpCooldown <= 0.1f) {
                     jumpCooldown = 0.05f;
                 }
@@ -240,6 +237,36 @@ public class Player : MonoBehaviour
                         limitVelOnWallJump = false;
                 }
             }
+        }
+
+        // check left position
+        Collider2D[] leftColliders = Physics2D.OverlapCircleAll(m_LeftGroundCheck.position, k_GroundedRadius, m_WhatIsGround);
+        m_leftGrounded = false;
+        for (int i = 0; i < leftColliders.Length; i++)
+        {
+            if (leftColliders[i].gameObject != gameObject && (leftColliders[i].gameObject.tag == "Ground" || leftColliders[i].gameObject.tag == "Wall"))
+            {
+                m_leftGrounded = true;
+                break;
+            }
+        }
+
+        // check right position
+        Collider2D[] rightColliders = Physics2D.OverlapCircleAll(m_RightGroundCheck.position, k_GroundedRadius, m_WhatIsGround);
+        m_rightGrounded = false;
+        for (int i = 0; i < rightColliders.Length; i++)
+        {
+            if (rightColliders[i].gameObject != gameObject && (rightColliders[i].gameObject.tag == "Ground" || rightColliders[i].gameObject.tag == "Wall"))
+            {
+                m_rightGrounded = true;
+                break;
+            }
+        }
+
+        // if left, right, and middle are all grounded, you are solidly grounded. update reset point pos
+        if (m_leftGrounded && m_rightGrounded && m_Grounded && !inDeathZone)
+        {
+            reset_point.position = new Vector3(m_GroundCheck.position.x, m_GroundCheck.position.y + 2f, m_GroundCheck.position.z);
         }
 
         m_IsWall = false;
