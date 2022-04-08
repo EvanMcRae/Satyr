@@ -100,37 +100,31 @@ public class CameraFollow : MonoBehaviour
                 Target.localPosition = new Vector3(0.0f, 1.0f, 0.0f);
             }
 
+            if (Player.instance.GetComponent<Rigidbody2D>().velocity.magnitude > 25f)
+            {
+                speedMultiplier = Mathf.Lerp(speedMultiplier, 2, 0.01f);
+            }
+            else
+            {
+                speedMultiplier = Mathf.Lerp(speedMultiplier, 1, 0.01f);
+            }
 
             if (bounds)
             {
-                /*
-                transform.position = new Vector3(Mathf.Clamp(transform.position.x, MinCameraPos.x, MaxCameraPos.x),
-                    Mathf.Clamp(transform.position.y, MinCameraPos.y, MaxCameraPos.y),
-                    Mathf.Clamp(transform.position.z, MinCameraPos.z, MaxCameraPos.z));
-                */
                 FindLimits();
                 SetOneLimit();
                 float xTarget = camBox.size.x < targetBounds.size.x ? Mathf.Clamp(Target.position.x, targetBounds.min.x + camBox.size.x / 2, targetBounds.max.x - camBox.size.x / 2) : (targetBounds.min.x + targetBounds.max.x) / 2;
                 float yTarget = camBox.size.y < targetBounds.size.y ? Mathf.Clamp(Target.position.y, targetBounds.min.y + camBox.size.y / 2, targetBounds.max.y - camBox.size.y / 2) : (targetBounds.min.y + targetBounds.max.y) / 2;
                 Vector3 boundedTarget = new Vector3(xTarget, yTarget, -10);
-                transform.position = Vector3.Lerp(transform.position, boundedTarget, FollowSpeed * Time.deltaTime);
+                originalPos = Vector3.Lerp(transform.position, boundedTarget, FollowSpeed * Time.deltaTime * speedMultiplier);
             }
-
             else
             {
-                Target.localPosition = new Vector3(0.0f, 1.0f, 0.0f);
-                if (Player.instance.GetComponent<Rigidbody2D>().velocity.magnitude > 25f)
-                {
-                    speedMultiplier = Mathf.Lerp(speedMultiplier, 2, 0.01f);
-                }
-                else
-                {
-                    speedMultiplier = Mathf.Lerp(speedMultiplier, 1, 0.01f);
-                }
                 originalPos = Vector3.Lerp(originalPos, newPosition, FollowSpeed * Time.deltaTime * speedMultiplier);
-                transform.position = originalPos;
             }
         }
+
+        transform.position = originalPos;
 
         if (shakeDuration > 0)
         {
@@ -142,7 +136,6 @@ public class CameraFollow : MonoBehaviour
             transform.position = originalPos;
             shakeDuration = 0;
         }
-
 
         // on screen checks
         var cam = FindObjectOfType<Camera>();

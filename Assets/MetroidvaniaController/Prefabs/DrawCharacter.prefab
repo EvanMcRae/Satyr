@@ -88,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783f8b7882d2d2a42a5b76de9179978f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camTarget: {fileID: 0}
   m_JumpForce: 850
   m_MovementSmoothing: 0.05
   m_AirControl: 1
@@ -95,10 +96,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 53
   m_GroundCheck: {fileID: 4291727345091452}
+  m_LeftGroundCheck: {fileID: 0}
+  m_RightGroundCheck: {fileID: 0}
   m_WallCheck: {fileID: 4986330650710208}
   am: {fileID: 0}
   groundParticle: {fileID: 0}
   m_Grounded: 0
+  m_leftGrounded: 0
+  m_rightGrounded: 0
   wallSlide_Unlocked: 0
   doubleJump_Unlocked: 0
   canDoubleJump: 0
@@ -118,10 +123,15 @@ MonoBehaviour:
   lastOnLand: 0
   jumpCooldown: 0
   beenOnLand: 0
+  inDeathZone: 0
+  currentGround: 0
+  previousGround: 0
+  switchedGround: 0
   particleJumpUp: {fileID: 198584872278178884}
   particleJumpDown: {fileID: 198967111524372206}
   particleLand: {fileID: 0}
   explorer: 0
+  initialFall: 0
   slippery: {fileID: 0}
   friction: {fileID: 0}
   OnFallEvent:
@@ -188,6 +198,7 @@ MonoBehaviour:
   playerHealth: {fileID: 0}
   cordyceps: {fileID: 0}
   swordClash: {fileID: 0}
+  specialSound: {fileID: 0}
 --- !u!114 &114145887554720856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10287,7 +10298,7 @@ GameObject:
   - component: {fileID: 4707911415314211923}
   m_Layer: 1
   m_Name: HighcameraFollow
-  m_TagString: Untagged
+  m_TagString: CamTarget
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
