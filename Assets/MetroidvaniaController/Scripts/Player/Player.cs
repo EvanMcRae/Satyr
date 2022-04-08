@@ -63,6 +63,10 @@ public class Player : MonoBehaviour
     private float reset_point_update = 0f;
     private Vector3 lastOnLandLocation;
 
+    public Ground.GroundType currentGround = Ground.GroundType.ROCK;
+    public Ground.GroundType previousGround = Ground.GroundType.ROCK;
+    public bool switchedGround;
+
     private Animator animator;
     public ParticleSystem particleJumpUp; //Trail particles
     public ParticleSystem particleJumpDown; //Explosion particles
@@ -153,6 +157,7 @@ public class Player : MonoBehaviour
         bool wasGrounded = m_Grounded;
         m_Grounded = false;
 
+        bool identifiedGround = false;
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
@@ -200,6 +205,19 @@ public class Player : MonoBehaviour
                 m_Grounded = true;
                 lastOnLand = 0f;
                 canDoubleJump = false;
+
+                // identifies ground material for run sounds
+                if (!identifiedGround)
+                {
+                    previousGround = currentGround;
+                    Ground thisGround = colliders[i].gameObject.GetComponent<Ground>();
+                    if (thisGround != null)
+                        currentGround = thisGround.type;
+                    else
+                        currentGround = Ground.GroundType.ROCK;
+                    switchedGround = currentGround != previousGround;
+                    identifiedGround = true;
+                }
 
                 if (reset_point_update >= 3f && colliders[i].gameObject.tag != "obstacle")
                 {
