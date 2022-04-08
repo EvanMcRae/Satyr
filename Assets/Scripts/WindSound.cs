@@ -6,6 +6,7 @@ using UnityEngine.Rendering;
 public class WindSound : MonoBehaviour
 {
     private bool triggeredEnter, triggeredExit;
+    public BoxCollider2D invisibleWall;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class WindSound : MonoBehaviour
         if (Player.controller.initialFall) {
             triggeredEnter = true;
             triggeredExit = true;
+            invisibleWall.enabled = false;
             GetComponentInChildren<Volume>().enabled = false;
         }
     }
@@ -26,6 +28,7 @@ public class WindSound : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Player" && !triggeredEnter)
         {
+            invisibleWall.enabled = true;
             AudioManager.instance.FadeOutCurrent();
             GetComponent<AudioSource>().Play();
             triggeredEnter = true;
@@ -35,6 +38,7 @@ public class WindSound : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other) {
         if (other.gameObject.tag == "Player" && !triggeredExit)
         {
+            invisibleWall.enabled = false;
             GetComponent<AudioSource>().Stop();
             triggeredExit = true;
             GetComponentInChildren<Volume>().enabled = false;
