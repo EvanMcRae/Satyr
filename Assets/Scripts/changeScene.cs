@@ -43,6 +43,9 @@ public class changeScene : MonoBehaviour
         changingScene = true;
         crossfade.SetTrigger("start");
         yield return new WaitForSeconds(0.9f);
+        if (SceneManager.GetActiveScene().name == "Tutorial" && scene == "1stScene") {
+            Player.controller.initialFall = true;
+        }
         EventSystem eventSystem = GameObject.FindObjectOfType<EventSystem>();
         if (eventSystem != null)
         {
