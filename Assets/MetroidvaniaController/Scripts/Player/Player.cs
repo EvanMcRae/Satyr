@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioManager am;
     [SerializeField] private Transform groundParticle;
 
-    const float k_GroundedRadius = .12f; // Radius of the overlap circle to determine if grounded
+    const float k_GroundedRadius = .3f; // Radius of the overlap circle to determine if grounded
     public bool m_Grounded;            // Whether or not the player is grounded.
     public bool m_leftGrounded, m_rightGrounded; // Whether or not the player is solidly grounded.
     private Rigidbody2D m_Rigidbody2D;

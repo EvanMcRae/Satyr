@@ -13,13 +13,16 @@ public class Perspective : MonoBehaviour
     {
         cam = Player.instance;
         startpos = transform.position.x;
+        float dist = (cam.transform.position.x * perspectiveEffect);
+        transform.position = new Vector3(startpos - dist, transform.position.y, transform.position.z);
     }
     void Update()
     {
         cam = Player.instance;
         // float temp = (cam.transform.position.x * (1 - perspectiveEffect));
         float dist = (cam.transform.position.x * perspectiveEffect);
-        transform.position = new Vector3(startpos - dist, transform.position.y, transform.position.z);
+        Vector3 newPosition = new Vector3(startpos - dist, transform.position.y, transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, newPosition, 0.01f);
         // if (temp > startpos + (length - offset))
         // {
         //     startpos += length;
