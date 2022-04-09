@@ -24,9 +24,6 @@ public class CameraFollow : MonoBehaviour
     private Bounds[] allBounds;
     private Bounds targetBounds;
     private BoxCollider2D camBox;
-
-	public Vector3 MinCameraPos;
-	public Vector3 MaxCameraPos;
     public float xBias;
     public float yBias;
     private bool canLookDown = true;
@@ -40,9 +37,9 @@ public class CameraFollow : MonoBehaviour
 		Cursor.visible = false;
 
         Target = Player.controller.camTarget;
-        Snap(Target.position);
         camBox = GetComponent<BoxCollider2D>();
         FindLimits();
+        Snap(Target.position);
     }
 
 	void OnEnable()
@@ -112,7 +109,7 @@ public class CameraFollow : MonoBehaviour
             }
 
             // on screen checks
-            screenPos = GetComponent<Camera>().WorldToScreenPoint(Player.instance.transform.position);
+            screenPos = m_camera.WorldToScreenPoint(Player.instance.transform.position);
             bool onScreen = screenPos.x > 0f && screenPos.x < Screen.width && screenPos.y > 0f && screenPos.y < Screen.height;
             if (!onScreen)
             {
@@ -161,8 +158,32 @@ public class CameraFollow : MonoBehaviour
 
     public void Snap(Vector3 position)
     {
-        originalPos = position;
-        transform.position = position;
+        if (position != null)
+        {
+            if (!bounds)
+            {
+                originalPos = position;
+                transform.position = position;
+            }
+            else
+            {
+                FindLimits();
+                SetOneLimit();
+                
+                // calculating camera box size manually because it doesn't update correctly for first 2 frames
+                float aspect = (float)Screen.width / Screen.height;
+                float orthographicSize = m_camera.orthographicSize * 2.0f;
+                float width = orthographicSize * aspect;
+                float height = orthographicSize;
+
+                float xTarget = width < targetBounds.size.x ? Mathf.Clamp(position.x, targetBounds.min.x + width / 2, targetBounds.max.x - width / 2) : (targetBounds.min.x + targetBounds.max.x) / 2;
+                float yTarget = height < targetBounds.size.y ? Mathf.Clamp(position.y, targetBounds.min.y + height / 2, targetBounds.max.y - height / 2) : (targetBounds.min.y + targetBounds.max.y) / 2;
+                
+                Vector3 boundedTarget = new Vector3(xTarget, yTarget, -10);
+                originalPos = boundedTarget;
+                transform.position = boundedTarget;
+            }
+        }
     }
 
     public void FindLimits() {
