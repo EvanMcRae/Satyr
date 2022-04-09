@@ -21809,6 +21809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xBias: 1
   yBias: 0
+  canLookDown: 1
 --- !u!4 &289466163
 Transform:
   m_ObjectHideFlags: 0
@@ -55418,7 +55419,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xBias: 0
-  yBias: 0
+  yBias: 1
+  canLookDown: 1
 --- !u!4 &792565111
 Transform:
   m_ObjectHideFlags: 0
@@ -56426,6 +56428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xBias: 0
   yBias: 0
+  canLookDown: 1
 --- !u!4 &1051155171
 Transform:
   m_ObjectHideFlags: 0
@@ -96201,6 +96204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xBias: 0
   yBias: 0
+  canLookDown: 0
 --- !u!4 &1881421921
 Transform:
   m_ObjectHideFlags: 0

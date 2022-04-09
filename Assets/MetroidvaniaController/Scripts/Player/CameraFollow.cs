@@ -29,6 +29,7 @@ public class CameraFollow : MonoBehaviour
 	public Vector3 MaxCameraPos;
     public float xBias;
     public float yBias;
+    private bool canLookDown = true;
 
     [Range(0.1f, 1f)][SerializeField] private float sharpness = 0.5f;
 
@@ -63,6 +64,7 @@ public class CameraFollow : MonoBehaviour
             originalPos = Vector3.Lerp(originalPos, newPosition, FollowSpeed * Time.deltaTime);
             transform.position = originalPos;
 
+            // adjusting camera zoom
             if (m_camera.orthographicSize != 4.0f)
             {
                 m_camera.orthographicSize = Mathf.Lerp(m_camera.orthographicSize, 4, 0.01f);
@@ -75,6 +77,7 @@ public class CameraFollow : MonoBehaviour
         }
         else
         {
+            // adjusting camera zoom
             if (m_camera.orthographicSize != 7.0f)
             {
                 m_camera.orthographicSize = Mathf.Lerp(m_camera.orthographicSize, 7, 0.01f);
@@ -84,12 +87,9 @@ public class CameraFollow : MonoBehaviour
             {
                 m_camera.orthographicSize = 7;
             }
+
             Target = Player.controller.camTarget;
-
-            Vector3 newPosition = Target.position;
-            newPosition.z = -10;
-
-            if (Input.GetAxisRaw("Vertical") < -0.5) //&& !Input.GetKey(KeyCode.S)
+            if (canLookDown && Input.GetAxisRaw("Vertical") < -0.5) //&& !Input.GetKey(KeyCode.S)
             {
                 Target.localPosition = new Vector3(0.0f, -6.0f, 0.0f); //originally -2
             }
@@ -118,7 +118,7 @@ public class CameraFollow : MonoBehaviour
             {
                 Target.localPosition = new Vector3(0.0f, 1.0f, 0.0f);
             }
-            
+
             if (bounds)
             {
                 FindLimits();
@@ -130,6 +130,8 @@ public class CameraFollow : MonoBehaviour
             }
             else
             {
+                Vector3 newPosition = Target.position;
+                newPosition.z = -10;
                 originalPos = Vector3.Lerp(originalPos, newPosition, FollowSpeed * Time.deltaTime * speedMultiplier);
             }
         }
@@ -181,6 +183,7 @@ public class CameraFollow : MonoBehaviour
                     targetBounds = boundaries[i].gameObject.GetComponent<BoxCollider2D>().bounds;
                     xBias = boundaries[i].gameObject.GetComponent<CameraBounds>().xBias;
                     yBias = boundaries[i].gameObject.GetComponent<CameraBounds>().yBias;
+                    canLookDown = boundaries[i].gameObject.GetComponent<CameraBounds>().canLookDown;
                     first = false;
                 }
                 else {
