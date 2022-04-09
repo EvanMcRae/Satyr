@@ -6,12 +6,12 @@ using UnityEngine.Rendering;
 public class WindSound : MonoBehaviour
 {
     private bool triggeredEnter, triggeredExit;
-    public BoxCollider2D invisibleWall;
+    public BoxCollider2D invisibleWall, cameraBounds;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetComponentInChildren<Volume>().enabled = false;
     }
 
     // Update is called once per frame
@@ -21,7 +21,7 @@ public class WindSound : MonoBehaviour
             triggeredEnter = true;
             triggeredExit = true;
             invisibleWall.enabled = false;
-            GetComponentInChildren<Volume>().enabled = false;
+            cameraBounds.enabled = false;
         }
     }
     
@@ -29,9 +29,11 @@ public class WindSound : MonoBehaviour
         if (other.gameObject.tag == "Player" && !triggeredEnter)
         {
             invisibleWall.enabled = true;
+            cameraBounds.enabled = true;
             AudioManager.instance.FadeOutCurrent();
             GetComponent<AudioSource>().Play();
             triggeredEnter = true;
+            GetComponentInChildren<Volume>().enabled = true;
         }
     }
 
@@ -39,6 +41,7 @@ public class WindSound : MonoBehaviour
         if (other.gameObject.tag == "Player" && !triggeredExit)
         {
             invisibleWall.enabled = false;
+            cameraBounds.enabled = false;
             GetComponent<AudioSource>().Stop();
             triggeredExit = true;
             GetComponentInChildren<Volume>().enabled = false;

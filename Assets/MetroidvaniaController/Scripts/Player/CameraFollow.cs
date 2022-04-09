@@ -111,6 +111,14 @@ public class CameraFollow : MonoBehaviour
                 speedMultiplier = 1.0f;
             }
 
+            // on screen checks
+            screenPos = GetComponent<Camera>().WorldToScreenPoint(Player.instance.transform.position);
+            bool onScreen = screenPos.x > 0f && screenPos.x < Screen.width && screenPos.y > 0f && screenPos.y < Screen.height;
+            if (!onScreen)
+            {
+                Target.localPosition = new Vector3(0.0f, 1.0f, 0.0f);
+            }
+            
             if (bounds)
             {
                 FindLimits();
@@ -141,10 +149,6 @@ public class CameraFollow : MonoBehaviour
             transform.position = originalPos;
             shakeDuration = 0;
         }
-
-        // on screen checks
-        screenPos = GetComponent<Camera>().WorldToScreenPoint(Player.instance.transform.position);
-        bool onScreen = screenPos.x > 0f && screenPos.x < Screen.width && screenPos.y > 0f && screenPos.y < Screen.height;
     }
 
 	public void ShakeCamera(float duration)
