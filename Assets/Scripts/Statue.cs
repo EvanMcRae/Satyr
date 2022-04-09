@@ -16,6 +16,7 @@ public class Statue : MonoBehaviour
     MotionBlur motionBlur;
     Bloom bloom;
     ChromaticAberration chromaticAberration;
+    ColorAdjustments colorAdjustments;
     public float cutsceneTime;
 
     private void Start()
@@ -47,18 +48,21 @@ public class Statue : MonoBehaviour
             {
                 chromaticAberration.intensity.value = Mathf.Lerp(0, 0.25f, cutsceneTime / 5f);
                 motionBlur.intensity.value = Mathf.Lerp(0, 1, cutsceneTime / 5f);
-                bloom.intensity.value = Mathf.Lerp(0f, 13.25f, cutsceneTime / 5f);
-                bloom.threshold.value = Mathf.Lerp(1f, 0.9f, cutsceneTime / 5f);
+                bloom.intensity.value = Mathf.Lerp(0f, 5f, cutsceneTime / 5f);
+                bloom.threshold.value = Mathf.Lerp(1f, 0.75f, cutsceneTime / 5f);
+                colorAdjustments.saturation.value = Mathf.Lerp(0f, 60f, cutsceneTime / 5f);
             }
             else if (cutsceneTime > 5f && cutsceneTime < 7.5f)
             {
-                bloom.threshold.value = Mathf.Lerp(0.85f, 1.25f, (cutsceneTime - 5) / 2.5f);
+                bloom.threshold.value = Mathf.Lerp(0.7f, 1.25f, (cutsceneTime - 5) / 2.5f);
                 chromaticAberration.intensity.value = 1;
+                colorAdjustments.saturation.value = Mathf.Lerp(60f, 30f, cutsceneTime / 2.5f);
             }
             else if (cutsceneTime > 7.5f)
             {
+                colorAdjustments.saturation.value = Mathf.Lerp(30f, 0f, (cutsceneTime - 7.5f) / 2.5f);
                 bloom.threshold.value = Mathf.Lerp(1.25f, 2f, (cutsceneTime - 7.5f) / 2.5f);
-                bloom.intensity.value = Mathf.Lerp(13.25f, 0f, cutsceneTime / 5f);
+                bloom.intensity.value = Mathf.Lerp(5f, 0f, (cutsceneTime - 7.5f) / 2.5f);
                 chromaticAberration.intensity.value = Mathf.Lerp(1, 0, (cutsceneTime - 7.5f) / 2.5f);
             }
             else if (cutsceneTime > 10f || cutsceneTime <= 0f)
@@ -67,6 +71,7 @@ public class Statue : MonoBehaviour
                 bloom.threshold.value = 2;
                 bloom.intensity.value = 0;
                 chromaticAberration.intensity.value = 0;
+                colorAdjustments.saturation.value = 0;
             }
         }
         else
@@ -102,6 +107,7 @@ public class Statue : MonoBehaviour
         volume.profile.TryGet<MotionBlur>(out motionBlur);
         volume.profile.TryGet<Bloom>(out bloom);
         volume.profile.TryGet<ChromaticAberration>(out chromaticAberration);
+        volume.profile.TryGet<ColorAdjustments>(out colorAdjustments);
 
         cam.GetComponent<CameraFollow>().ShakeCamera(5f);
         GameObject.FindObjectOfType<CinematicBars>().Show(200, .3f);

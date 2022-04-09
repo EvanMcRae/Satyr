@@ -90,7 +90,7 @@ public class Attack : MonoBehaviour
 			StartCoroutine(ShootCooldown());
 		}
 
-        if (specialCooldown >= specialMaxCooldown && (Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown("joystick button 3")) && !special_attack_hitbox.enabled)
+        if (!Statue.cutscening && specialCooldown >= specialMaxCooldown && (Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown("joystick button 3")) && !special_attack_hitbox.enabled)
         {
 			special_attack_hitbox.enabled = true;
             particleSpecialAttack.Play();

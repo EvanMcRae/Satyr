@@ -30,6 +30,8 @@ public class CameraFollow : MonoBehaviour
     public float xBias;
     public float yBias;
 
+    [Range(0.1f, 1f)][SerializeField] private float sharpness = 0.5f;
+
     void Start()
 	{
         m_camera = GetComponent<Camera>();
@@ -102,11 +104,11 @@ public class CameraFollow : MonoBehaviour
 
             if (Player.instance.GetComponent<Rigidbody2D>().velocity.magnitude > 25f)
             {
-                speedMultiplier = Mathf.Lerp(speedMultiplier, 2, 0.01f);
+                speedMultiplier = Mathf.Lerp(speedMultiplier, 2/Mathf.Pow(sharpness, 2), 0.01f*sharpness);
             }
             else
             {
-                speedMultiplier = Mathf.Lerp(speedMultiplier, 1, 0.01f);
+                speedMultiplier = 1.0f;
             }
 
             if (bounds)
@@ -124,6 +126,9 @@ public class CameraFollow : MonoBehaviour
             }
         }
 
+        // lerps all camera movement by specified sharpness
+        originalPos = Vector3.Lerp(transform.position, originalPos, sharpness);
+        
         transform.position = originalPos;
 
         if (shakeDuration > 0)
@@ -138,8 +143,7 @@ public class CameraFollow : MonoBehaviour
         }
 
         // on screen checks
-        var cam = FindObjectOfType<Camera>();
-        screenPos = cam.WorldToScreenPoint(Player.instance.transform.position);
+        screenPos = GetComponent<Camera>().WorldToScreenPoint(Player.instance.transform.position);
         bool onScreen = screenPos.x > 0f && screenPos.x < Screen.width && screenPos.y > 0f && screenPos.y < Screen.height;
     }
 
@@ -184,7 +188,7 @@ public class CameraFollow : MonoBehaviour
     }
 
     void combineLimits(GameObject newBounds) {
-        print("combining limits");
+        // print("combining limits");
         float x2 = newBounds.gameObject.GetComponent<CameraBounds>().xBias;
         float y2 = newBounds.gameObject.GetComponent<CameraBounds>().yBias;
         Bounds box = newBounds.gameObject.GetComponent<BoxCollider2D>().bounds;
