@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-            if (Player.controller.beenOnLand >= 0.05f || Player.controller.lastOnLand < 0.1f || Player.controller.canDoubleJump)
+            if (Player.controller.isWallSliding || Player.controller.beenOnLand >= 0.05f || Player.controller.lastOnLand < 0.1f || Player.controller.canDoubleJump)
                 jump = true;
 
             // fixes multi double jumping on rock platforms
@@ -46,10 +46,11 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (Player.controller.jumpCooldown <= 0f && !Player.controller.isJumping && !Player.controller.isJumpingDJ)
                 jump = true;
-			//print("tries to reset point?");
-			//reset_point.position = new Vector3(m_GroundCheck.position.x, m_GroundCheck.position.y, m_GroundCheck.position.z);
-			// Player.controller.reset_point.position = Player.controller.m_GroundCheck.position;
-		}
+
+            //print("tries to reset point?");
+            //reset_point.position = new Vector3(m_GroundCheck.position.x, m_GroundCheck.position.y, m_GroundCheck.position.z);
+            // Player.controller.reset_point.position = Player.controller.m_GroundCheck.position;
+        }
 
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp("z") || Input.GetKeyUp("joystick button 0"))
         {

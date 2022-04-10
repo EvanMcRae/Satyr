@@ -88,7 +88,7 @@ public class CameraFollow : MonoBehaviour
             Target = Player.controller.camTarget;
             if (canLookDown && Input.GetAxisRaw("Vertical") < -0.5) //&& !Input.GetKey(KeyCode.S)
             {
-                Target.localPosition = new Vector3(Target.localPosition.x, -6.0f, 0.0f); //originally -2
+                Target.localPosition = new Vector3(Target.localPosition.x, -4.0f, 0.0f); //originally -2
             }
             else if (Input.GetAxisRaw("Vertical") > 0.5) //&& !Input.GetKey(KeyCode.W)
             {
@@ -99,9 +99,15 @@ public class CameraFollow : MonoBehaviour
                 Target.localPosition = new Vector3(Target.localPosition.x, 1.0f, 0.0f);
             }
 
+            // always aim for 2 x offset
+            Vector3 newLocalPos = Target.localPosition;
+            newLocalPos.x = Mathf.Lerp(newLocalPos.x, 4.0f, 0.01f);
+            Target.localPosition = newLocalPos;
+
+
             if (Player.instance.GetComponent<Rigidbody2D>().velocity.magnitude > 25f)
             {
-                speedMultiplier = Mathf.Lerp(speedMultiplier, 2/Mathf.Pow(sharpness, 2), 0.01f*sharpness);
+                speedMultiplier = Mathf.Lerp(speedMultiplier, 1.5f/Mathf.Pow(sharpness, 2), 0.01f*sharpness);
             }
             else
             {

@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     public bool isDashing = false; //If player is dashing
     private bool speedBoost = false; //Gives player speed boost during dash
     private bool m_IsWall = false; //If there is a wall in front of the player
-    private bool isWallSliding = false; //If player is sliding in a wall
+    public bool isWallSliding = false; //If player is sliding in a wall
     private bool oldWallSlidding = false; //If player is sliding in a wall in the previous frame
     private float prevVelocityX = 0f;
     private bool canCheck = false; //For check if player is wallsliding
@@ -271,6 +271,13 @@ public class Player : MonoBehaviour
 
         m_IsWall = false;
 
+        // Trick game into thinking you're grounded if your y velocity isn't changing
+        if (m_Rigidbody2D.velocity.y < 0.001f && m_Rigidbody2D.velocity.y > -0.001f && !m_Grounded)
+        {
+            m_Grounded = true;
+            wasGrounded = true;
+        }
+
         if (!m_Grounded)
         {
             beenOnLand = 0f;
@@ -281,7 +288,8 @@ public class Player : MonoBehaviour
                 if (collidersWall[i].gameObject != null)
                 {
                     isDashing = false;
-                    m_IsWall = true;
+                    if (collidersWall[i].gameObject.GetComponent<PlatformEffector2D>() == null)
+                        m_IsWall = true;
                 }
             }
             prevVelocityX = m_Rigidbody2D.velocity.x;
@@ -355,9 +363,12 @@ public class Player : MonoBehaviour
         {
             if (GetComponent<Attack>().specialCooldown > 5f) {
                 canDash = true;
+            } else {
+                canDash = false;
             }
             if (dash && canDash && !isWallSliding)
             {
+                Debug.Log(GetComponent<Attack>().specialCooldown);
                 StartCoroutine(DashCooldown());
             }
             // If crouching, check to see if the character can stand up
@@ -456,6 +467,12 @@ public class Player : MonoBehaviour
 
             else if (m_IsWall && !m_Grounded && wallSlide_Unlocked) // looks like this is where wall sliding is managed
             {
+                // Fixes being unable to jump during wall slide
+                if (isWallSliding) {
+                    isJumping = false;
+                    isJumpingDJ = false;
+                }
+
                 if (!oldWallSlidding && m_Rigidbody2D.velocity.y < 0 || isDashing)
                 {
                     isWallSliding = true;
@@ -593,6 +610,11 @@ public class Player : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+
+        // Change camera target offset
+        Vector3 newLocalPos = camTarget.localPosition;
+        newLocalPos.x = 0.0f;
+        camTarget.localPosition = newLocalPos;
     }
 
     public void ApplyDamage(float damage, Vector3 position, float knockBack)
