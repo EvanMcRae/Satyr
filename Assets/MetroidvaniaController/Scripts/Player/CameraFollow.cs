@@ -27,7 +27,6 @@ public class CameraFollow : MonoBehaviour
     public float xBias;
     public float yBias;
     private bool canLookDown = true;
-    private bool frozen = false;
 
     [Range(0.1f, 1f)][SerializeField] private float sharpness = 0.5f;
 
@@ -129,21 +128,18 @@ public class CameraFollow : MonoBehaviour
                 float xTarget = camBox.size.x < targetBounds.size.x ? Mathf.Clamp(Target.position.x, targetBounds.min.x + camBox.size.x / 2, targetBounds.max.x - camBox.size.x / 2) : (targetBounds.min.x + targetBounds.max.x) / 2;
                 float yTarget = camBox.size.y < targetBounds.size.y ? Mathf.Clamp(Target.position.y, targetBounds.min.y + camBox.size.y / 2, targetBounds.max.y - camBox.size.y / 2) : (targetBounds.min.y + targetBounds.max.y) / 2;
                 Vector3 boundedTarget = new Vector3(xTarget, yTarget, -10);
-                if (!frozen)
-                    originalPos = Vector3.Lerp(transform.position, boundedTarget, FollowSpeed * Time.deltaTime * speedMultiplier);
+                originalPos = Vector3.Lerp(transform.position, boundedTarget, FollowSpeed * Time.deltaTime * speedMultiplier);
             }
             else
             {
                 Vector3 newPosition = Target.position;
                 newPosition.z = -10;
-                if (!frozen)
-                    originalPos = Vector3.Lerp(originalPos, newPosition, FollowSpeed * Time.deltaTime * speedMultiplier);
+                originalPos = Vector3.Lerp(originalPos, newPosition, FollowSpeed * Time.deltaTime * speedMultiplier);
             }
         }
 
         // lerps all camera movement by specified sharpness
-        if (!frozen)
-            originalPos = Vector3.Lerp(transform.position, originalPos, sharpness);
+        originalPos = Vector3.Lerp(transform.position, originalPos, sharpness);
         
         transform.position = originalPos;
 
@@ -272,20 +268,5 @@ public class CameraFollow : MonoBehaviour
     bool withinBounds(GameObject boundary) {
         Bounds box = boundary.gameObject.GetComponent<BoxCollider2D>().bounds;
         return (Target.position.x > box.min.x && Target.position.x < box.max.x && Target.position.y > box.min.y && Target.position.y < box.max.y);
-    }
-
-    public void Freeze(float time)
-    {
-        if (!frozen) {
-            StartCoroutine(FreezeCam(time));
-        }
-    }
-
-    IEnumerator FreezeCam(float time)
-    {
-        frozen = true;
-        yield return new WaitForSeconds(time);
-        frozen = false;
-        yield return null;
     }
 }
