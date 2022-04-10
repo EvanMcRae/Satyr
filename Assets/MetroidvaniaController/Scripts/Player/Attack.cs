@@ -162,6 +162,7 @@ public class Attack : MonoBehaviour
 				if (collidersEnemies[i].GetComponent<Enemy>() != null)
 				{
 					collidersEnemies[i].GetComponent<Enemy>().ApplyDamage(dmgValue, knockback);
+                    cam.GetComponent<CameraFollow>().Freeze(0.1f);
 				}
 
                 //collidersEnemies[i].gameObject.SendMessage("ApplyDamage", dmgValue);

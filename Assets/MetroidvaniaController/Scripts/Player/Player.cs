@@ -613,7 +613,7 @@ public class Player : MonoBehaviour
 
         // Change camera target offset
         Vector3 newLocalPos = camTarget.localPosition;
-        newLocalPos.x = 0.0f;
+        newLocalPos.x *= -1;
         camTarget.localPosition = newLocalPos;
     }
 
