@@ -104,7 +104,7 @@ public class CameraFollow : MonoBehaviour
             newLocalPos.x = Mathf.Lerp(newLocalPos.x, 4.0f, 0.001f);
             Target.localPosition = newLocalPos;
 
-            if (Player.instance.GetComponent<Rigidbody2D>().velocity.magnitude > 25f)
+            if (Mathf.Abs(Player.instance.GetComponent<Rigidbody2D>().velocity.y) > 20f)
             {
                 speedMultiplier = Mathf.Lerp(speedMultiplier, 1.5f/Mathf.Pow(sharpness, 2), 0.01f*sharpness);
             }
@@ -129,6 +129,8 @@ public class CameraFollow : MonoBehaviour
                 float yTarget = camBox.size.y < targetBounds.size.y ? Mathf.Clamp(Target.position.y, targetBounds.min.y + camBox.size.y / 2, targetBounds.max.y - camBox.size.y / 2) : (targetBounds.min.y + targetBounds.max.y) / 2;
                 Vector3 boundedTarget = new Vector3(xTarget, yTarget, -10);
                 originalPos = Vector3.Lerp(transform.position, boundedTarget, FollowSpeed * Time.deltaTime * speedMultiplier);
+                // originalPos.x = Mathf.Clamp(originalPos.x, targetBounds.min.x + camBox.size.x / 2, targetBounds.max.x - camBox.size.x / 2);
+                // originalPos.y = Mathf.Clamp(originalPos.y, targetBounds.min.y + camBox.size.y / 2, targetBounds.max.y - camBox.size.y / 2);
             }
             else
             {
@@ -267,6 +269,10 @@ public class CameraFollow : MonoBehaviour
 
     bool withinBounds(GameObject boundary) {
         Bounds box = boundary.gameObject.GetComponent<BoxCollider2D>().bounds;
-        return (Target.position.x > box.min.x && Target.position.x < box.max.x && Target.position.y > box.min.y && Target.position.y < box.max.y);
+        Vector3 oldLocalPos = Target.localPosition;
+        Target.localPosition = new Vector3(Target.localPosition.x, 1.0f, 0.0f);
+        bool success = (Target.position.x > box.min.x && Target.position.x < box.max.x && Target.position.y > box.min.y && Target.position.y < box.max.y);
+        Target.localPosition = oldLocalPos;
+        return success;
     }
 }

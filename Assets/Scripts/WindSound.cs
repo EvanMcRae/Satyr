@@ -34,6 +34,7 @@ public class WindSound : MonoBehaviour
             GetComponent<AudioSource>().Play();
             triggeredEnter = true;
             GetComponentInChildren<Volume>().enabled = true;
+            Player.controller.limitFallSpeed = 30f;
         }
     }
 
@@ -45,6 +46,7 @@ public class WindSound : MonoBehaviour
             GetComponent<AudioSource>().Stop();
             triggeredExit = true;
             GetComponentInChildren<Volume>().enabled = false;
+            Player.controller.limitFallSpeed = 20f;
         }
     }
 }

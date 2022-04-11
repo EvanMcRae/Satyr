@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 velocity = Vector3.zero;
-    private float limitFallSpeed = 30f; // Limit fall speed
+    public float limitFallSpeed = 20f; // Limit fall speed
 
 
     public bool wallSlide_Unlocked = false;
