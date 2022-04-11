@@ -23,8 +23,6 @@ public class Attack : MonoBehaviour
 
 	public GameObject cam;
 
-	public CircleCollider2D special_attack_hitbox;
-
 	public bool shooting_Unlocked = false;
 
 	//public SpecialBar specialBar;
@@ -45,7 +43,6 @@ public class Attack : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-		special_attack_hitbox.enabled = false;
         currentAttackCheck = attackCheck;
         particleAttack.transform.position = currentAttackCheck.position;
     }
@@ -90,9 +87,8 @@ public class Attack : MonoBehaviour
 			StartCoroutine(ShootCooldown());
 		}
 
-        if (!Statue.cutscening && specialCooldown >= specialMaxCooldown && (Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown("joystick button 3")) && !special_attack_hitbox.enabled)
+        if (!Statue.cutscening && specialCooldown >= specialMaxCooldown && (Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown("joystick button 3")))
         {
-			special_attack_hitbox.enabled = true;
             particleSpecialAttack.Play();
             specialCooldown = 0.0f;
 			animator.SetBool("IsSattacking", true);
@@ -118,10 +114,10 @@ public class Attack : MonoBehaviour
                 }
             }
 		}
-		else if (Input.GetKeyUp(KeyCode.Y) || Input.GetKeyUp("joystick button 3"))
-        {
-			special_attack_hitbox.enabled = false;
-		}
+		// else if (Input.GetKeyUp(KeyCode.Y) || Input.GetKeyUp("joystick button 3"))
+        // {
+		// 	special_attack_hitbox.enabled = false;
+		// }
 		
 		if (Input.GetKeyUp(KeyCode.H) && cordyceps.count >= countToHeal && playerHealth.playerHealth < playerHealth.numberOfHearts)
         {

@@ -18,7 +18,7 @@ public class special_attack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        float dmgValue = 3;
+        float dmgValue = 7;
         if (collision.transform.position.x - transform.position.x < 0)
         {
             dmgValue = -dmgValue;
@@ -30,7 +30,7 @@ public class special_attack : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Breakable Wall")
         {
-            collision.gameObject.GetComponent<breakableWall>().life -= dmgValue;
+            collision.gameObject.GetComponent<breakableWall>().life -= Mathf.Abs(dmgValue);
         }
     }
 

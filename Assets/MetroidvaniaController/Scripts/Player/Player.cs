@@ -290,7 +290,9 @@ public class Player : MonoBehaviour
         // Trick game into thinking you're grounded if your y velocity isn't changing
         if (m_Rigidbody2D.velocity.y < 0.001f && m_Rigidbody2D.velocity.y > -0.001f)
         {
-            notFallingFor = Mathf.Clamp(notFallingFor + Time.fixedDeltaTime, 0, 1f);
+            if (!animator.GetBool("IsSattacking"))
+                notFallingFor = Mathf.Clamp(notFallingFor + Time.fixedDeltaTime, 0, 1f);
+            
             if (notFallingFor >= 0.02f)
             {
                 m_Grounded = true;
