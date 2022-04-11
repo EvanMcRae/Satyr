@@ -101,7 +101,7 @@ public class CameraFollow : MonoBehaviour
 
             // look forward when player is still
             Vector3 newLocalPos = Target.localPosition;
-            newLocalPos.x = Mathf.Lerp(newLocalPos.x, 4.0f, 0.001f);
+            newLocalPos.x = Mathf.Lerp(newLocalPos.x, 4.0f, 0.003f);
             Target.localPosition = newLocalPos;
 
             if (Mathf.Abs(Player.instance.GetComponent<Rigidbody2D>().velocity.y) > 20f)
