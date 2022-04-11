@@ -38,19 +38,13 @@ public class AudioManager : MonoBehaviour
     {
         set
         {
-            if (firstSet)
+            foreach (AudioSource s in BGM1)
             {
-                foreach (AudioSource s in BGM1)
-                {
-                    s.mute = value;
-                }
+                s.mute = value;
             }
-            else
+            foreach (AudioSource s in BGM2)
             {
-                foreach (AudioSource s in BGM2)
-                {
-                    s.mute = value;
-                }
+                s.mute = value;
             }
         }
         get
