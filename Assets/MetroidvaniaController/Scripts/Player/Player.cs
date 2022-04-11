@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
     [SerializeField] public Transform m_GroundCheck;                            // A position marking where to check if the player is grounded.
     [SerializeField] public Transform m_LeftGroundCheck, m_RightGroundCheck;    // Positions marking where to check if the player is solidly grounded.
+    [SerializeField] public Transform m_LowGroundCheck;                         // A position marking where to check if the player will be grounded.
     [SerializeField] private Transform m_WallCheck;								//Posicion que controla si el personaje toca una pared
 
     [SerializeField] private AudioManager am;
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
     private bool m_IsWall = false; //If there is a wall in front of the player
     public bool isWallSliding = false; //If player is sliding in a wall
     private bool oldWallSlidding = false; //If player is sliding in a wall in the previous frame
+    private bool canWallSlide = true; //If player can slide down this wall
     private float prevVelocityX = 0f;
     private bool canCheck = false; //For check if player is wallsliding
     public float wallSlideSpeed = 0;
@@ -163,6 +165,22 @@ public class Player : MonoBehaviour
         m_Grounded = false;
 
         bool identifiedGround = false;
+
+        if (isWallSliding && canWallSlide)
+        {
+            Collider2D[] lowColliders = Physics2D.OverlapCircleAll(m_LowGroundCheck.position, 0.01f, m_WhatIsGround);
+            for (int i = 0; i < lowColliders.Length; i++)
+            {
+                if (lowColliders[i].gameObject != gameObject && lowColliders[i].gameObject.tag == "Ground")
+                {
+                    // Debug.Log("d ");
+                    canWallSlide = false;
+                    animator.SetBool("IsWallSliding", false);
+                    animator.SetBool("IsJumping", false);
+                }
+            }
+        }
+
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
@@ -311,8 +329,7 @@ public class Player : MonoBehaviour
         if (!m_Grounded)
         {
             beenOnLand = 0f;
-            if (!(m_Rigidbody2D.velocity.y < 3f && m_Rigidbody2D.velocity.y > -3f))
-                OnFallEvent.Invoke();
+
             Collider2D[] collidersWall = Physics2D.OverlapCircleAll(m_WallCheck.position, k_GroundedRadius, m_WhatIsGround);
             for (int i = 0; i < collidersWall.Length; i++)
             {
@@ -323,10 +340,20 @@ public class Player : MonoBehaviour
                         m_IsWall = true;
                 }
             }
+
+            if (!(m_Rigidbody2D.velocity.y < 3f && m_Rigidbody2D.velocity.y > -3f))
+            {
+                if (!isWallSliding)
+                {
+                    OnFallEvent.Invoke();
+                }
+            }
+
             prevVelocityX = m_Rigidbody2D.velocity.x;
         }
         else
         {
+            canWallSlide = true;
             if (beenOnLand < 5f)
                 beenOnLand += Time.fixedDeltaTime;
             if (!(m_Rigidbody2D.velocity.y > 0f)) {
@@ -463,13 +490,13 @@ public class Player : MonoBehaviour
                 }
 
                 // If the input is moving the player right and the player is facing left...
-                if (move > 0 && !m_FacingRight && !isWallSliding)
+                if (move > 0 && !m_FacingRight && !animator.GetBool("IsWallSliding") && canWallSlide)
                 {
                     // ... flip the player.
                     Flip();
                 }
                 // Otherwise if the input is moving the player left and the player is facing right...
-                else if (move < 0 && m_FacingRight && !isWallSliding)
+                else if (move < 0 && m_FacingRight && !animator.GetBool("IsWallSliding") && canWallSlide)
                 {
                     // ... flip the player.
                     Flip();
@@ -504,7 +531,7 @@ public class Player : MonoBehaviour
                 animator.SetBool("IsDoubleJumping", true);
             }
 
-            else if (m_IsWall && !m_Grounded && wallSlide_Unlocked) // looks like this is where wall sliding is managed
+            else if (m_IsWall && !m_Grounded && wallSlide_Unlocked && canWallSlide) // looks like this is where wall sliding is managed
             {
                 // Fixes being unable to jump during wall slide
                 if (isWallSliding) {
