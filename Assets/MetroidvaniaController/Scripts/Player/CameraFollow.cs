@@ -129,6 +129,7 @@ public class CameraFollow : MonoBehaviour
                 float yTarget = camBox.size.y < targetBounds.size.y ? Mathf.Clamp(Target.position.y, targetBounds.min.y + camBox.size.y / 2, targetBounds.max.y - camBox.size.y / 2) : (targetBounds.min.y + targetBounds.max.y) / 2;
                 Vector3 boundedTarget = new Vector3(xTarget, yTarget, -10);
                 originalPos = Vector3.Lerp(transform.position, boundedTarget, FollowSpeed * Time.deltaTime * speedMultiplier);
+                // I thought this code would help but it does not. Do not use this
                 // originalPos.x = Mathf.Clamp(originalPos.x, targetBounds.min.x + camBox.size.x / 2, targetBounds.max.x - camBox.size.x / 2);
                 // originalPos.y = Mathf.Clamp(originalPos.y, targetBounds.min.y + camBox.size.y / 2, targetBounds.max.y - camBox.size.y / 2);
             }
