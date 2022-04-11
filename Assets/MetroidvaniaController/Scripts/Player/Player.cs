@@ -60,6 +60,7 @@ public class Player : MonoBehaviour
     public float iFrames = 1f;
     public float lastOnLand = 0f;
     public float jumpCooldown = 0f;
+    public float notFallingFor = 0f;
     public float beenOnLand = 0f;
     private Transform reset_point;
     public bool inDeathZone;
@@ -77,6 +78,7 @@ public class Player : MonoBehaviour
     private float jumpWallStartX = 0;
     private float jumpWallDistX = 0; //Distance between player and wall
     private bool limitVelOnWallJump = false; //For limit wall jump distance with low fps
+    private float limitVelOnWallJumpCooldown = 0.0f;
 
     // one time events
     public bool explorer = false;
@@ -155,7 +157,7 @@ public class Player : MonoBehaviour
             lastOnLandLocation = transform.position;
         }
 
-        lastOnLand += Time.fixedDeltaTime;
+        lastOnLand = Mathf.Clamp(lastOnLand + Time.fixedDeltaTime, 0, 20f);
 
         bool wasGrounded = m_Grounded;
         m_Grounded = false;
@@ -200,8 +202,11 @@ public class Player : MonoBehaviour
                         particleJumpDown.Play();
                     }
 
-                    if (m_Rigidbody2D.velocity.y < 0f)
+                    if (m_Rigidbody2D.velocity.y <= 0f)
+                    {
                         limitVelOnWallJump = false;
+                        limitVelOnWallJumpCooldown = 0f;
+                    }
                 }
             }
             else if (colliders[i].gameObject != gameObject && (colliders[i].gameObject.tag == "Ground" || colliders[i].gameObject.tag == "Wall" || colliders[i].gameObject.tag == "Breakable Wall")) {
@@ -233,8 +238,19 @@ public class Player : MonoBehaviour
                         particleJumpDown.Play();
                     }
 
-                    if (m_Rigidbody2D.velocity.y < 0f)
+                    if (m_Rigidbody2D.velocity.y <= 0f)
+                    {
                         limitVelOnWallJump = false;
+                        limitVelOnWallJumpCooldown = 0f;
+                    }
+                }
+
+                // push you up if you jump from below to rock platform
+                if (!wasGrounded && !holdingJump && m_Rigidbody2D.velocity.y > 0f) {
+                    if (colliders[i].gameObject.GetComponent<PlatformEffector2D>() != null){
+                        transform.position = new Vector3(transform.position.x, transform.position.y+0.1f, transform.position.z);
+                    }
+                       
                 }
             }
         }
@@ -272,16 +288,29 @@ public class Player : MonoBehaviour
         m_IsWall = false;
 
         // Trick game into thinking you're grounded if your y velocity isn't changing
-        if (m_Rigidbody2D.velocity.y < 0.001f && m_Rigidbody2D.velocity.y > -0.001f && !m_Grounded)
+        if (m_Rigidbody2D.velocity.y < 0.001f && m_Rigidbody2D.velocity.y > -0.001f)
         {
-            m_Grounded = true;
-            wasGrounded = true;
+            notFallingFor = Mathf.Clamp(notFallingFor + Time.fixedDeltaTime, 0, 1f);
+            if (notFallingFor >= 0.02f)
+            {
+                m_Grounded = true;
+                wasGrounded = true;
+                isJumping = false;
+                isJumpingDJ = false;
+                lastOnLand = 0f;
+                animator.SetBool("IsJumping", false);
+            }
+        }
+        else
+        {
+            notFallingFor = 0f;
         }
 
         if (!m_Grounded)
         {
             beenOnLand = 0f;
-            OnFallEvent.Invoke();
+            if (!(m_Rigidbody2D.velocity.y < 3f && m_Rigidbody2D.velocity.y > -3f))
+                OnFallEvent.Invoke();
             Collider2D[] collidersWall = Physics2D.OverlapCircleAll(m_WallCheck.position, k_GroundedRadius, m_WhatIsGround);
             for (int i = 0; i < collidersWall.Length; i++)
             {
@@ -310,28 +339,36 @@ public class Player : MonoBehaviour
 
         if (limitVelOnWallJump)
         {
-            if (m_Rigidbody2D.velocity.y < -0.5f)
-                limitVelOnWallJump = false;
-            jumpWallDistX = (jumpWallStartX - transform.position.x) * transform.localScale.x;
-            if (jumpWallDistX < -0.5f && jumpWallDistX > -1f)
+            limitVelOnWallJumpCooldown += Time.fixedDeltaTime;
+            if (limitVelOnWallJumpCooldown >= 0.3f)
             {
+                limitVelOnWallJump = false;
+                limitVelOnWallJumpCooldown = 0f;
                 canMove = true;
             }
-            else if (jumpWallDistX < -1f && jumpWallDistX >= -2f)
-            {
-                canMove = true;
-                m_Rigidbody2D.velocity = new Vector2(1f * transform.localScale.x, m_Rigidbody2D.velocity.y);
-            }
-            else if (jumpWallDistX < -2f)
-            {
-                limitVelOnWallJump = false;
-                m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
-            }
-            else if (jumpWallDistX > 0)
-            {
-                limitVelOnWallJump = false;
-                m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
-            }
+
+            // if (m_Rigidbody2D.velocity.y < -0.5f)
+            //     limitVelOnWallJump = false;
+            // jumpWallDistX = (jumpWallStartX - transform.position.x) * transform.localScale.x;
+            // if (jumpWallDistX < -0.5f && jumpWallDistX > -1f)
+            // {
+            //     canMove = true;
+            // }
+            // else if (jumpWallDistX < -1f && jumpWallDistX >= -2f)
+            // {
+            //     canMove = true;
+            //     m_Rigidbody2D.velocity = new Vector2(1f * transform.localScale.x, m_Rigidbody2D.velocity.y);
+            // }
+            // else if (jumpWallDistX < -2f)
+            // {
+            //     limitVelOnWallJump = false;
+            //     m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
+            // }
+            // else if (jumpWallDistX > 0)
+            // {
+            //     limitVelOnWallJump = false;
+            //     m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
+            // }
         }
 
         // Prevent jumping off screen during cutscenes
@@ -368,10 +405,9 @@ public class Player : MonoBehaviour
             }
             if (dash && canDash && !isWallSliding)
             {
-                Debug.Log(GetComponent<Attack>().specialCooldown);
                 StartCoroutine(DashCooldown());
             }
-            // If crouching, check to see if the character can stand up
+            
             if (speedBoost)
             {
                 m_Rigidbody2D.velocity = new Vector2(transform.localScale.x * m_DashForce, 0);
@@ -437,6 +473,7 @@ public class Player : MonoBehaviour
                     Flip();
                 }
             }
+
             // If the player should jump...
             if ((lastOnLand < 0.1f) && jump && !isJumping && !canDoubleJump) // incorporates coyote time with lastOnLand
             {
@@ -527,8 +564,10 @@ public class Player : MonoBehaviour
                     if (!isJumping)
                         holdingJump = true;
                     isJumping = true;
-                    m_Rigidbody2D.velocity = new Vector2(0f, 0f);
-                    m_Rigidbody2D.AddForce(new Vector2(transform.localScale.x * m_JumpForce * 0.5f, m_JumpForce * 0.8f));
+                    float x_vel = m_FacingRight ? 10f : -10f;
+                    m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * 0.9f));
+                    m_Rigidbody2D.velocity = new Vector2(x_vel, m_Rigidbody2D.velocity.y);
+
                     jumpWallStartX = transform.position.x;
                     if ((move > 0 && !m_FacingRight) || (move < 0 && m_FacingRight) && move != 0)
                     {
