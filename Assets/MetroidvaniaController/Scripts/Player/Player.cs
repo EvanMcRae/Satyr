@@ -29,8 +29,6 @@ public class Player : MonoBehaviour
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 velocity = Vector3.zero;
     public float limitFallSpeed = 20f; // Limit fall speed
-
-
     public bool wallSlide_Unlocked = false;
     public bool doubleJump_Unlocked = false;
     public bool canDoubleJump = false; //If player can double jump
@@ -42,11 +40,12 @@ public class Player : MonoBehaviour
     public bool isWallSliding = false; //If player is sliding in a wall
     private bool oldWallSlidding = false; //If player is sliding in a wall in the previous frame
     private bool canWallSlide = true; //If player can slide down this wall
+    private bool canWallGrip = true; //If player can grip on this wall
     private float prevVelocityX = 0f;
     private bool canCheck = false; //For check if player is wallsliding
-    public float wallSlideSpeed = 0;
-    // the default wallSlidSpeed was -5
+    public float wallSlideSpeed = 0; // the default wallSlidSpeed was -5
 
+    private float wallSlidingFor = 0.0f;
     private float cantMove = 0f;
     public float life = 10f; //Life of the player
     public bool invincible = false; //If player can die
@@ -173,7 +172,6 @@ public class Player : MonoBehaviour
             {
                 if (lowColliders[i].gameObject != gameObject && lowColliders[i].gameObject.tag == "Ground")
                 {
-                    // Debug.Log("d ");
                     canWallSlide = false;
                     animator.SetBool("IsWallSliding", false);
                     animator.SetBool("IsJumping", false);
@@ -354,6 +352,9 @@ public class Player : MonoBehaviour
         else
         {
             canWallSlide = true;
+            if (beenOnLand >= 0.1f)
+                canWallGrip = true;
+            
             if (beenOnLand < 5f)
                 beenOnLand += Time.fixedDeltaTime;
             if (!(m_Rigidbody2D.velocity.y > 0f)) {
@@ -567,7 +568,6 @@ public class Player : MonoBehaviour
                     if (move * transform.localScale.x > 0.1f)
                     {
                         StartCoroutine(WaitToEndSliding());
-
                     }
                     else if (move == 0)
                     { // previously cancelled slide but that is not necessary - however this else statement still is lol
@@ -579,8 +579,16 @@ public class Player : MonoBehaviour
                     }
                     else
                     {
+                        wallSlidingFor += Time.deltaTime;
                         // so this is where the wall sliding happens - aidan
                         oldWallSlidding = true;
+                        if (wallSlidingFor <= 1.0f && canWallGrip)
+                            wallSlideSpeed = 0.5f;
+                        else
+                        {
+                            wallSlideSpeed = Mathf.Lerp(wallSlideSpeed, -1f, 0.01f);
+                            canWallGrip = false;
+                        }
                         m_Rigidbody2D.velocity = new Vector2(-transform.localScale.x * 2, wallSlideSpeed);
                         //	print("wall sliding?");
                     }
@@ -608,6 +616,7 @@ public class Player : MonoBehaviour
                     isWallSliding = false;
                     animator.SetBool("IsWallSliding", false);
                     oldWallSlidding = false;
+                    wallSlidingFor = 0.0f;
                     m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
                 }
                 else if (dash && canDash)
@@ -615,6 +624,7 @@ public class Player : MonoBehaviour
                     isWallSliding = false;
                     animator.SetBool("IsWallSliding", false);
                     oldWallSlidding = false;
+                    wallSlidingFor = 0.0f;
                     m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
                     // if (doubleJump_Unlocked) { canDoubleJump = true; }
                     StartCoroutine(DashCooldown());
@@ -625,6 +635,7 @@ public class Player : MonoBehaviour
                 isWallSliding = false;
                 animator.SetBool("IsWallSliding", false);
                 oldWallSlidding = false;
+                wallSlidingFor = 0.0f;
                 m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
                 // if (doubleJump_Unlocked) { canDoubleJump = true; }
             }
@@ -776,6 +787,7 @@ public class Player : MonoBehaviour
         isWallSliding = false;
         animator.SetBool("IsWallSliding", false);
         oldWallSlidding = false;
+        wallSlidingFor = 0.0f;
         m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
     }
 
