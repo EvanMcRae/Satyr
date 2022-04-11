@@ -173,7 +173,7 @@ public class Player : MonoBehaviour
                 if (lowColliders[i].gameObject != gameObject && lowColliders[i].gameObject.tag == "Ground")
                 {
                     canWallSlide = false;
-                    animator.SetBool("IsWallSliding", false);
+                    // animator.SetBool("IsWallSliding", false);
                     animator.SetBool("IsJumping", false);
                 }
             }
@@ -328,7 +328,7 @@ public class Player : MonoBehaviour
         {
             beenOnLand = 0f;
 
-            Collider2D[] collidersWall = Physics2D.OverlapCircleAll(m_WallCheck.position, k_GroundedRadius, m_WhatIsGround);
+            Collider2D[] collidersWall = Physics2D.OverlapCircleAll(m_WallCheck.position, 0.1f, m_WhatIsGround);
             for (int i = 0; i < collidersWall.Length; i++)
             {
                 if (collidersWall[i].gameObject != null)
@@ -365,6 +365,10 @@ public class Player : MonoBehaviour
             }
             if (jumpCooldown > 0f)
                 jumpCooldown -= Time.fixedDeltaTime;
+        }
+        
+        if (!m_IsWall){
+            animator.SetBool("IsWallSliding", false);
         }
 
         if (limitVelOnWallJump)
