@@ -111,7 +111,7 @@ public class CameraFollow : MonoBehaviour
             if (lookAhead)
                 newLocalPos.x = Mathf.Lerp(newLocalPos.x, 4.0f*actualZoom/5f, 0.003f);
             else
-                newLocalPos.x = Mathf.Lerp(newLocalPos.x, 0f, 0.003f);
+                newLocalPos.x = Mathf.Lerp(newLocalPos.x, 0f, 0.1f);
             Target.localPosition = newLocalPos;
 
             // speed multiplier for high Y velocity
