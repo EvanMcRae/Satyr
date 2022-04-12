@@ -17,8 +17,8 @@ public class Player : MonoBehaviour
     [SerializeField] public Transform m_GroundCheck;                            // A position marking where to check if the player is grounded.
     [SerializeField] public Transform m_LeftGroundCheck, m_RightGroundCheck;    // Positions marking where to check if the player is solidly grounded.
     [SerializeField] public Transform m_LowGroundCheck;                         // A position marking where to check if the player will be grounded.
-    [SerializeField] private Transform m_WallCheck;								//Posicion que controla si el personaje toca una pared
-
+    [SerializeField] private Transform m_WallCheck;				                //Posicion que controla si el personaje toca una pared
+    [SerializeField] private Transform m_FarWallCheck;
     [SerializeField] private AudioManager am;
     [SerializeField] private Transform groundParticle;
 
@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     public bool isDashing = false; //If player is dashing
     private bool speedBoost = false; //Gives player speed boost during dash
     private bool m_IsWall = false; //If there is a wall in front of the player
+    public bool m_IsFarWall = false; //If there is a wall close enough to the player to wall jump
     public bool isWallSliding = false; //If player is sliding in a wall
     private bool oldWallSlidding = false; //If player is sliding in a wall in the previous frame
     private bool canWallSlide = true; //If player can slide down this wall
@@ -74,10 +75,8 @@ public class Player : MonoBehaviour
     private Animator animator;
     public ParticleSystem particleJumpUp; //Trail particles
     public ParticleSystem particleJumpDown; //Explosion particles
+    public ParticleSystem particleWallJump; //Wall jump particles
     public ParticleSystem particleLand; //Big landing particles
-
-    private float jumpWallStartX = 0;
-    private float jumpWallDistX = 0; //Distance between player and wall
     private bool limitVelOnWallJump = false; //For limit wall jump distance with low fps
     private float limitVelOnWallJumpCooldown = 0.0f;
 
@@ -302,6 +301,7 @@ public class Player : MonoBehaviour
         }
 
         m_IsWall = false;
+        m_IsFarWall = false;
 
         // Trick game into thinking you're grounded if your y velocity isn't changing
         if (m_Rigidbody2D.velocity.y < 0.001f && m_Rigidbody2D.velocity.y > -0.001f)
@@ -336,6 +336,16 @@ public class Player : MonoBehaviour
                     isDashing = false;
                     if (collidersWall[i].gameObject.GetComponent<PlatformEffector2D>() == null)
                         m_IsWall = true;
+                }
+            }
+
+            Collider2D[] collidersFarWall = Physics2D.OverlapCircleAll(m_FarWallCheck.position, 0.01f, m_WhatIsGround);
+            for (int i = 0; i < collidersFarWall.Length; i++)
+            {
+                if (collidersFarWall[i].gameObject != null)
+                {
+                    if (collidersFarWall[i].gameObject.GetComponent<PlatformEffector2D>() == null)
+                    m_IsFarWall = true;
                 }
             }
 
@@ -374,35 +384,11 @@ public class Player : MonoBehaviour
         if (limitVelOnWallJump)
         {
             limitVelOnWallJumpCooldown += Time.fixedDeltaTime;
-            if (limitVelOnWallJumpCooldown >= 0.3f)
+            if (limitVelOnWallJumpCooldown >= 0.8f)
             {
                 limitVelOnWallJump = false;
                 limitVelOnWallJumpCooldown = 0f;
-                canMove = true;
             }
-
-            // if (m_Rigidbody2D.velocity.y < -0.5f)
-            //     limitVelOnWallJump = false;
-            // jumpWallDistX = (jumpWallStartX - transform.position.x) * transform.localScale.x;
-            // if (jumpWallDistX < -0.5f && jumpWallDistX > -1f)
-            // {
-            //     canMove = true;
-            // }
-            // else if (jumpWallDistX < -1f && jumpWallDistX >= -2f)
-            // {
-            //     canMove = true;
-            //     m_Rigidbody2D.velocity = new Vector2(1f * transform.localScale.x, m_Rigidbody2D.velocity.y);
-            // }
-            // else if (jumpWallDistX < -2f)
-            // {
-            //     limitVelOnWallJump = false;
-            //     m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
-            // }
-            // else if (jumpWallDistX > 0)
-            // {
-            //     limitVelOnWallJump = false;
-            //     m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
-            // }
         }
 
         // Prevent jumping off screen during cutscenes
@@ -463,9 +449,17 @@ public class Player : MonoBehaviour
             {
                 if (m_Rigidbody2D.velocity.y < -limitFallSpeed)
                     m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, -limitFallSpeed);
-                
+
                 // Move the character by finding the target velocity
                 Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
+                if (limitVelOnWallJump && limitVelOnWallJumpCooldown <= 0.8f)
+                {
+                    float newX = Mathf.Lerp(m_Rigidbody2D.velocity.x, move * 12f, 0.05f);
+                    if (limitVelOnWallJumpCooldown >= 0.4f)
+                        targetVelocity.x = Mathf.Lerp(newX, targetVelocity.x, limitVelOnWallJumpCooldown);
+                    else
+                        targetVelocity.x = newX;
+                }
 
                 // Prevent moving off screen during cutscenes
                 if (Statue.cutscening)
@@ -495,13 +489,13 @@ public class Player : MonoBehaviour
                 }
 
                 // If the input is moving the player right and the player is facing left...
-                if (move > 0 && !m_FacingRight && !animator.GetBool("IsWallSliding") && canWallSlide)
+                if (move > 0 && !m_FacingRight && !animator.GetBool("IsWallSliding") && canWallSlide && !(limitVelOnWallJump && limitVelOnWallJumpCooldown <= 0.4))
                 {
                     // ... flip the player.
                     Flip();
                 }
                 // Otherwise if the input is moving the player left and the player is facing right...
-                else if (move < 0 && m_FacingRight && !animator.GetBool("IsWallSliding") && canWallSlide)
+                else if (move < 0 && m_FacingRight && !animator.GetBool("IsWallSliding") && canWallSlide && !(limitVelOnWallJump && limitVelOnWallJumpCooldown <= 0.4))
                 {
                     // ... flip the player.
                     Flip();
@@ -509,7 +503,7 @@ public class Player : MonoBehaviour
             }
 
             // If the player should jump...
-            if ((lastOnLand < 0.1f) && jump && !isJumping && !canDoubleJump) // incorporates coyote time with lastOnLand
+            if ((lastOnLand < 0.15f) && jump && !isJumping && !canDoubleJump) // incorporates coyote time with lastOnLand
             {
                 // Add a vertical force to the player.
                 animator.SetBool("JumpUp", true);
@@ -536,23 +530,39 @@ public class Player : MonoBehaviour
                 animator.SetBool("IsDoubleJumping", true);
             }
 
-            else if (m_IsWall && !m_Grounded && wallSlide_Unlocked && canWallSlide) // looks like this is where wall sliding is managed
+            else if (m_IsFarWall && !m_Grounded && wallSlide_Unlocked && canWallSlide) // looks like this is where wall sliding is managed
             {
-                // Fixes being unable to jump during wall slide
-                if (isWallSliding) {
+                if (jump)
+                {
+                    if (m_FarWallCheck.localPosition.x > 0)
+                    {
+                        isWallSliding = false;
+                        animator.SetBool("IsWallSliding", true);
+                        Flip();
+                    }
+                        
                     isJumping = false;
                     isJumpingDJ = false;
                 }
 
-                if (!oldWallSlidding && m_Rigidbody2D.velocity.y < 0 || isDashing)
+                // Fixes being unable to jump during wall slide
+                if (isWallSliding)
+                {
+                    isJumping = false;
+                    isJumpingDJ = false;
+                }
+                    
+                if (m_IsWall && !oldWallSlidding && m_Rigidbody2D.velocity.y < 0 || isDashing)
                 {
                     isWallSliding = true;
                     m_WallCheck.localPosition = new Vector3(-m_WallCheck.localPosition.x, m_WallCheck.localPosition.y, 0);
+
                     // If the input is moving the player right and the player is facing right...
                     if (move > 0 && m_FacingRight)
                     {
                         // ... flip the player.
                         Flip();
+                        m_FarWallCheck.localPosition = new Vector3(-m_FarWallCheck.localPosition.x, m_FarWallCheck.localPosition.y, 0);
                         animator.SetBool("IsWallSliding", true);
                     }
                     // Otherwise if the input is moving the player left and the player is facing left...
@@ -560,6 +570,7 @@ public class Player : MonoBehaviour
                     {
                         // ... flip the player.
                         Flip();
+                        m_FarWallCheck.localPosition = new Vector3(-m_FarWallCheck.localPosition.x, m_FarWallCheck.localPosition.y, 0);
                         animator.SetBool("IsWallSliding", true);
                     }
                     StartCoroutine(WaitToCheck(0.1f));
@@ -598,23 +609,29 @@ public class Player : MonoBehaviour
                     }
                 }
 
-                if (jump && isWallSliding && !isJumping)
+                if (jump && !isJumping)
                 {
                     animator.SetBool("IsJumping", true);
                     animator.SetBool("JumpUp", true);
                     if (!isJumping)
-                        holdingJump = true;
-                    isJumping = true;
-                    float x_vel = m_FacingRight ? 10f : -10f;
-                    m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * 0.9f));
-                    m_Rigidbody2D.velocity = new Vector2(x_vel, m_Rigidbody2D.velocity.y);
-
-                    jumpWallStartX = transform.position.x;
-                    if ((move > 0 && !m_FacingRight) || (move < 0 && m_FacingRight) && move != 0)
                     {
-                        limitVelOnWallJump = true;
-                        canMove = false;
+                        particleWallJump.Play();
+                        particleJumpUp.Play();
+                        holdingJump = true;
                     }
+                    isJumping = true;
+
+                    // if ((move > 0 && !m_FacingRight) || (move < 0 && m_FacingRight))
+                    // {
+                    //     Flip();
+                    // }
+
+                    float x_vel = m_FacingRight ? 10f : -10f;
+                    m_Rigidbody2D.velocity = new Vector2(0f, 0f);
+                    m_Rigidbody2D.AddForce(new Vector2(x_vel*150f, m_JumpForce * 0.8f));
+
+                    limitVelOnWallJump = true;
+                    limitVelOnWallJumpCooldown = 0.0f;         
 
                     if (doubleJump_Unlocked) { canDoubleJump = true; }
                     isWallSliding = false;
@@ -622,6 +639,7 @@ public class Player : MonoBehaviour
                     oldWallSlidding = false;
                     wallSlidingFor = 0.0f;
                     m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
+                    m_FarWallCheck.localPosition = new Vector3(Mathf.Abs(m_FarWallCheck.localPosition.x), m_FarWallCheck.localPosition.y, 0);
                 }
                 else if (dash && canDash)
                 {
@@ -630,17 +648,19 @@ public class Player : MonoBehaviour
                     oldWallSlidding = false;
                     wallSlidingFor = 0.0f;
                     m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
+                    m_FarWallCheck.localPosition = new Vector3(Mathf.Abs(m_FarWallCheck.localPosition.x), m_FarWallCheck.localPosition.y, 0);
                     // if (doubleJump_Unlocked) { canDoubleJump = true; }
                     StartCoroutine(DashCooldown());
                 }
             }
-            else if (isWallSliding && !m_IsWall && canCheck)
+            else if (isWallSliding && !m_IsWall && !m_IsFarWall && canCheck)
             {
                 isWallSliding = false;
                 animator.SetBool("IsWallSliding", false);
                 oldWallSlidding = false;
                 wallSlidingFor = 0.0f;
                 m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
+                m_FarWallCheck.localPosition = new Vector3(Mathf.Abs(m_FarWallCheck.localPosition.x), m_FarWallCheck.localPosition.y, 0);
                 // if (doubleJump_Unlocked) { canDoubleJump = true; }
             }
         }
@@ -657,14 +677,6 @@ public class Player : MonoBehaviour
         if (isJumping || isJumpingDJ) // this code is absolutely gross but necessary
         {
             jumpTime += 0.1f;
-            // if (jumpTime > 4.5f)
-            // {
-            //     if (jumpCooldown <= 0.1f)
-            //         jumpCooldown = 0.1f;
-            //     isJumping = false;
-            //     isJumpingDJ = false;
-            //     jumpTime = 0f;
-            // }
         }
 
         if (releaseJump)
@@ -793,6 +805,7 @@ public class Player : MonoBehaviour
         oldWallSlidding = false;
         wallSlidingFor = 0.0f;
         m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
+        m_FarWallCheck.localPosition = new Vector3(Mathf.Abs(m_FarWallCheck.localPosition.x), m_FarWallCheck.localPosition.y, 0);
     }
 
     IEnumerator WaitToDead()

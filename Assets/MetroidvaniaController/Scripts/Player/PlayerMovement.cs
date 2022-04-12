@@ -19,7 +19,6 @@ public class PlayerMovement : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
 		if (Input.GetAxisRaw("Horizontal") > 0.3 || Input.GetAxisRaw("Horizontal") < -0.3)
 			horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 		else
@@ -32,16 +31,16 @@ public class PlayerMovement : MonoBehaviour {
 
 		animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-            if (Player.controller.isWallSliding || Player.controller.beenOnLand >= 0.05f || Player.controller.lastOnLand < 0.1f || Player.controller.canDoubleJump)
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (((Player.controller.m_IsFarWall || Player.controller.isWallSliding) && Player.controller.wallSlide_Unlocked) || Player.controller.beenOnLand >= 0.05f || Player.controller.lastOnLand < 0.15f || Player.controller.canDoubleJump)
                 jump = true;
 
             // fixes multi double jumping on rock platforms
             if (Player.controller.isJumpingDJ && !Player.controller.canDoubleJump)
                 jump = false;
         }
-
+        
         if ((Input.GetKey("space") || Input.GetKey("z") || Input.GetKey("joystick button 0")) && Player.controller.m_Grounded)
         {
             if (Player.controller.jumpCooldown <= 0f && !Player.controller.isJumping && !Player.controller.isJumpingDJ)
