@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
     public bool resetting = false;
     public float jumpTime;
     private bool holdingJump = false;
+    public bool isStill = false;
 
     public float stunDuration = 0.25f;
     public float iFrames = 1f;
@@ -64,7 +65,7 @@ public class Player : MonoBehaviour
     public float jumpCooldown = 0f;
     public float notFallingFor = 0f;
     public float beenOnLand = 0f;
-    private Transform reset_point;
+    public Transform reset_point;
     public bool inDeathZone;
     private Vector3 lastOnLandLocation;
 
@@ -133,6 +134,8 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        isStill = (m_Rigidbody2D.velocity.x < 0.0001f && m_Rigidbody2D.velocity.x > -0.0001f && !animator.GetBool("IsSattacking"));
+
         if (isDashing) {
             GetComponent<Attack>().DoDashDamage(0.0f);
         }
