@@ -26,7 +26,7 @@ public class CameraFollow : MonoBehaviour
     private BoxCollider2D camBox;
     public float xBias;
     public float yBias;
-    private bool canLookDown = true;
+    private bool canLookDown = true, lookAhead = true;
     public float idealZoom = 7.0f;
     public float actualZoom = 7.0f;
     public float zoomOffset = 0.0f;
@@ -66,7 +66,7 @@ public class CameraFollow : MonoBehaviour
         actualZoom = idealZoom;
         if (Player.controller.isStill) 
         {
-            zoomOffset = Mathf.Lerp(zoomOffset, -2, 0.01f);
+            zoomOffset = Mathf.Lerp(zoomOffset, -2, 0.005f);
         }
         else
         {
@@ -108,7 +108,10 @@ public class CameraFollow : MonoBehaviour
 
             // look forward when player is still
             Vector3 newLocalPos = Target.localPosition;
-            newLocalPos.x = Mathf.Lerp(newLocalPos.x, 4.0f, 0.003f);
+            if (lookAhead)
+                newLocalPos.x = Mathf.Lerp(newLocalPos.x, 4.0f*actualZoom/5f, 0.003f);
+            else
+                newLocalPos.x = Mathf.Lerp(newLocalPos.x, 0f, 0.003f);
             Target.localPosition = newLocalPos;
 
             // speed multiplier for high Y velocity
@@ -239,6 +242,7 @@ public class CameraFollow : MonoBehaviour
                     xBias = boundaries[i].gameObject.GetComponent<CameraBounds>().xBias;
                     yBias = boundaries[i].gameObject.GetComponent<CameraBounds>().yBias;
                     canLookDown = boundaries[i].gameObject.GetComponent<CameraBounds>().canLookDown;
+                    lookAhead = boundaries[i].gameObject.GetComponent<CameraBounds>().lookAhead;
                     idealZoom = Mathf.Lerp(idealZoom, boundaries[i].gameObject.GetComponent<CameraBounds>().idealZoom, 0.1f);
                     first = false;
                 }
