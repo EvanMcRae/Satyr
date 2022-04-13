@@ -38,6 +38,17 @@ public class WindSound : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D other) 
+    {
+        if (other.gameObject.tag == "Player" && triggeredEnter && !triggeredExit) {
+            if (Player.controller.isWallSliding && Player.instance.GetComponent<Rigidbody2D>().velocity.y > -2.0f) {
+                GetComponent<AudioSource>().Stop();
+            } else if (!GetComponent<AudioSource>().isPlaying) {
+                GetComponent<AudioSource>().Play();
+            }
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D other) {
         if (other.gameObject.tag == "Player" && !triggeredExit)
         {
