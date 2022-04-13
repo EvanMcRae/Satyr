@@ -26,10 +26,8 @@ public class CameraFollow : MonoBehaviour
     private BoxCollider2D camBox;
     public float xBias;
     public float yBias;
-    private bool canLookDown = true, lookAhead = true;
-    public float idealZoom = 7.0f;
-    public float actualZoom = 7.0f;
-    public float zoomOffset = 0.0f;
+    private bool canLookDown = true;
+    public float zoom = 7.0f;
 
     [Range(0.1f, 1f)][SerializeField] private float sharpness = 0.5f;
 
@@ -62,24 +60,6 @@ public class CameraFollow : MonoBehaviour
         bool onScreenY = screenPos.y > 0f && screenPos.y < Screen.height;
         bool onScreen = onScreenX && onScreenY;
 
-        // calculating zoom amount
-        actualZoom = idealZoom;
-        if (Player.controller.isStill) 
-        {
-            zoomOffset = Mathf.Lerp(zoomOffset, -2, 0.005f);
-        }
-        else
-        {
-            float distanceFromReset = Mathf.Abs(Player.controller.reset_point.position.x - Player.instance.transform.position.x);
-            distanceFromReset = Mathf.Clamp(distanceFromReset, 0, 10f);
-            zoomOffset = Mathf.Lerp(zoomOffset, distanceFromReset/7.5f, 0.01f);
-        }
-        if (!onScreenY)
-        {
-            zoomOffset = Mathf.Lerp(zoomOffset, 3.0f, 0.5f);
-        }
-        actualZoom += zoomOffset;
-
         if (Statue.cutscening)
         {
             Target = Statue.currStatue;
@@ -87,11 +67,11 @@ public class CameraFollow : MonoBehaviour
             newPosition.z = -10;
             originalPos = Vector3.Lerp(originalPos, newPosition, FollowSpeed * Time.deltaTime);
             transform.position = originalPos;
-
-            actualZoom = 4.0f;
+            zoom = 4.0f;
         }
         else
         {
+            zoom = 7.0f;
             Target = Player.controller.camTarget;
             if (canLookDown && Input.GetAxisRaw("Vertical") < -0.5) //&& !Input.GetKey(KeyCode.S)
             {
@@ -105,14 +85,6 @@ public class CameraFollow : MonoBehaviour
             {
                 Target.localPosition = new Vector3(Target.localPosition.x, 1.0f, 0.0f);
             }
-
-            // look forward when player is still
-            Vector3 newLocalPos = Target.localPosition;
-            if (lookAhead)
-                newLocalPos.x = Mathf.Lerp(newLocalPos.x, 4.0f*actualZoom/5f, 0.003f);
-            else
-                newLocalPos.x = Mathf.Lerp(newLocalPos.x, 0f, 0.1f);
-            Target.localPosition = newLocalPos;
 
             // speed multiplier for high Y velocity
             if (Mathf.Abs(Player.instance.GetComponent<Rigidbody2D>().velocity.y) > 20f)
@@ -146,11 +118,7 @@ public class CameraFollow : MonoBehaviour
                 float xTarget = camBox.size.x < targetBounds.size.x ? Mathf.Clamp(Target.position.x, targetBounds.min.x + camBox.size.x / 2, targetBounds.max.x - camBox.size.x / 2) : (targetBounds.min.x + targetBounds.max.x) / 2;
                 float yTarget = camBox.size.y < targetBounds.size.y ? Mathf.Clamp(Target.position.y, targetBounds.min.y + camBox.size.y / 2, targetBounds.max.y - camBox.size.y / 2) : (targetBounds.min.y + targetBounds.max.y) / 2;
                 Vector3 boundedTarget = new Vector3(xTarget, yTarget, -10);
-                originalPos = Vector3.Lerp(transform.position, boundedTarget, FollowSpeed * Time.deltaTime * speedMultiplierX * speedMultiplierY);
-                // I thought this code would help but it does not. Do not use this
-                // originalPos.x = Mathf.Clamp(originalPos.x, targetBounds.min.x + camBox.size.x / 2, targetBounds.max.x - camBox.size.x / 2);
-                // originalPos.y = Mathf.Clamp(originalPos.y, targetBounds.min.y + camBox.size.y / 2, targetBounds.max.y - camBox.size.y / 2);
-            }
+                originalPos = Vector3.Lerp(transform.position, boundedTarget, FollowSpeed * Time.deltaTime * speedMultiplierX * speedMultiplierY);            }
             else
             {
                 Vector3 newPosition = Target.position;
@@ -160,12 +128,12 @@ public class CameraFollow : MonoBehaviour
         }
 
         // adjusting camera zoom
-        m_camera.orthographicSize = Mathf.Lerp(m_camera.orthographicSize, actualZoom, 0.01f);
-        if (m_camera.orthographicSize < actualZoom)
+        m_camera.orthographicSize = Mathf.Lerp(m_camera.orthographicSize, zoom, 0.01f);
+        if (m_camera.orthographicSize < zoom)
         {
             m_camera.orthographicSize += 0.001f;
         }
-        else if (m_camera.orthographicSize > actualZoom)
+        else if (m_camera.orthographicSize > zoom)
         {
             m_camera.orthographicSize -= 0.001f;
         }
@@ -242,8 +210,6 @@ public class CameraFollow : MonoBehaviour
                     xBias = boundaries[i].gameObject.GetComponent<CameraBounds>().xBias;
                     yBias = boundaries[i].gameObject.GetComponent<CameraBounds>().yBias;
                     canLookDown = boundaries[i].gameObject.GetComponent<CameraBounds>().canLookDown;
-                    lookAhead = boundaries[i].gameObject.GetComponent<CameraBounds>().lookAhead;
-                    idealZoom = Mathf.Lerp(idealZoom, boundaries[i].gameObject.GetComponent<CameraBounds>().idealZoom, 0.1f);
                     first = false;
                 }
                 else {
