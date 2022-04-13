@@ -19849,6 +19849,7 @@ GameObject:
   m_Component:
   - component: {fileID: 44398387}
   - component: {fileID: 44398386}
+  - component: {fileID: 44398388}
   m_Layer: 0
   m_Name: forest_texture
   m_TagString: Untagged
@@ -19924,6 +19925,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &44398388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44398385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49120c1e51828f143824ebaf61ceccf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  perspectiveEffect: 0.07
+  offset: 1
 --- !u!1 &45442706
 GameObject:
   m_ObjectHideFlags: 0
@@ -20877,8 +20893,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210381855}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.1, y: -105.9, z: 0}
-  m_LocalScale: {x: 1.66434, y: 1.6809376, z: 1}
+  m_LocalPosition: {x: 30.1, y: -102.7596, z: 0}
+  m_LocalScale: {x: 1.66434, y: 1.3901355, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 25
@@ -28228,6 +28244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 431986017}
   - component: {fileID: 431986018}
+  - component: {fileID: 431986019}
   m_Layer: 0
   m_Name: bushes_6
   m_TagString: Untagged
@@ -28301,6 +28318,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &431986019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431986016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49120c1e51828f143824ebaf61ceccf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  perspectiveEffect: 0.07
+  offset: 0
 --- !u!1 &433201602
 GameObject:
   m_ObjectHideFlags: 0
@@ -29081,6 +29113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 505255660}
   - component: {fileID: 505255661}
+  - component: {fileID: 505255662}
   m_Layer: 0
   m_Name: trees_0
   m_TagString: Untagged
@@ -29154,6 +29187,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &505255662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505255659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49120c1e51828f143824ebaf61ceccf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  perspectiveEffect: 0.07
+  offset: 0
 --- !u!1 &507631913
 GameObject:
   m_ObjectHideFlags: 0
@@ -56085,6 +56133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1011846530}
   - component: {fileID: 1011846531}
+  - component: {fileID: 1011846532}
   m_Layer: 0
   m_Name: trees_0 (1)
   m_TagString: Untagged
@@ -56158,6 +56207,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1011846532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011846529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49120c1e51828f143824ebaf61ceccf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  perspectiveEffect: 0.07
+  offset: 0
 --- !u!1 &1013928810
 GameObject:
   m_ObjectHideFlags: 0
@@ -73897,6 +73961,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1535602420}
   - component: {fileID: 1535602419}
+  - component: {fileID: 1535602421}
   m_Layer: 0
   m_Name: forest_texture (1)
   m_TagString: Untagged
@@ -73972,6 +74037,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1535602421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535602418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49120c1e51828f143824ebaf61ceccf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  perspectiveEffect: 0.07
+  offset: 0
 --- !u!1 &1543308441
 GameObject:
   m_ObjectHideFlags: 0
