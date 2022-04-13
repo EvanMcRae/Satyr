@@ -172,7 +172,7 @@ public class Player : MonoBehaviour
             Collider2D[] lowColliders = Physics2D.OverlapCircleAll(m_LowGroundCheck.position, 0.01f, m_WhatIsGround);
             for (int i = 0; i < lowColliders.Length; i++)
             {
-                if (lowColliders[i].gameObject != gameObject && lowColliders[i].gameObject.tag == "Ground")
+                if (lowColliders[i].gameObject != gameObject && (lowColliders[i].gameObject.tag == "Ground" || lowColliders[i].gameObject.tag == "GroundNoSlide"))
                 {
                     canWallSlide = false;
                     // animator.SetBool("IsWallSliding", false);
@@ -227,7 +227,7 @@ public class Player : MonoBehaviour
                     }
                 }
             }
-            else if (colliders[i].gameObject != gameObject && (colliders[i].gameObject.tag == "Ground" || colliders[i].gameObject.tag == "Wall" || colliders[i].gameObject.tag == "Breakable Wall")) {
+            else if (colliders[i].gameObject != gameObject && (colliders[i].gameObject.tag == "Ground" || colliders[i].gameObject.tag == "Wall" || colliders[i].gameObject.tag == "Breakable Wall" || colliders[i].gameObject.tag == "GroundNoSlide")) {
                 m_Grounded = true;
                 lastOnLand = 0f;
                 canDoubleJump = false;
@@ -334,7 +334,7 @@ public class Player : MonoBehaviour
             Collider2D[] collidersWall = Physics2D.OverlapCircleAll(m_WallCheck.position, 0.1f, m_WhatIsGround);
             for (int i = 0; i < collidersWall.Length; i++)
             {
-                if (collidersWall[i].gameObject != null)
+                if (collidersWall[i].gameObject != null && collidersWall[i].gameObject.tag != "GroundNoSlide")
                 {
                     isDashing = false;
                     if (collidersWall[i].gameObject.GetComponent<PlatformEffector2D>() == null)
@@ -345,7 +345,7 @@ public class Player : MonoBehaviour
             Collider2D[] collidersFarWall = Physics2D.OverlapCircleAll(m_FarWallCheck.position, 0.01f, m_WhatIsGround);
             for (int i = 0; i < collidersFarWall.Length; i++)
             {
-                if (collidersFarWall[i].gameObject != null)
+                if (collidersFarWall[i].gameObject != null && collidersFarWall[i].gameObject.tag != "GroundNoSlide")
                 {
                     if (collidersFarWall[i].gameObject.GetComponent<PlatformEffector2D>() == null)
                     m_IsFarWall = true;
