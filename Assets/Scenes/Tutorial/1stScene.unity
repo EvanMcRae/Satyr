@@ -21810,6 +21810,7 @@ MonoBehaviour:
   xBias: 0
   yBias: 0
   canLookDown: 1
+  lookAhead: 1
   idealZoom: 7
 --- !u!4 &289466163
 Transform:
@@ -55422,6 +55423,7 @@ MonoBehaviour:
   xBias: 0
   yBias: 1
   canLookDown: 1
+  lookAhead: 1
   idealZoom: 7
 --- !u!4 &792565111
 Transform:
@@ -56431,6 +56433,7 @@ MonoBehaviour:
   xBias: 0
   yBias: 0
   canLookDown: 1
+  lookAhead: 1
   idealZoom: 7
 --- !u!4 &1051155171
 Transform:
@@ -56893,7 +56896,7 @@ GameObject:
   - component: {fileID: 1136572969}
   m_Layer: 0
   m_Name: rocks_1
-  m_TagString: Ground
+  m_TagString: GroundNoSlide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96208,6 +96211,7 @@ MonoBehaviour:
   xBias: 0
   yBias: 0
   canLookDown: 0
+  lookAhead: 1
   idealZoom: 7
 --- !u!4 &1881421921
 Transform:
