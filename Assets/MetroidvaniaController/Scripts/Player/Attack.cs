@@ -190,7 +190,7 @@ public class Attack : MonoBehaviour
 		Collider2D[] collidersWalls = Physics2D.OverlapCircleAll(wallCheck.position, 0.6f);
 		for (int i = 0; i < collidersWalls.Length; i++)
 		{
-			if (collidersWalls[i].gameObject.tag == "Wall" || collidersWalls[i].gameObject.tag == "Ground")
+			if (collidersWalls[i].gameObject.tag == "Wall" || collidersWalls[i].gameObject.tag == "Ground" || collidersWalls[i].gameObject.tag == "GroundNoSlide")
 			{
 				m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
 				int direction = 0;
