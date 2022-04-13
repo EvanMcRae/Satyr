@@ -365,9 +365,17 @@ public class Player : MonoBehaviour
         else
         {
             canWallSlide = true;
+
             if (beenOnLand >= 0.1f)
+            {
                 canWallGrip = true;
-            
+                if (!isWallSliding)
+                {
+                    limitVelOnWallJump = false;
+                    limitVelOnWallJumpCooldown = 0.0f;
+                }
+            }
+                
             if (beenOnLand < 5f)
                 beenOnLand += Time.fixedDeltaTime;
             if (!(m_Rigidbody2D.velocity.y > 0f)) {
@@ -530,6 +538,11 @@ public class Player : MonoBehaviour
                 holdingJump = true;
                 m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 1.2f));
+                if (limitVelOnWallJump && ((move > 0 && !m_FacingRight) || (move < 0 && m_FacingRight)))
+                {
+                    limitVelOnWallJump = false;
+                    limitVelOnWallJumpCooldown = 0.0f;
+                }
                 animator.SetBool("IsDoubleJumping", true);
             }
 

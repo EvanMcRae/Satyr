@@ -216,8 +216,11 @@ public class AudioManager : MonoBehaviour
 
             //Fade-in the new clip
             BGM2[activePlayer].clip = music;
-            if (carryOn)
+            if (carryOn) {
                 BGM2[activePlayer].timeSamples = BGM1[activePlayer].timeSamples; // syncs up time
+            } else {
+                BGM2[activePlayer].timeSamples = 0;
+            }
             BGM2[activePlayer].Play();
             if (firstSongPlayed)
             {
@@ -241,8 +244,11 @@ public class AudioManager : MonoBehaviour
 
             //Fade-in the new clip
             BGM1[activePlayer].clip = music;
-            if (carryOn)
+            if (carryOn) {
                 BGM1[activePlayer].timeSamples = BGM2[activePlayer].timeSamples; // syncs up time
+            } else {
+                BGM1[activePlayer].timeSamples = 0;
+            }
             BGM1[activePlayer].Play();
             if (firstSongPlayed)
             {
