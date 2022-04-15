@@ -19,6 +19,10 @@ public class PlayerMovement : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKeyDown(KeyCode.Escape))
+        {
+			TogglePause();
+        }
 		if (Input.GetAxisRaw("Horizontal") > 0.3 || Input.GetAxisRaw("Horizontal") < -0.3)
 			horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 		else
@@ -91,6 +95,15 @@ public class PlayerMovement : MonoBehaviour {
         // }
 	}
 
+	void TogglePause() {
+		if (Time.timeScale == 1)
+		{
+			Time.timeScale = 0;
+		}
+		else {
+			Time.timeScale = 1;
+		}
+	}
 	void FixedUpdate ()
 	{
 		// Move our character
