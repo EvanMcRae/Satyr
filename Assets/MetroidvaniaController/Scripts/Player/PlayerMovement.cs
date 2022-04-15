@@ -4,36 +4,36 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-	public Animator animator;
+    public Animator animator;
 
-	public float runSpeed = 40f;
+    public float runSpeed = 40f;
 
-	float horizontalMove = 0f;
-	bool jump = false;
+    float horizontalMove = 0f;
+    bool jump = false;
     bool releaseJump = false;
-	bool dash = false;
+    bool dash = false;
 
-	public bool dash_Unlocked = false;
+    public bool dash_Unlocked = false;
 
-	//bool dashAxis = false;
+    //bool dashAxis = false;
 
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetKeyDown(KeyCode.Escape))
+    // Update is called once per frame
+    void Update () {
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-			TogglePause();
+            TogglePause();
         }
-		if (Input.GetAxisRaw("Horizontal") > 0.3 || Input.GetAxisRaw("Horizontal") < -0.3)
-			horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-		else
-			horizontalMove = 0f;
+        if (Input.GetAxisRaw("Horizontal") > 0.3 || Input.GetAxisRaw("Horizontal") < -0.3)
+            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        else
+            horizontalMove = 0f;
 
         if (Player.controller.dead || Player.controller.resetting) {
             animator.SetBool("IsDead", true);
             horizontalMove = 0f;
         }
 
-		animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -61,58 +61,58 @@ public class PlayerMovement : MonoBehaviour {
             Player.controller.jumpCooldown = 0f;
         }
 
-		if ((Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.LeftShift)) && dash_Unlocked == true)
-		{
-			dash = true;
-		}
+        if ((Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.LeftShift)) && dash_Unlocked == true)
+        {
+            dash = true;
+        }
 
-		/*if (Input.GetAxisRaw("Dash") == 1 || Input.GetAxisRaw("Dash") == -1) //RT in Unity 2017 = -1, RT in Unity 2019 = 1
-		{
-			if (dashAxis == false)
-			{
-				dashAxis = true;
-				dash = true;
-			}
-		}
-		else
-		{
-			dashAxis = false;
-		}
-		*/
+        /*if (Input.GetAxisRaw("Dash") == 1 || Input.GetAxisRaw("Dash") == -1) //RT in Unity 2017 = -1, RT in Unity 2019 = 1
+        {
+            if (dashAxis == false)
+            {
+                dashAxis = true;
+                dash = true;
+            }
+        }
+        else
+        {
+            dashAxis = false;
+        }
+        */
 
-	}
+    }
 
-	public void OnFall()
-	{
-		animator.SetBool("IsJumping", true);
-	}
+    public void OnFall()
+    {
+        animator.SetBool("IsJumping", true);
+    }
 
-	public void OnLanding()
-	{
+    public void OnLanding()
+    {
         // this might have caused more sprite flickering
         // if (!Player.controller.isJumping && !Player.controller.isJumpingDJ) {
         //     animator.SetBool("IsJumping", false);
         // }
-	}
+    }
 
-	void TogglePause() {
-		if (Time.timeScale == 1)
-		{
-			Time.timeScale = 0;
-		}
-		else {
-			Time.timeScale = 1;
-		}
-	}
-	void FixedUpdate ()
-	{
-		// Move our character
-		Player.controller.Move(horizontalMove * Time.fixedDeltaTime, jump, dash, releaseJump);
+    void TogglePause() {
+        if (Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+        }
+        else {
+            Time.timeScale = 1;
+        }
+    }
+    void FixedUpdate ()
+    {
+        // Move our character
+        Player.controller.Move(horizontalMove * Time.fixedDeltaTime, jump, dash, releaseJump);
         if (animator.GetBool("IsJumping") && Player.controller.m_Grounded && !Player.controller.isJumping && !Player.controller.isJumpingDJ) {
             animator.SetBool("IsJumping", false);
         }
-		jump = false;
-		dash = false;
+        jump = false;
+        dash = false;
         releaseJump = false;
-	}
+    }
 }

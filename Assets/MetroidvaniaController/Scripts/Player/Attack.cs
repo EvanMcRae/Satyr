@@ -4,44 +4,44 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-	public float dmgValue = 4;
-	public GameObject throwableObject;
-	public Transform attackCheck;
-	public Transform botAttackCheck;
-	public Transform topAttackCheck;
-	public Transform currentAttackCheck;
-	public Transform wallCheck;
-	private Rigidbody2D m_Rigidbody2D;
-	public Animator animator;
-	public bool canAttack = true;
-	public bool canShoot = true;
-	public bool isTimeToCheck = false;
-	public ParticleSystem particleAttack;
+    public float dmgValue = 4;
+    public GameObject throwableObject;
+    public Transform attackCheck;
+    public Transform botAttackCheck;
+    public Transform topAttackCheck;
+    public Transform currentAttackCheck;
+    public Transform wallCheck;
+    private Rigidbody2D m_Rigidbody2D;
+    public Animator animator;
+    public bool canAttack = true;
+    public bool canShoot = true;
+    public bool isTimeToCheck = false;
+    public ParticleSystem particleAttack;
     public ParticleSystem particleSpecialAttack;
 
-	public List<Collider2D> ignoredEnemies = new List<Collider2D>();
+    public List<Collider2D> ignoredEnemies = new List<Collider2D>();
 
-	public GameObject cam;
+    public GameObject cam;
 
-	public bool shooting_Unlocked = false;
+    public bool shooting_Unlocked = false;
 
-	//public SpecialBar specialBar;
+    //public SpecialBar specialBar;
     public float specialCooldown = 0.0f;
-	public float specialMaxCooldown = 10.0f;
-	public health playerHealth;
-	public Cordyceps cordyceps;
-	private int countToHeal = 5;
+    public float specialMaxCooldown = 10.0f;
+    public health playerHealth;
+    public Cordyceps cordyceps;
+    private int countToHeal = 5;
     public AudioClip swordClash, specialSound;
 
 
-	private void Awake()
-	{
+    private void Awake()
+    {
         specialCooldown = specialMaxCooldown;
-		m_Rigidbody2D = GetComponent<Rigidbody2D>();
-	}
+        m_Rigidbody2D = GetComponent<Rigidbody2D>();
+    }
 
-	// Start is called before the first frame update
-	void Start()
+    // Start is called before the first frame update
+    void Start()
     {
         currentAttackCheck = attackCheck;
         particleAttack.transform.position = currentAttackCheck.position;
@@ -54,45 +54,45 @@ public class Attack : MonoBehaviour
 
         if (specialCooldown < specialMaxCooldown)
             specialCooldown += Time.deltaTime;/////////////////////////////
-			//specialBarFill = ((3.0f - specialCooldown)/3.0f) * 100;
-			//specialBar.UpdateBar();
+            //specialBarFill = ((3.0f - specialCooldown)/3.0f) * 100;
+            //specialBar.UpdateBar();
 
-		if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetMouseButtonDown(0) || Input.GetKeyDown("joystick button 2")) && canAttack)
-		{
-			currentAttackCheck = attackCheck;
-			if (Input.GetAxisRaw("Vertical") < -0.3) {
-				currentAttackCheck = botAttackCheck;
-			}
-			if (Input.GetAxisRaw("Vertical") > 0.3) {
-				currentAttackCheck = topAttackCheck;
-			}
-			particleAttack.transform.position = currentAttackCheck.position;
-			canAttack = false;
-			animator.SetBool("IsAttacking", true);
-			StartCoroutine(AttackCooldown());
-		}
-
-		if ((Input.GetKeyDown(KeyCode.V) || Input.GetMouseButtonDown(1)) && canShoot && shooting_Unlocked == true)
-		{
-			canShoot = false;
-			GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f,-0.2f), Quaternion.identity) as GameObject; 
-			Vector2 direction = new Vector2(transform.localScale.x, 0);
-			throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction;
-			print(direction);
-			if(direction.x < 0)
-            {
-				throwableWeapon.GetComponent<SpriteRenderer>().flipX = true;
+        if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetMouseButtonDown(0) || Input.GetKeyDown("joystick button 2")) && canAttack)
+        {
+            currentAttackCheck = attackCheck;
+            if (Input.GetAxisRaw("Vertical") < -0.3) {
+                currentAttackCheck = botAttackCheck;
             }
-			throwableWeapon.name = "ThrowableWeapon";
-			StartCoroutine(ShootCooldown());
-		}
+            if (Input.GetAxisRaw("Vertical") > 0.3) {
+                currentAttackCheck = topAttackCheck;
+            }
+            particleAttack.transform.position = currentAttackCheck.position;
+            canAttack = false;
+            animator.SetBool("IsAttacking", true);
+            StartCoroutine(AttackCooldown());
+        }
+
+        if ((Input.GetKeyDown(KeyCode.V) || Input.GetMouseButtonDown(1)) && canShoot && shooting_Unlocked == true)
+        {
+            canShoot = false;
+            GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f,-0.2f), Quaternion.identity) as GameObject; 
+            Vector2 direction = new Vector2(transform.localScale.x, 0);
+            throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction;
+            print(direction);
+            if(direction.x < 0)
+            {
+                throwableWeapon.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            throwableWeapon.name = "ThrowableWeapon";
+            StartCoroutine(ShootCooldown());
+        }
 
         if (!Statue.cutscening && specialCooldown >= specialMaxCooldown && (Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown("joystick button 3")))
         {
             particleSpecialAttack.Play();
             specialCooldown = 0.0f;
-			animator.SetBool("IsSattacking", true);
-			cam.GetComponent<CameraFollow>().ShakeCamera(0.2f);
+            animator.SetBool("IsSattacking", true);
+            cam.GetComponent<CameraFollow>().ShakeCamera(0.2f);
             gameObject.GetComponent<Player>().Invincible(1f);
 
             AudioSource[] audioSource = transform.GetComponents<AudioSource>();
@@ -113,52 +113,52 @@ public class Attack : MonoBehaviour
                     source.Play();
                 }
             }
-		}
-		// else if (Input.GetKeyUp(KeyCode.Y) || Input.GetKeyUp("joystick button 3"))
+        }
+        // else if (Input.GetKeyUp(KeyCode.Y) || Input.GetKeyUp("joystick button 3"))
         // {
-		// 	special_attack_hitbox.enabled = false;
-		// }
-		
-		if (Input.GetKeyUp(KeyCode.H) && cordyceps.count >= countToHeal && playerHealth.playerHealth < playerHealth.numberOfHearts)
+        // 	special_attack_hitbox.enabled = false;
+        // }
+        
+        if (Input.GetKeyUp(KeyCode.H) && cordyceps.count >= countToHeal && playerHealth.playerHealth < playerHealth.numberOfHearts)
         {
-			playerHealth.playerHealth += 1;
-			cordyceps.count -= 5;
-		}
+            playerHealth.playerHealth += 1;
+            cordyceps.count -= 5;
+        }
 
-	}
-
-	IEnumerator AttackCooldown()
-	{
-		yield return new WaitForSeconds(0.25f);
-		ignoredEnemies.Clear();
-		canAttack = true;
-	}
-
-	IEnumerator ShootCooldown()
-    {
-		yield return new WaitForSeconds(1f);
-		canShoot = true;
     }
 
-	public void DoDashDamage(float knockback = 1.0f)
-	{
-		dmgValue = Mathf.Abs(dmgValue);
-		Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(currentAttackCheck.position, 1.4f);
+    IEnumerator AttackCooldown()
+    {
+        yield return new WaitForSeconds(0.25f);
+        ignoredEnemies.Clear();
+        canAttack = true;
+    }
 
-		particleAttack.Play();
-		for (int i = 0; i < collidersEnemies.Length; i++)
-		{   
-			if (collidersEnemies[i].gameObject.tag == "Enemy" && !(ignoredEnemies.Contains(collidersEnemies[i])))
-			{
-				if (collidersEnemies[i].transform.position.x - transform.position.x < 0)
-				{
-					dmgValue = -dmgValue;
-				}
+    IEnumerator ShootCooldown()
+    {
+        yield return new WaitForSeconds(1f);
+        canShoot = true;
+    }
 
-				if (collidersEnemies[i].GetComponent<Enemy>() != null)
-				{
-					collidersEnemies[i].GetComponent<Enemy>().ApplyDamage(dmgValue, knockback);
-				}
+    public void DoDashDamage(float knockback = 1.0f)
+    {
+        dmgValue = Mathf.Abs(dmgValue);
+        Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(currentAttackCheck.position, 1.4f);
+
+        particleAttack.Play();
+        for (int i = 0; i < collidersEnemies.Length; i++)
+        {   
+            if (collidersEnemies[i].gameObject.tag == "Enemy" && !(ignoredEnemies.Contains(collidersEnemies[i])))
+            {
+                if (collidersEnemies[i].transform.position.x - transform.position.x < 0)
+                {
+                    dmgValue = -dmgValue;
+                }
+
+                if (collidersEnemies[i].GetComponent<Enemy>() != null)
+                {
+                    collidersEnemies[i].GetComponent<Enemy>().ApplyDamage(dmgValue, knockback);
+                }
 
                 //collidersEnemies[i].gameObject.SendMessage("ApplyDamage", dmgValue);
                 // this code is for camera shake on attack?
@@ -166,40 +166,40 @@ public class Attack : MonoBehaviour
 
 
                 Vector2 damageDir = Vector3.Normalize(transform.position - collidersEnemies[i].transform.position) * 85f;
-				m_Rigidbody2D.velocity = Vector2.zero;
-				int direction = 0;
-				if (collidersEnemies[i].transform.position.x > transform.position.x) { direction = -1; } else { direction = 1; }
-				m_Rigidbody2D.AddForce(new Vector2(direction * 2000f, 200f));
-				//m_Rigidbody2D.AddForce(damageDir * 10);
-			}
-			else if(collidersEnemies[i].gameObject.tag == "Breakable Wall" && !(ignoredEnemies.Contains(collidersEnemies[i])))
+                m_Rigidbody2D.velocity = Vector2.zero;
+                int direction = 0;
+                if (collidersEnemies[i].transform.position.x > transform.position.x) { direction = -1; } else { direction = 1; }
+                m_Rigidbody2D.AddForce(new Vector2(direction * 2000f, 200f));
+                //m_Rigidbody2D.AddForce(damageDir * 10);
+            }
+            else if(collidersEnemies[i].gameObject.tag == "Breakable Wall" && !(ignoredEnemies.Contains(collidersEnemies[i])))
             {
-				if (collidersEnemies[i].GetComponent<breakableWall>() != null)
-				{
-					collidersEnemies[i].GetComponent<breakableWall>().ApplyDamage(dmgValue);
-				}
+                if (collidersEnemies[i].GetComponent<breakableWall>() != null)
+                {
+                    collidersEnemies[i].GetComponent<breakableWall>().ApplyDamage(dmgValue);
+                }
 
-				cam.GetComponent<CameraFollow>().ShakeCamera(0.2f);
-				Vector2 damageDir = Vector3.Normalize(transform.position - collidersEnemies[i].transform.position) * 85f;
-				m_Rigidbody2D.velocity = Vector2.zero;
-				m_Rigidbody2D.AddForce(damageDir * 10);
-			}
-			ignoredEnemies.Add(collidersEnemies[i]);
-		}
+                cam.GetComponent<CameraFollow>().ShakeCamera(0.2f);
+                Vector2 damageDir = Vector3.Normalize(transform.position - collidersEnemies[i].transform.position) * 85f;
+                m_Rigidbody2D.velocity = Vector2.zero;
+                m_Rigidbody2D.AddForce(damageDir * 10);
+            }
+            ignoredEnemies.Add(collidersEnemies[i]);
+        }
 
-		Collider2D[] collidersWalls = Physics2D.OverlapCircleAll(wallCheck.position, 0.6f);
-		for (int i = 0; i < collidersWalls.Length; i++)
-		{
-			if (collidersWalls[i].gameObject.tag == "Wall" || collidersWalls[i].gameObject.tag == "Ground" || collidersWalls[i].gameObject.tag == "GroundNoSlide")
-			{
-				m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
-				int direction = 0;
+        Collider2D[] collidersWalls = Physics2D.OverlapCircleAll(wallCheck.position, 0.6f);
+        for (int i = 0; i < collidersWalls.Length; i++)
+        {
+            if (collidersWalls[i].gameObject.tag == "Wall" || collidersWalls[i].gameObject.tag == "Ground" || collidersWalls[i].gameObject.tag == "GroundNoSlide")
+            {
+                m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
+                int direction = 0;
                 if (collidersWalls[i] is EdgeCollider2D)
                 {
                     continue;
                 }
-				if (collidersWalls[i].transform.position.x > transform.position.x) { direction = -1; } else { direction = 1; }
-				m_Rigidbody2D.AddForce(new Vector2(direction * 1000f, 0f));
+                if (collidersWalls[i].transform.position.x > transform.position.x) { direction = -1; } else { direction = 1; }
+                m_Rigidbody2D.AddForce(new Vector2(direction * 1000f, 0f));
                 AudioSource[] audioSource = transform.GetComponents<AudioSource>();
                 foreach (AudioSource source in audioSource)
                 {
@@ -219,7 +219,7 @@ public class Attack : MonoBehaviour
                         source.Play();
                     }
                 }
-			}
-		}
-	}
+            }
+        }
+    }
 }
