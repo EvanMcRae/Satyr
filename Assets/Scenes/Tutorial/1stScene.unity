@@ -21826,8 +21826,6 @@ MonoBehaviour:
   xBias: 0
   yBias: 0
   canLookDown: 1
-  lookAhead: 1
-  idealZoom: 7
 --- !u!4 &289466163
 Transform:
   m_ObjectHideFlags: 0
@@ -55471,8 +55469,6 @@ MonoBehaviour:
   xBias: 0
   yBias: 1
   canLookDown: 1
-  lookAhead: 1
-  idealZoom: 7
 --- !u!4 &792565111
 Transform:
   m_ObjectHideFlags: 0
@@ -56497,8 +56493,6 @@ MonoBehaviour:
   xBias: 0
   yBias: 0
   canLookDown: 1
-  lookAhead: 1
-  idealZoom: 7
 --- !u!4 &1051155171
 Transform:
   m_ObjectHideFlags: 0
@@ -62433,6 +62427,8 @@ GameObject:
   - component: {fileID: 1214276479}
   - component: {fileID: 1214276478}
   - component: {fileID: 1214276477}
+  - component: {fileID: 1214276481}
+  - component: {fileID: 1214276482}
   m_Layer: 0
   m_Name: Artemis
   m_TagString: Untagged
@@ -62455,7 +62451,7 @@ MonoBehaviour:
   dialouge:
     name: Artimis
     sentaces:
-    - 
+    - hi
 --- !u!114 &1214276478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62468,8 +62464,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f240796c28c96f648b0137d22502f35f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: {fileID: 0}
-  DialogueText: {fileID: 0}
+  nameText: {fileID: 527977115}
+  DialogueText: {fileID: 138016910}
 --- !u!212 &1214276479
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -62536,6 +62532,46 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!61 &1214276481
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214276476}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.4001398, y: -4.333086}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 13.78, y: 20.509768}
+    newSize: {x: 15.563057, y: 23.130001}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 30.981817, y: 11.843597}
+  m_EdgeRadius: 0
+--- !u!114 &1214276482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214276476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed6b2949a6bc7a498907d8a2887346d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textBox: {fileID: 1278593951}
+  anchor: {fileID: 433201603}
 --- !u!1 &1221174759
 GameObject:
   m_ObjectHideFlags: 0
@@ -63257,7 +63293,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1278593951
 RectTransform:
   m_ObjectHideFlags: 0
@@ -96291,8 +96327,6 @@ MonoBehaviour:
   xBias: 0
   yBias: 0
   canLookDown: 0
-  lookAhead: 1
-  idealZoom: 7
 --- !u!4 &1881421921
 Transform:
   m_ObjectHideFlags: 0
