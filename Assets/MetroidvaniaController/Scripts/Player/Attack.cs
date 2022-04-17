@@ -50,81 +50,85 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cam = GameObject.Find("Main Camera pre Variant");
-
-        if (specialCooldown < specialMaxCooldown)
-            specialCooldown += Time.deltaTime;/////////////////////////////
-            //specialBarFill = ((3.0f - specialCooldown)/3.0f) * 100;
-            //specialBar.UpdateBar();
-
-        if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetMouseButtonDown(0) || Input.GetKeyDown("joystick button 2")) && canAttack)
+        if (!PlayerMovement.paused)
         {
-            currentAttackCheck = attackCheck;
-            if (Input.GetAxisRaw("Vertical") < -0.3) {
-                currentAttackCheck = botAttackCheck;
-            }
-            if (Input.GetAxisRaw("Vertical") > 0.3) {
-                currentAttackCheck = topAttackCheck;
-            }
-            particleAttack.transform.position = currentAttackCheck.position;
-            canAttack = false;
-            animator.SetBool("IsAttacking", true);
-            StartCoroutine(AttackCooldown());
-        }
+            cam = GameObject.Find("Main Camera pre Variant");
 
-        if ((Input.GetKeyDown(KeyCode.V) || Input.GetMouseButtonDown(1)) && canShoot && shooting_Unlocked == true)
-        {
-            canShoot = false;
-            GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f,-0.2f), Quaternion.identity) as GameObject; 
-            Vector2 direction = new Vector2(transform.localScale.x, 0);
-            throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction;
-            print(direction);
-            if(direction.x < 0)
+            if (specialCooldown < specialMaxCooldown)
+                specialCooldown += Time.deltaTime;/////////////////////////////
+                                                  //specialBarFill = ((3.0f - specialCooldown)/3.0f) * 100;
+                                                  //specialBar.UpdateBar();
+
+            if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetMouseButtonDown(0) || Input.GetKeyDown("joystick button 2")) && canAttack)
             {
-                throwableWeapon.GetComponent<SpriteRenderer>().flipX = true;
-            }
-            throwableWeapon.name = "ThrowableWeapon";
-            StartCoroutine(ShootCooldown());
-        }
-
-        if (!Statue.cutscening && specialCooldown >= specialMaxCooldown && (Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown("joystick button 3")))
-        {
-            particleSpecialAttack.Play();
-            specialCooldown = 0.0f;
-            animator.SetBool("IsSattacking", true);
-            cam.GetComponent<CameraFollow>().ShakeCamera(0.2f);
-            gameObject.GetComponent<Player>().Invincible(1f);
-
-            AudioSource[] audioSource = transform.GetComponents<AudioSource>();
-            foreach (AudioSource source in audioSource)
-            {
-                if (source.clip == swordClash && source.isPlaying)
+                currentAttackCheck = attackCheck;
+                if (Input.GetAxisRaw("Vertical") < -0.3)
                 {
-                    if (source.time < 0.2f) return;
-                    else source.Stop();
+                    currentAttackCheck = botAttackCheck;
+                }
+                if (Input.GetAxisRaw("Vertical") > 0.3)
+                {
+                    currentAttackCheck = topAttackCheck;
+                }
+                particleAttack.transform.position = currentAttackCheck.position;
+                canAttack = false;
+                animator.SetBool("IsAttacking", true);
+                StartCoroutine(AttackCooldown());
+            }
+
+            if ((Input.GetKeyDown(KeyCode.V) || Input.GetMouseButtonDown(1)) && canShoot && shooting_Unlocked == true)
+            {
+                canShoot = false;
+                GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f, -0.2f), Quaternion.identity) as GameObject;
+                Vector2 direction = new Vector2(transform.localScale.x, 0);
+                throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction;
+                print(direction);
+                if (direction.x < 0)
+                {
+                    throwableWeapon.GetComponent<SpriteRenderer>().flipX = true;
+                }
+                throwableWeapon.name = "ThrowableWeapon";
+                StartCoroutine(ShootCooldown());
+            }
+
+            if (!Statue.cutscening && specialCooldown >= specialMaxCooldown && (Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown("joystick button 3")))
+            {
+                particleSpecialAttack.Play();
+                specialCooldown = 0.0f;
+                animator.SetBool("IsSattacking", true);
+                cam.GetComponent<CameraFollow>().ShakeCamera(0.2f);
+                gameObject.GetComponent<Player>().Invincible(1f);
+
+                AudioSource[] audioSource = transform.GetComponents<AudioSource>();
+                foreach (AudioSource source in audioSource)
+                {
+                    if (source.clip == swordClash && source.isPlaying)
+                    {
+                        if (source.time < 0.2f) return;
+                        else source.Stop();
+                    }
+                }
+                foreach (AudioSource source in audioSource)
+                {
+                    if (!source.isPlaying)
+                    {
+                        source.clip = specialSound;
+                        source.loop = false;
+                        source.Play();
+                    }
                 }
             }
-            foreach (AudioSource source in audioSource)
+            // else if (Input.GetKeyUp(KeyCode.Y) || Input.GetKeyUp("joystick button 3"))
+            // {
+            // 	special_attack_hitbox.enabled = false;
+            // }
+
+            if (Input.GetKeyUp(KeyCode.H) && cordyceps.count >= countToHeal && playerHealth.playerHealth < playerHealth.numberOfHearts)
             {
-                if (!source.isPlaying)
-                {
-                    source.clip = specialSound;
-                    source.loop = false;
-                    source.Play();
-                }
+                playerHealth.playerHealth += 1;
+                cordyceps.count -= 5;
             }
         }
-        // else if (Input.GetKeyUp(KeyCode.Y) || Input.GetKeyUp("joystick button 3"))
-        // {
-        // 	special_attack_hitbox.enabled = false;
-        // }
-        
-        if (Input.GetKeyUp(KeyCode.H) && cordyceps.count >= countToHeal && playerHealth.playerHealth < playerHealth.numberOfHearts)
-        {
-            playerHealth.playerHealth += 1;
-            cordyceps.count -= 5;
-        }
-
     }
 
     IEnumerator AttackCooldown()

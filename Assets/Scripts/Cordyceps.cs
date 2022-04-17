@@ -20,7 +20,7 @@ public class Cordyceps : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         bagSprites = GameObject.FindGameObjectsWithTag("Bag");
         UpdateBag();

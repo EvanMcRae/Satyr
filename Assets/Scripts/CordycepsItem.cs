@@ -29,7 +29,7 @@ public class CordycepsItem : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         playerPos = Player.instance.transform;
         float distance = (transform.position - playerPos.position).magnitude;
