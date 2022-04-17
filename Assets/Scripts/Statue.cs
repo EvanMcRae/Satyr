@@ -109,7 +109,6 @@ public class Statue : MonoBehaviour
         volume.profile.TryGet<ChromaticAberration>(out chromaticAberration);
         volume.profile.TryGet<ColorAdjustments>(out colorAdjustments);
 
-        Debug.Log("bruh");
         cam.GetComponent<CameraFollow>().ShakeCamera(5f);
         GameObject.FindObjectOfType<CinematicBars>().Show(200, .3f);
         AudioManager.instance.FadeOutCurrent();

@@ -11,14 +11,16 @@ public class Perspective : MonoBehaviour
 
     void Start()
     {
-        cam = Player.instance;
+        cam = GameObject.FindGameObjectWithTag("MainCamera");
         startpos = transform.position.x;
         float dist = (cam.transform.position.x * perspectiveEffect);
         transform.position = new Vector3(startpos - dist, transform.position.y, transform.position.z);
     }
     void Update()
     {
-        cam = Player.instance;
+        if (cam == null){
+            cam = GameObject.FindGameObjectWithTag("MainCamera");
+        }
         // float temp = (cam.transform.position.x * (1 - perspectiveEffect));
         float dist = (cam.transform.position.x * perspectiveEffect);
         Vector3 newPosition = new Vector3(startpos - dist, transform.position.y, transform.position.z);
