@@ -21826,6 +21826,8 @@ MonoBehaviour:
   xBias: 0
   yBias: 0
   canLookDown: 1
+  lookAhead: 1
+  idealZoom: 7
 --- !u!4 &289466163
 Transform:
   m_ObjectHideFlags: 0
@@ -55469,6 +55471,8 @@ MonoBehaviour:
   xBias: 0
   yBias: 1
   canLookDown: 1
+  lookAhead: 1
+  idealZoom: 7
 --- !u!4 &792565111
 Transform:
   m_ObjectHideFlags: 0
@@ -56508,6 +56512,8 @@ MonoBehaviour:
   xBias: 0
   yBias: 0
   canLookDown: 1
+  lookAhead: 1
+  idealZoom: 7
 --- !u!4 &1051155171
 Transform:
   m_ObjectHideFlags: 0
@@ -62444,8 +62450,6 @@ GameObject:
   - component: {fileID: 1214276479}
   - component: {fileID: 1214276478}
   - component: {fileID: 1214276477}
-  - component: {fileID: 1214276481}
-  - component: {fileID: 1214276482}
   m_Layer: 0
   m_Name: Artemis
   m_TagString: Untagged
@@ -62468,7 +62472,7 @@ MonoBehaviour:
   dialouge:
     name: Artimis
     sentaces:
-    - hi
+    - 
 --- !u!114 &1214276478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62481,8 +62485,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f240796c28c96f648b0137d22502f35f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: {fileID: 527977115}
-  DialogueText: {fileID: 138016910}
+  nameText: {fileID: 0}
+  DialogueText: {fileID: 0}
 --- !u!212 &1214276479
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -62549,6 +62553,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+<<<<<<< HEAD
 --- !u!61 &1214276481
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -62590,6 +62595,8 @@ MonoBehaviour:
   textBox: {fileID: 1278593951}
   anchor: {fileID: 433201603}
 >>>>>>> 0cb277fe7b0ed68ea84d807b2e026b30f6ac95ba
+=======
+>>>>>>> parent of 0cb277f (Update 1stScene.unity)
 --- !u!1 &1221174759
 GameObject:
   m_ObjectHideFlags: 0
@@ -63311,7 +63318,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1278593951
 RectTransform:
   m_ObjectHideFlags: 0
@@ -96429,6 +96436,8 @@ MonoBehaviour:
   xBias: 0
   yBias: 0
   canLookDown: 0
+  lookAhead: 1
+  idealZoom: 7
 --- !u!4 &1881421921
 Transform:
   m_ObjectHideFlags: 0
