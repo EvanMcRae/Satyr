@@ -22,7 +22,7 @@ public class Perspective : MonoBehaviour
         // float temp = (cam.transform.position.x * (1 - perspectiveEffect));
         float dist = (cam.transform.position.x * perspectiveEffect);
         Vector3 newPosition = new Vector3(startpos - dist, transform.position.y, transform.position.z);
-        transform.position = Vector3.Lerp(transform.position, newPosition, 0.01f);
+        transform.position = newPosition;
         // if (temp > startpos + (length - offset))
         // {
         //     startpos += length;
