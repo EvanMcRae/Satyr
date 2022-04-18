@@ -30,7 +30,8 @@ public class MainMenu : MonoBehaviour
     {
         crossfade.SetTrigger("start");
         yield return new WaitForSeconds(0.9f);
-        SceneManager.LoadScene("Cutscene");
+        SceneManager.LoadScene("1stScene");
+        // SceneManager.LoadScene("Cutscene");
         yield return null;
     }
 }
