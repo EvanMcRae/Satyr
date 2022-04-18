@@ -11,7 +11,7 @@ public class spitter : Enemy
     public CircleCollider2D cc;
 
     public Transform target;
-    public int dropsCordycep = 1;
+    public int dropsCordycep = 3;
     bool dead = false;
 
     // float x = 0;

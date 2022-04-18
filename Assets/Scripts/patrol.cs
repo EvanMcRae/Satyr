@@ -27,7 +27,7 @@ public class patrol : Enemy
     public Transform target;
 
     public bool justPatrols = false;
-    public int dropsCordycep = 1;
+    public int dropsCordycep = 2;
 
     void Awake()
     {
