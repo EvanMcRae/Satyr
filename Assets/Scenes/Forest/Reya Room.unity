@@ -3802,6 +3802,7 @@ GameObject:
   - component: {fileID: 1833147207}
   - component: {fileID: 1833147206}
   - component: {fileID: 1833147208}
+  - component: {fileID: 1833147209}
   m_Layer: 0
   m_Name: hand
   m_TagString: Untagged
@@ -3888,6 +3889,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisItem: {fileID: 11400000, guid: 112e0e8b63394cd4a8164f3f9694c090, type: 2}
+--- !u!61 &1833147209
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833147205}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4.59, y: 6.49}
+    newSize: {x: 4.59, y: 6.49}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 21.769997, y: 6.49}
+  m_EdgeRadius: 0
 --- !u!1 &1836106163
 GameObject:
   m_ObjectHideFlags: 0
