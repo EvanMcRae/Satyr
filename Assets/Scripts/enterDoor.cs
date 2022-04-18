@@ -30,7 +30,7 @@ public class enterDoor : MonoBehaviour
 
     public void OnGUI()
     {
-        if (playerIsInRange == true)
+        if (!PlayerMovement.paused && playerIsInRange)
         {
             GUI.Box(new Rect(140, Screen.height - 50, Screen.width - 300, 120), (labelText));
         }

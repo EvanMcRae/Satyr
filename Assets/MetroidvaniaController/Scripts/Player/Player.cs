@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
     public float jumpCooldown = 0f;
     public float notFallingFor = 0f;
     public float beenOnLand = 0f;
+    public float notSimulated = 0f;
     public Transform reset_point;
     public bool inDeathZone;
     private Vector3 lastOnLandLocation;
@@ -135,6 +136,14 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!GetComponent<Rigidbody2D>().simulated)
+        {
+            notSimulated += Time.fixedDeltaTime;
+        }
+        if (notSimulated >= 0.3f) {
+            GetComponent<Rigidbody2D>().simulated = true;
+            notSimulated = 0f;
+        }
         isStill = (m_Rigidbody2D.velocity.x < 0.0001f && m_Rigidbody2D.velocity.x > -0.0001f && !animator.GetBool("IsSattacking"));
 
         if (isDashing) {

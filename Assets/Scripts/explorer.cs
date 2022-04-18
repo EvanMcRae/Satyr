@@ -65,7 +65,7 @@ public class explorer : MonoBehaviour
 
     public void OnGUI()
     {
-        if (hasCollided == true && needsPrompt == true)
+        if (!PlayerMovement.paused && hasCollided && needsPrompt)
         {
             GUI.Box(new Rect(140, Screen.height - 50, Screen.width - 300, 120), (labelText));
         }

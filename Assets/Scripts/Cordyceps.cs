@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,7 @@ public class Cordyceps : MonoBehaviour
     void FixedUpdate()
     {
         bagSprites = GameObject.FindGameObjectsWithTag("Bag");
+        Array.Sort(bagSprites, CompareObNames);
         UpdateBag();
 
         GameObject[] items = GameObject.FindGameObjectsWithTag("CordycepsItem");
@@ -105,4 +107,10 @@ public class Cordyceps : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         animating = false;
     }
+
+    int CompareObNames(GameObject x, GameObject y)
+    {
+        return x.name.CompareTo(y.name);
+    }
+
 }

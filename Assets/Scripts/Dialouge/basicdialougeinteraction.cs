@@ -31,35 +31,38 @@ public class basicdialougeinteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown("joystick button 1")) && hasCollided == true && needsPrompt == true)
+        if (!PlayerMovement.paused)
         {
-           
-            textBox.position = new Vector3(textBox.position.x, anchor.position.y, textBox.position.z);
-            needsPrompt = false;
-            //   this.GetComponent<DialougeTrigger>().TriggerDialogue();
-            /*  foreach(DialougeTrigger dt in dialogueTriggers)
-              {
-                  dt.TriggerDialogue();
-                  break;
-              }  */
-            dialogueTriggers[0].TriggerDialogue();
-   
-        }
-        else if ((Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown("joystick button 1")) && hasCollided == true && needsPrompt == false)
-        {
-
-            GameObject.Find("Dialouge Manager").GetComponent<DialougeManager>().DisplayNextSentence();
-
-            if (DialougeManager.convoEnded == true)
+            if ((Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown("joystick button 1")) && hasCollided == true && needsPrompt == true)
             {
-                textBox.position = new Vector3(textBox.position.x, 5000f, textBox.position.z);
+
+                textBox.position = new Vector3(textBox.position.x, anchor.position.y, textBox.position.z);
+                needsPrompt = false;
+                //   this.GetComponent<DialougeTrigger>().TriggerDialogue();
+                /*  foreach(DialougeTrigger dt in dialogueTriggers)
+                  {
+                      dt.TriggerDialogue();
+                      break;
+                  }  */
+                dialogueTriggers[0].TriggerDialogue();
+
+            }
+            else if ((Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown("joystick button 1")) && hasCollided == true && needsPrompt == false)
+            {
+
+                GameObject.Find("Dialouge Manager").GetComponent<DialougeManager>().DisplayNextSentence();
+
+                if (DialougeManager.convoEnded)
+                {
+                    textBox.position = new Vector3(textBox.position.x, 5000f, textBox.position.z);
+                }
             }
         }
     }
 
     public void OnGUI()
     {
-        if (hasCollided == true && needsPrompt == true)
+        if (!PlayerMovement.paused && hasCollided && needsPrompt)
         {
             GUI.Box(new Rect(140, Screen.height - 50, Screen.width - 300, 120), (labelText));
         }

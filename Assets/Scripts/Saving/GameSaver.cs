@@ -53,6 +53,7 @@ public class GameSaver : MonoBehaviour
             SaveData data = JsonUtility.FromJson<SaveData>(dataToLoad);
             SceneManager.LoadSceneAsync(data.player.spawnpoint.scene);
             var newPlayer = Instantiate(prefab);
+            newPlayer.GetComponent<Rigidbody2D>().simulated = false;
             newPlayer.transform.position = data.player.spawnpoint.position;
 
             // multi value transfers

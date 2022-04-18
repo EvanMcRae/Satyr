@@ -44,8 +44,10 @@ public class PauseMenu : MonoBehaviour
 
     IEnumerator ExitApplication()
     {
+        AudioManager.instance.Stop();
+        Player.instance.GetComponent<PlayerMovement>().TogglePause();
         GetComponent<GameSaver>().SaveGame();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         Application.Quit();
         yield return null;
     }

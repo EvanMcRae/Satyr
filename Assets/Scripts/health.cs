@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,7 @@ public class health : MonoBehaviour
     void Update()
     {
         hearts = GameObject.FindGameObjectsWithTag("Heart");
+        Array.Sort(hearts, CompareObNames);
             
         if (playerHealth > numberOfHearts)
         {
@@ -51,5 +53,10 @@ public class health : MonoBehaviour
                 hearts[i].GetComponent<Image>().enabled = false;
             }
         }
+    }
+
+    int CompareObNames(GameObject x, GameObject y)
+    {
+        return x.name.CompareTo(y.name);
     }
 }

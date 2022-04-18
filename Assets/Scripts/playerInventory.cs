@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -53,7 +54,10 @@ public class playerInventory : MonoBehaviour
     //used by 
     public void updateInventory()
     {
-        inventory_spaces = new List<GameObject>(GameObject.FindGameObjectsWithTag("Slot"));
+        GameObject[] slots = GameObject.FindGameObjectsWithTag("Slot");
+        Array.Sort(slots, CompareObNames);
+        inventory_spaces = new List<GameObject>(slots);
+        
 
         // wipe previous items from canvas
         foreach (GameObject slot in inventory_spaces)
@@ -71,5 +75,10 @@ public class playerInventory : MonoBehaviour
                 inventory_spaces[index].GetComponent<Image>().enabled = true;
             }
         }
+    }
+
+    int CompareObNames(GameObject x, GameObject y)
+    {
+        return x.name.CompareTo(y.name);
     }
 }

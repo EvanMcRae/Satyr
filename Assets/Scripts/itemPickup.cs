@@ -17,7 +17,7 @@ public class itemPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.T) || Input.GetKeyDown("joystick button 1"))
+        if (!PlayerMovement.paused && Input.GetKey(KeyCode.T) || Input.GetKeyDown("joystick button 1"))
         {
             if (playerIsInRange == true)
             {
@@ -54,7 +54,7 @@ public class itemPickup : MonoBehaviour
 
     public void OnGUI()
     {
-        if (playerIsInRange == true)
+        if (!PlayerMovement.paused && playerIsInRange)
         {
             GUI.Box(new Rect(140, Screen.height - 50, Screen.width - 300, 120), (labelText));
         }
