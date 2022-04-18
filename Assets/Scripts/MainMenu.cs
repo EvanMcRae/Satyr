@@ -11,7 +11,9 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = true;
         crossfade = GameObject.Find("Crossfade").GetComponent<Animator>();
+        Destroy(Player.instance);
     }
 
     public void PlayGame()

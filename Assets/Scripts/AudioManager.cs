@@ -353,4 +353,13 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void Stop() {
+        foreach (AudioSource source in BGM1) {
+            source.Stop();
+        }
+        foreach (AudioSource source in BGM2) {
+            source.Stop();
+        }
+    }
+
 }

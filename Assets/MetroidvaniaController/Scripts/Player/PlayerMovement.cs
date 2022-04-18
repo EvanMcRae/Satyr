@@ -101,7 +101,7 @@ public class PlayerMovement : MonoBehaviour {
         // }
     }
 
-    void TogglePause() {
+    public void TogglePause() {
         AudioSource[] sources = FindObjectsOfType<AudioSource>();
         CanvasToggle canv = FindObjectOfType<CanvasToggle>();
 
