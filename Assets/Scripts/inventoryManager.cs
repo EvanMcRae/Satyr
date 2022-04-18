@@ -32,38 +32,10 @@ public class inventoryManager : MonoBehaviour
         if (item != null)
         {
             buttonImage.sprite = item.itemSprite;
-            if (item.name == "DoubleJump")
-            {
-                //print("Double Jump is in the inventory");
-                if (GetComponent<Player>().doubleJump_Unlocked != true)
-                {
-                    gameObject.GetComponent<Image>().enabled = false;
-                }
-            }
-            else if (item.name == "Dash")
-            {
-                //print("Dash is in the inventory");
-                if (GetComponent<PlayerMovement>().dash_Unlocked != true)
-                {
-                    gameObject.GetComponent<Image>().enabled = false;
-                }
-
-            }
-            else if (item.name == "WallJump")
-            {
-                //print("WallJump is in the inventory");
-                if (GetComponent<Player>().wallSlide_Unlocked != true)
-                {
-                    gameObject.GetComponent<Image>().enabled = false;
-                }
-            }
-
         }
 
         x = transform.position.x;
         inventory.position = new Vector3(inventory.position.x, 5000f, inventory.position.z);
-
-
     }
 
     // Update is called once per frame
@@ -81,36 +53,7 @@ public class inventoryManager : MonoBehaviour
             Cursor.visible = isDisplayed;
             inventory.position = new Vector3(inventory.position.x, isDisplayed ? anchor.position.y : 5000f, inventory.position.z);
             
-            if (item == null)
-            {
-                // don't do anything lol
-            }
-            else if (item.name == "DoubleJump")
-            {
-                // print("Double Jump is in the inventory");
-                if (GetComponent<Player>().doubleJump_Unlocked == true)
-                {
-                    gameObject.GetComponent<Image>().enabled = true;
-                }
-            }
-            else if (item.name == "Dash")
-            {
-                // print("Dash is in the inventory");
-                if (GetComponent<PlayerMovement>().dash_Unlocked == true)
-                {
-                    gameObject.GetComponent<Image>().enabled = true;
-                }
-
-            }
-            else if (item.name == "WallJump")
-            {
-                // print("WallJump is in the inventory");
-                if (GetComponent<Player>().wallSlide_Unlocked == true)
-                {
-                    gameObject.GetComponent<Image>().enabled = true;
-                }
-            }
-            else
+            if (item != null)
             {
                 buttonImage.sprite = item.itemSprite;
                 gameObject.GetComponent<Image>().enabled = true;
@@ -124,8 +67,6 @@ public class inventoryManager : MonoBehaviour
         {
             itemText.text = item.itemDescription;
             itemImage.sprite = item.itemSprite;
-            Debug.Log("clicked the item");
-            print("clicked the button");
         }
     }
 

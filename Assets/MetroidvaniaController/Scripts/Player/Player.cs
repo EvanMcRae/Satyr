@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     public float limitFallSpeed = 20f; // Limit fall speed
     public bool wallSlide_Unlocked = false;
     public bool doubleJump_Unlocked = false;
+    public bool specialAttack_Unlocked = false;
     public bool canDoubleJump = false; //If player can double jump
     [SerializeField] private float m_DashForce = 25f;
     public bool canDash = false;
@@ -735,7 +736,7 @@ public class Player : MonoBehaviour
 
     public void ApplyDamage(float damage, Vector3 position, float knockBack, bool bypass)
     {
-        if ((invincible && bypass) || !invincible)
+        if (((invincible && bypass) || !invincible) && !resetting && !dead)
         {
             animator.SetBool("Hit", true);
             //		life -= damage;  orignial code

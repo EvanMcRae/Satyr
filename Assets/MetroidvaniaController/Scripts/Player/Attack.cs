@@ -55,9 +55,7 @@ public class Attack : MonoBehaviour
             cam = GameObject.Find("Main Camera pre Variant");
 
             if (specialCooldown < specialMaxCooldown)
-                specialCooldown += Time.deltaTime;/////////////////////////////
-                                                  //specialBarFill = ((3.0f - specialCooldown)/3.0f) * 100;
-                                                  //specialBar.UpdateBar();
+                specialCooldown += Time.deltaTime;
 
             if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetMouseButtonDown(0) || Input.GetKeyDown("joystick button 2")) && canAttack)
             {
@@ -76,7 +74,7 @@ public class Attack : MonoBehaviour
                 StartCoroutine(AttackCooldown());
             }
 
-            if ((Input.GetKeyDown(KeyCode.V) || Input.GetMouseButtonDown(1)) && canShoot && shooting_Unlocked == true)
+            if ((Input.GetKeyDown(KeyCode.V) || Input.GetMouseButtonDown(1)) && canShoot && shooting_Unlocked)
             {
                 canShoot = false;
                 GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f, -0.2f), Quaternion.identity) as GameObject;
@@ -91,7 +89,7 @@ public class Attack : MonoBehaviour
                 StartCoroutine(ShootCooldown());
             }
 
-            if (!Statue.cutscening && specialCooldown >= specialMaxCooldown && (Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown("joystick button 3")))
+            if (Player.controller.specialAttack_Unlocked && !Statue.cutscening && specialCooldown >= specialMaxCooldown && (Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown("joystick button 3")))
             {
                 particleSpecialAttack.Play();
                 specialCooldown = 0.0f;

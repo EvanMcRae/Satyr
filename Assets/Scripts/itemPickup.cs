@@ -21,14 +21,33 @@ public class itemPickup : MonoBehaviour
         {
             if (playerIsInRange == true)
             {
-                //add item to players inventory
-                print(item);
                 playerInventory inventory = Player.instance.GetComponent<playerInventory>();
+
+                if (item.itemID == "3")
+                {
+                    Player.controller.doubleJump_Unlocked = true;
+                }
+                else if (item.itemID == "5")
+                {
+                    Player.controller.wallSlide_Unlocked = true;
+                }
+                else if (item.itemID == "10")
+                {
+                    Player.controller.specialAttack_Unlocked = true;
+                }
+                else if (item.itemID == "4")
+                {
+                    Player.instance.GetComponent<PlayerMovement>().dash_Unlocked = true;
+                }
+                else if (item.itemID == "6")
+                {
+                    Player.instance.GetComponent<Attack>().shooting_Unlocked = true;
+                }
+
                 if (inventory.addToInventory(item))
                 {
                     Destroy(this.gameObject);
                 }
-                
             }
         }
     }
