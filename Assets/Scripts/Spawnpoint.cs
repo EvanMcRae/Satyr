@@ -15,7 +15,7 @@ public class Spawnpoint : MonoBehaviour
     {
         if (statuesUsed.Count == 0) {
             scene = "1stScene";
-            position = new Vector2(-5.28f, 1.110578f);
+            position = new Vector2(-5.28f, -2.110578f);
         }
     }
 
