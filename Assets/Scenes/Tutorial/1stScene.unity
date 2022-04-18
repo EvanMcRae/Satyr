@@ -20732,7 +20732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  perspectiveEffect: 0.03
+  perspectiveEffect: 0.08
   offset: 0
 --- !u!212 &143437722
 SpriteRenderer:
@@ -27706,7 +27706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  perspectiveEffect: 0.07
+  perspectiveEffect: 0.05
   offset: 0
 --- !u!1 &399552213
 GameObject:
@@ -27880,6 +27880,7 @@ GameObject:
   m_Component:
   - component: {fileID: 417019079}
   - component: {fileID: 417019080}
+  - component: {fileID: 417019081}
   m_Layer: 0
   m_Name: bush
   m_TagString: Untagged
@@ -27953,6 +27954,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &417019081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417019078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49120c1e51828f143824ebaf61ceccf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  perspectiveEffect: 0.07
+  offset: 0
 --- !u!1 &425867097
 GameObject:
   m_ObjectHideFlags: 0
@@ -28345,7 +28361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  perspectiveEffect: 0.07
+  perspectiveEffect: 0.05
   offset: 0
 --- !u!1 &433201602
 GameObject:
@@ -29214,7 +29230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  perspectiveEffect: 0.07
+  perspectiveEffect: 0.05
   offset: 0
 --- !u!1 &507631913
 GameObject:
@@ -34809,7 +34825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  perspectiveEffect: 0.01
+  perspectiveEffect: 0.05
   offset: 0
 --- !u!114 &636927081
 MonoBehaviour:
@@ -40067,6 +40083,7 @@ GameObject:
   m_Component:
   - component: {fileID: 689480085}
   - component: {fileID: 689480086}
+  - component: {fileID: 689480087}
   m_Layer: 0
   m_Name: forest_texture (3)
   m_TagString: Untagged
@@ -40140,6 +40157,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &689480087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689480084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49120c1e51828f143824ebaf61ceccf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  perspectiveEffect: 0.03
+  offset: 0
 --- !u!1 &711093810
 GameObject:
   m_ObjectHideFlags: 0
@@ -45568,6 +45600,7 @@ GameObject:
   - component: {fileID: 732281005}
   - component: {fileID: 732281007}
   - component: {fileID: 732281006}
+  - component: {fileID: 732281008}
   m_Layer: 0
   m_Name: trees_2
   m_TagString: Wall
@@ -45719,6 +45752,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &732281008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732281004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49120c1e51828f143824ebaf61ceccf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  perspectiveEffect: 0.07
+  offset: 0
 --- !u!1 &749113935
 GameObject:
   m_ObjectHideFlags: 0
@@ -56232,7 +56280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  perspectiveEffect: 0.07
+  perspectiveEffect: 0.05
   offset: 0
 --- !u!1 &1013928810
 GameObject:
@@ -85462,7 +85510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  perspectiveEffect: 0.03
+  perspectiveEffect: 0.08
   offset: 0
 --- !u!212 &1736410674
 SpriteRenderer:
@@ -95500,7 +95548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  perspectiveEffect: 0.01
+  perspectiveEffect: 0.05
   offset: 0
 --- !u!114 &1808177775
 MonoBehaviour:
