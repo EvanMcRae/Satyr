@@ -57,4 +57,10 @@ public class SaveSystem : MonoBehaviour
         }
         return false;
     }
+
+    public bool SaveFileExists() 
+    {
+        var fullPath = Path.Combine(Application.persistentDataPath, saveName + saveDataIndex);
+        return File.Exists(fullPath);
+    }
 }

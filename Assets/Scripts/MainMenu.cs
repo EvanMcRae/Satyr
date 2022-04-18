@@ -1,12 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
     private Animator crossfade;
     private Coroutine routine;
+    public Button loadButton;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +19,18 @@ public class MainMenu : MonoBehaviour
         crossfade = GameObject.Find("Crossfade").GetComponent<Animator>();
         Destroy(Player.instance);
     }
+
+    void Update() {
+        if (!GetComponent<SaveSystem>().SaveFileExists())
+        {
+            loadButton.interactable = false;
+            loadButton.GetComponentInChildren<TMP_Text>().color = new Color32(118, 118, 118, 255);
+        } else {
+            loadButton.interactable = true;
+            loadButton.GetComponentInChildren<TMP_Text>().color = new Color32(154, 127, 0, 255);
+        }
+    }
+    
 
     public void PlayGame()
     {
