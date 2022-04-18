@@ -29,13 +29,14 @@ public class PlayerSerialization
 [Serializable]
 public class ControllerSerialization
 {
-    public bool m_Grounded, wallSlide_Unlocked, doubleJump_Unlocked, canDoubleJump, canDash, invincible, isJumping, explorer, initialFall;
+    public bool m_Grounded, wallSlide_Unlocked, doubleJump_Unlocked, specialAttack_Unlocked, canDoubleJump, canDash, invincible, isJumping, explorer, initialFall;
     public float stunDuration, iFrames, lastOnLand, jumpCooldown, life;
 
     public ControllerSerialization(Player controller) {
         m_Grounded = controller.m_Grounded;
         wallSlide_Unlocked = controller.wallSlide_Unlocked;
         doubleJump_Unlocked = controller.doubleJump_Unlocked;
+        specialAttack_Unlocked = controller.specialAttack_Unlocked;
         canDoubleJump = controller.canDoubleJump;
         canDash = controller.canDash;
         invincible = controller.invincible;
@@ -49,6 +50,7 @@ public class ControllerSerialization
         playerObj.GetComponent<Player>().m_Grounded = m_Grounded;
         playerObj.GetComponent<Player>().wallSlide_Unlocked = wallSlide_Unlocked;
         playerObj.GetComponent<Player>().doubleJump_Unlocked = doubleJump_Unlocked;
+        playerObj.GetComponent<Player>().specialAttack_Unlocked = specialAttack_Unlocked;
         playerObj.GetComponent<Player>().canDoubleJump = canDoubleJump;
         playerObj.GetComponent<Player>().canDash = canDash;
         playerObj.GetComponent<Player>().invincible = invincible;
