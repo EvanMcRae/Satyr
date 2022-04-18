@@ -69,7 +69,13 @@ public class inventoryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown("joystick button 7"))
+        if (isDisplayed && PlayerMovement.paused)
+        {
+            isDisplayed = false;
+            inventory.position = new Vector3(inventory.position.x, isDisplayed ? anchor.position.y : 5000f, inventory.position.z);
+        }
+
+        if (!PlayerMovement.paused && Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown("joystick button 7"))
         {
             isDisplayed = !isDisplayed;
             Cursor.visible = isDisplayed;

@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public Animator animator;
     public static bool paused = false;
+    public GameObject pauseOverlay;
 
     public float runSpeed = 40f;
 
@@ -102,21 +103,26 @@ public class PlayerMovement : MonoBehaviour {
 
     void TogglePause() {
         AudioSource[] sources = FindObjectsOfType<AudioSource>();
+        CanvasToggle canv = FindObjectOfType<CanvasToggle>();
 
         if (!paused)
         {
+            pauseOverlay.SetActive(true);
             paused = true;
             Time.timeScale = 0;
             Cursor.visible = true;
+            canv.Pause();
             foreach (AudioSource source in sources)
             {
                 source.Pause();
             }
         }
         else {
+            pauseOverlay.SetActive(false);
             paused = false;
             Time.timeScale = 1;
             Cursor.visible = false;
+            canv.UnPause();
             foreach (AudioSource source in sources)
             {
                 source.UnPause();
