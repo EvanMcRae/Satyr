@@ -65,11 +65,6 @@ public class GameSaver : MonoBehaviour
             data.player.cordyceps.SetValues(newPlayer);
             data.player.movement.SetValues(newPlayer);
             data.options.SetValues();
-
-            // single value transfers
-            newPlayer.GetComponent<PlayerMovement>().runSpeed = data.player.movement.runSpeed;
-            newPlayer.GetComponent<Cordyceps>().count = data.player.cordyceps.count;
-            Debug.Log(newPlayer.GetComponent<Cordyceps>().count);
             
             Player.instance = newPlayer;
             Player.controller = newPlayer.GetComponent<Player>();
