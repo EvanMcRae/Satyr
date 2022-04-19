@@ -23,11 +23,11 @@ public class itemPickup : MonoBehaviour
             {
                 playerInventory inventory = Player.instance.GetComponent<playerInventory>();
 
-                if (item.itemID == "3")
+                if (item.itemID == "4")
                 {
                     Player.controller.doubleJump_Unlocked = true;
                 }
-                else if (item.itemID == "5")
+                else if (item.itemID == "9")
                 {
                     Player.controller.wallSlide_Unlocked = true;
                 }
@@ -35,11 +35,11 @@ public class itemPickup : MonoBehaviour
                 {
                     Player.controller.specialAttack_Unlocked = true;
                 }
-                else if (item.itemID == "4")
+                else if (item.itemID == "3")
                 {
                     Player.instance.GetComponent<PlayerMovement>().dash_Unlocked = true;
                 }
-                else if (item.itemID == "6")
+                else if (item.itemID == "7")
                 {
                     Player.instance.GetComponent<Attack>().shooting_Unlocked = true;
                 }
