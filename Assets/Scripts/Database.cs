@@ -24,7 +24,7 @@ public class Database : MonoBehaviour
     {
         foreach(Item item in instance.items.allItems)
         {
-            if (item.itemID == ID)
+            if (item != null && item.itemID == ID)
                 return item;
         }
 

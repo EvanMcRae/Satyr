@@ -6,19 +6,13 @@ using UnityEngine.UI;
 
 public class Cordyceps : MonoBehaviour
 {
-    public int count;
+    public int count = 0;
     // can be used to define bag thresholds
     public readonly int[] FILL_LEVELS = {0, 5, 10, 20, 40};
     public GameObject[] bagSprites;
     public AudioClip harvestCordyceps;
     public bool animating;
     private GameObject currentSprite;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        count = 0;
-    }
 
     // Update is called once per frame
     void FixedUpdate()

@@ -56,17 +56,20 @@ public class GameSaver : MonoBehaviour
             newPlayer.GetComponent<Rigidbody2D>().simulated = false;
             newPlayer.transform.position = data.player.spawnpoint.position;
 
-            // multi value transfers
+            // data transfers
             data.player.controller.SetValues(newPlayer);
             data.player.inventory.SetValues(newPlayer);
             data.player.health.SetValues(newPlayer);
             data.player.attack.SetValues(newPlayer);
             data.player.spawnpoint.SetValues(newPlayer);
+            data.player.cordyceps.SetValues(newPlayer);
+            data.player.movement.SetValues(newPlayer);
             data.options.SetValues();
 
             // single value transfers
             newPlayer.GetComponent<PlayerMovement>().runSpeed = data.player.movement.runSpeed;
             newPlayer.GetComponent<Cordyceps>().count = data.player.cordyceps.count;
+            Debug.Log(newPlayer.GetComponent<Cordyceps>().count);
             
             Player.instance = newPlayer;
             Player.controller = newPlayer.GetComponent<Player>();
