@@ -52,6 +52,12 @@ public class GameSaver : MonoBehaviour
             Clear();
             SaveData data = JsonUtility.FromJson<SaveData>(dataToLoad);
             SceneManager.LoadSceneAsync(data.player.spawnpoint.scene);
+
+            // hotfix for wind falling not triggering
+            if (data.player.spawnpoint.scene == "1stScene") {
+                data.player.controller.initialFall = false;
+            }
+
             var newPlayer = Instantiate(prefab);
             newPlayer.GetComponent<Rigidbody2D>().simulated = false;
             newPlayer.transform.position = data.player.spawnpoint.position;

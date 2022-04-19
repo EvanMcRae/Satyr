@@ -1853,6 +1853,7 @@ GameObject:
   - component: {fileID: 1238440750}
   - component: {fileID: 1238440749}
   - component: {fileID: 1238440751}
+  - component: {fileID: 1238440752}
   m_Layer: 0
   m_Name: rocks_simple_24
   m_TagString: Ground
@@ -2143,6 +2144,19 @@ PolygonCollider2D:
       - {x: 0.049999997, y: -2.345}
       - {x: 1.23, y: -2.345}
       - {x: 1.36, y: -2.335}
+--- !u!114 &1238440752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238440748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f305721c7f235924788b5b986b089448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &1248715568
 GameObject:
   m_ObjectHideFlags: 0
@@ -2154,6 +2168,7 @@ GameObject:
   - component: {fileID: 1248715571}
   - component: {fileID: 1248715570}
   - component: {fileID: 1248715569}
+  - component: {fileID: 1248715572}
   m_Layer: 0
   m_Name: forest_light
   m_TagString: Untagged
@@ -2242,6 +2257,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1248715572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248715568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f305721c7f235924788b5b986b089448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!1001 &1298263989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2628,6 +2656,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1499135612 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3689308521857907190, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 1610756164}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1499135613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499135612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f305721c7f235924788b5b986b089448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &1510498121
 GameObject:
   m_ObjectHideFlags: 0
@@ -2809,6 +2855,7 @@ GameObject:
   - component: {fileID: 1592840393}
   - component: {fileID: 1592840392}
   - component: {fileID: 1592840394}
+  - component: {fileID: 1592840395}
   m_Layer: 0
   m_Name: rocks_simple_25
   m_TagString: Ground
@@ -3043,6 +3090,19 @@ PolygonCollider2D:
       - {x: -0.475, y: -1.7149999}
       - {x: -0.275, y: -1.735}
       - {x: -0.035, y: -1.755}
+--- !u!114 &1592840395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592840391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f305721c7f235924788b5b986b089448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &1604947230
 GameObject:
   m_ObjectHideFlags: 0
@@ -3956,6 +4016,7 @@ GameObject:
   - component: {fileID: 2004626657}
   - component: {fileID: 2004626656}
   - component: {fileID: 2004626658}
+  - component: {fileID: 2004626659}
   m_Layer: 0
   m_Name: rocks_simple_7
   m_TagString: Untagged
@@ -4135,6 +4196,19 @@ PolygonCollider2D:
       - {x: 1.13, y: -1.41}
       - {x: 1.25, y: -1.39}
       - {x: 1.35, y: -1.38}
+--- !u!114 &2004626659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004626655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f305721c7f235924788b5b986b089448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &2069853246
 GameObject:
   m_ObjectHideFlags: 0

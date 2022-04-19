@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b3d24a48607b049a63d286a3c564be, type: 3}
   m_Name: Shooting
   m_EditorClassIdentifier: 
-  itemID: 6
+  itemID: 7
   itemName: Arrow
   itemDescription: Magical arrows conjured from thin air. Arrows shot forward damaging
     the enemies they land in.
   itemSprite: {fileID: 21300000, guid: ab294bb9aa0b0b247bdf57bb4f855c4f, type: 3}
+  itemCount: 0
+  maxStack: 64
