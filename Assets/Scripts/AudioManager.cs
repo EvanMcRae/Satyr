@@ -114,9 +114,12 @@ public class AudioManager : MonoBehaviour
         {
             if (BGM1[activePlayer].time >= loopPointSeconds)
             {
+                BGM2[activePlayer].Stop();
+                BGM2[activePlayer].time = 0;
                 activePlayer = 1 - activePlayer;
                 BGM1[activePlayer].clip = currentSong;
                 BGM1[activePlayer].volume = volume;
+                BGM1[activePlayer].time = 0;
                 BGM1[activePlayer].Play();
             }
         }
@@ -124,9 +127,12 @@ public class AudioManager : MonoBehaviour
         {
             if (BGM2[activePlayer].time >= loopPointSeconds)
             {
+                BGM2[activePlayer].Stop();
+                BGM2[activePlayer].time = 0;
                 activePlayer = 1 - activePlayer;
                 BGM2[activePlayer].clip = currentSong;
                 BGM2[activePlayer].volume = volume;
+                BGM2[activePlayer].time = 0;
                 BGM2[activePlayer].Play();
             }
         }
