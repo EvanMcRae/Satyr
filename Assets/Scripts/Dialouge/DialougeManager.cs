@@ -10,8 +10,10 @@ public class DialougeManager : MonoBehaviour
     public Text DialogueText;
 
     private Queue<string> sentences;
+    private string currentSentence;
 
     public static bool convoEnded = false;
+    public static bool stillSpeaking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -45,27 +47,38 @@ public class DialougeManager : MonoBehaviour
             return;
         }
 
-        string sentence = sentences.Dequeue();
+        currentSentence = sentences.Dequeue();
         StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
+        StartCoroutine(TypeSentence(currentSentence));
        // DialogueText.text = sentence;
 
     }
 
-    
-    IEnumerator TypeSentence (string sentence)
+    public void FinishSentence() {
+        if (stillSpeaking)
+        {
+            StopAllCoroutines();
+            DialogueText.text = currentSentence;
+            stillSpeaking = false;
+        }
+    }
+
+    IEnumerator TypeSentence(string sentence)
     {
+        stillSpeaking = true;
         DialogueText.text = "";
         foreach(char letter in sentence.ToCharArray())
         {
             DialogueText.text += letter;
             yield return null;
         }
+        stillSpeaking = false;
     }
 
     void EndDialogue()
     {
         convoEnded = true;
+        stillSpeaking = false;
         print("End of convo");
     }
 

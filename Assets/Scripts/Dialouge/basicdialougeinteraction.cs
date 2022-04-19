@@ -49,12 +49,18 @@ public class basicdialougeinteraction : MonoBehaviour
             }
             else if ((Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown("joystick button 1")) && hasCollided == true && needsPrompt == false)
             {
-
-                GameObject.Find("Dialouge Manager").GetComponent<DialougeManager>().DisplayNextSentence();
-
-                if (DialougeManager.convoEnded)
+                if (DialougeManager.stillSpeaking)
                 {
-                    textBox.position = new Vector3(textBox.position.x, 5000f, textBox.position.z);
+                    GameObject.Find("Dialouge Manager").GetComponent<DialougeManager>().FinishSentence();
+                }
+                else
+                {
+                    GameObject.Find("Dialouge Manager").GetComponent<DialougeManager>().DisplayNextSentence();
+
+                    if (DialougeManager.convoEnded)
+                    {
+                        textBox.position = new Vector3(textBox.position.x, 5000f, textBox.position.z);
+                    }
                 }
             }
         }

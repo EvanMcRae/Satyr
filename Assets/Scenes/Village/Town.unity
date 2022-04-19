@@ -731,6 +731,37 @@ MonoBehaviour:
   cam: {fileID: 0}
   perspectiveEffect: 0.1
   offset: 0
+--- !u!1 &318471145 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8081420514114993851, guid: 41643b0fa8ab6b84fa039e33f711df0c, type: 3}
+  m_PrefabInstance: {fileID: 8081420512829142580}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &318471146
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318471145}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 16.99046}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6.682452, y: 16.33}
+    newSize: {x: 6.68, y: 16.33}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 23.43536, y: 58.7677}
+  m_EdgeRadius: 0
 --- !u!1 &362133438
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,6 +1270,37 @@ MonoBehaviour:
   cam: {fileID: 0}
   perspectiveEffect: 0.1
   offset: 0
+--- !u!1 &631875256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7106445552057121492, guid: ee26c3b430e70df45aadd49d79613113, type: 3}
+  m_PrefabInstance: {fileID: 7106445551601861523}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &631875257
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631875256}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 29.492641}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 8.65, y: 20.069128}
+    newSize: {x: 15.563057, y: 23.130001}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 38.738785, y: 90.28266}
+  m_EdgeRadius: 0
 --- !u!1 &650178128
 GameObject:
   m_ObjectHideFlags: 0
@@ -3003,6 +3065,37 @@ MonoBehaviour:
   cam: {fileID: 0}
   perspectiveEffect: 0.03
   offset: 0
+--- !u!1 &1741284363 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1756524928694106838, guid: d1eb841a6bba42544a1a9a60b2f4cb13, type: 3}
+  m_PrefabInstance: {fileID: 1756524928017910350}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1741284364
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741284363}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 14.091192}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.8514132, y: 12.02}
+    newSize: {x: 3.85, y: 12.02}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 23.43536, y: 52.969173}
+  m_EdgeRadius: 0
 --- !u!1 &1765731211 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3688283654370236176, guid: 196a799c220e2894f8a99289dced4434, type: 3}
@@ -3918,6 +4011,7 @@ GameObject:
   - component: {fileID: 2138062224}
   - component: {fileID: 2138062223}
   - component: {fileID: 2138062222}
+  - component: {fileID: 2138062225}
   m_Layer: 0
   m_Name: priest_concept
   m_TagString: Untagged
@@ -3998,7 +4092,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138062219}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -4036,9 +4130,35 @@ MonoBehaviour:
   dialouge:
     name: Priest
     sentaces:
-    - Ah young hunter! It seems the gods have smiled upon you today. Knowing the
-      higher powers will help guide you on your journey. Perhaps you should stop
-      by the House of Congregation to recieve guidance.
+    - Ah, young hunter! It seems the gods have smiled upon thee today. The higher
+      powers will help guide you on your journey. Perhaps you should stop by the
+      House of Congregation to recieve guidance.
+--- !u!61 &2138062225
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138062219}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 10.964088}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 14.2, y: 13.728517}
+    newSize: {x: 15.43, y: 15.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 23.43536, y: 46.714966}
+  m_EdgeRadius: 0
 --- !u!1001 &1756524928017910350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4054,6 +4174,10 @@ PrefabInstance:
       propertyPath: textBox
       value: 
       objectReference: {fileID: 513202304}
+    - target: {fileID: 1756524928694106835, guid: d1eb841a6bba42544a1a9a60b2f4cb13, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1756524928694106836, guid: d1eb841a6bba42544a1a9a60b2f4cb13, type: 3}
       propertyPath: m_RootOrder
       value: 21
@@ -4098,6 +4222,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1756524928694106837, guid: d1eb841a6bba42544a1a9a60b2f4cb13, type: 3}
+      propertyPath: dialouge.sentaces.Array.data[0]
+      value: Be careful out there, Pan! I know you want to be a hunter, but you still
+        seem so young to be venturing into the wilderness...
+      objectReference: {fileID: 0}
     - target: {fileID: 1756524928694106838, guid: d1eb841a6bba42544a1a9a60b2f4cb13, type: 3}
       propertyPath: m_Name
       value: npcs_0
@@ -4123,6 +4252,10 @@ PrefabInstance:
       propertyPath: textBox
       value: 
       objectReference: {fileID: 513202304}
+    - target: {fileID: 7106445552057121497, guid: ee26c3b430e70df45aadd49d79613113, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7106445552057121498, guid: ee26c3b430e70df45aadd49d79613113, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -4167,6 +4300,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7106445552057121503, guid: ee26c3b430e70df45aadd49d79613113, type: 3}
+      propertyPath: dialouge.sentaces.Array.data[0]
+      value: There you are, lazy head! I hope those monsters didn't give you too
+        much trouble.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106445552057121503, guid: ee26c3b430e70df45aadd49d79613113, type: 3}
+      propertyPath: dialouge.sentaces.Array.data[1]
+      value: Remember the cordyceps that grow on the infected can also heal. I hope
+        you collected some!
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee26c3b430e70df45aadd49d79613113, type: 3}
 --- !u!1001 &8081420512829142580
@@ -4176,6 +4319,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8081420514114993824, guid: 41643b0fa8ab6b84fa039e33f711df0c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8081420514114993829, guid: 41643b0fa8ab6b84fa039e33f711df0c, type: 3}
       propertyPath: m_RootOrder
       value: 19

@@ -79903,6 +79903,10 @@ PrefabInstance:
       propertyPath: textBox
       value: 
       objectReference: {fileID: 1278593951}
+    - target: {fileID: 7106445552057121497, guid: ee26c3b430e70df45aadd49d79613113, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7106445552057121498, guid: ee26c3b430e70df45aadd49d79613113, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -79965,17 +79969,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7106445552057121503, guid: ee26c3b430e70df45aadd49d79613113, type: 3}
       propertyPath: dialouge.sentaces.Array.data[0]
-      value: Pan you lazyhead! It's our first offical day of being hunters and you're
-        already sleeping on the job! We're supposed to be looking out for monsters!
+      value: Pan, you lazy head! It's our first offical day of being hunters and
+        you're already sleeping on the job! We're supposed to be looking out for
+        monsters!
       objectReference: {fileID: 0}
     - target: {fileID: 7106445552057121503, guid: ee26c3b430e70df45aadd49d79613113, type: 3}
       propertyPath: dialouge.sentaces.Array.data[1]
-      value: Were you dreaming or something? I wonder if it's true what the elders
-        say about getting vsions from the gods when you first start hunting. But
-        why would the gods choose to talk to you of all satyrs?
+      value: 'Were you dreaming or something? I wonder if it''s true what the elders
+        say about getting visions from the gods when you first start hunting. But
+        why would the gods choose to talk to you of all satyrs? '
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee26c3b430e70df45aadd49d79613113, type: 3}
+--- !u!1 &1648837984 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7106445552057121492, guid: ee26c3b430e70df45aadd49d79613113, type: 3}
+  m_PrefabInstance: {fileID: 1648837983}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1648837985
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648837984}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.0243626, y: 21.978935}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 8.65, y: 20.069128}
+    newSize: {x: 15.563057, y: 23.130001}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 37.77647, y: 68.74466}
+  m_EdgeRadius: 0
 --- !u!1 &1656483954
 GameObject:
   m_ObjectHideFlags: 0

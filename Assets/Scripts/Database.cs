@@ -22,12 +22,13 @@ public class Database : MonoBehaviour
 
     public static Item GetItemByID(string ID)
     {
-        foreach(Item item in instance.items.allItems)
-        {
-            if (item.itemID == ID)
-                return item;
+        if (instance != null) {
+            foreach (Item item in instance.items.allItems)
+            {
+                if (item.itemID == ID)
+                    return item;
+            }
         }
-
         return null;
     }
 
