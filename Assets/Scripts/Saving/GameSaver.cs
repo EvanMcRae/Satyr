@@ -92,4 +92,15 @@ public class GameSaver : MonoBehaviour
             options = new OptionsSerialization(am);
         }
     }
+
+    // Saves game if player exists on application quit
+    private void OnApplicationQuit() {
+        if (Player.instance != null) {
+            SaveData data = new SaveData();
+            data.SetPlayer(Player.instance);
+            data.SetOptions(AudioManager.instance);
+            var dataToSave = JsonUtility.ToJson(data);
+            saveSystem.SaveData(dataToSave);
+        }
+    }
 }
