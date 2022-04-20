@@ -47,7 +47,7 @@ public class inventoryManager : MonoBehaviour
             inventory.position = new Vector3(inventory.position.x, isDisplayed ? anchor.position.y : 5000f, inventory.position.z);
         }
 
-        if (!PlayerMovement.paused && Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown("joystick button 7"))
+        if (!PlayerMovement.paused && Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown("joystick button 6"))
         {
             isDisplayed = !isDisplayed;
             Cursor.visible = isDisplayed;

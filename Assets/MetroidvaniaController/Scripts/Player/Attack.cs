@@ -121,7 +121,7 @@ public class Attack : MonoBehaviour
             // 	special_attack_hitbox.enabled = false;
             // }
 
-            if (Input.GetKeyUp(KeyCode.H) && cordyceps.count >= countToHeal && playerHealth.playerHealth < playerHealth.numberOfHearts)
+            if ((Input.GetKeyUp(KeyCode.H) || Input.GetKeyUp("joystick button 5")) && cordyceps.count >= countToHeal && playerHealth.playerHealth < playerHealth.numberOfHearts)
             {
                 playerHealth.playerHealth += 1;
                 cordyceps.count -= 5;
