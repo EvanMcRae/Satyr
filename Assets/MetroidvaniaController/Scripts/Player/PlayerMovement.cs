@@ -49,11 +49,15 @@ public class PlayerMovement : MonoBehaviour {
                 // fixes multi double jumping on rock platforms
                 if (Player.controller.isJumpingDJ && !Player.controller.canDoubleJump)
                     jump = false;
+                
+                // fixes jumping beneath low ceilings
+                if (Player.controller.m_Roofed)
+                    jump = false;
             }
 
             if ((Input.GetKey("space") || Input.GetKey("z") || Input.GetKey("joystick button 0")) && Player.controller.m_Grounded)
             {
-                if (Player.controller.jumpCooldown <= 0f && !Player.controller.isJumping && !Player.controller.isJumpingDJ)
+                if (!Player.controller.m_Roofed && Player.controller.jumpCooldown <= 0f && !Player.controller.isJumping && !Player.controller.isJumpingDJ)
                     jump = true;
 
                 //print("tries to reset point?");

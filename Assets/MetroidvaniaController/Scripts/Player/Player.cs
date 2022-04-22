@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField] public Transform m_GroundCheck;                            // A position marking where to check if the player is grounded.
     [SerializeField] public Transform m_LeftGroundCheck, m_RightGroundCheck;    // Positions marking where to check if the player is solidly grounded.
     [SerializeField] public Transform m_LowGroundCheck;                         // A position marking where to check if the player will be grounded.
+    [SerializeField] public Transform m_RoofCheck;                              // A position marking where to check if the player has a roof above them.
     [SerializeField] private Transform m_WallCheck;				                //Posicion que controla si el personaje toca una pared
     [SerializeField] private Transform m_FarWallCheck;
     [SerializeField] private AudioManager am;
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
 
     const float k_GroundedRadius = .12f; // Radius of the overlap circle to determine if grounded
     public bool m_Grounded;            // Whether or not the player is grounded.
+    public bool m_Roofed;               // Whether or not the player has a roof above them..
     public bool m_leftGrounded, m_rightGrounded; // Whether or not the player is solidly grounded.
     private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
@@ -410,6 +412,18 @@ public class Player : MonoBehaviour
             {
                 limitVelOnWallJump = false;
                 limitVelOnWallJumpCooldown = 0f;
+            }
+        }
+
+        // check roof
+        m_Roofed = false;
+        Collider2D[] roofColliders = Physics2D.OverlapCircleAll(m_RoofCheck.position, 0.3f, m_WhatIsGround);
+        for (int i = 0; i < roofColliders.Length; i++)
+        {
+            if (roofColliders[i].gameObject != gameObject && (roofColliders[i].gameObject.tag == "Ground" || roofColliders[i].gameObject.tag == "Wall"))
+            {
+                m_Roofed = true;
+                break;
             }
         }
 
