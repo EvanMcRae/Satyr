@@ -75,6 +75,11 @@ public class Attack : MonoBehaviour
                 StartCoroutine(AttackCooldown());
             }
 
+            if ((Input.GetKeyDown(KeyCode.K) || Input.GetMouseButtonDown(1)) && canShoot && shooting_Unlocked)
+            {
+                animator.SetBool("IsBowAttacking", true);
+            }
+
             if ((Input.GetKey(KeyCode.K) || Input.GetMouseButton(1)) && canShoot && shooting_Unlocked)
             {
                 if (shootStrength <= 5.0f) {
@@ -83,6 +88,7 @@ public class Attack : MonoBehaviour
             }
 
             if ((Input.GetKeyUp(KeyCode.K) || Input.GetMouseButtonUp(1)) && canShoot && shooting_Unlocked) {
+                
                 canShoot = false;
                 GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f, -0.2f), Quaternion.identity) as GameObject;
                 Vector2 direction = new Vector2(transform.localScale.x, 0);
@@ -94,6 +100,9 @@ public class Attack : MonoBehaviour
                 }
                 throwableWeapon.name = "ThrowableWeapon";
                 StartCoroutine(ShootCooldown());
+                shootStrength = 0.0f;
+                animator.SetBool("IsBowAttacking", false);
+                animator.SetBool("BowReleased", true);
             }
 
             if (Player.controller.specialAttack_Unlocked && !ReyaCutscene.cutscening && !Statue.cutscening && specialCooldown >= specialMaxCooldown && (Input.GetButton("Special")))
@@ -146,6 +155,8 @@ public class Attack : MonoBehaviour
     IEnumerator ShootCooldown()
     {
         yield return new WaitForSeconds(0.25f);
+        animator.SetBool("IsBowAttacking", false);
+        animator.SetBool("BowReleased", false);
         canShoot = true;
     }
 
