@@ -57,7 +57,7 @@ public class Attack : MonoBehaviour
             if (specialCooldown < specialMaxCooldown)
                 specialCooldown += Time.deltaTime;
 
-            if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetMouseButtonDown(0) || Input.GetKeyDown("joystick button 2")) && canAttack)
+            if (Input.GetButton("Attack") && canAttack)
             {
                 currentAttackCheck = attackCheck;
                 if (Input.GetAxisRaw("Vertical") < -0.3)
@@ -89,7 +89,7 @@ public class Attack : MonoBehaviour
                 StartCoroutine(ShootCooldown());
             }
 
-            if (Player.controller.specialAttack_Unlocked && !ReyaCutscene.cutscening && !Statue.cutscening && specialCooldown >= specialMaxCooldown && (Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown("joystick button 3") || Input.GetKeyDown(KeyCode.C)))
+            if (Player.controller.specialAttack_Unlocked && !ReyaCutscene.cutscening && !Statue.cutscening && specialCooldown >= specialMaxCooldown && (Input.GetButton("Special")))
             {
                 particleSpecialAttack.Play();
                 specialCooldown = 0.0f;
@@ -121,7 +121,7 @@ public class Attack : MonoBehaviour
             // 	special_attack_hitbox.enabled = false;
             // }
 
-            if ((Input.GetKeyUp(KeyCode.H) || Input.GetKeyUp("joystick button 5") || Input.GetKeyUp(KeyCode.A)) && cordyceps.count >= countToHeal && playerHealth.playerHealth < playerHealth.numberOfHearts)
+            if ((Input.GetKeyUp(KeyCode.H) || Input.GetKeyUp("joystick button 5") || Input.GetKeyUp(KeyCode.V)) && cordyceps.count >= countToHeal && playerHealth.playerHealth < playerHealth.numberOfHearts)
             {
                 playerHealth.playerHealth += 1;
                 cordyceps.count -= 5;
