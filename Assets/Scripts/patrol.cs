@@ -40,8 +40,8 @@ public class patrol : Enemy
     {
         target = Player.instance.transform;
 
-        // collision with player depends on player's invincible state
-        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), Player.instance.GetComponent<Collider2D>(), Player.controller.invincible || Player.controller.isDashing || Statue.cutscening || Player.controller.resetting || Player.controller.dead);
+        // ignore collision with player depending on several factors
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), Player.instance.GetComponent<Collider2D>(), dead || Player.controller.invincible || Player.controller.isDashing || Statue.cutscening || Player.controller.resetting || Player.controller.dead || !Player.instance.GetComponent<Attack>().canAttack);
 
         // if (Input.GetKeyDown(KeyCode.T))
         // {
