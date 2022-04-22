@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour {
 
             animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-            if (Input.GetButton("Jump"))
+            if (Input.GetButtonDown("Jump"))
             {
                 if (((Player.controller.m_IsFarWall || Player.controller.isWallSliding) && Player.controller.wallSlide_Unlocked) || Player.controller.beenOnLand >= 0.05f || Player.controller.lastOnLand < 0.15f || Player.controller.canDoubleJump)
                     jump = true;
@@ -52,15 +52,11 @@ public class PlayerMovement : MonoBehaviour {
                 // fixes multi double jumping on rock platforms
                 if (Player.controller.isJumpingDJ && !Player.controller.canDoubleJump)
                     jump = false;
-                
-                // fixes jumping beneath low ceilings
-                if (Player.controller.m_Roofed)
-                    jump = false;
             }
 
             if (Input.GetButton("Jump") && Player.controller.m_Grounded)
             {
-                if (!Player.controller.m_Roofed && Player.controller.jumpCooldown <= 0f && !Player.controller.isJumping && !Player.controller.isJumpingDJ)
+                if (Player.controller.jumpCooldown <= 0f && !Player.controller.isJumping && !Player.controller.isJumpingDJ)
                     jump = true;
 
                 //print("tries to reset point?");

@@ -25,7 +25,7 @@ public class ThrowableWeapon : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Enemy")
 		{
-			collision.gameObject.SendMessage("ApplyDamage", Mathf.Sign(direction.x) * 2f);
+			collision.gameObject.GetComponent<Enemy>().ApplyDamage(Mathf.Sign(direction.x) * 2f, 1f);
 			Destroy(gameObject);
 		}
 		else if (collision.gameObject.tag != "Player")

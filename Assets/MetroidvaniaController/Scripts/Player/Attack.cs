@@ -24,6 +24,7 @@ public class Attack : MonoBehaviour
     public GameObject cam;
 
     public bool shooting_Unlocked = false;
+    public float shootStrength = 0.0f;
 
     //public SpecialBar specialBar;
     public float specialCooldown = 0.0f;
@@ -74,8 +75,14 @@ public class Attack : MonoBehaviour
                 StartCoroutine(AttackCooldown());
             }
 
-            if ((Input.GetKeyDown(KeyCode.V) || Input.GetMouseButtonDown(1)) && canShoot && shooting_Unlocked)
+            if ((Input.GetKey(KeyCode.K) || Input.GetMouseButton(1)) && canShoot && shooting_Unlocked)
             {
+                if (shootStrength <= 5.0f) {
+                    shootStrength += Time.deltaTime;
+                }
+            }
+
+            if ((Input.GetKeyUp(KeyCode.K) || Input.GetMouseButtonUp(1)) && canShoot && shooting_Unlocked) {
                 canShoot = false;
                 GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f, -0.2f), Quaternion.identity) as GameObject;
                 Vector2 direction = new Vector2(transform.localScale.x, 0);
@@ -138,7 +145,7 @@ public class Attack : MonoBehaviour
 
     IEnumerator ShootCooldown()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.25f);
         canShoot = true;
     }
 
