@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour {
 
             animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetButton("Jump"))
             {
                 if (((Player.controller.m_IsFarWall || Player.controller.isWallSliding) && Player.controller.wallSlide_Unlocked) || Player.controller.beenOnLand >= 0.05f || Player.controller.lastOnLand < 0.15f || Player.controller.canDoubleJump)
                     jump = true;
@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour {
                     jump = false;
             }
 
-            if ((Input.GetKey("space") || Input.GetKey("z") || Input.GetKey("joystick button 0")) && Player.controller.m_Grounded)
+            if (Input.GetButton("Jump") && Player.controller.m_Grounded)
             {
                 if (!Player.controller.m_Roofed && Player.controller.jumpCooldown <= 0f && !Player.controller.isJumping && !Player.controller.isJumpingDJ)
                     jump = true;
@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour {
                 // Player.controller.reset_point.position = Player.controller.m_GroundCheck.position;
             }
 
-            if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp("z") || Input.GetKeyUp("joystick button 0"))
+            if (Input.GetButtonUp("Jump"))
             {
                 releaseJump = true;
                 Player.controller.jumpCooldown = 0f;

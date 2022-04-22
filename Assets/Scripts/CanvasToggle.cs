@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class CanvasToggle : MonoBehaviour
 {
     public Camera cam;
     private Canvas canvas;
     private GameObject[] pauseText;
+    public GameObject pauseFirstButton;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,8 @@ public class CanvasToggle : MonoBehaviour
     }
 
     public void Pause() {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(pauseFirstButton);
         canvas.worldCamera = cam;
         canvas.renderMode = RenderMode.ScreenSpaceCamera;
         foreach (GameObject p in pauseText)
