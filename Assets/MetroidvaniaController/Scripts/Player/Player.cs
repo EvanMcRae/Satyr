@@ -237,7 +237,8 @@ public class Player : MonoBehaviour
                     }
                 }
             }
-            else if (colliders[i].gameObject != gameObject && (colliders[i].gameObject.tag == "Ground" || colliders[i].gameObject.tag == "Wall" || colliders[i].gameObject.tag == "Breakable Wall" || colliders[i].gameObject.tag == "GroundNoSlide")) {
+            else if (colliders[i].gameObject != gameObject && (colliders[i].gameObject.tag == "Ground" || colliders[i].gameObject.tag == "Wall" || colliders[i].gameObject.tag == "Breakable Wall" || colliders[i].gameObject.tag == "GroundNoSlide")) 
+            {
                 m_Grounded = true;
                 lastOnLand = 0f;
                 canDoubleJump = false;
