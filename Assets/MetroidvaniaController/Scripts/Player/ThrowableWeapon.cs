@@ -17,7 +17,9 @@ public class ThrowableWeapon : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-		if ( !hasHit)
+        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), Player.instance.GetComponent<Collider2D>(), true);
+		
+        if ( !hasHit)
 		GetComponent<Rigidbody2D>().velocity = direction * speed;
 	}
 
@@ -25,12 +27,20 @@ public class ThrowableWeapon : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Enemy")
 		{
+            hasHit = true;
 			collision.gameObject.GetComponent<Enemy>().ApplyDamage(Mathf.Sign(direction.x) * 2f, 1f);
-			Destroy(gameObject);
+            Destroy(gameObject);
 		}
 		else if (collision.gameObject.tag != "Player")
 		{
-			Destroy(gameObject);
+            hasHit = true;
+			StartCoroutine(KillArrow());
 		}
 	}
+
+    IEnumerator KillArrow() {
+        GetComponent<Rigidbody2D>().simulated = false;
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
+    }
 }
