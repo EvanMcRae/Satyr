@@ -30,7 +30,7 @@ public class GameSaver : MonoBehaviour
 
     public void LoadGame()
     {
-        if (!loading && !changeScene.changingScene && !Statue.cutscening) {
+        if (!loading) { // load game can only happen from menu
             if (Player.controller == null) {
                 StartCoroutine(LoadSaveFile()); 
             } else if (!Player.controller.resetting && !Player.controller.dead) {

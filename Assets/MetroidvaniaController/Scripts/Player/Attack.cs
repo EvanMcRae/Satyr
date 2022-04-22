@@ -89,7 +89,7 @@ public class Attack : MonoBehaviour
                 StartCoroutine(ShootCooldown());
             }
 
-            if (Player.controller.specialAttack_Unlocked && !Statue.cutscening && specialCooldown >= specialMaxCooldown && (Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown("joystick button 3") || Input.GetKeyDown(KeyCode.C)))
+            if (Player.controller.specialAttack_Unlocked && !ReyaCutscene.cutscening && !Statue.cutscening && specialCooldown >= specialMaxCooldown && (Input.GetKeyDown(KeyCode.Y) || Input.GetKeyDown("joystick button 3") || Input.GetKeyDown(KeyCode.C)))
             {
                 particleSpecialAttack.Play();
                 specialCooldown = 0.0f;

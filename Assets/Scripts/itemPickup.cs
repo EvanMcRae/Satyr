@@ -6,7 +6,7 @@ public class itemPickup : MonoBehaviour
 {
     public Item thisItem;
     Item item;
-    bool playerIsInRange = false;
+    public bool playerIsInRange = false;
     string labelText = "";
     // Start is called before the first frame update
     void Start()
@@ -34,6 +34,7 @@ public class itemPickup : MonoBehaviour
                 else if (item.itemID == "10")
                 {
                     Player.controller.specialAttack_Unlocked = true;
+                    GameObject.FindObjectOfType<ReyaCutscene>().StartCutscene();
                 }
                 else if (item.itemID == "3")
                 {

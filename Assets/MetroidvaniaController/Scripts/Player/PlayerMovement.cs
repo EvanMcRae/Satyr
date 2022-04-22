@@ -39,6 +39,9 @@ public class PlayerMovement : MonoBehaviour {
                 horizontalMove = 0f;
             }
 
+            if (!Player.controller.canMove)
+                horizontalMove = 0f;
+
             animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
             if (Input.GetButton("Jump"))

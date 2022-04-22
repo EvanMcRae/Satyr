@@ -69,6 +69,16 @@ public class CameraFollow : MonoBehaviour
             transform.position = originalPos;
             zoom = 4.0f;
         }
+        else if (ReyaCutscene.cutscening)
+        {
+            // special behavior here
+            // Target = 
+            Vector3 newPosition = Target.position;
+            newPosition.z = -10;
+            originalPos = Vector3.Lerp(originalPos, newPosition, FollowSpeed * Time.deltaTime);
+            transform.position = originalPos;
+            zoom = 4.0f;
+        }
         else
         {
             zoom = 7.0f;
@@ -160,6 +170,11 @@ public class CameraFollow : MonoBehaviour
 		originalPos = transform.position;
 		shakeDuration = duration;
 	}
+
+    public void SetShakeAmount(float amount)
+    {
+        shakeAmount = amount;
+    }
 
     public void Snap(Vector3 position)
     {

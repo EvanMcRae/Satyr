@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
     public float life = 10f; //Life of the player
     public bool invincible = false; //If player can die
     public bool dead = false; // Dead status
-    private bool canMove = true; //If player can move
+    public bool canMove = true; //If player can move
     public bool isJumping = false;
     public bool isJumpingDJ = false;
     public bool resetting = false;
@@ -88,6 +88,7 @@ public class Player : MonoBehaviour
     // one time events
     public bool explorer = false;
     public bool initialFall = false;
+    public bool reya = true; // TODO figure out how to implement this with cutscene
 
     public PhysicsMaterial2D slippery, friction;
 
@@ -427,7 +428,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        // Prevent jumping off screen during cutscenes
+        // Prevent jumping off screen during statue cutscenes
         if (Statue.cutscening)
         {
             if (transform.position.y >= (Statue.currStatue.position.y + 1.75f) && m_Rigidbody2D.velocity.y > 0)
@@ -467,7 +468,7 @@ public class Player : MonoBehaviour
             if (speedBoost)
             {
                 m_Rigidbody2D.velocity = new Vector2(transform.localScale.x * m_DashForce, 0);
-                // Prevent moving off screen during cutscenes
+                // Prevent moving off screen during statue cutscenes
                 if (Statue.cutscening)
                 {
                     if (transform.position.x <= (Statue.currStatue.position.x - 6.5f) && m_Rigidbody2D.velocity.x < 0)
@@ -497,7 +498,7 @@ public class Player : MonoBehaviour
                         targetVelocity.x = newX;
                 }
 
-                // Prevent moving off screen during cutscenes
+                // Prevent moving off screen during statue cutscenes
                 if (Statue.cutscening)
                 {
                     if (transform.position.x <= (Statue.currStatue.position.x - 6.5f) && targetVelocity.x < 0)
@@ -705,7 +706,7 @@ public class Player : MonoBehaviour
                 // if (doubleJump_Unlocked) { canDoubleJump = true; }
             }
         }
-        else if (!dead && !resetting) // fix being stuck unable to move
+        else if (!dead && !resetting && !ReyaCutscene.cutscening) // fix being stuck unable to move
         {
             cantMove += 0.01f;
             if (cantMove > stunDuration)
