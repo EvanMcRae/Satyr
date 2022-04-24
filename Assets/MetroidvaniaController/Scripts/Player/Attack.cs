@@ -15,6 +15,7 @@ public class Attack : MonoBehaviour
     public Animator animator;
     public bool canAttack = true;
     public bool canShoot = true;
+    private bool shotDuringPause = false;
     public bool isTimeToCheck = false;
     public ParticleSystem particleAttack;
     public ParticleSystem particleSpecialAttack;
@@ -98,7 +99,7 @@ public class Attack : MonoBehaviour
                 }
             }
 
-            if ((Input.GetKeyUp(KeyCode.K) || Input.GetMouseButtonUp(1)) && canShoot && shooting_Unlocked)
+            if (((Input.GetKeyUp(KeyCode.K) || Input.GetMouseButtonUp(1)) && canShoot && shooting_Unlocked) || shotDuringPause)
             {
                 if (shootStrength >= 0.25f)
                 {
@@ -117,6 +118,7 @@ public class Attack : MonoBehaviour
                     throwableWeapon.name = "ThrowableWeapon";
                 }
                 shootStrength = 0.0f;
+                shotDuringPause = false;
                 StartCoroutine(ShootCooldown());
                 animator.SetBool("IsBowAttacking", false);
                 animator.SetBool("BowReleased", true);
@@ -158,6 +160,17 @@ public class Attack : MonoBehaviour
             {
                 playerHealth.playerHealth += 1;
                 cordyceps.count -= 5;
+            }
+        }
+        else
+        {
+            if ((Input.GetKeyUp(KeyCode.K) || Input.GetMouseButtonUp(1)) && canShoot && shooting_Unlocked)
+            {
+                shotDuringPause = true;   
+            }
+            if ((Input.GetKeyDown(KeyCode.K) || Input.GetMouseButtonDown(1)) && canShoot && shooting_Unlocked)
+            {
+                shotDuringPause = false;
             }
         }
     }
