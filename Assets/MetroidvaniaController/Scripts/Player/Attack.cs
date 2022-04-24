@@ -77,30 +77,42 @@ public class Attack : MonoBehaviour
 
             if ((Input.GetKeyDown(KeyCode.K) || Input.GetMouseButtonDown(1)) && canShoot && shooting_Unlocked)
             {
+                Player.controller.canMove = false;
+                var velocity = GetComponent<Rigidbody2D>().velocity;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(0, velocity.y);
                 animator.SetBool("IsBowAttacking", true);
             }
 
             if ((Input.GetKey(KeyCode.K) || Input.GetMouseButton(1)) && canShoot && shooting_Unlocked)
             {
+                if (!animator.GetBool("IsBowAttacking"))
+                {
+                    animator.SetBool("IsBowAttacking", true);
+                }
+                Player.controller.canMove = false;
+                var velocity = GetComponent<Rigidbody2D>().velocity;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(0, velocity.y);
                 if (shootStrength <= 5.0f) {
                     shootStrength += Time.deltaTime;
                 }
             }
 
             if ((Input.GetKeyUp(KeyCode.K) || Input.GetMouseButtonUp(1)) && canShoot && shooting_Unlocked) {
-                
-                canShoot = false;
-                GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f, -0.2f), Quaternion.identity) as GameObject;
-                Vector2 direction = new Vector2(transform.localScale.x, 0);
-                throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction;
-                print(direction);
-                if (direction.x < 0)
+                if (shootStrength >= 0.25f)
                 {
-                    throwableWeapon.GetComponent<SpriteRenderer>().flipX = true;
+                    canShoot = false;
+                    GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f, -0.2f), Quaternion.identity) as GameObject;
+                    Vector2 direction = new Vector2(transform.localScale.x, 0);
+                    throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction;
+                    print(direction);
+                    if (direction.x < 0)
+                    {
+                        throwableWeapon.GetComponent<SpriteRenderer>().flipX = true;
+                    }
+                    throwableWeapon.name = "ThrowableWeapon";
                 }
-                throwableWeapon.name = "ThrowableWeapon";
-                StartCoroutine(ShootCooldown());
                 shootStrength = 0.0f;
+                StartCoroutine(ShootCooldown());
                 animator.SetBool("IsBowAttacking", false);
                 animator.SetBool("BowReleased", true);
             }
@@ -157,6 +169,7 @@ public class Attack : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         animator.SetBool("IsBowAttacking", false);
         animator.SetBool("BowReleased", false);
+        Player.controller.canMove = true;
         canShoot = true;
     }
 
