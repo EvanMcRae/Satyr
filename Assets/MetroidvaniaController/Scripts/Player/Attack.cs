@@ -110,6 +110,9 @@ public class Attack : MonoBehaviour
                     if (direction.x < 0)
                     {
                         throwableWeapon.GetComponent<SpriteRenderer>().flipX = true;
+                        var x = throwableWeapon.GetComponent<BoxCollider2D>().offset.x;
+                        var y = throwableWeapon.GetComponent<BoxCollider2D>().offset.y;
+                        throwableWeapon.GetComponent<BoxCollider2D>().offset = new Vector2(-x, y);
                     }
                     throwableWeapon.name = "ThrowableWeapon";
                 }
