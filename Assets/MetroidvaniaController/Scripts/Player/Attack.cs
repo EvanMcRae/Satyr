@@ -58,7 +58,7 @@ public class Attack : MonoBehaviour
             if (specialCooldown < specialMaxCooldown)
                 specialCooldown += Time.deltaTime;
 
-            if (Input.GetButton("Attack") && canAttack)
+            if (Input.GetButton("Attack") && canAttack && shootStrength <= 0.0f)
             {
                 currentAttackCheck = attackCheck;
                 if (Input.GetAxisRaw("Vertical") < -0.3)
@@ -92,12 +92,14 @@ public class Attack : MonoBehaviour
                 Player.controller.canMove = false;
                 var velocity = GetComponent<Rigidbody2D>().velocity;
                 GetComponent<Rigidbody2D>().velocity = new Vector2(0, velocity.y);
-                if (shootStrength <= 5.0f) {
+                if (shootStrength <= 5.0f)
+                {
                     shootStrength += Time.deltaTime;
                 }
             }
 
-            if ((Input.GetKeyUp(KeyCode.K) || Input.GetMouseButtonUp(1)) && canShoot && shooting_Unlocked) {
+            if ((Input.GetKeyUp(KeyCode.K) || Input.GetMouseButtonUp(1)) && canShoot && shooting_Unlocked)
+            {
                 if (shootStrength >= 0.25f)
                 {
                     canShoot = false;
@@ -117,7 +119,7 @@ public class Attack : MonoBehaviour
                 animator.SetBool("BowReleased", true);
             }
 
-            if (Player.controller.specialAttack_Unlocked && !ReyaCutscene.cutscening && !Statue.cutscening && specialCooldown >= specialMaxCooldown && (Input.GetButton("Special")))
+            if (Player.controller.specialAttack_Unlocked && !ReyaCutscene.cutscening && !Statue.cutscening && specialCooldown >= specialMaxCooldown && Input.GetButton("Special") && shootStrength <= 0.0f)
             {
                 particleSpecialAttack.Play();
                 specialCooldown = 0.0f;
