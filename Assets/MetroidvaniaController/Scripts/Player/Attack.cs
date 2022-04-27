@@ -93,7 +93,7 @@ public class Attack : MonoBehaviour
                 Player.controller.canMove = false;
                 var velocity = GetComponent<Rigidbody2D>().velocity;
                 GetComponent<Rigidbody2D>().velocity = new Vector2(0, velocity.y);
-                if (shootStrength <= 5.0f)
+                if (shootStrength <= 1.0f)
                 {
                     shootStrength += Time.deltaTime;
                 }
@@ -104,10 +104,11 @@ public class Attack : MonoBehaviour
                 if (shootStrength >= 0.25f)
                 {
                     canShoot = false;
-                    GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f, -0.2f), Quaternion.identity) as GameObject;
-                    Vector2 direction = new Vector2(transform.localScale.x, 0);
+                    GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f, 0.2f), Quaternion.identity) as GameObject;
+                    Vector2 direction = new Vector2(transform.localScale.x, 0.25f);
                     throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction;
-                    print(direction);
+                    throwableWeapon.GetComponent<ThrowableWeapon>().speed = 20f*(shootStrength+0.1f);
+                    throwableWeapon.GetComponent<ThrowableWeapon>().rotation = 45f;
                     if (direction.x < 0)
                     {
                         throwableWeapon.GetComponent<SpriteRenderer>().flipX = true;
