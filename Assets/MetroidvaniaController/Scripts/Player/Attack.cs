@@ -102,10 +102,10 @@ public class Attack : MonoBehaviour
                 }
 
                 if (Input.GetAxisRaw("Vertical") > 0.5 && verticalAim < 2.0f)
-                    verticalAim += 0.004f;
+                    verticalAim += Time.deltaTime;
 
                 if (Input.GetAxisRaw("Vertical") < -0.5 && verticalAim > -2.0f)
-                    verticalAim -= 0.004f;
+                    verticalAim -= Time.deltaTime;
 
                 Vector2 direction = new Vector2(transform.localScale.x, verticalAim);
                 float speed = 20f * (shootStrength + 0.1f);
