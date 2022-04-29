@@ -15,11 +15,7 @@ public class ThrowableWeapon : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = 2.4f * direction * speed;
-        // rb.AddForce(direction*speed*100f);
-        rb.AddTorque(-30*Mathf.Sign(direction.x));
-        rb.SetRotation(rotation*Mathf.Sign(direction.x));
-
-        // rb.centerOfMass = new Vector2(3.0f, 0.0f);
+        rb.SetRotation(Quaternion.LookRotation(rb.velocity));
     }
 
 
@@ -27,7 +23,8 @@ public class ThrowableWeapon : MonoBehaviour
     void FixedUpdate()
     {
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), Player.instance.GetComponent<Collider2D>(), true);
-	}
+        rb.SetRotation(Quaternion.LookRotation(rb.velocity));
+    }
 
 	void OnCollisionEnter2D(Collision2D collision)
 	{

@@ -109,7 +109,7 @@ public class Attack : MonoBehaviour
 
                 Vector2 direction = new Vector2(transform.localScale.x, verticalAim);
                 float speed = 20f * (shootStrength + 0.1f);
-                Vector2 force = direction * speed;
+                Vector2 force = 2.4f * direction * speed;
                 if (shootStrength >= 0.25f)
                 {
                     GetComponentInChildren<Trajectory>().Show();
@@ -124,9 +124,11 @@ public class Attack : MonoBehaviour
                     canShoot = false;
                     GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f, 0.2f), Quaternion.identity) as GameObject;
                     Vector2 direction = new Vector2(transform.localScale.x, verticalAim);
+                    float speed = 20f * (shootStrength + 0.1f);
+
                     throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction;
-                    throwableWeapon.GetComponent<ThrowableWeapon>().speed = 20f*(shootStrength+0.1f);
-                    throwableWeapon.GetComponent<ThrowableWeapon>().rotation = 40f + verticalAim * 20;
+                    throwableWeapon.GetComponent<ThrowableWeapon>().speed = speed;
+
                     if (direction.x < 0)
                     {
                         throwableWeapon.GetComponent<SpriteRenderer>().flipX = true;
@@ -134,6 +136,7 @@ public class Attack : MonoBehaviour
                         var y = throwableWeapon.GetComponent<BoxCollider2D>().offset.y;
                         throwableWeapon.GetComponent<BoxCollider2D>().offset = new Vector2(-x, y);
                     }
+
                     throwableWeapon.name = "ThrowableWeapon";
                 }
                 shootStrength = 0.0f;
