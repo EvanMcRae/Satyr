@@ -127,7 +127,6 @@ public class Attack : MonoBehaviour
                     throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction;
                     throwableWeapon.GetComponent<ThrowableWeapon>().speed = 20f*(shootStrength+0.1f);
                     throwableWeapon.GetComponent<ThrowableWeapon>().rotation = 40f + verticalAim * 20;
-                    Debug.Log(throwableWeapon.GetComponent<ThrowableWeapon>().rotation);
                     if (direction.x < 0)
                     {
                         throwableWeapon.GetComponent<SpriteRenderer>().flipX = true;
