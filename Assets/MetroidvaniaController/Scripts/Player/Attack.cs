@@ -79,7 +79,7 @@ public class Attack : MonoBehaviour
                 StartCoroutine(AttackCooldown());
             }
 
-            if ((Input.GetKeyDown(KeyCode.K) || Input.GetMouseButtonDown(1)) && canShoot && shooting_Unlocked)
+            if (!Player.controller.m_IsWall && (Input.GetKeyDown(KeyCode.K) || Input.GetMouseButtonDown(1)) && canShoot && shooting_Unlocked)
             {
                 Player.controller.canMove = false;
                 var velocity = GetComponent<Rigidbody2D>().velocity;
@@ -87,7 +87,7 @@ public class Attack : MonoBehaviour
                 animator.SetBool("IsBowAttacking", true);
             }
 
-            if ((Input.GetKey(KeyCode.K) || Input.GetMouseButton(1)) && canShoot && shooting_Unlocked)
+            if (!Player.controller.m_IsWall && (Input.GetKey(KeyCode.K) || Input.GetMouseButton(1)) && canShoot && shooting_Unlocked)
             {
                 if (!animator.GetBool("IsBowAttacking"))
                 {

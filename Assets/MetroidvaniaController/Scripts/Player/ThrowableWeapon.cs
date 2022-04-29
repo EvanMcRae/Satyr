@@ -23,7 +23,8 @@ public class ThrowableWeapon : MonoBehaviour
     void FixedUpdate()
     {
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), Player.instance.GetComponent<Collider2D>(), true);
-        rb.SetRotation(Quaternion.LookRotation(rb.velocity));
+        if (rb.velocity != Vector2.zero)
+            rb.SetRotation(Quaternion.LookRotation(rb.velocity));
     }
 
 	void OnCollisionEnter2D(Collision2D collision)
