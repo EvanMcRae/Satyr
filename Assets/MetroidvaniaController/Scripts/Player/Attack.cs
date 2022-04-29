@@ -20,12 +20,15 @@ public class Attack : MonoBehaviour
     public ParticleSystem particleAttack;
     public ParticleSystem particleSpecialAttack;
 
+    Vector2 startPoint, endPoint; // for arrow trajectory calculation
+
     public List<Collider2D> ignoredEnemies = new List<Collider2D>();
 
     public GameObject cam;
 
     public bool shooting_Unlocked = false;
     public float shootStrength = 0.0f;
+    public float verticalAim = 0.25f;
 
     //public SpecialBar specialBar;
     public float specialCooldown = 0.0f;
@@ -97,6 +100,21 @@ public class Attack : MonoBehaviour
                 {
                     shootStrength += Time.deltaTime;
                 }
+
+                if (Input.GetAxisRaw("Vertical") > 0.5 && verticalAim < 2.0f)
+                    verticalAim += 0.004f;
+
+                if (Input.GetAxisRaw("Vertical") < -0.5 && verticalAim > -2.0f)
+                    verticalAim -= 0.004f;
+
+                Vector2 direction = new Vector2(transform.localScale.x, verticalAim);
+                float speed = 20f * (shootStrength + 0.1f);
+                Vector2 force = direction * speed;
+                if (shootStrength >= 0.25f)
+                {
+                    GetComponentInChildren<Trajectory>().Show();
+                    GetComponentInChildren<Trajectory>().UpdateDots(force);
+                }
             }
 
             if (((Input.GetKeyUp(KeyCode.K) || Input.GetMouseButtonUp(1)) && canShoot && shooting_Unlocked) || shotDuringPause)
@@ -105,10 +123,11 @@ public class Attack : MonoBehaviour
                 {
                     canShoot = false;
                     GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f, 0.2f), Quaternion.identity) as GameObject;
-                    Vector2 direction = new Vector2(transform.localScale.x, 0.25f);
+                    Vector2 direction = new Vector2(transform.localScale.x, verticalAim);
                     throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction;
                     throwableWeapon.GetComponent<ThrowableWeapon>().speed = 20f*(shootStrength+0.1f);
-                    throwableWeapon.GetComponent<ThrowableWeapon>().rotation = 45f;
+                    throwableWeapon.GetComponent<ThrowableWeapon>().rotation = 40f + verticalAim * 20;
+                    Debug.Log(throwableWeapon.GetComponent<ThrowableWeapon>().rotation);
                     if (direction.x < 0)
                     {
                         throwableWeapon.GetComponent<SpriteRenderer>().flipX = true;
@@ -119,10 +138,12 @@ public class Attack : MonoBehaviour
                     throwableWeapon.name = "ThrowableWeapon";
                 }
                 shootStrength = 0.0f;
+                verticalAim = 0.25f;
                 shotDuringPause = false;
                 StartCoroutine(ShootCooldown());
                 animator.SetBool("IsBowAttacking", false);
                 animator.SetBool("BowReleased", true);
+                GetComponentInChildren<Trajectory>().Hide();
             }
 
             if (Player.controller.specialAttack_Unlocked && !ReyaCutscene.cutscening && !Statue.cutscening && specialCooldown >= specialMaxCooldown && Input.GetButton("Special") && shootStrength <= 0.0f)
