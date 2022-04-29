@@ -115,6 +115,8 @@ public class Attack : MonoBehaviour
                     GetComponentInChildren<Trajectory>().Show();
                     GetComponentInChildren<Trajectory>().UpdateDots(force);
                 }
+
+                GetComponent<CapsuleCollider2D>().sharedMaterial = Player.controller.friction;
             }
 
             if (((Input.GetKeyUp(KeyCode.K) || Input.GetMouseButtonUp(1)) && canShoot && shooting_Unlocked) || shotDuringPause)
