@@ -11,7 +11,7 @@ public class Trajectory : MonoBehaviour
     [SerializeField][Range(0.01f, 0.3f)] float dotMinScale;
     [SerializeField][Range(0.3f, 1f)] float dotMaxScale;
     [SerializeField] float airDrag = 3f;
-    [SerializeField] float gravityScale = 1f;
+    [SerializeField] float gravityScale = 4f;
     [SerializeField] private LayerMask m_WhatIsGround;
 
     Transform[] dotsList;
@@ -47,19 +47,22 @@ public class Trajectory : MonoBehaviour
     public void UpdateDots(Vector2 forceApplied)
     {
         timeStamp = dotSpacing;
-        float dragFactor;
         bool hitSpot = false;
+
+        float timeIncrement = Time.fixedDeltaTime;
+
+        Vector2 velocity = forceApplied;
+        pos = transform.position;
+
         for (int i = 0; i < dotsNumber; i++)
         {
             if (!hitSpot)
             {
                 dotsList[i].gameObject.SetActive(true);
-                pos.x = transform.position.x + forceApplied.x * timeStamp;
-                pos.y = transform.position.y + forceApplied.y * timeStamp - Physics2D.gravity.magnitude * gravityScale * timeStamp * timeStamp / 2f;
-                dragFactor = (airDrag - airDrag * timeStamp * dotSpacing) / airDrag;
-                pos *= dragFactor;
+                velocity += (Physics2D.gravity * gravityScale) * timeIncrement * dotSpacing;
+                velocity *= Mathf.Clamp01(1f - airDrag * timeIncrement * dotSpacing);
+                pos += velocity * timeIncrement * dotSpacing;
                 dotsList[i].transform.position = pos;
-                timeStamp += dotSpacing;
 
                 Collider2D[] colliders = Physics2D.OverlapCircleAll(pos, dotsList[i].localScale.x, m_WhatIsGround);
                 foreach (Collider2D c in colliders) 

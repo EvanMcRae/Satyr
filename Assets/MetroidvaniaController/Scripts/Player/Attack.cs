@@ -79,7 +79,7 @@ public class Attack : MonoBehaviour
                 StartCoroutine(AttackCooldown());
             }
 
-            if ((Input.GetKeyDown(KeyCode.K) || Input.GetMouseButtonDown(1)) && canShoot && shooting_Unlocked)
+            if (!Player.controller.m_IsWall && (Input.GetKeyDown(KeyCode.K) || Input.GetMouseButtonDown(1)) && canShoot && shooting_Unlocked)
             {
                 Player.controller.canMove = false;
                 var velocity = GetComponent<Rigidbody2D>().velocity;
@@ -87,7 +87,7 @@ public class Attack : MonoBehaviour
                 animator.SetBool("IsBowAttacking", true);
             }
 
-            if ((Input.GetKey(KeyCode.K) || Input.GetMouseButton(1)) && canShoot && shooting_Unlocked)
+            if (!Player.controller.m_IsWall && (Input.GetKey(KeyCode.K) || Input.GetMouseButton(1)) && canShoot && shooting_Unlocked)
             {
                 if (!animator.GetBool("IsBowAttacking"))
                 {
@@ -102,19 +102,21 @@ public class Attack : MonoBehaviour
                 }
 
                 if (Input.GetAxisRaw("Vertical") > 0.5 && verticalAim < 2.0f)
-                    verticalAim += 0.004f;
+                    verticalAim += Time.deltaTime;
 
                 if (Input.GetAxisRaw("Vertical") < -0.5 && verticalAim > -2.0f)
-                    verticalAim -= 0.004f;
+                    verticalAim -= Time.deltaTime;
 
                 Vector2 direction = new Vector2(transform.localScale.x, verticalAim);
                 float speed = 20f * (shootStrength + 0.1f);
-                Vector2 force = direction * speed;
+                Vector2 force = 2.4f * direction * speed;
                 if (shootStrength >= 0.25f)
                 {
                     GetComponentInChildren<Trajectory>().Show();
                     GetComponentInChildren<Trajectory>().UpdateDots(force);
                 }
+
+                GetComponent<CapsuleCollider2D>().sharedMaterial = Player.controller.friction;
             }
 
             if (((Input.GetKeyUp(KeyCode.K) || Input.GetMouseButtonUp(1)) && canShoot && shooting_Unlocked) || shotDuringPause)
@@ -124,9 +126,11 @@ public class Attack : MonoBehaviour
                     canShoot = false;
                     GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f, 0.2f), Quaternion.identity) as GameObject;
                     Vector2 direction = new Vector2(transform.localScale.x, verticalAim);
+                    float speed = 20f * (shootStrength + 0.1f);
+
                     throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction;
-                    throwableWeapon.GetComponent<ThrowableWeapon>().speed = 20f*(shootStrength+0.1f);
-                    throwableWeapon.GetComponent<ThrowableWeapon>().rotation = 40f + verticalAim * 20;
+                    throwableWeapon.GetComponent<ThrowableWeapon>().speed = speed;
+
                     if (direction.x < 0)
                     {
                         throwableWeapon.GetComponent<SpriteRenderer>().flipX = true;
@@ -134,6 +138,7 @@ public class Attack : MonoBehaviour
                         var y = throwableWeapon.GetComponent<BoxCollider2D>().offset.y;
                         throwableWeapon.GetComponent<BoxCollider2D>().offset = new Vector2(-x, y);
                     }
+
                     throwableWeapon.name = "ThrowableWeapon";
                 }
                 shootStrength = 0.0f;

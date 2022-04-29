@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     public bool canDash = false;
     public bool isDashing = false; //If player is dashing
     private bool speedBoost = false; //Gives player speed boost during dash
-    private bool m_IsWall = false; //If there is a wall in front of the player
+    public bool m_IsWall = false; //If there is a wall in front of the player
     public bool m_IsFarWall = false; //If there is a wall close enough to the player to wall jump
     public bool isWallSliding = false; //If player is sliding in a wall
     private bool oldWallSlidding = false; //If player is sliding in a wall in the previous frame
@@ -341,20 +341,20 @@ public class Player : MonoBehaviour
             notFallingFor = 0f;
         }
 
+        Collider2D[] collidersWall = Physics2D.OverlapCircleAll(m_WallCheck.position, 0.1f, m_WhatIsGround);
+        for (int i = 0; i < collidersWall.Length; i++)
+        {
+            if (collidersWall[i].gameObject != null && collidersWall[i].gameObject.tag != "GroundNoSlide")
+            {
+                isDashing = false;
+                if (collidersWall[i].gameObject.GetComponent<PlatformEffector2D>() == null)
+                    m_IsWall = true;
+            }
+        }
+
         if (!m_Grounded)
         {
             beenOnLand = 0f;
-
-            Collider2D[] collidersWall = Physics2D.OverlapCircleAll(m_WallCheck.position, 0.1f, m_WhatIsGround);
-            for (int i = 0; i < collidersWall.Length; i++)
-            {
-                if (collidersWall[i].gameObject != null && collidersWall[i].gameObject.tag != "GroundNoSlide")
-                {
-                    isDashing = false;
-                    if (collidersWall[i].gameObject.GetComponent<PlatformEffector2D>() == null)
-                        m_IsWall = true;
-                }
-            }
 
             Collider2D[] collidersFarWall = Physics2D.OverlapCircleAll(m_FarWallCheck.position, 0.01f, m_WhatIsGround);
             for (int i = 0; i < collidersFarWall.Length; i++)
