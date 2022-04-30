@@ -101,6 +101,11 @@ public class Attack : MonoBehaviour
                     shootStrength += Time.deltaTime;
                 }
 
+                // camera looks forward when player is aiming
+                Vector3 newLocalPos = Player.controller.camTarget.localPosition;
+                newLocalPos.x = Mathf.Lerp(newLocalPos.x, 4.0f, 0.003f);
+                Player.controller.camTarget.localPosition = newLocalPos;
+
                 if (Input.GetAxisRaw("Vertical") > 0.5 && verticalAim < 2.0f)
                     verticalAim += Time.deltaTime;
 
@@ -117,6 +122,13 @@ public class Attack : MonoBehaviour
                 }
 
                 GetComponent<CapsuleCollider2D>().sharedMaterial = Player.controller.friction;
+            }
+            else
+            {
+                // camera returns to normal position
+                Vector3 newLocalPos = Player.controller.camTarget.localPosition;
+                newLocalPos.x = Mathf.Lerp(newLocalPos.x, 0f, 0.1f);
+                Player.controller.camTarget.localPosition = newLocalPos;
             }
 
             if (((Input.GetKeyUp(KeyCode.K) || Input.GetMouseButtonUp(1)) && canShoot && shooting_Unlocked) || shotDuringPause)
