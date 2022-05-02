@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 602838143}
   - component: {fileID: 602838142}
   m_Layer: 0
-  m_Name: Square
+  m_Name: wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1474,7 +1474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene: House
-  spawn: HouseSpawnRight
+  spawn: HouseSpawnR
 --- !u!1001 &1904124481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1541,7 +1541,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5620657633990752312, guid: 0fac796ae4e77eb4287ca45887205532, type: 3}
       propertyPath: m_Name
-      value: HouseSpawn
+      value: HouseSpawnS
       objectReference: {fileID: 0}
     - target: {fileID: 5620657633990752319, guid: 0fac796ae4e77eb4287ca45887205532, type: 3}
       propertyPath: m_RootOrder
