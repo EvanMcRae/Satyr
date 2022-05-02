@@ -123,54 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &122404005
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 122404007}
-  - component: {fileID: 122404006}
-  m_Layer: 0
-  m_Name: MusicOnLoad
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &122404006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 122404005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe48d4fd3884d9d43b9c69cf2a5568ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  newTrack: {fileID: 8300000, guid: 9999706fc3b7e824ea4f582fc56e5929, type: 3}
-  BPM: 95
-  timeSignature: 4
-  barsLength: 48
-  newArea: 1
---- !u!4 &122404007
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 122404005}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.4407625, y: 2.650469, z: -3319.873}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &180792304
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +237,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.08090049, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -296,7 +248,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.161801, y: 1}
   m_EdgeRadius: 0
 --- !u!212 &194291429
 SpriteRenderer:
@@ -483,7 +435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911238, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.2443
+      value: -4.75
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911238, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -559,11 +511,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5620657633990752319, guid: 0fac796ae4e77eb4287ca45887205532, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.71
+      value: -2.13
       objectReference: {fileID: 0}
     - target: {fileID: 5620657633990752319, guid: 0fac796ae4e77eb4287ca45887205532, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.03
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5620657633990752319, guid: 0fac796ae4e77eb4287ca45887205532, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1497,7 +1449,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1522885654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.3384, y: 10.8, z: 0}
+  m_LocalPosition: {x: 9.3384, y: 10.26, z: 0}
   m_LocalScale: {x: 1.8451473, y: 0.70172, z: 0.70172}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1534,7 +1486,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 5.8931046, y: 1.5450163}
+  m_Offset: {x: 5.8931046, y: 2.6868505}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1545,7 +1497,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 27.06731, y: 14.132908}
+  m_Size: {x: 27.06731, y: 16.416576}
   m_EdgeRadius: 0
 --- !u!114 &1691361742
 MonoBehaviour:
@@ -1680,7 +1632,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700450395}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.846, y: 2.3267, z: 0}
+  m_LocalPosition: {x: 23.23, y: 2.3267, z: 0}
   m_LocalScale: {x: 0.70172, y: 11.527823, z: 0.70172}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1826,6 +1778,54 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8470232a3cdc1a343a246576c1c1e817, type: 3}
+--- !u!1 &2001415493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2001415495}
+  - component: {fileID: 2001415494}
+  m_Layer: 0
+  m_Name: MusicOnLoad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2001415494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001415493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe48d4fd3884d9d43b9c69cf2a5568ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newTrack: {fileID: 8300000, guid: 74c202f1b212d4f419c724c5509e346f, type: 3}
+  BPM: 140
+  timeSignature: 4
+  barsLength: 48
+  newArea: 2
+--- !u!4 &2001415495
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001415493}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 110.65373, y: -99.11676, z: -3334.8416}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2065647928
 PrefabInstance:
   m_ObjectHideFlags: 0

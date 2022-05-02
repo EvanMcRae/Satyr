@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class enterDoor : MonoBehaviour
@@ -55,7 +56,12 @@ public class enterDoor : MonoBehaviour
         changeScene.changingScene = true;
         crossfade.SetTrigger("start");
         yield return new WaitForSeconds(0.9f);
-        SceneManager.LoadScene(scene);
+        EventSystem eventSystem = GameObject.FindObjectOfType<EventSystem>();
+        if (eventSystem != null)
+        {
+            GameObject.Destroy(eventSystem.gameObject);
+        }
+        SceneHelper.LoadScene(scene);
         spawnManager.spawningAt = spawn;
         changeScene.changingScene = false;
     }
