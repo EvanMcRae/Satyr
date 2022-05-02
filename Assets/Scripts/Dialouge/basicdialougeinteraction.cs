@@ -13,7 +13,7 @@ public class basicdialougeinteraction : MonoBehaviour
 
     bool needsPrompt = true;
 
-    string labelText = "";
+    [SerializeField] string labelText = "Press T to listen";
 
     DialougeTrigger[] dialogueTriggers;
 
@@ -79,7 +79,6 @@ public class basicdialougeinteraction : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             hasCollided = true;
-            labelText = "Press T to listen";
         }
     }
 
