@@ -36,7 +36,7 @@ public class Attack : MonoBehaviour
     public health playerHealth;
     public Cordyceps cordyceps;
     private int countToHeal = 5;
-    public AudioClip swordClash, specialSound;
+    public AudioClip swordClash, specialSound, arrowRelease;
 
 
     private void Awake()
@@ -152,6 +152,26 @@ public class Attack : MonoBehaviour
                     }
 
                     throwableWeapon.name = "ThrowableWeapon";
+
+                    AudioSource[] audioSource = transform.GetComponents<AudioSource>();
+                    foreach (AudioSource source in audioSource)
+                    {
+                        if (source.clip == arrowRelease && source.isPlaying)
+                        {
+                            if (source.time < 0.2f) return;
+                            else source.Stop();
+                        }
+                    }
+                    foreach (AudioSource source in audioSource)
+                    {
+                        if (!source.isPlaying)
+                        {
+                            source.clip = arrowRelease;
+                            source.loop = false;
+                            source.Play();
+                        }
+                    }
+
                 }
                 shootStrength = 0.0f;
                 verticalAim = 0.25f;

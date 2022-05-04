@@ -75,7 +75,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -6665021921204216121}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 612990689823561102}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -675,6 +676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSound: {fileID: 8300000, guid: 60cf4d2e3c8635c4e861cdef5357c32f, type: 3}
   loop: 0
+  stop: 0
 --- !u!114 &-1014697551801896358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -689,6 +691,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSound: {fileID: 8300000, guid: bd2c80b023c76e04c8aa9a1e6b3151f0, type: 3}
   loop: 0
+  stop: 0
 --- !u!114 &-480471806394875632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -769,6 +772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSound: {fileID: 8300000, guid: 6b4318e8c46fddf44b9ea7261b120b50, type: 3}
   loop: 0
+  stop: 0
 --- !u!1101 &-56982806107238434
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -913,6 +917,21 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 0
+--- !u!114 &612990689823561102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff4409926f4822409c8003d703f6dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSound: {fileID: 8300000, guid: 83b69fe546a3d4349bcd284f2f7d7cec, type: 3}
+  loop: 0
+  stop: 1
 --- !u!1102 &682222077655503573
 AnimatorState:
   serializedVersion: 6
@@ -1440,6 +1459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSound: {fileID: 8300000, guid: 60cf4d2e3c8635c4e861cdef5357c32f, type: 3}
   loop: 0
+  stop: 0
 --- !u!114 &6948848072861508659
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1603,6 +1623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSound: {fileID: 8300000, guid: aa5afae48f35c5f4183d4837e5be751f, type: 3}
   loop: 0
+  stop: 0
 --- !u!1101 &8656974763807356913
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
