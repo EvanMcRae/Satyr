@@ -32,6 +32,10 @@ public class CordycepsItem : MonoBehaviour
     void FixedUpdate()
     {
         playerPos = Player.instance.transform;
+        // fix offset cordyceps items
+        if (transform.position.z != playerPos.position.z) {
+            transform.position = new Vector3(transform.position.x, transform.position.y, playerPos.position.z);
+        }
         float distance = (transform.position - playerPos.position).magnitude;
         playerIsInRange = distance < 6.4f;
         if (playerIsInRange)

@@ -103,7 +103,7 @@ public class Attack : MonoBehaviour
 
                 // camera looks forward when player is aiming
                 Vector3 newLocalPos = Player.controller.camTarget.localPosition;
-                newLocalPos.x = Mathf.Lerp(newLocalPos.x, 4.0f, 0.003f);
+                newLocalPos.x = Mathf.Lerp(newLocalPos.x, 4.0f, 0.005f);
                 Player.controller.camTarget.localPosition = newLocalPos;
 
                 if (Input.GetAxisRaw("Vertical") > 0.5 && verticalAim < 2.0f)
