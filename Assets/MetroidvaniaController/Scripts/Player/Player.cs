@@ -60,6 +60,8 @@ public class Player : MonoBehaviour
     private bool holdingJump = false;
     public bool isStill = false;
 
+    public AudioClip audioJump;
+
     public float stunDuration = 0.25f;
     public float iFrames = 1f;
     public float lastOnLand = 0f;
@@ -532,12 +534,13 @@ public class Player : MonoBehaviour
             {
                 // Add a vertical force to the player.
                 animator.SetBool("JumpUp", true);
+                PlaySound(audioJump);
                 animator.SetBool("IsJumping", true);
 
                 m_Grounded = false;
                 if (!isJumping)
                 {
-                    particleJumpDown.Play();
+                    // particleJumpDown.Play();
                     particleJumpUp.Play();
                     holdingJump = true;
                 }
@@ -896,8 +899,32 @@ public class Player : MonoBehaviour
         invincible = false;
     }
     
-    public void LandParticles() { 
+    public void LandParticles()
+    { 
         particleLand.Play();
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        AudioSource[] audioSource = transform.GetComponents<AudioSource>();
+        foreach (AudioSource source in audioSource)
+        {
+            if (source.clip == clip && source.isPlaying)
+            {
+                if (source.time < 0.2f) return;
+                else source.Stop();
+            }
+        }
+        foreach (AudioSource source in audioSource)
+        {
+            if (!source.isPlaying)
+            {
+                source.clip = clip;
+                source.loop = false;
+                source.Play();
+                return;
+            }
+        }
     }
 
 }

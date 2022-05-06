@@ -8,6 +8,7 @@ public class PlaySoundBehaviour : StateMachineBehaviour
     private AudioSource currSource;
     public AudioClip audioSound;
     public bool loop = false;
+    public bool stop = false;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -35,7 +36,7 @@ public class PlaySoundBehaviour : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // currSource.Stop();
+        if (stop) currSource.Stop();
         currSource.loop = false;
     }
 

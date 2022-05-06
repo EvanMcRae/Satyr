@@ -9,6 +9,7 @@ public class ThrowableWeapon : MonoBehaviour
 	public bool hasHit = false;
 	public float speed = 10f;
     public float rotation = 0f;
+    public AudioSource launchSound, hitSound;
 
     // Start is called before the first frame update
     void Start()
@@ -31,12 +32,15 @@ public class ThrowableWeapon : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Enemy")
 		{
+            
             hasHit = true;
 			collision.gameObject.GetComponent<Enemy>().ApplyDamage(Mathf.Sign(direction.x) * 2f, 1f);
             Destroy(gameObject);
 		}
 		else if (collision.gameObject.tag != "Player")
 		{
+            launchSound.Stop();
+            hitSound.Play();
             hasHit = true;
 			StartCoroutine(KillArrow());
 		}
