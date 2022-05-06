@@ -149,6 +149,9 @@ public class Attack : MonoBehaviour
                         var x = throwableWeapon.GetComponent<BoxCollider2D>().offset.x;
                         var y = throwableWeapon.GetComponent<BoxCollider2D>().offset.y;
                         throwableWeapon.GetComponent<BoxCollider2D>().offset = new Vector2(-x, y);
+                        
+                        var localPos = throwableWeapon.GetComponentInChildren<ParticleSystem>().transform.localPosition;
+                        throwableWeapon.GetComponentInChildren<ParticleSystem>().transform.localPosition = new Vector3(-localPos.x, localPos.y, localPos.z);
                     }
 
                     throwableWeapon.name = "ThrowableWeapon";

@@ -10,7 +10,7 @@ public class Trajectory : MonoBehaviour
     [SerializeField] float dotSpacing;
     [SerializeField][Range(0.01f, 0.3f)] float dotMinScale;
     [SerializeField][Range(0.3f, 1f)] float dotMaxScale;
-    [SerializeField] float airDrag = 3f;
+    [SerializeField] float airDrag = 1.5f;
     [SerializeField] float gravityScale = 4f;
     [SerializeField] private LayerMask m_WhatIsGround;
 

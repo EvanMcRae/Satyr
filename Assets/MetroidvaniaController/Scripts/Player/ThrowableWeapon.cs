@@ -10,6 +10,7 @@ public class ThrowableWeapon : MonoBehaviour
 	public float speed = 10f;
     public float rotation = 0f;
     public AudioSource launchSound, hitSound;
+    private float hitTime = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,17 @@ public class ThrowableWeapon : MonoBehaviour
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), Player.instance.GetComponent<Collider2D>(), true);
         if (rb.velocity != Vector2.zero)
             rb.SetRotation(Quaternion.LookRotation(rb.velocity));
+
+        if (hasHit)
+        {
+            hitTime += Time.fixedDeltaTime;
+            if (hitTime >= 0.5f)
+            {
+                var color = GetComponent<SpriteRenderer>().color;
+                GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, Mathf.Lerp(1.0f, 0.0f, (hitTime - 0.5f)*2f));
+            }
+            
+        }
     }
 
 	void OnCollisionEnter2D(Collision2D collision)
@@ -47,6 +59,7 @@ public class ThrowableWeapon : MonoBehaviour
 	}
 
     IEnumerator KillArrow() {
+        GetComponentInChildren<ParticleSystem>().Stop();
         GetComponent<Rigidbody2D>().simulated = false;
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
