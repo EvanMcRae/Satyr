@@ -6,7 +6,7 @@ public class ThrowableWeapon : MonoBehaviour
 {
     private Rigidbody2D rb;
 	public Vector2 direction;
-	public bool hasHit = false;
+	public bool hasHit = false, hitEnemy = false;
 	public float speed = 10f;
     public float rotation = 0f;
     public AudioSource launchSound, hitSound;
@@ -28,7 +28,7 @@ public class ThrowableWeapon : MonoBehaviour
         if (rb.velocity != Vector2.zero)
             rb.SetRotation(Quaternion.LookRotation(rb.velocity));
 
-        if (hasHit)
+        if (hasHit && !hitEnemy)
         {
             hitTime += Time.fixedDeltaTime;
             if (hitTime >= 0.5f)
@@ -42,20 +42,22 @@ public class ThrowableWeapon : MonoBehaviour
 
 	void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.gameObject.tag == "Enemy")
-		{
-            
-            hasHit = true;
-			collision.gameObject.GetComponent<Enemy>().ApplyDamage(Mathf.Sign(direction.x) * 2f, 1f);
-            Destroy(gameObject);
-		}
-		else if (collision.gameObject.tag != "Player")
-		{
-            launchSound.Stop();
-            hitSound.Play();
-            hasHit = true;
-			StartCoroutine(KillArrow());
-		}
+        if (!hasHit)
+        {
+            if (collision.gameObject.tag == "Enemy")
+            {
+                collision.gameObject.GetComponent<Enemy>().ApplyDamage(Mathf.Sign(direction.x) * 2f, 1f);
+                hitEnemy = true;
+                GetComponent<SpriteRenderer>().enabled = false;
+            }
+            if (collision.gameObject.tag != "Player")
+            {
+                launchSound.Stop();
+                hitSound.Play();
+                hasHit = true;
+                StartCoroutine(KillArrow());
+            }
+        }
 	}
 
     IEnumerator KillArrow() {
