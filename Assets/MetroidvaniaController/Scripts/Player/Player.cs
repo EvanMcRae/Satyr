@@ -60,6 +60,7 @@ public class Player : MonoBehaviour
     private bool holdingJump = false;
     public bool isStill = false;
 
+    private AudioSource[] sources;
     public AudioClip audioJump;
 
     public float stunDuration = 0.25f;
@@ -107,6 +108,7 @@ public class Player : MonoBehaviour
 
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        sources = transform.GetComponents<AudioSource>();
 
         if (OnFallEvent == null)
             OnFallEvent = new UnityEvent();
@@ -139,6 +141,8 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        CleanSounds();
+
         if (!GetComponent<Rigidbody2D>().simulated)
         {
             notSimulated += Time.fixedDeltaTime;
@@ -906,23 +910,36 @@ public class Player : MonoBehaviour
 
     public void PlaySound(AudioClip clip)
     {
-        AudioSource[] audioSource = transform.GetComponents<AudioSource>();
-        foreach (AudioSource source in audioSource)
+        foreach (AudioSource source in sources)
         {
             if (source.clip == clip && source.isPlaying)
             {
-                if (source.time < 0.2f) return;
+                if (source.time < 0.2f && source.isPlaying) return;
                 else source.Stop();
             }
         }
-        foreach (AudioSource source in audioSource)
+        foreach (AudioSource source in sources)
         {
             if (!source.isPlaying)
             {
+                source.UnPause();
                 source.clip = clip;
                 source.loop = false;
                 source.Play();
+                // Debug.Log(source.isPlaying + " " + source.clip + " " + source);
                 return;
+            }
+        }
+    }
+
+    void CleanSounds()
+    {
+        foreach (AudioSource source in sources)
+        {
+            if (!source.isPlaying)
+            {
+                source.Stop();
+                source.clip = null;
             }
         }
     }

@@ -64,7 +64,7 @@ public class Trajectory : MonoBehaviour
                 pos += velocity * timeIncrement * dotSpacing;
                 dotsList[i].transform.position = pos;
 
-                Collider2D[] colliders = Physics2D.OverlapCircleAll(pos, dotsList[i].localScale.x, m_WhatIsGround);
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(pos, 0.03f, m_WhatIsGround);
                 foreach (Collider2D c in colliders) 
                 {
                     if (c.gameObject.tag == "Enemy" || c.gameObject.tag == "Wall" || c.gameObject.tag == "Ground" || c.gameObject.tag == "GroundNoSlide" || c.gameObject.tag == "Breakable Wall" || c.gameObject.tag == "obstacle")
