@@ -926,7 +926,7 @@ public class Player : MonoBehaviour
                 source.clip = clip;
                 source.loop = false;
                 source.Play();
-                Debug.Log(source.isPlaying + " " + source.clip + " " + source);
+                // Debug.Log(source.isPlaying + " " + source.clip + " " + source);
                 return;
             }
         }
