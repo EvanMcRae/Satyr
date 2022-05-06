@@ -12,6 +12,7 @@ public class basicdialougeinteraction : MonoBehaviour
     bool hasCollided = false;
 
     bool needsPrompt = true;
+    public bool autoStart = false;
 
     [SerializeField] string labelText = "Press T to listen";
 
@@ -33,9 +34,8 @@ public class basicdialougeinteraction : MonoBehaviour
     {
         if (!PlayerMovement.paused)
         {
-            if ((Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown("joystick button 1")) && hasCollided == true && needsPrompt == true)
+            if ((Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown("joystick button 1") || autoStart) && hasCollided == true && needsPrompt == true)
             {
-
                 textBox.position = new Vector3(textBox.position.x, anchor.position.y, textBox.position.z);
                 needsPrompt = false;
                 //   this.GetComponent<DialougeTrigger>().TriggerDialogue();
@@ -68,7 +68,7 @@ public class basicdialougeinteraction : MonoBehaviour
 
     public void OnGUI()
     {
-        if (!PlayerMovement.paused && hasCollided && needsPrompt)
+        if (!PlayerMovement.paused && hasCollided && needsPrompt && !autoStart)
         {
             GUI.Box(new Rect(140, Screen.height - 50, Screen.width - 300, 120), (labelText));
         }
