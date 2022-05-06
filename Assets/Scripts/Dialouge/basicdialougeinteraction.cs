@@ -13,6 +13,7 @@ public class basicdialougeinteraction : MonoBehaviour
 
     bool needsPrompt = true;
     public bool autoStart = false;
+    public bool anyKey = false;
 
     [SerializeField] string labelText = "Press T to listen";
 
@@ -34,7 +35,7 @@ public class basicdialougeinteraction : MonoBehaviour
     {
         if (!PlayerMovement.paused)
         {
-            if ((Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown("joystick button 1") || autoStart) && hasCollided == true && needsPrompt == true)
+            if ((Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown("joystick button 1") || (anyKey && Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape)) || autoStart) && hasCollided == true && needsPrompt == true)
             {
                 textBox.position = new Vector3(textBox.position.x, anchor.position.y, textBox.position.z);
                 needsPrompt = false;
@@ -47,7 +48,7 @@ public class basicdialougeinteraction : MonoBehaviour
                 dialogueTriggers[0].TriggerDialogue();
 
             }
-            else if ((Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown("joystick button 1")) && hasCollided == true && needsPrompt == false)
+            else if ((Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown("joystick button 1") || (anyKey && Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape))) && hasCollided == true && needsPrompt == false)
             {
                 if (DialougeManager.stillSpeaking)
                 {
