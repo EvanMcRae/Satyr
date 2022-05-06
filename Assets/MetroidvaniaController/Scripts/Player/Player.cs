@@ -918,15 +918,13 @@ public class Player : MonoBehaviour
                 else source.Stop();
             }
         }
-        foreach (AudioSource source in sources)
+        for (int index = sources.Length - 1; index >= 0; index--)
         {
-            Debug.Log(source.isPlaying);
-            if (!source.isPlaying)
+            if (!sources[index].isPlaying)
             {
-                source.clip = clip;
-                source.loop = false;
-                source.Play();
-                // Debug.Log(source.isPlaying + " " + source.clip + " " + source);
+                sources[index].clip = clip;
+                sources[index].loop = false;
+                sources[index].Play();
                 return;
             }
         }
@@ -940,6 +938,7 @@ public class Player : MonoBehaviour
             {
                 source.Stop();
                 source.clip = null;
+                source.time = 0;
             }
         }
     }
