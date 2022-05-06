@@ -195,6 +195,10 @@ public class Attack : MonoBehaviour
                 shotDuringPause = false;
             }
         }
+
+        if (!Application.isFocused && canShoot && shooting_Unlocked && shootStrength >= 0.25f) {
+            shotDuringPause = true;
+        }
     }
 
     IEnumerator AttackCooldown()

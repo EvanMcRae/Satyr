@@ -20417,6 +20417,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!81 &8026340122743250738
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8040695297566312888}
+  m_Enabled: 1
 --- !u!114 &1384378231344901043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20476,14 +20484,6 @@ MonoBehaviour:
   bagSprites: []
   harvestCordyceps: {fileID: 8300000, guid: eec581d72fb207a48a9cd33d29ad6ba0, type: 3}
   animating: 0
---- !u!81 &8026340122743250738
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8040695297566312888}
-  m_Enabled: 1
 --- !u!1 &8762895984881334162
 GameObject:
   m_ObjectHideFlags: 0
@@ -20739,6 +20739,10 @@ PrefabInstance:
     - target: {fileID: 70405055242815152, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82701611152381692, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
+      propertyPath: MinDistance
+      value: 1.300079
       objectReference: {fileID: 0}
     - target: {fileID: 82701611152381692, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: OutputAudioMixerGroup
@@ -21172,6 +21176,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 1319033339220200713, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
+      propertyPath: MinDistance
+      value: 1.300079
+      objectReference: {fileID: 0}
     - target: {fileID: 1319033339220200713, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 

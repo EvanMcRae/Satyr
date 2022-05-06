@@ -920,9 +920,9 @@ public class Player : MonoBehaviour
         }
         foreach (AudioSource source in sources)
         {
+            Debug.Log(source.isPlaying);
             if (!source.isPlaying)
             {
-                source.UnPause();
                 source.clip = clip;
                 source.loop = false;
                 source.Play();
