@@ -152,26 +152,7 @@ public class Attack : MonoBehaviour
                     }
 
                     throwableWeapon.name = "ThrowableWeapon";
-
-                    AudioSource[] audioSource = transform.GetComponents<AudioSource>();
-                    foreach (AudioSource source in audioSource)
-                    {
-                        if (source.clip == arrowRelease && source.isPlaying)
-                        {
-                            if (source.time < 0.2f) return;
-                            else source.Stop();
-                        }
-                    }
-                    foreach (AudioSource source in audioSource)
-                    {
-                        if (!source.isPlaying)
-                        {
-                            source.clip = arrowRelease;
-                            source.loop = false;
-                            source.Play();
-                        }
-                    }
-
+                    Player.controller.PlaySound(arrowRelease);
                 }
                 shootStrength = 0.0f;
                 verticalAim = 0.25f;
@@ -190,24 +171,7 @@ public class Attack : MonoBehaviour
                 cam.GetComponent<CameraFollow>().ShakeCamera(0.2f);
                 gameObject.GetComponent<Player>().Invincible(1f);
 
-                AudioSource[] audioSource = transform.GetComponents<AudioSource>();
-                foreach (AudioSource source in audioSource)
-                {
-                    if (source.clip == swordClash && source.isPlaying)
-                    {
-                        if (source.time < 0.2f) return;
-                        else source.Stop();
-                    }
-                }
-                foreach (AudioSource source in audioSource)
-                {
-                    if (!source.isPlaying)
-                    {
-                        source.clip = specialSound;
-                        source.loop = false;
-                        source.Play();
-                    }
-                }
+                Player.controller.PlaySound(specialSound);
             }
             // else if (Input.GetKeyUp(KeyCode.Y) || Input.GetKeyUp("joystick button 3"))
             // {
@@ -309,25 +273,7 @@ public class Attack : MonoBehaviour
                 }
                 if (collidersWalls[i].transform.position.x > transform.position.x) { direction = -1; } else { direction = 1; }
                 m_Rigidbody2D.AddForce(new Vector2(direction * 1000f, 0f));
-                AudioSource[] audioSource = transform.GetComponents<AudioSource>();
-                foreach (AudioSource source in audioSource)
-                {
-                    if (source.clip == swordClash && source.isPlaying)
-                    {
-                        if (source.time < 0.2f) return;
-                        else source.Stop();
-                    } 
-                }
-                foreach (AudioSource source in audioSource)
-                {
-                    if (!source.isPlaying)
-                    {
-                        // Debug.Log(playingClash);
-                        source.clip = swordClash;
-                        source.loop = false;
-                        source.Play();
-                    }
-                }
+                Player.controller.PlaySound(swordClash);
             }
         }
     }

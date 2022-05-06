@@ -35,25 +35,7 @@ public class Cordyceps : MonoBehaviour
                     StartCoroutine(BagAnimation());
 
                 // play sound
-                AudioSource[] audioSource = transform.GetComponents<AudioSource>();
-                foreach (AudioSource source in audioSource)
-                {
-                    if (source.clip == harvestCordyceps && source.isPlaying)
-                    {
-                        if (source.time < 0.2f) return;
-                        else source.Stop();
-                    }
-                }
-                foreach (AudioSource source in audioSource)
-                {
-                    if (!source.isPlaying)
-                    {
-                        source.clip = harvestCordyceps;
-                        source.loop = false;
-                        source.Play();
-                        return;
-                    }
-                }
+                Player.controller.PlaySound(harvestCordyceps);
             }
         }
     }
