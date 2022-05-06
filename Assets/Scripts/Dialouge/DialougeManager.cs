@@ -29,7 +29,10 @@ public class DialougeManager : MonoBehaviour
         nameText.text = dialouge.name;
 
         // clear any sentaces from a previous conversation
-        sentences.Clear();
+        if (sentences != null)
+            sentences.Clear();
+        else
+            sentences = new Queue<string>();
 
         foreach (string sentence in dialouge.sentaces)
         {

@@ -71,8 +71,7 @@ public class CameraFollow : MonoBehaviour
         }
         else if (ReyaCutscene.cutscening)
         {
-            // special behavior here
-            // Target = 
+            Target = GameObject.FindObjectOfType<ReyaCutscene>().camTarget;
             Vector3 newPosition = Target.position;
             newPosition.z = -10;
             originalPos = Vector3.Lerp(originalPos, newPosition, FollowSpeed * Time.deltaTime);

@@ -62,7 +62,7 @@ public class Attack : MonoBehaviour
             if (specialCooldown < specialMaxCooldown)
                 specialCooldown += Time.deltaTime;
 
-            if (Input.GetButton("Attack") && canAttack && shootStrength <= 0.0f)
+            if (!ReyaCutscene.cutscening && Input.GetButton("Attack") && canAttack && shootStrength <= 0.0f)
             {
                 currentAttackCheck = attackCheck;
                 if (Input.GetAxisRaw("Vertical") < -0.3)
@@ -87,7 +87,7 @@ public class Attack : MonoBehaviour
                 animator.SetBool("IsBowAttacking", true);
             }
 
-            if (!Player.controller.m_IsWall && (Input.GetKey(KeyCode.K) || Input.GetMouseButton(1) || Input.GetKey("joystick button 4")) && canShoot && shooting_Unlocked)
+            if (!ReyaCutscene.cutscening && !Player.controller.m_IsWall && (Input.GetKey(KeyCode.K) || Input.GetMouseButton(1) || Input.GetKey("joystick button 4")) && canShoot && shooting_Unlocked)
             {
                 if (!animator.GetBool("IsBowAttacking"))
                 {
@@ -131,7 +131,7 @@ public class Attack : MonoBehaviour
                 Player.controller.camTarget.localPosition = newLocalPos;
             }
 
-            if (((Input.GetKeyUp(KeyCode.K) || Input.GetMouseButtonUp(1) || Input.GetKeyUp("joystick button 4")) && canShoot && shooting_Unlocked) || shotDuringPause)
+            if (((Input.GetKeyUp(KeyCode.K) || Input.GetMouseButtonUp(1) || Input.GetKeyUp("joystick button 4")) && canShoot && shooting_Unlocked) || shotDuringPause || (ReyaCutscene.cutscening && shootStrength != 0))
             {
                 if (shootStrength >= 0.25f)
                 {
@@ -166,7 +166,7 @@ public class Attack : MonoBehaviour
                 GetComponentInChildren<Trajectory>().Hide();
             }
 
-            if (Player.controller.specialAttack_Unlocked && !ReyaCutscene.cutscening && !Statue.cutscening && specialCooldown >= specialMaxCooldown && Input.GetButton("Special") && shootStrength <= 0.0f)
+            if (!ReyaCutscene.cutscening && Player.controller.specialAttack_Unlocked && !ReyaCutscene.cutscening && !Statue.cutscening && specialCooldown >= specialMaxCooldown && Input.GetButton("Special") && shootStrength <= 0.0f)
             {
                 particleSpecialAttack.Play();
                 specialCooldown = 0.0f;

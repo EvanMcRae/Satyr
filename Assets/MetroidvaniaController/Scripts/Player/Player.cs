@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     public bool m_Grounded;            // Whether or not the player is grounded.
     public bool m_leftGrounded, m_rightGrounded; // Whether or not the player is solidly grounded.
     private Rigidbody2D m_Rigidbody2D;
-    private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+    public bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 velocity = Vector3.zero;
     public float limitFallSpeed = 20f; // Limit fall speed
     public bool wallSlide_Unlocked = false;
@@ -711,6 +711,9 @@ public class Player : MonoBehaviour
             }
         }
 
+        if (!canMove)
+            GetComponent<CapsuleCollider2D>().sharedMaterial = friction;
+
         if (isJumping || isJumpingDJ) // this code is absolutely gross but necessary
         {
             jumpTime += 0.1f;
@@ -801,8 +804,9 @@ public class Player : MonoBehaviour
     {
         canMove = false;
         yield return new WaitForSeconds(time);
-        if (!resetting)
+        if (!resetting){
             canMove = true;
+        }
     }
 
     public void Invincible(float time) {
