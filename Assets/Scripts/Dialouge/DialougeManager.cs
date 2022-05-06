@@ -9,7 +9,7 @@ public class DialougeManager : MonoBehaviour
     public Text nameText;
     public Text DialogueText;
 
-    private Queue<string> sentences;
+    public Queue<string> sentences;
     private string currentSentence;
 
     public static bool convoEnded = false;
@@ -31,9 +31,10 @@ public class DialougeManager : MonoBehaviour
         // clear any sentaces from a previous conversation
         if (sentences != null)
             sentences.Clear();
-        else
+        else {
             sentences = new Queue<string>();
-
+        }
+            
         foreach (string sentence in dialouge.sentaces)
         {
             sentences.Enqueue(sentence);
