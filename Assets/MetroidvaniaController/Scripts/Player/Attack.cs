@@ -79,7 +79,7 @@ public class Attack : MonoBehaviour
                 StartCoroutine(AttackCooldown());
             }
 
-            if (!Player.controller.m_IsWall && (Input.GetKeyDown(KeyCode.K) || Input.GetMouseButtonDown(1)) && canShoot && shooting_Unlocked)
+            if (!Player.controller.m_IsWall && (Input.GetKeyDown(KeyCode.K) || Input.GetMouseButtonDown(1) || Input.GetKeyDown("joystick button 4")) && canShoot && shooting_Unlocked)
             {
                 Player.controller.canMove = false;
                 var velocity = GetComponent<Rigidbody2D>().velocity;
@@ -87,7 +87,7 @@ public class Attack : MonoBehaviour
                 animator.SetBool("IsBowAttacking", true);
             }
 
-            if (!Player.controller.m_IsWall && (Input.GetKey(KeyCode.K) || Input.GetMouseButton(1)) && canShoot && shooting_Unlocked)
+            if (!Player.controller.m_IsWall && (Input.GetKey(KeyCode.K) || Input.GetMouseButton(1) || Input.GetKey("joystick button 4")) && canShoot && shooting_Unlocked)
             {
                 if (!animator.GetBool("IsBowAttacking"))
                 {
@@ -131,7 +131,7 @@ public class Attack : MonoBehaviour
                 Player.controller.camTarget.localPosition = newLocalPos;
             }
 
-            if (((Input.GetKeyUp(KeyCode.K) || Input.GetMouseButtonUp(1)) && canShoot && shooting_Unlocked) || shotDuringPause)
+            if (((Input.GetKeyUp(KeyCode.K) || Input.GetMouseButtonUp(1) || Input.GetKeyUp("joystick button 4")) && canShoot && shooting_Unlocked) || shotDuringPause)
             {
                 if (shootStrength >= 0.25f)
                 {
@@ -186,11 +186,11 @@ public class Attack : MonoBehaviour
         }
         else
         {
-            if ((Input.GetKeyUp(KeyCode.K) || Input.GetMouseButtonUp(1)) && canShoot && shooting_Unlocked)
+            if ((Input.GetKeyUp(KeyCode.K) || Input.GetMouseButtonUp(1) || Input.GetKeyUp("joystick button 4")) && canShoot && shooting_Unlocked)
             {
                 shotDuringPause = true;   
             }
-            if ((Input.GetKeyDown(KeyCode.K) || Input.GetMouseButtonDown(1)) && canShoot && shooting_Unlocked)
+            if ((Input.GetKeyDown(KeyCode.K) || Input.GetMouseButtonDown(1) || Input.GetKeyDown("joystick button 4")) && canShoot && shooting_Unlocked)
             {
                 shotDuringPause = false;
             }
