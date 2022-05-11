@@ -414,9 +414,10 @@ GameObject:
   - component: {fileID: 618069852}
   - component: {fileID: 618069851}
   - component: {fileID: 618069856}
+  - component: {fileID: 618069857}
   m_Layer: 0
   m_Name: boss placeholder
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -565,12 +566,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faf33590145579749b0021dfc8451d53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 10
+  speed: 5
+  isInvincible: 0
+  cordyceps: {fileID: 0}
   isFlipped: 0
   attackOffset: {x: -1.5, y: 0.35, z: 0}
   attackRange: 1.2
   attackMask:
     serializedVersion: 2
     m_Bits: 2
+--- !u!114 &618069857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618069850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b612d9e32e783a489f5ded600b2b2bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: f48c11c1d88e39a49b5a727880050983, type: 2}
 --- !u!1001 &639052239
 PrefabInstance:
   m_ObjectHideFlags: 0
