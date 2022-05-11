@@ -615,6 +615,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textBox: {fileID: 157769806}
+  autoStart: 0
+  anyKey: 0
   labelText: Press T to inspect
   anchor: {fileID: 1015028797}
 --- !u!212 &337344263
@@ -1801,7 +1803,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1700450396
 BoxCollider2D:
   m_ObjectHideFlags: 0

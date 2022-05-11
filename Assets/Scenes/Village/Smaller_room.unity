@@ -360,6 +360,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textBox: {fileID: 1876440285}
+  autoStart: 0
+  anyKey: 0
   labelText: Press T to listen
   anchor: {fileID: 1220311010}
 --- !u!1 &602838141
@@ -729,6 +731,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textBox: {fileID: 1876440285}
+  autoStart: 0
+  anyKey: 0
   labelText: Press T to inspect
   anchor: {fileID: 1220311010}
 --- !u!114 &840214326
@@ -1688,6 +1692,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textBox: {fileID: 1876440285}
+  autoStart: 0
+  anyKey: 0
   labelText: Press T to inspect
   anchor: {fileID: 1220311010}
 --- !u!114 &1373802406
@@ -1992,6 +1998,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textBox: {fileID: 1876440285}
+  autoStart: 0
+  anyKey: 0
   labelText: Press T to inspect
   anchor: {fileID: 1220311010}
 --- !u!114 &1784255429
@@ -2247,7 +2255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5620657633990752319, guid: 0fac796ae4e77eb4287ca45887205532, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.71
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 5620657633990752319, guid: 0fac796ae4e77eb4287ca45887205532, type: 3}
       propertyPath: m_LocalPosition.y
