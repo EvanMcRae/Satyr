@@ -82,6 +82,7 @@ public class Boss : Enemy
         damage = Mathf.Abs(damage);
         // transform.GetComponent<Animator>().SetBool("Hit", true);
         life -= damage;
+        if (life < 0) life = 0;
         rb.velocity = Vector2.zero;
         rb.AddForce(new Vector2(direction * 1000f, 200f) * knockback);
         StartCoroutine(HitTime());
