@@ -12,8 +12,8 @@ public class Boss : Enemy
     public float attackRange = 1f;
     public LayerMask attackMask;
     private Rigidbody2D rb;
-    private bool isHitted = false;
-    bool dead = false;
+    public bool isHitted = false;
+    public bool dead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -107,7 +107,7 @@ public class Boss : Enemy
         //capsule.direction = CapsuleDirection2D.Horizontal;
         yield return new WaitForSeconds(0.25f);
         rb.velocity = new Vector2(0, rb.velocity.y);
-        yield return new WaitForSeconds(3f);
+        // yield return new WaitForSeconds(3f);
         Destroy(gameObject);
     }
 

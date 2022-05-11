@@ -566,7 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faf33590145579749b0021dfc8451d53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 32
+  life: 100
   speed: 5
   isInvincible: 0
   cordyceps: {fileID: 0}
@@ -576,6 +576,8 @@ MonoBehaviour:
   attackMask:
     serializedVersion: 2
     m_Bits: 2
+  isHitted: 0
+  dead: 0
 --- !u!114 &618069857
 MonoBehaviour:
   m_ObjectHideFlags: 0
