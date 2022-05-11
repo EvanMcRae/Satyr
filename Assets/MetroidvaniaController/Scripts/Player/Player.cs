@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     public bool m_IsFarWall = false; //If there is a wall close enough to the player to wall jump
     public bool isWallSliding = false; //If player is sliding in a wall
     private bool oldWallSlidding = false; //If player is sliding in a wall in the previous frame
-    private bool canWallSlide = true; //If player can slide down this wall
+    public bool canWallSlide = true; //If player can slide down this wall
     private bool canWallGrip = true; //If player can grip on this wall
     private float prevVelocityX = 0f;
     private bool canCheck = false; //For check if player is wallsliding
@@ -198,8 +198,6 @@ public class Player : MonoBehaviour
             }
         }
 
-        
-
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
@@ -347,19 +345,19 @@ public class Player : MonoBehaviour
             notFallingFor = 0f;
         }
 
-        Collider2D[] collidersWall = Physics2D.OverlapCircleAll(m_WallCheck.position, 0.1f, m_WhatIsGround);
-        for (int i = 0; i < collidersWall.Length; i++)
-        {
-            if (collidersWall[i].gameObject != null && collidersWall[i].gameObject.tag != "GroundNoSlide")
-            {
-                isDashing = false;
-                if (collidersWall[i].gameObject.GetComponent<PlatformEffector2D>() == null)
-                    m_IsWall = true;
-            }
-        }
-
         if (!m_Grounded)
         {
+            Collider2D[] collidersWall = Physics2D.OverlapCircleAll(m_WallCheck.position, 0.1f, m_WhatIsGround);
+            for (int i = 0; i < collidersWall.Length; i++)
+            {
+                if (collidersWall[i].gameObject != null && collidersWall[i].gameObject.tag != "GroundNoSlide")
+                {
+                    isDashing = false;
+                    if (collidersWall[i].gameObject.GetComponent<PlatformEffector2D>() == null)
+                        m_IsWall = true;
+                }
+            }
+
             beenOnLand = 0f;
 
             Collider2D[] collidersFarWall = Physics2D.OverlapCircleAll(m_FarWallCheck.position, 0.01f, m_WhatIsGround);
@@ -384,7 +382,8 @@ public class Player : MonoBehaviour
         }
         else
         {
-            canWallSlide = true;
+            if (!wasGrounded)
+                canWallSlide = true;
 
             if (beenOnLand >= 0.1f)
             {
