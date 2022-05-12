@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float singleStep = speed * Time.deltaTime;
+        float singleStep = speed;
         player = Player.instance.transform;
         Vector3 targetDirection = player.position - transform.position;
         Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.velocity = transform.forward * speed;
+        rb.velocity = transform.forward * speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
