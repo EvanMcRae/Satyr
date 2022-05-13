@@ -861,6 +861,9 @@ public class Player : MonoBehaviour
         StartCoroutine(am.PitchDown());
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene(GetComponent<Spawnpoint>().scene);
+        if (GetComponent<Spawnpoint>().scene == "1stScene") {
+            initialFall = false;
+        }
         // SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         dead = false;
         animator.SetBool("IsDead", false);
