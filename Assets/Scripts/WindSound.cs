@@ -7,11 +7,13 @@ public class WindSound : MonoBehaviour
 {
     private bool triggeredEnter, triggeredExit;
     public BoxCollider2D invisibleWall, cameraBounds;
+    private Volume volume;
 
     // Start is called before the first frame update
     void Start()
     {
-        GetComponentInChildren<Volume>().enabled = false;
+        volume = GetComponentInChildren<Volume>();
+        volume.enabled = false;
     }
 
     // Update is called once per frame
@@ -33,7 +35,8 @@ public class WindSound : MonoBehaviour
             AudioManager.instance.FadeOutCurrent();
             GetComponent<AudioSource>().Play();
             triggeredEnter = true;
-            GetComponentInChildren<Volume>().enabled = true;
+            volume.enabled = true;
+            volume.weight = 0f;
             Player.controller.limitFallSpeed = 30f;
         }
     }
@@ -46,6 +49,7 @@ public class WindSound : MonoBehaviour
             } else if (!GetComponent<AudioSource>().isPlaying) {
                 GetComponent<AudioSource>().Play();
             }
+            volume.weight = Mathf.Lerp(volume.weight, 1f, 0.01f);
         }
     }
 
