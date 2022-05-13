@@ -21,13 +21,18 @@ public class MainMenu : MonoBehaviour
     }
 
     void Update() {
-        if (!GetComponent<SaveSystem>().SaveFileExists())
+        if (GetComponent<SaveSystem>() != null && loadButton != null)
         {
-            loadButton.interactable = false;
-            loadButton.GetComponentInChildren<TMP_Text>().color = new Color32(118, 118, 118, 255);
-        } else {
-            loadButton.interactable = true;
-            loadButton.GetComponentInChildren<TMP_Text>().color = new Color32(154, 127, 0, 255);
+            if (!GetComponent<SaveSystem>().SaveFileExists())
+            {
+                loadButton.interactable = false;
+                loadButton.GetComponentInChildren<TMP_Text>().color = new Color32(118, 118, 118, 255);
+            }
+            else
+            {
+                loadButton.interactable = true;
+                loadButton.GetComponentInChildren<TMP_Text>().color = new Color32(154, 127, 0, 255);
+            }
         }
     }
     
