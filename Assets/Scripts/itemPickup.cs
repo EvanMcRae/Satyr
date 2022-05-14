@@ -12,6 +12,7 @@ public class itemPickup : MonoBehaviour
     void Start()
     {
         item = thisItem;
+        if (item.itemID == "10" && Player.controller.reya) Destroy(gameObject);
     }
 
     // Update is called once per frame

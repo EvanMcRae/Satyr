@@ -89,7 +89,7 @@ public class Player : MonoBehaviour
     // one time events
     public bool explorer = false;
     public bool initialFall = false;
-    public bool reya = false; // TODO figure out how to implement this with cutscene
+    public bool reya = false;
 
     public PhysicsMaterial2D slippery, friction;
 

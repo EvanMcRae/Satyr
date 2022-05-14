@@ -58,6 +58,7 @@ public class ReyaCutscene : MonoBehaviour
     }
 
     IEnumerator Cutscene() {
+        Player.controller.reya = true;
         GetComponentInChildren<Camera>().enabled = true;
 
         // position Reya relative to player
