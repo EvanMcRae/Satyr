@@ -18,7 +18,7 @@ public class deathblocks : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player" && !Player.controller.resetting && !Player.controller.dead)
         {
             col.gameObject.GetComponent<Player>().ApplyDamage(1.0f, this.transform.position, 0f, true);
             // print("this is working");

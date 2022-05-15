@@ -539,7 +539,7 @@ public class Player : MonoBehaviour
             }
 
             // If the player should jump...
-            if ((lastOnLand < 0.15f && !(m_IsFarWall && canWallSlide)) && jump && !isJumping && !canDoubleJump) // incorporates coyote time with lastOnLand
+            if (lastOnLand < 0.15f && jump && !isJumping && !canDoubleJump) // incorporates coyote time with lastOnLand
             {
                 // Add a vertical force to the player.
                 animator.SetBool("JumpUp", true);
@@ -558,7 +558,7 @@ public class Player : MonoBehaviour
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * .7f)); //force added during a jump
                 if (doubleJump_Unlocked) { canDoubleJump = true; }
             }
-            else if (!m_Grounded && jump && canDoubleJump && !isWallSliding && !(m_IsFarWall && canDoubleJump) && !isJumping)
+            else if (!m_Grounded && jump && canDoubleJump && !isWallSliding && !isJumping)
             {
                 if (doubleJump_Unlocked) { canDoubleJump = false; }
                 holdingJump = true;
