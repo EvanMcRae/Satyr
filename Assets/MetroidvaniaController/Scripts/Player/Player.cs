@@ -414,7 +414,7 @@ public class Player : MonoBehaviour
         if (limitVelOnWallJump)
         {
             limitVelOnWallJumpCooldown += Time.fixedDeltaTime;
-            if (limitVelOnWallJumpCooldown >= 0.8f)
+            if (limitVelOnWallJumpCooldown >= 0.2f)
             {
                 limitVelOnWallJump = false;
                 limitVelOnWallJumpCooldown = 0f;
@@ -482,10 +482,10 @@ public class Player : MonoBehaviour
 
                 // Move the character by finding the target velocity
                 Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
-                if (limitVelOnWallJump && limitVelOnWallJumpCooldown <= 0.8f)
+                if (limitVelOnWallJump && limitVelOnWallJumpCooldown <= 0.2f)
                 {
                     float newX = Mathf.Lerp(m_Rigidbody2D.velocity.x, move * 12f, 0.05f);
-                    if (limitVelOnWallJumpCooldown >= 0.4f)
+                    if (limitVelOnWallJumpCooldown >= 0.1f)
                         targetVelocity.x = Mathf.Lerp(newX, targetVelocity.x, limitVelOnWallJumpCooldown);
                     else
                         targetVelocity.x = newX;
@@ -533,7 +533,7 @@ public class Player : MonoBehaviour
             }
 
             // If the player should jump...
-            if ((lastOnLand < 0.15f) && jump && !isJumping && !canDoubleJump) // incorporates coyote time with lastOnLand
+            if ((lastOnLand < 0.15f && !(m_IsFarWall && canWallSlide)) && jump && !isJumping && !canDoubleJump) // incorporates coyote time with lastOnLand
             {
                 // Add a vertical force to the player.
                 animator.SetBool("JumpUp", true);
@@ -552,7 +552,7 @@ public class Player : MonoBehaviour
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * .7f)); //force added during a jump
                 if (doubleJump_Unlocked) { canDoubleJump = true; }
             }
-            else if (!m_Grounded && jump && canDoubleJump && !isWallSliding && !isJumping)
+            else if (!m_Grounded && jump && canDoubleJump && !isWallSliding && !(m_IsFarWall && canDoubleJump) && !isJumping)
             {
                 if (doubleJump_Unlocked) { canDoubleJump = false; }
                 holdingJump = true;
@@ -628,7 +628,7 @@ public class Player : MonoBehaviour
                         // oldWallSlidding = false;
                         // m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
                     }
-                    else
+                    else if (!jump)
                     {
                         wallSlidingFor += Time.deltaTime;
                         // so this is where the wall sliding happens - aidan
@@ -641,13 +641,13 @@ public class Player : MonoBehaviour
                             canWallGrip = false;
                         }
                         m_Rigidbody2D.velocity = new Vector2(-transform.localScale.x * 2, wallSlideSpeed);
-                        //	print("wall sliding?");
                     }
                 }
 
                 if (jump && !isJumping)
                 {
                     animator.SetBool("IsJumping", true);
+                    PlaySound(audioJump);
                     animator.SetBool("JumpUp", true);
                     if (!isJumping)
                     {
@@ -656,6 +656,7 @@ public class Player : MonoBehaviour
                         holdingJump = true;
                     }
                     isJumping = true;
+                    jumpTime = 0f;
 
                     // if ((move > 0 && !m_FacingRight) || (move < 0 && m_FacingRight))
                     // {
@@ -664,7 +665,7 @@ public class Player : MonoBehaviour
 
                     float x_vel = m_FacingRight ? 10f : -10f;
                     m_Rigidbody2D.velocity = new Vector2(0f, 0f);
-                    m_Rigidbody2D.AddForce(new Vector2(x_vel*150f, m_JumpForce * 0.8f));
+                    m_Rigidbody2D.AddForce(new Vector2(x_vel*100f, m_JumpForce * .7f));
 
                     limitVelOnWallJump = true;
                     limitVelOnWallJumpCooldown = 0.0f;         
@@ -715,7 +716,7 @@ public class Player : MonoBehaviour
 
         if (isJumping || isJumpingDJ) // this code is absolutely gross but necessary
         {
-            jumpTime += 0.1f;
+            jumpTime += Time.fixedDeltaTime;
         }
 
         if (releaseJump)
@@ -728,7 +729,7 @@ public class Player : MonoBehaviour
         {
             if (isJumping || isJumpingDJ)
             {
-                m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 80 / jumpTime));
+                m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 800f / jumpTime));
             }
         }
 
