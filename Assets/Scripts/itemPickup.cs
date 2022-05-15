@@ -8,6 +8,9 @@ public class itemPickup : MonoBehaviour
     Item item;
     public bool playerIsInRange = false;
     string labelText = "";
+    public GameObject trigger;
+    public string method = "";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +38,6 @@ public class itemPickup : MonoBehaviour
                 else if (item.itemID == "10")
                 {
                     Player.controller.specialAttack_Unlocked = true;
-                    GameObject.FindObjectOfType<ReyaCutscene>().StartCutscene();
                 }
                 else if (item.itemID == "3")
                 {
@@ -44,6 +46,11 @@ public class itemPickup : MonoBehaviour
                 else if (item.itemID == "7")
                 {
                     Player.instance.GetComponent<Attack>().shooting_Unlocked = true;
+                }
+
+                if (trigger != null)
+                {
+                    trigger.BroadcastMessage(method);
                 }
 
                 if (inventory.addToInventory(item))

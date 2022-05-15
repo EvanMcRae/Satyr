@@ -58,6 +58,7 @@ public class ReyaCutscene : MonoBehaviour
     }
 
     IEnumerator Cutscene() {
+        DialougeManager.convoEnded = false;
         Player.controller.reya = true;
         GetComponentInChildren<Camera>().enabled = true;
 
@@ -83,9 +84,8 @@ public class ReyaCutscene : MonoBehaviour
         AudioManager.instance.FadeOutCurrent();
         yield return new WaitForSeconds(1.1f);
         AudioManager.instance.PauseCurrent();
-        // you wouldn't want to wait a set amount of seconds here, this is where dialogue would happen
-        // once dialogue is done, then unpause and finish cutscene
-        // cutscene will not always be 10s long
+
+        Debug.Log("got down to here " + DialougeManager.convoEnded);
         yield return new WaitUntil(() => DialougeManager.convoEnded);
         yield return new WaitForSeconds(2.5f);
         AudioManager.instance.UnPauseCurrent();

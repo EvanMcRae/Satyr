@@ -1009,7 +1009,7 @@ GameObject:
   - component: {fileID: 615692160}
   m_Layer: 0
   m_Name: ReyaCamTarget
-  m_TagString: EditorOnly
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4294,6 +4294,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thisItem: {fileID: 11400000, guid: 112e0e8b63394cd4a8164f3f9694c090, type: 2}
   playerIsInRange: 0
+  trigger: {fileID: 1397715722}
+  method: StartCutscene
 --- !u!61 &1833147209
 BoxCollider2D:
   m_ObjectHideFlags: 0
