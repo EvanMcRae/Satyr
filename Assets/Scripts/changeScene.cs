@@ -11,6 +11,8 @@ public class changeScene : MonoBehaviour
     public string spawn;
     private Animator crossfade;
     public static bool changingScene;
+    public static bool noFalling = false;
+    public bool noFall = false;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +43,7 @@ public class changeScene : MonoBehaviour
     }
     IEnumerator LoadNextScene() {
         changingScene = true;
+        noFalling = noFall;
         crossfade.SetTrigger("start");
         yield return new WaitForSeconds(0.9f);
         if (SceneManager.GetActiveScene().name == "Tutorial" && scene == "1stScene") {

@@ -143,6 +143,11 @@ public class Player : MonoBehaviour
     {
         CleanSounds();
 
+        if (changeScene.changingScene && changeScene.noFalling && m_Rigidbody2D.velocity.y < 0f)
+        {
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0f);
+        }
+
         if (!GetComponent<Rigidbody2D>().simulated)
         {
             notSimulated += Time.fixedDeltaTime;
@@ -325,7 +330,7 @@ public class Player : MonoBehaviour
         m_IsFarWall = false;
 
         // Trick game into thinking you're grounded if your y velocity isn't changing
-        if (m_Rigidbody2D.velocity.y < 0.001f && m_Rigidbody2D.velocity.y > -0.001f)
+        if (m_Rigidbody2D.velocity.y < 0.001f && m_Rigidbody2D.velocity.y > -0.001f && !(changeScene.changingScene && changeScene.noFalling))
         {
             if (!animator.GetBool("IsSattacking"))
                 notFallingFor = Mathf.Clamp(notFallingFor + Time.fixedDeltaTime, 0, 1f);

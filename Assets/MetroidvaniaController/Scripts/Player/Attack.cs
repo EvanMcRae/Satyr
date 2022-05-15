@@ -247,9 +247,9 @@ public class Attack : MonoBehaviour
 
                 Vector2 damageDir = Vector3.Normalize(transform.position - collidersEnemies[i].transform.position) * 85f;
                 m_Rigidbody2D.velocity = Vector2.zero;
-                int direction = 0;
-                if (collidersEnemies[i].transform.position.x > transform.position.x) { direction = -1; } else { direction = 1; }
-                m_Rigidbody2D.AddForce(new Vector2(direction * 2000f, 200f));
+                // int direction = 0;
+                // if (collidersEnemies[i].transform.position.x > transform.position.x) { direction = -1; } else { direction = 1; }
+                // m_Rigidbody2D.AddForce(new Vector2(direction * 2000f, 200f));
                 //m_Rigidbody2D.AddForce(damageDir * 10);
             }
             else if(collidersEnemies[i].gameObject.tag == "Breakable Wall" && !(ignoredEnemies.Contains(collidersEnemies[i])))
@@ -262,7 +262,7 @@ public class Attack : MonoBehaviour
                 cam.GetComponent<CameraFollow>().ShakeCamera(0.2f);
                 Vector2 damageDir = Vector3.Normalize(transform.position - collidersEnemies[i].transform.position) * 85f;
                 m_Rigidbody2D.velocity = Vector2.zero;
-                m_Rigidbody2D.AddForce(damageDir * 10);
+                // m_Rigidbody2D.AddForce(damageDir * 10);
             }
             ignoredEnemies.Add(collidersEnemies[i]);
         }
@@ -270,17 +270,14 @@ public class Attack : MonoBehaviour
         Collider2D[] collidersWalls = Physics2D.OverlapCircleAll(wallCheck.position, 0.6f);
         for (int i = 0; i < collidersWalls.Length; i++)
         {
-            if (collidersWalls[i].gameObject.tag == "Wall" || collidersWalls[i].gameObject.tag == "Ground" || collidersWalls[i].gameObject.tag == "GroundNoSlide")
+            if (collidersWalls[i].gameObject.tag == "Wall")
             {
                 m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
                 int direction = 0;
-                if (collidersWalls[i] is EdgeCollider2D)
-                {
-                    continue;
-                }
                 if (collidersWalls[i].transform.position.x > transform.position.x) { direction = -1; } else { direction = 1; }
                 m_Rigidbody2D.AddForce(new Vector2(direction * 1000f, 0f));
                 Player.controller.PlaySound(swordClash);
+                break;
             }
         }
     }

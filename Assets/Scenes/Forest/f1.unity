@@ -3218,6 +3218,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5570792371113530276, guid: b2041302b735587489bb72c073c9254d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -0.31309155
+      objectReference: {fileID: 0}
+    - target: {fileID: 5570792371113530276, guid: b2041302b735587489bb72c073c9254d, type: 3}
       propertyPath: m_LocalScale.y
       value: 17.468964
       objectReference: {fileID: 0}
@@ -3227,7 +3231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5570792371113530276, guid: b2041302b735587489bb72c073c9254d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 33.265503
+      value: 29.8
       objectReference: {fileID: 0}
     - target: {fileID: 5570792371113530276, guid: b2041302b735587489bb72c073c9254d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3277,6 +3281,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: room transition (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5570792371113530298, guid: b2041302b735587489bb72c073c9254d, type: 3}
+      propertyPath: m_Size.x
+      value: 6.2967477
+      objectReference: {fileID: 0}
+    - target: {fileID: 5570792371113530298, guid: b2041302b735587489bb72c073c9254d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5570792371113530298, guid: b2041302b735587489bb72c073c9254d, type: 3}
+      propertyPath: m_Offset.x
+      value: -8.981355
+      objectReference: {fileID: 0}
+    - target: {fileID: 5570792371113530298, guid: b2041302b735587489bb72c073c9254d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5570792371113530299, guid: b2041302b735587489bb72c073c9254d, type: 3}
       propertyPath: scene
       value: f2
@@ -3284,6 +3304,10 @@ PrefabInstance:
     - target: {fileID: 5570792371113530299, guid: b2041302b735587489bb72c073c9254d, type: 3}
       propertyPath: spawn
       value: f2 left
+      objectReference: {fileID: 0}
+    - target: {fileID: 5570792371113530299, guid: b2041302b735587489bb72c073c9254d, type: 3}
+      propertyPath: noFall
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2041302b735587489bb72c073c9254d, type: 3}
@@ -3726,7 +3750,7 @@ GameObject:
   - component: {fileID: 1214149237}
   m_Layer: 0
   m_Name: rock_wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3843,7 +3867,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 11.715355, y: -29.299215}
+  m_Offset: {x: 11.715355, y: -30.35936}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3854,7 +3878,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 121.945694, y: 42.079098}
+  m_Size: {x: 121.945694, y: 39.95881}
   m_EdgeRadius: 0
 --- !u!4 &1249032762
 Transform:
@@ -6249,8 +6273,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1772045752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 35.6057, y: 33.9616, z: 0}
-  m_LocalScale: {x: 2.1782014, y: 1.83546, z: 1}
+  m_LocalPosition: {x: 39.9893, y: 31.7, z: 0}
+  m_LocalScale: {x: 4.8982177, y: 1.83546, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 22
