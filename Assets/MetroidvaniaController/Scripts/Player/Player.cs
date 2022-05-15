@@ -558,7 +558,7 @@ public class Player : MonoBehaviour
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * .7f)); //force added during a jump
                 if (doubleJump_Unlocked) { canDoubleJump = true; }
             }
-            else if (!m_Grounded && jump && canDoubleJump && !isWallSliding && !isJumping)
+            else if (!m_Grounded && jump && canDoubleJump && !isWallSliding && !(wallSlide_Unlocked && m_IsFarWall && canWallSlide) && !isJumping)
             {
                 if (doubleJump_Unlocked) { canDoubleJump = false; }
                 holdingJump = true;
