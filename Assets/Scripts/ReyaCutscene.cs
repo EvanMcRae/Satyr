@@ -84,8 +84,7 @@ public class ReyaCutscene : MonoBehaviour
         AudioManager.instance.FadeOutCurrent();
         yield return new WaitForSeconds(1.1f);
         AudioManager.instance.PauseCurrent();
-
-        Debug.Log("got down to here " + DialougeManager.convoEnded);
+        
         yield return new WaitUntil(() => DialougeManager.convoEnded);
         yield return new WaitForSeconds(2.5f);
         AudioManager.instance.UnPauseCurrent();
