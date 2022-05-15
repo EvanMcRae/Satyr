@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
     private bool canCheck = false; //For check if player is wallsliding
     public float wallSlideSpeed = 0; // the default wallSlidSpeed was -5
 
-    private float wallSlidingFor = 0.0f;
+    public float wallSlidingFor = 0.0f;
     private float cantMove = 0f;
     public float life = 10f; //Life of the player
     public bool invincible = false; //If player can die
@@ -337,6 +337,7 @@ public class Player : MonoBehaviour
                 isJumping = false;
                 isJumpingDJ = false;
                 lastOnLand = 0f;
+                wallSlidingFor = 0f;
                 animator.SetBool("IsJumping", false);
             }
         }
@@ -630,7 +631,7 @@ public class Player : MonoBehaviour
                     }
                     else if (!jump)
                     {
-                        wallSlidingFor += Time.deltaTime;
+                        wallSlidingFor += Time.fixedDeltaTime;
                         // so this is where the wall sliding happens - aidan
                         oldWallSlidding = true;
                         if (wallSlidingFor <= 1.0f && canWallGrip)
@@ -674,7 +675,7 @@ public class Player : MonoBehaviour
                     isWallSliding = false;
                     animator.SetBool("IsWallSliding", false);
                     oldWallSlidding = false;
-                    wallSlidingFor = 0.0f;
+                    // wallSlidingFor = 0.0f;
                     m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
                     m_FarWallCheck.localPosition = new Vector3(Mathf.Abs(m_FarWallCheck.localPosition.x), m_FarWallCheck.localPosition.y, 0);
                 }
@@ -683,7 +684,7 @@ public class Player : MonoBehaviour
                     isWallSliding = false;
                     animator.SetBool("IsWallSliding", false);
                     oldWallSlidding = false;
-                    wallSlidingFor = 0.0f;
+                    // wallSlidingFor = 0.0f;
                     m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
                     m_FarWallCheck.localPosition = new Vector3(Mathf.Abs(m_FarWallCheck.localPosition.x), m_FarWallCheck.localPosition.y, 0);
                     // if (doubleJump_Unlocked) { canDoubleJump = true; }
@@ -695,7 +696,7 @@ public class Player : MonoBehaviour
                 isWallSliding = false;
                 animator.SetBool("IsWallSliding", false);
                 oldWallSlidding = false;
-                wallSlidingFor = 0.0f;
+                // wallSlidingFor = 0.0f;
                 m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
                 m_FarWallCheck.localPosition = new Vector3(Mathf.Abs(m_FarWallCheck.localPosition.x), m_FarWallCheck.localPosition.y, 0);
                 // if (doubleJump_Unlocked) { canDoubleJump = true; }
@@ -844,7 +845,7 @@ public class Player : MonoBehaviour
         isWallSliding = false;
         animator.SetBool("IsWallSliding", false);
         oldWallSlidding = false;
-        wallSlidingFor = 0.0f;
+        // wallSlidingFor = 0.0f;
         m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
         m_FarWallCheck.localPosition = new Vector3(Mathf.Abs(m_FarWallCheck.localPosition.x), m_FarWallCheck.localPosition.y, 0);
     }
