@@ -85,7 +85,6 @@ public class Boss : Enemy
         life -= damage;
         if (life < 0) life = 0;
         rb.velocity = Vector2.zero;
-        Debug.Log(direction * 1000f * knockback + " " + 200f * knockback);
         rb.AddForce(new Vector2(direction * 1000f, 200f) * knockback);
         StartCoroutine(HitTime());
     }
