@@ -60,7 +60,6 @@ public class ReyaCutscene : MonoBehaviour
     IEnumerator Cutscene() {
         DialougeManager.convoEnded = false;
         Player.controller.reya = true;
-        GetComponentInChildren<Camera>().enabled = true;
 
         // position Reya relative to player
         if (Player.controller.m_FacingRight) {
@@ -76,6 +75,7 @@ public class ReyaCutscene : MonoBehaviour
         camTarget.position = Vector3.Lerp(Player.instance.transform.position, Reya.transform.position, 0.5f);
 
         cam.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer("TransparentFX"));
+        GetComponentInChildren<Camera>().enabled = true;
         cutscening = true;
         volume.enabled = true;
         Player.controller.canMove = false;
@@ -84,7 +84,7 @@ public class ReyaCutscene : MonoBehaviour
         AudioManager.instance.FadeOutCurrent();
         yield return new WaitForSeconds(1.1f);
         AudioManager.instance.PauseCurrent();
-        
+
         yield return new WaitUntil(() => DialougeManager.convoEnded);
         yield return new WaitForSeconds(2.5f);
         AudioManager.instance.UnPauseCurrent();
