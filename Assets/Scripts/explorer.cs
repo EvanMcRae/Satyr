@@ -76,7 +76,7 @@ public class explorer : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             hasCollided = true;
-            labelText = "Press T to listen";
+            labelText = "Press B button or T key to listen";
         }
     }
 

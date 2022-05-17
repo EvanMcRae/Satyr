@@ -15,7 +15,7 @@ public class basicdialougeinteraction : MonoBehaviour
     public bool autoStart = false;
     public bool anyKey = false;
 
-    [SerializeField] string labelText = "Press T to listen";
+    [SerializeField] string labelText = "Press B button or T key to listen";
 
     DialougeTrigger[] dialogueTriggers;
 

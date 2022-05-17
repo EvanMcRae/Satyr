@@ -42,7 +42,7 @@ public class enterDoor : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             playerIsInRange = true;
-            labelText = "Press T to Enter";
+            labelText = "Press B button or T key to Enter";
         }
     }
 

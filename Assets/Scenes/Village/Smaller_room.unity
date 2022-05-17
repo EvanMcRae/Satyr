@@ -733,7 +733,7 @@ MonoBehaviour:
   textBox: {fileID: 1876440285}
   autoStart: 0
   anyKey: 0
-  labelText: Press T to inspect
+  labelText: Press B button or T key to inspect
   anchor: {fileID: 1220311010}
 --- !u!114 &840214326
 MonoBehaviour:
@@ -1694,7 +1694,7 @@ MonoBehaviour:
   textBox: {fileID: 1876440285}
   autoStart: 0
   anyKey: 0
-  labelText: Press T to inspect
+  labelText: Press B button or T key to inspect
   anchor: {fileID: 1220311010}
 --- !u!114 &1373802406
 MonoBehaviour:
@@ -1965,6 +1965,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: House
   spawn: HouseSpawnR
+  noFall: 0
 --- !u!1 &1784255427
 GameObject:
   m_ObjectHideFlags: 0
@@ -2000,7 +2001,7 @@ MonoBehaviour:
   textBox: {fileID: 1876440285}
   autoStart: 0
   anyKey: 0
-  labelText: Press T to inspect
+  labelText: Press B button or T key to inspect
   anchor: {fileID: 1220311010}
 --- !u!114 &1784255429
 MonoBehaviour:

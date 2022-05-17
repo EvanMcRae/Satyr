@@ -11,6 +11,11 @@ public class itemPickup : MonoBehaviour
     public GameObject trigger;
     public string method = "";
 
+    public float speed;
+    public float verticalSpeed;
+    public float maxRotation;
+    public float x = 0;
+    public float y = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +51,7 @@ public class itemPickup : MonoBehaviour
                 else if (item.itemID == "7")
                 {
                     Player.instance.GetComponent<Attack>().shooting_Unlocked = true;
+                    Player.instance.GetComponent<Attack>().canShoot = true;
                 }
 
                 if (trigger != null)
@@ -59,6 +65,11 @@ public class itemPickup : MonoBehaviour
                 }
             }
         }
+
+        transform.rotation = Quaternion.Euler(0f, 0f, maxRotation * Mathf.Sin(Time.time * speed));
+
+        transform.position = new Vector3(x, (.3f * Mathf.Sin(Time.time * verticalSpeed)) + y, 0f);
+
     }
 
     public void OnGUI()
@@ -75,7 +86,7 @@ public class itemPickup : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             playerIsInRange = true;
-            labelText = "Press T to pick up item";
+            labelText = "Press B button or T key to pick up item";
         }
     }
 

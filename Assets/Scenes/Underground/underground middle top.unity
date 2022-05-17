@@ -1217,6 +1217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: underground little room
   spawn: little left
+  noFall: 0
 --- !u!4 &205569373 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6743093074308911238, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
@@ -6169,6 +6170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: Underground intersection
   spawn: right side spawn
+  noFall: 0
 --- !u!4 &1223801563 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6743093074308911238, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
@@ -7621,6 +7623,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thisItem: {fileID: 11400000, guid: 6cad8eb17cc5bdf43826f038ef884832, type: 2}
   playerIsInRange: 0
+  trigger: {fileID: 0}
+  method: 
+  speed: 2
+  verticalSpeed: 3.1
+  maxRotation: 10
+  x: 46.49
+  y: 17.94
 --- !u!212 &1522957025
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7662,8 +7671,8 @@ SpriteRenderer:
   m_SortingLayerID: -368620725
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.6509434, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 35583d2f7760cce4a98b27ac304e0bb9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7700,18 +7709,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.062454224, y: 0}
+  m_Offset: {x: 0.062454224, y: -0.39208603}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 3, y: 2.25}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.6201553, y: 1}
+  m_Size: {x: 7.6201553, y: 1.784172}
   m_EdgeRadius: 0
 --- !u!1 &1526428147
 GameObject:

@@ -4374,7 +4374,7 @@ MonoBehaviour:
   textBox: {fileID: 513202304}
   autoStart: 0
   anyKey: 0
-  labelText: Press T to listen
+  labelText: Press B button or T key to listen
   anchor: {fileID: 148019358}
 --- !u!114 &2138062224
 MonoBehaviour:
@@ -4435,6 +4435,10 @@ PrefabInstance:
       propertyPath: textBox
       value: 
       objectReference: {fileID: 513202304}
+    - target: {fileID: 1756524928694106834, guid: d1eb841a6bba42544a1a9a60b2f4cb13, type: 3}
+      propertyPath: labelText
+      value: Press B button or T key to listen
+      objectReference: {fileID: 0}
     - target: {fileID: 1756524928694106835, guid: d1eb841a6bba42544a1a9a60b2f4cb13, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -4513,6 +4517,10 @@ PrefabInstance:
       propertyPath: textBox
       value: 
       objectReference: {fileID: 513202304}
+    - target: {fileID: 7106445552057121496, guid: ee26c3b430e70df45aadd49d79613113, type: 3}
+      propertyPath: labelText
+      value: Press B button or T key to listen
+      objectReference: {fileID: 0}
     - target: {fileID: 7106445552057121497, guid: ee26c3b430e70df45aadd49d79613113, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -4636,6 +4644,10 @@ PrefabInstance:
       propertyPath: textBox
       value: 
       objectReference: {fileID: 513202304}
+    - target: {fileID: 8081420514114993831, guid: 41643b0fa8ab6b84fa039e33f711df0c, type: 3}
+      propertyPath: labelText
+      value: Press B button or T key to listen
+      objectReference: {fileID: 0}
     - target: {fileID: 8081420514114993851, guid: 41643b0fa8ab6b84fa039e33f711df0c, type: 3}
       propertyPath: m_Name
       value: npcs_1

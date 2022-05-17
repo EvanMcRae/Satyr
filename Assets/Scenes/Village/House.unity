@@ -499,6 +499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: Town
   spawn: OustideHouseSpawn
+  noFall: 0
 --- !u!1001 &322194930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -617,7 +618,7 @@ MonoBehaviour:
   textBox: {fileID: 157769806}
   autoStart: 0
   anyKey: 0
-  labelText: Press T to inspect
+  labelText: Press B button or T key to inspect
   anchor: {fileID: 1015028797}
 --- !u!212 &337344263
 SpriteRenderer:
@@ -1910,6 +1911,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: Smaller_room
   spawn: HouseSpawnS
+  noFall: 0
 --- !u!1 &1740477785
 GameObject:
   m_ObjectHideFlags: 0
