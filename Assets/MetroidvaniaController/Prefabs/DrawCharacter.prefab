@@ -98,40 +98,58 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 4291727345091452}
   m_LeftGroundCheck: {fileID: 0}
   m_RightGroundCheck: {fileID: 0}
+  m_LowGroundCheck: {fileID: 0}
   m_WallCheck: {fileID: 4986330650710208}
+  m_FarWallCheck: {fileID: 0}
   am: {fileID: 0}
   groundParticle: {fileID: 0}
   m_Grounded: 0
   m_leftGrounded: 0
   m_rightGrounded: 0
+  m_FacingRight: 1
+  limitFallSpeed: 20
   wallSlide_Unlocked: 0
   doubleJump_Unlocked: 0
+  specialAttack_Unlocked: 0
   canDoubleJump: 0
   m_DashForce: 25
   canDash: 0
   isDashing: 0
+  m_IsWall: 0
+  m_IsFarWall: 0
+  isWallSliding: 0
+  canWallSlide: 1
   wallSlideSpeed: 0
+  wallSlidingFor: 0
   life: 10
   invincible: 0
   dead: 0
+  canMove: 1
   isJumping: 0
   isJumpingDJ: 0
   resetting: 0
   jumpTime: 0
+  isStill: 0
+  audioJump: {fileID: 0}
   stunDuration: 0.25
   iFrames: 1
   lastOnLand: 0
   jumpCooldown: 0
+  notFallingFor: 0
   beenOnLand: 0
+  notSimulated: 0
+  reset_point: {fileID: 0}
   inDeathZone: 0
   currentGround: 0
   previousGround: 0
   switchedGround: 0
   particleJumpUp: {fileID: 198584872278178884}
   particleJumpDown: {fileID: 198967111524372206}
+  particleWallJump: {fileID: 0}
   particleLand: {fileID: 0}
   explorer: 0
   initialFall: 0
+  reya: 0
   slippery: {fileID: 0}
   friction: {fileID: 0}
   OnFallEvent:
@@ -173,16 +191,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1377240496476148}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9955788a5eaffa49a9297f38eaa6202, type: 3}
+  m_Script: {fileID: 11500000, guid: df97ca61390a62245a460dae01a22e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dmgValue: 4
-  throwableObject: {fileID: 5532974359214069763, guid: 340067e8e5a097546ad175f1d00a6ece, type: 3}
+  throwableObject: {fileID: 0}
   attackCheck: {fileID: 4370582630649528}
   botAttackCheck: {fileID: 0}
   topAttackCheck: {fileID: 0}
   currentAttackCheck: {fileID: 0}
-  wallCheck: {fileID: 0}
+  wallCheck: {fileID: 4986330650710208}
   animator: {fileID: 95975118031919256}
   canAttack: 1
   canShoot: 1
@@ -191,14 +209,16 @@ MonoBehaviour:
   particleSpecialAttack: {fileID: 0}
   ignoredEnemies: []
   cam: {fileID: 0}
-  special_attack_hitbox: {fileID: 0}
   shooting_Unlocked: 0
+  shootStrength: 0
+  verticalAim: 0.25
   specialCooldown: 0
-  specialMaxCooldown: 3
+  specialMaxCooldown: 10
   playerHealth: {fileID: 0}
   cordyceps: {fileID: 0}
   swordClash: {fileID: 0}
   specialSound: {fileID: 0}
+  arrowRelease: {fileID: 0}
 --- !u!114 &114145887554720856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 95975118031919256}
+  pauseOverlay: {fileID: 0}
   runSpeed: 40
   dash_Unlocked: 0
 --- !u!212 &212971026275759962
@@ -5334,7 +5355,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
