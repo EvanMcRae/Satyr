@@ -424,6 +424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: underground village connection
   spawn: from intersection
+  noFall: 0
 --- !u!1001 &131169359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1177,6 +1178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: underground hotsprings
   spawn: hs top spawn
+  noFall: 0
 --- !u!1 &316840423
 GameObject:
   m_ObjectHideFlags: 0
@@ -3621,8 +3623,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb626671733fa14469dda353309e403a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: underground top left room
-  spawn: tl left side
+  scene: u2
+  spawn: u2 left
+  noFall: 0
 --- !u!251 &852190109
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -6971,6 +6974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: underground middle top
   spawn: middle top left
+  noFall: 0
 --- !u!1 &1781521454
 GameObject:
   m_ObjectHideFlags: 0
