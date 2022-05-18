@@ -4810,7 +4810,7 @@ GameObject:
   - component: {fileID: 792479950}
   - component: {fileID: 792479949}
   m_Layer: 0
-  m_Name: Square (9)
+  m_Name: To u15 left
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4842,8 +4842,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb626671733fa14469dda353309e403a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: Underground deep room
-  spawn: deep room spawn left
+  scene: u15
+  spawn: u15 left
   noFall: 0
 --- !u!61 &792479950
 BoxCollider2D:
@@ -9672,7 +9672,7 @@ GameObject:
   - component: {fileID: 1663226468}
   - component: {fileID: 1663226467}
   m_Layer: 0
-  m_Name: Square (12)
+  m_Name: To u9
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10242,7 +10242,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755559956}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 95.47003, y: 0, z: 0}
+  m_LocalPosition: {x: 95.7, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 309068240}
@@ -12854,7 +12854,7 @@ GameObject:
   - component: {fileID: 2046365408}
   - component: {fileID: 2046365407}
   m_Layer: 0
-  m_Name: Square (10)
+  m_Name: To u15 right
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12886,8 +12886,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb626671733fa14469dda353309e403a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: Underground deep room
-  spawn: deep room top right
+  scene: u15
+  spawn: u15 right
   noFall: 0
 --- !u!61 &2046365408
 BoxCollider2D:
