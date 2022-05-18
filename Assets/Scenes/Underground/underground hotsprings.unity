@@ -2539,8 +2539,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb626671733fa14469dda353309e403a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: Underground intersection
-  spawn: spawn from hotsprings
+  scene: u4
+  spawn: u4 bottom right
+  noFall: 0
 --- !u!4 &1182289937 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6743093074308911238, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
@@ -4165,6 +4166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: underground middle bottom
   spawn: left spawn
+  noFall: 0
 --- !u!1 &2034599214
 GameObject:
   m_ObjectHideFlags: 0
