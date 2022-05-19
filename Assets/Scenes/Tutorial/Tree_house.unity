@@ -814,6 +814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: Tutorial
   spawn: SpawnPoint_outside tree
+  noFall: 0
 --- !u!1 &887798787
 GameObject:
   m_ObjectHideFlags: 0
@@ -2113,6 +2114,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8846302485689966168, guid: 0dfd002df5d660e44afed1b6965a3ca1, type: 3}
+      propertyPath: x
+      value: 5.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 8846302485689966168, guid: 0dfd002df5d660e44afed1b6965a3ca1, type: 3}
+      propertyPath: y
+      value: -0.88
+      objectReference: {fileID: 0}
     - target: {fileID: 8846302485689966169, guid: 0dfd002df5d660e44afed1b6965a3ca1, type: 3}
       propertyPath: m_Name
       value: Pick Upable Item
