@@ -41,7 +41,6 @@ public class Attack : MonoBehaviour
 
     private void Awake()
     {
-        specialCooldown = specialMaxCooldown;
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
@@ -59,8 +58,10 @@ public class Attack : MonoBehaviour
         {
             cam = GameObject.Find("Main Camera pre Variant");
 
-            if (specialCooldown < specialMaxCooldown)
-                specialCooldown += Time.deltaTime;
+            if (specialCooldown > specialMaxCooldown)
+                specialCooldown = specialMaxCooldown;
+            if (specialCooldown < 0)
+                specialCooldown = 0;
 
             if (!ReyaCutscene.cutscening && Input.GetButton("Attack") && canAttack && shootStrength <= 0.0f)
             {
@@ -239,6 +240,9 @@ public class Attack : MonoBehaviour
                 {
                     collidersEnemies[i].GetComponent<Enemy>().ApplyDamage(dmgValue, knockback);
                 }
+
+                if (specialCooldown < specialMaxCooldown)
+                    specialCooldown += specialMaxCooldown / 4;
 
                 //collidersEnemies[i].gameObject.SendMessage("ApplyDamage", dmgValue);
                 // this code is for camera shake on attack?

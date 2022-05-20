@@ -10,9 +10,11 @@ public class SpecialBar : MonoBehaviour
     void Start()
     {
         attack = Player.instance.GetComponent<Attack>();
+        specialBarImage.fillAmount = ((attack.specialCooldown) / attack.specialMaxCooldown);
     }
     void Update()
     {//was UpdateBar function, this implementation may tank performance
-        specialBarImage.fillAmount = ((attack.specialCooldown) / attack.specialMaxCooldown);
+        float idealFillAmt = ((attack.specialCooldown) / attack.specialMaxCooldown);
+        specialBarImage.fillAmount = Mathf.Lerp(specialBarImage.fillAmount, idealFillAmt, 0.1f);
     }
 }
