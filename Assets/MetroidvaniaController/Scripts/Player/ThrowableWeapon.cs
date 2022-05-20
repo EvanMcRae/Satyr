@@ -49,6 +49,10 @@ public class ThrowableWeapon : MonoBehaviour
                 collision.gameObject.GetComponent<Enemy>().ApplyDamage(Mathf.Sign(direction.x) * 2f, 1f);
                 hitEnemy = true;
                 GetComponent<SpriteRenderer>().enabled = false;
+
+                var attack = Player.instance.GetComponent<Attack>();
+                if (attack.specialCooldown < attack.specialMaxCooldown)
+                    attack.specialCooldown += attack.specialMaxCooldown / 4;
             }
             if (collision.gameObject.tag != "Player")
             {
