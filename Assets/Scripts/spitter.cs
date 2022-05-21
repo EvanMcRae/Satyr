@@ -56,7 +56,7 @@ public class spitter : Enemy
 
             if (timeBtwShots <= 0)
             {
-                Instantiate(projectile, transform.position, Quaternion.identity);
+                Instantiate(projectile, transform.position, new Quaternion(0,0,0,0));
                 timeBtwShots = startTimeBtwShots;
             }
             else
