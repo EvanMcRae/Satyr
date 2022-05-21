@@ -4064,6 +4064,7 @@ GameObject:
   - component: {fileID: 659815958}
   - component: {fileID: 659815957}
   - component: {fileID: 659815956}
+  - component: {fileID: 659815960}
   m_Layer: 0
   m_Name: bow pickup
   m_TagString: Untagged
@@ -4084,18 +4085,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.062454224, y: -1.383997}
+  m_Offset: {x: 0.062454224, y: -1.2895397}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.88, y: 1.48}
+    oldSize: {x: 3.03, y: 8.35}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.6201553, y: 3.767994}
+  m_Size: {x: 7.6201553, y: 3.579077}
   m_EdgeRadius: 0
 --- !u!114 &659815957
 MonoBehaviour:
@@ -4159,7 +4160,7 @@ SpriteRenderer:
   m_SortingLayerID: 496845275
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 417564f2b79e9ca418be6a5b6486a0d5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 801b2d2e27d5caa459faf6cf938134f1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4178,12 +4179,31 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 659815955}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.16, y: 43.09, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 2.2, y: 43.02, z: 0}
+  m_LocalScale: {x: 0.19841915, y: 0.19841915, z: 0.19841915}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &659815960
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659815955}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 41a8d603434815b41bcb05addb78ba45, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &681690931
 GameObject:
   m_ObjectHideFlags: 0
