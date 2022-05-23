@@ -16,12 +16,11 @@ public class deathblocks : MonoBehaviour
         
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnCollisionStay2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Player" && !Player.controller.resetting && !Player.controller.dead)
+        if (col.gameObject.tag == "Player" && !Player.controller.resetting && !Player.controller.dead && !Player.controller.invincible)
         {
             col.gameObject.GetComponent<Player>().ApplyDamage(1.0f, this.transform.position, 0f, true);
-            // print("this is working");
             col.gameObject.GetComponent<Player>().GoToResetPoint();
             // col.gameObject.transform.position = new Vector3(col.gameObject.GetComponent<Player>().reset_point.position.x, col.gameObject.GetComponent<Player>().reset_point.position.y, col.gameObject.GetComponent<Player>().reset_point.position.z);
         }

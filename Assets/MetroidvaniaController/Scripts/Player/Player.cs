@@ -765,9 +765,9 @@ public class Player : MonoBehaviour
         ApplyDamage(damage, position, knockBack, false);
     }
 
-    public void ApplyDamage(float damage, Vector3 position, float knockBack, bool bypass)
+    public void ApplyDamage(float damage, Vector3 position, float knockBack, bool bypassFlash)
     {
-        if (((invincible && bypass) || !invincible) && !resetting && !dead)
+        if (!invincible && !resetting && !dead)
         {
             animator.SetBool("Hit", true);
             //		life -= damage;  orignial code
@@ -785,7 +785,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                if (!bypass)
+                if (!bypassFlash)
                     GetComponent<SimpleFlash>().Flash(iFrames, 3);
                 StartCoroutine(Stun(stunDuration));
                 StartCoroutine(MakeInvincible(iFrames));
@@ -906,7 +906,6 @@ public class Player : MonoBehaviour
         m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
         resetting = true;
         StartCoroutine(WaitToMove(1));
-        invincible = true;
         GameObject.Find("Crossfade").GetComponent<Animator>().SetTrigger("start");
         yield return new WaitForSeconds(1f);
         animator.SetBool("IsDead", false);
@@ -914,8 +913,9 @@ public class Player : MonoBehaviour
         FindObjectOfType<CameraFollow>().Snap(transform.position);
         m_Rigidbody2D.velocity = Vector2.zero;
         resetting = false;
-        yield return new WaitForSeconds(2f);
-        invincible = false;
+        yield return new WaitForSeconds(0.31f);
+        StartCoroutine(MakeInvincible(3f));
+        GetComponent<SimpleFlash>().Flash(3f, 7);
     }
     
     public void LandParticles()
