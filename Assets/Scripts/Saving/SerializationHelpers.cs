@@ -144,9 +144,8 @@ public class AttackSerialization
     {
         playerObj.GetComponent<Attack>().dmgValue = dmgValue;
         playerObj.GetComponent<Attack>().shooting_Unlocked = shooting_Unlocked;
-        // playerObj.GetComponent<Attack>().specialCooldown = specialCooldown;
+        playerObj.GetComponent<Attack>().specialCooldown = specialCooldown;
         playerObj.GetComponent<Attack>().specialMaxCooldown = specialMaxCooldown;
-        playerObj.GetComponent<Attack>().specialCooldown = specialMaxCooldown;
     }
 }
 
