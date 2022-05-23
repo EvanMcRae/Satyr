@@ -21,6 +21,11 @@ public class itemPickup : MonoBehaviour
     {
         item = thisItem;
         if (item.itemID == "10" && Player.controller.reya) Destroy(gameObject);
+        if (item.itemID == "11" && Player.controller.froggy) Destroy(gameObject);
+        if (item.itemID == "7" && Player.instance.GetComponent<Attack>().shooting_Unlocked) Destroy(gameObject);
+        if (item.itemID == "9" && Player.controller.wallSlide_Unlocked) Destroy(gameObject);
+        if (item.itemID == "4" && Player.controller.doubleJump_Unlocked) Destroy(gameObject);
+        if (item.itemID == "3" && Player.instance.GetComponent<PlayerMovement>().dash_Unlocked) Destroy(gameObject);
     }
 
     // Update is called once per frame
@@ -52,6 +57,10 @@ public class itemPickup : MonoBehaviour
                 {
                     Player.instance.GetComponent<Attack>().shooting_Unlocked = true;
                     Player.instance.GetComponent<Attack>().canShoot = true;
+                }
+                else if (item.itemID == "11")
+                {
+                    Player.controller.froggy = true;
                 }
 
                 if (trigger != null)

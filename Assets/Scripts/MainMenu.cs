@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class MainMenu : MonoBehaviour
@@ -11,6 +12,8 @@ public class MainMenu : MonoBehaviour
     private Animator crossfade;
     private Coroutine routine;
     public Button loadButton;
+    public GameObject defaultButton;
+    static GameObject lastSelected;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +23,8 @@ public class MainMenu : MonoBehaviour
         Destroy(Player.instance);
     }
 
-    void Update() {
+    void Update()
+    {
         if (GetComponent<SaveSystem>() != null && loadButton != null)
         {
             if (!GetComponent<SaveSystem>().SaveFileExists())
@@ -34,8 +38,24 @@ public class MainMenu : MonoBehaviour
                 loadButton.GetComponentInChildren<TMP_Text>().color = new Color32(154, 127, 0, 255);
             }
         }
+
+        if (lastSelected == null || !lastSelected.activeInHierarchy || !lastSelected.GetComponent<Button>().interactable)
+        {
+            if (defaultButton.activeInHierarchy) lastSelected = defaultButton;
+        }
+
+        if (EventSystem.current.currentSelectedGameObject == null || !EventSystem.current.currentSelectedGameObject.activeInHierarchy)
+        {
+            if (lastSelected.gameObject.activeInHierarchy && lastSelected.GetComponent<Button>() != null && lastSelected.GetComponent<Button>().interactable)
+            {
+                EventSystem.current.SetSelectedGameObject(lastSelected);
+            }
+        }
+        else
+        {
+            lastSelected = EventSystem.current.currentSelectedGameObject;
+        }
     }
-    
 
     public void PlayGame()
     {

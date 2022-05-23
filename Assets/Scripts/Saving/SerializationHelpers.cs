@@ -30,7 +30,7 @@ public class PlayerSerialization
 [Serializable]
 public class ControllerSerialization
 {
-    public bool m_Grounded, wallSlide_Unlocked, doubleJump_Unlocked, specialAttack_Unlocked, invincible, isJumping, explorer, initialFall, reya;
+    public bool m_Grounded, wallSlide_Unlocked, doubleJump_Unlocked, specialAttack_Unlocked, invincible, isJumping, explorer, initialFall, reya, froggy;
     public float stunDuration, iFrames, lastOnLand, jumpCooldown, life;
 
     public ControllerSerialization(Player controller)
@@ -44,6 +44,7 @@ public class ControllerSerialization
         explorer = controller.explorer;
         initialFall = controller.initialFall;
         reya = controller.reya;
+        froggy = controller.froggy;
         life = controller.life;
     }
 
@@ -58,6 +59,7 @@ public class ControllerSerialization
         playerObj.GetComponent<Player>().explorer = explorer;
         playerObj.GetComponent<Player>().initialFall = initialFall;
         playerObj.GetComponent<Player>().reya = reya;
+        playerObj.GetComponent<Player>().froggy = froggy;
         playerObj.GetComponent<Player>().life = life;
     }
 }
@@ -144,9 +146,8 @@ public class AttackSerialization
     {
         playerObj.GetComponent<Attack>().dmgValue = dmgValue;
         playerObj.GetComponent<Attack>().shooting_Unlocked = shooting_Unlocked;
-        // playerObj.GetComponent<Attack>().specialCooldown = specialCooldown;
+        playerObj.GetComponent<Attack>().specialCooldown = specialCooldown;
         playerObj.GetComponent<Attack>().specialMaxCooldown = specialMaxCooldown;
-        playerObj.GetComponent<Attack>().specialCooldown = specialMaxCooldown;
     }
 }
 
