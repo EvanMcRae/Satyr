@@ -455,7 +455,7 @@ public class Player : MonoBehaviour
 
         if (canMove)
         {
-            if (GetComponent<Attack>().specialCooldown > 5f) {
+            if (GetComponent<Attack>().specialCooldown >= 5f) {
                 canDash = true;
             } else {
                 canDash = false;
