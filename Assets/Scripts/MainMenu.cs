@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     public Button loadButton;
     public GameObject defaultButton;
     static GameObject lastSelected;
+    Button[] buttons;
 
     // Start is called before the first frame update
     void Start()
@@ -21,24 +22,11 @@ public class MainMenu : MonoBehaviour
         Cursor.visible = true;
         crossfade = GameObject.Find("Crossfade").GetComponent<Animator>();
         Destroy(Player.instance);
+        buttons = GetComponentsInChildren<Button>();
     }
 
     void Update()
     {
-        if (GetComponent<SaveSystem>() != null && loadButton != null)
-        {
-            if (!GetComponent<SaveSystem>().SaveFileExists())
-            {
-                loadButton.interactable = false;
-                loadButton.GetComponentInChildren<TMP_Text>().color = new Color32(118, 118, 118, 255);
-            }
-            else
-            {
-                loadButton.interactable = true;
-                loadButton.GetComponentInChildren<TMP_Text>().color = new Color32(154, 127, 0, 255);
-            }
-        }
-
         if (lastSelected == null || !lastSelected.activeInHierarchy || !lastSelected.GetComponent<Button>().interactable)
         {
             if (defaultButton.activeInHierarchy) lastSelected = defaultButton;
@@ -55,6 +43,39 @@ public class MainMenu : MonoBehaviour
         {
             lastSelected = EventSystem.current.currentSelectedGameObject;
         }
+
+        if (GetComponent<SaveSystem>() != null && loadButton != null)
+        {
+            if (!GetComponent<SaveSystem>().SaveFileExists())
+            {
+                loadButton.interactable = false;
+                loadButton.GetComponentInChildren<TMP_Text>().color = new Color32(118, 118, 118, 255);
+            }
+            else
+            {
+                loadButton.interactable = true;
+                if (lastSelected.GetComponent<Button>() != loadButton)
+                {
+                    loadButton.GetComponentInChildren<TMP_Text>().color = new Color32(154, 127, 0, 255);
+                }
+            }
+        }
+
+        foreach (Button b in buttons) {
+            if (lastSelected == b.gameObject) 
+            {
+                b.GetComponentInChildren<TMP_Text>().color = new Color32(255, 218, 43, 255);
+            }
+            else if (b.interactable)
+            {
+                b.GetComponentInChildren<TMP_Text>().color = new Color32(154, 127, 0, 255);
+            }
+        }
+    }
+
+    public void SelectButton(GameObject btn)
+    {
+        EventSystem.current.SetSelectedGameObject(btn);
     }
 
     public void PlayGame()
