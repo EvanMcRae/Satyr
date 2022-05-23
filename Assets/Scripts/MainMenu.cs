@@ -39,7 +39,7 @@ public class MainMenu : MonoBehaviour
             }
         }
 
-        if (lastSelected == null || !lastSelected.activeInHierarchy)
+        if (lastSelected == null || !lastSelected.activeInHierarchy || !lastSelected.GetComponent<Button>().interactable)
         {
             if (defaultButton.activeInHierarchy) lastSelected = defaultButton;
         }
