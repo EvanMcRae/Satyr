@@ -73,6 +73,11 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    public void SelectButton(GameObject btn)
+    {
+        EventSystem.current.SetSelectedGameObject(btn);
+    }
+
     public void PlayGame()
     {
         if (routine == null)
