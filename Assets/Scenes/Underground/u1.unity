@@ -330,6 +330,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Square (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 6743093074308911235, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911236, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -345,6 +349,10 @@ PrefabInstance:
     - target: {fileID: 6743093074308911237, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_Color.r
       value: 0.9622642
+      objectReference: {fileID: 0}
+    - target: {fileID: 6743093074308911237, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911237, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_SortingLayer
@@ -518,8 +526,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 110513331}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.69, y: -3.2372, z: 0}
-  m_LocalScale: {x: 0.30707255, y: 0.48461607, z: 1}
+  m_LocalPosition: {x: 22.69, y: -3.3314, z: 0}
+  m_LocalScale: {x: 0.30707255, y: 0.8463389, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 34
@@ -5462,7 +5470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: f6
   spawn: from underground
-  noFall: 0
+  noFall: 1
 --- !u!1 &922269303
 GameObject:
   m_ObjectHideFlags: 0
@@ -10669,8 +10677,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1727614718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 35.2, y: 27.62, z: 0}
-  m_LocalScale: {x: 0.5649811, y: 1, z: 1}
+  m_LocalPosition: {x: 35.2, y: 27.0168, z: 0}
+  m_LocalScale: {x: 0.5649811, y: 1.2419947, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 40
