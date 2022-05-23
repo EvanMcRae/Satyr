@@ -22,9 +22,10 @@ public class enterDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKey(KeyCode.T) || Input.GetKeyDown("joystick button 1")) && playerIsInRange)
+        if ((Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown("joystick button 1")) && playerIsInRange && !changeScene.changingScene)
         {
             StartCoroutine(LoadNextScene());
+            changeScene.changingScene = true;
         }
     }
 

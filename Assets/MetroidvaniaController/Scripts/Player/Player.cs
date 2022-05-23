@@ -91,6 +91,7 @@ public class Player : MonoBehaviour
     public bool initialFall = false;
     public bool reya = false;
     public bool froggy = false;
+    public bool well = false;
 
     public PhysicsMaterial2D slippery, friction;
 

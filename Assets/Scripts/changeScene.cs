@@ -38,6 +38,10 @@ public class changeScene : MonoBehaviour
     {
         if (!changingScene && collision.gameObject.tag == "Player" && !Player.controller.dead && !Player.controller.resetting && !GameSaver.loading)
         {
+            if (scene == "Town" && spawn == "well spawn")
+            {
+                Player.controller.well = true;
+            }
             StartCoroutine(LoadNextScene());
         }
     }
