@@ -17898,6 +17898,7 @@ GameObject:
   - component: {fileID: 1998529212}
   - component: {fileID: 1998529211}
   - component: {fileID: 1998529210}
+  - component: {fileID: 1998529213}
   m_Layer: 7
   m_Name: Boundary (4)
   m_TagString: Boundary
@@ -17960,6 +17961,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 46
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1998529213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998529209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f635322c2536a941a317bda422179a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2014482346 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6743093074308911235, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
