@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour {
                 Player.controller.jumpCooldown = 0f;
             }
 
-            if ((Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.LeftShift)) && dash_Unlocked == true)
+            if ((Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.LeftShift) || Input.GetAxisRaw("LeftTrigger") > 0.3) && dash_Unlocked == true)
             {
                 dash = true;
             }
