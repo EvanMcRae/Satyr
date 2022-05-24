@@ -456,11 +456,6 @@ public class Player : MonoBehaviour
 
         if (canMove)
         {
-            if (GetComponent<Attack>().specialCooldown >= 5f) {
-                canDash = true;
-            } else {
-                canDash = false;
-            }
             if (dash && canDash && !isWallSliding)
             {
                 StartCoroutine(DashCooldown());
@@ -799,13 +794,13 @@ public class Player : MonoBehaviour
         speedBoost = true;
         animator.SetBool("IsDashing", true);
         canDash = false;
-        if (GetComponent<Attack>().specialCooldown >= 5f)
-            GetComponent<Attack>().specialCooldown -= 5f;
         yield return new WaitForSeconds(0.1f);
         speedBoost = false;
         yield return new WaitForSeconds(0.3f);
         isDashing = false;
         GetComponent<Attack>().ignoredEnemies.Clear();
+        yield return new WaitForSeconds(1.6f);
+        canDash = true;
     }
 
     IEnumerator Stun(float time)
