@@ -8,7 +8,7 @@ public class Cordyceps : MonoBehaviour
 {
     public int count = 0;
     // can be used to define bag thresholds
-    public readonly int[] FILL_LEVELS = {0, 5, 10, 20, 40};
+    public static readonly int[] FILL_LEVELS = {0, 5, 10, 15, 20};
     public GameObject[] bagSprites;
     public AudioClip harvestCordyceps;
     public bool animating;
@@ -24,7 +24,7 @@ public class Cordyceps : MonoBehaviour
         GameObject[] items = GameObject.FindGameObjectsWithTag("CordycepsItem");
         foreach (GameObject item in items)
         {
-            if ((item.transform.position - transform.position).magnitude < 0.5f) 
+            if ((item.transform.position - transform.position).magnitude < 0.5f && count < FILL_LEVELS[4]) 
             {
                 Destroy(item);
                 count++;
