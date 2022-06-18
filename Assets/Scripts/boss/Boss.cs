@@ -15,11 +15,19 @@ public class Boss : Enemy
     public bool isHitted = false;
     public bool dead = false;
 
+    //
+    [SerializeField] float jumpHeight;
+    [SerializeField] Transform groundCheck;
+    [SerializeField] Vector2 boxSize;
+    [SerializeField] LayerMask groundLayer;
+    private bool isGrounded;
+
     // Start is called before the first frame update
     void Start()
     {
         player = Player.instance.transform;
         rb = GetComponent<Rigidbody2D>();
+        isGrounded = true;
     }
 
     // Update is called once per frame
@@ -35,6 +43,14 @@ public class Boss : Enemy
             if (!dead)
                 StartCoroutine(DestroyEnemy());
         }
+
+        //isGrounded = Physics2D.OverlapBox(groundCheck.position, boxSize, 0, groundLayer);
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            JumpAttack();
+        }
+
     }
 
     public void LookAtPlayer()
@@ -53,6 +69,18 @@ public class Boss : Enemy
             transform.localScale = flipped;
             transform.Rotate(0f, 180f, 0f);
             isFlipped = true;
+        }
+    }
+
+    void JumpAttack()
+    {
+        float distanceFromPlayer = player.position.x - transform.position.x;
+
+        if (isGrounded)
+        {
+            print("boss tries to jump attack");
+            rb.AddForce(new Vector2(distanceFromPlayer, jumpHeight), ForceMode2D.Impulse);
+            isGrounded = false;
         }
     }
 
@@ -87,6 +115,19 @@ public class Boss : Enemy
         rb.velocity = Vector2.zero;
         rb.AddForce(new Vector2(direction * 1000f, 200f) * knockback);
         StartCoroutine(HitTime());
+    }
+
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
+        }
+        else if (col.gameObject.tag == "Player")
+        {
+            col.gameObject.GetComponent<Player>().ApplyDamage(1.0f, this.transform.position, 60f);
+        }
     }
 
     IEnumerator HitTime()

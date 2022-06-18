@@ -25,9 +25,12 @@ public class Boss_Run : StateMachineBehaviour
         if (!boss.dead && !boss.isHitted) {
             boss.LookAtPlayer();
 
-            Vector2 target = new Vector2(player.position.x, rb.position.y);
+
+            //if we want the boss to chase the player on the ground
+
+            /*Vector2 target = new Vector2(player.position.x, rb.position.y);
             Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
-            rb.MovePosition(newPos);
+            rb.MovePosition(newPos);*/
 
             if (Vector2.Distance(player.position, rb.position) <= attackRange && !Player.controller.invincible)
             {
