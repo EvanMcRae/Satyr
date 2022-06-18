@@ -1058,6 +1058,7 @@ GameObject:
   - component: {fileID: 74119445}
   - component: {fileID: 74119444}
   - component: {fileID: 74119443}
+  - component: {fileID: 74119446}
   m_Layer: 0
   m_Name: square (13)
   m_TagString: Ground
@@ -1076,7 +1077,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0.31136173, y: 0}
   m_SpriteTilingProperty:
@@ -1157,6 +1158,25 @@ Transform:
   m_Father: {fileID: 973685167}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!251 &74119446
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74119442}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 270
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 179
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &171990719
 GameObject:
   m_ObjectHideFlags: 0
@@ -3113,6 +3133,7 @@ GameObject:
   - component: {fileID: 500316268}
   - component: {fileID: 500316267}
   - component: {fileID: 500316266}
+  - component: {fileID: 500316269}
   m_Layer: 0
   m_Name: square (12)
   m_TagString: Ground
@@ -3131,7 +3152,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0.44712967, y: 0}
   m_SpriteTilingProperty:
@@ -3212,6 +3233,25 @@ Transform:
   m_Father: {fileID: 973685167}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!251 &500316269
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500316265}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 270
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 179
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &520974596
 GameObject:
   m_ObjectHideFlags: 0
@@ -7327,6 +7367,10 @@ PrefabInstance:
     - target: {fileID: 8241695565077528273, guid: 0ec49babe035fa341bcea32735b66c7c, type: 3}
       propertyPath: m_SortingOrder
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8241695565077528275, guid: 0ec49babe035fa341bcea32735b66c7c, type: 3}
+      propertyPath: ID
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8241695565077528275, guid: 0ec49babe035fa341bcea32735b66c7c, type: 3}
       propertyPath: cam

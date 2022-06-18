@@ -38,7 +38,7 @@ public class CordycepsItem : MonoBehaviour
         }
         float distance = (transform.position - playerPos.position).magnitude;
         playerIsInRange = distance < 6.4f;
-        if (playerIsInRange)
+        if (playerIsInRange && Player.instance.GetComponent<Cordyceps>().count < Cordyceps.FILL_LEVELS[4])
         {
             rb.AddForce((playerPos.transform.position - transform.position).normalized * 750f * Time.smoothDeltaTime);
             transform.position = Vector2.MoveTowards(transform.position, playerPos.position, 0.03f / distance);
