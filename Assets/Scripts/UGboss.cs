@@ -10,6 +10,7 @@ public class UGboss : MonoBehaviour
     public Vector2 attackMoveDir;
     public float attackPlayerSpeed;
     Transform player;
+    private Vector2 playerPos;
     public Transform groundCheckUp;
     public Transform groundCheckDown;
     public Transform groundCheckWall;
@@ -19,6 +20,7 @@ public class UGboss : MonoBehaviour
     private bool isTouchingDown;
     private bool isTouchingWall;
     private bool goingUp = true;
+    private bool facingLeft = true;
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -48,7 +50,70 @@ public class UGboss : MonoBehaviour
         {
             ChangeDirection();
         }
+
+        if (isTouchingWall)
+        {
+            if (facingLeft)
+            {
+                Flip();
+            }
+            else if (!facingLeft)
+            {
+                Flip();
+            }
+        }
         rb.velocity = idleSpeed * idleMoveDir;
+    }
+
+    void attackUpAndDown()
+    {
+        if (isTouchingUp && goingUp)
+        {
+            ChangeDirection();
+        }
+        else if (isTouchingDown && !goingUp)
+        {
+            ChangeDirection();
+        }
+
+        if (isTouchingWall)
+        {
+            if (facingLeft)
+            {
+                Flip();
+            }
+            else if (!facingLeft)
+            {
+                Flip();
+            }
+        }
+        rb.velocity = attackSpeed * attackMoveDir;
+    }
+
+    void attackPlayer()
+    {
+        //take player pos
+        //normalize player pos
+        //attack that pos
+        flipTowardsPlayer();
+        //??
+        playerPos = player.position - transform.position;
+        playerPos.Normalize();
+        rb.velocity = playerPos * attackPlayerSpeed;
+    }
+
+    void flipTowardsPlayer()
+    {
+        float playerDir = player.position.x - transform.position.x;
+
+        if(playerDir > 0 && facingLeft)
+        {
+            Flip();
+        }
+        else if(playerDir < 0 && !facingLeft)
+        {
+            Flip();
+        }
     }
 
     void ChangeDirection()
@@ -56,6 +121,14 @@ public class UGboss : MonoBehaviour
         goingUp = !goingUp;
         idleMoveDir.y *= -1;
         attackMoveDir.y *= -1;
+    }
+
+    void Flip()
+    {
+        facingLeft = !facingLeft;
+        idleMoveDir.x *= -1;
+        attackMoveDir.x *= -1;
+        transform.Rotate(0, 180, 0);
     }
 
 }
