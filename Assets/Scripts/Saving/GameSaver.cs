@@ -45,8 +45,10 @@ public class GameSaver : MonoBehaviour
         loading = true;
         string dataToLoad = "";
         dataToLoad = saveSystem.LoadData();
-        if (String.IsNullOrEmpty(dataToLoad) == false)
+
+        if (!String.IsNullOrEmpty(dataToLoad))
         {
+            // GameObject.FindObjectOfType<AudioListener>().enabled = false;
             GameObject.Find("Crossfade").GetComponent<Animator>().SetTrigger("start");
             yield return new WaitForSeconds(0.85f);
             Clear();
