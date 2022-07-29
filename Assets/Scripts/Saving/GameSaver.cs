@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class GameSaver : MonoBehaviour
 {
@@ -45,15 +45,24 @@ public class GameSaver : MonoBehaviour
         loading = true;
         string dataToLoad = "";
         dataToLoad = saveSystem.LoadData();
+        AudioListener currentAudioListener = GameObject.FindObjectOfType<AudioListener>();
 
         if (!String.IsNullOrEmpty(dataToLoad))
         {
+            AudioManager.instance.FadeOutCurrent();
             // GameObject.FindObjectOfType<AudioListener>().enabled = false;
             GameObject.Find("Crossfade").GetComponent<Animator>().SetTrigger("start");
-            yield return new WaitForSeconds(0.85f);
+            yield return new WaitForSeconds(0.9f);
             Clear();
             SaveData data = JsonUtility.FromJson<SaveData>(dataToLoad);
-            SceneManager.LoadSceneAsync(data.player.spawnpoint.scene);
+
+            EventSystem eventSystem = GameObject.FindObjectOfType<EventSystem>();
+            if (eventSystem != null)
+            {
+                GameObject.Destroy(eventSystem.gameObject);
+            }
+            SceneHelper.LoadScene(data.player.spawnpoint.scene);
+            currentAudioListener.enabled = false;
 
             // hotfix for wind falling not triggering
             if (data.player.spawnpoint.scene == "1stScene") {
@@ -79,6 +88,8 @@ public class GameSaver : MonoBehaviour
             // TODO this line may be either broken or unnecessary :I
             Player.controller.camTarget = GameObject.FindGameObjectWithTag("CamTarget").transform;
         }
+
+        loading = false;
     }
 
     [Serializable]
