@@ -97,7 +97,7 @@ public class Boss : Enemy
 
     public void Attack()
     {
-        print("boss attacks");
+       // print("boss attacks");
         Vector3 pos = transform.position;
         //pos += transform.right * attackOffset.x;
         pos += transform.right * -attackOffset.x;
