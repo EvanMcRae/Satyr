@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Boss : Enemy
 {
+    public float maxLife;
     Transform player;
+    public Image bossBarImage;
 
     public bool isFlipped = false;
 
@@ -34,6 +37,8 @@ public class Boss : Enemy
     // Update is called once per frame
     void Update()
     {
+        bossBarImage.fillAmount = Mathf.Lerp(bossBarImage.fillAmount, (float)life / maxLife, 0.1f);
+
         // ignore collision with player depending on several factors
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), Player.instance.GetComponent<Collider2D>(), dead || Player.controller.invincible || Player.controller.isDashing || Statue.cutscening || Player.controller.resetting || Player.controller.dead || !Player.instance.GetComponent<Attack>().canAttack);
 
