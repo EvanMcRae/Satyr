@@ -85,7 +85,6 @@ public class Boss : Enemy
 
         if (isGrounded)
         {
-            print("boss tries to jump attack");
             rb.AddForce(new Vector2(distanceFromPlayer, jumpHeight), ForceMode2D.Impulse);
             isGrounded = false;
         }
