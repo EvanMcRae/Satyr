@@ -903,6 +903,7 @@ public class Player : MonoBehaviour
         StartCoroutine(WaitToMove(1));
         GameObject.Find("Crossfade").GetComponent<Animator>().SetTrigger("start");
         yield return new WaitForSeconds(1f);
+        GameObject.Find("Crossfade").GetComponent<Animator>().SetTrigger("stop");
         animator.SetBool("IsDead", false);
         transform.position = reset_point.position;
         FindObjectOfType<CameraFollow>().Snap(transform.position);
