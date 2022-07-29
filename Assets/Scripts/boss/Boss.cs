@@ -22,6 +22,7 @@ public class Boss : Enemy
     [SerializeField] LayerMask groundLayer;
     private bool isGrounded;
 
+    private bool shouldJump = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,9 +47,15 @@ public class Boss : Enemy
 
         //isGrounded = Physics2D.OverlapBox(groundCheck.position, boxSize, 0, groundLayer);
 
-        if (Input.GetKeyDown(KeyCode.N))
+        /*if (Input.GetKeyDown(KeyCode.N))
         {
             JumpAttack();
+        }*/
+
+        if (shouldJump == true && player.transform.position.y < 80)
+        {
+            shouldJump = false;
+            StartCoroutine(Jump());
         }
 
     }
@@ -138,6 +145,14 @@ public class Boss : Enemy
         yield return new WaitForSeconds(.2f);
         isHitted = false;
         // isInvincible = false;
+    }
+
+    IEnumerator Jump()
+    {
+        yield return new WaitForSeconds(2f);
+        JumpAttack();
+        yield return new WaitForSeconds(3f);
+        shouldJump = true;
     }
 
     IEnumerator DestroyEnemy()
