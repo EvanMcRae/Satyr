@@ -3001,9 +3001,10 @@ GameObject:
   - component: {fileID: 1810590774}
   - component: {fileID: 1810590773}
   - component: {fileID: 1810590777}
+  - component: {fileID: 1810590778}
   m_Layer: 0
   m_Name: underground boss
-  m_TagString: Untagged
+  m_TagString: UGboss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3148,6 +3149,25 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
+--- !u!95 &1810590778
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810590772}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 52cbb300a83d5584d99aac0a3ee694b3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1860483937
 GameObject:
   m_ObjectHideFlags: 0

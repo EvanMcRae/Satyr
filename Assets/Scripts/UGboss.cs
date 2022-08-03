@@ -40,7 +40,7 @@ public class UGboss : MonoBehaviour
         IdleState();
     }
 
-    void IdleState()
+    public void IdleState()
     {
         if(isTouchingUp && goingUp)
         {
