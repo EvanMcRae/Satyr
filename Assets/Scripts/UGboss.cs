@@ -11,6 +11,7 @@ public class UGboss : MonoBehaviour
     public float attackPlayerSpeed;
     Transform player;
     private Vector2 playerPos;
+    private bool hasPlayerPosition;
     public Transform groundCheckUp;
     public Transform groundCheckDown;
     public Transform groundCheckWall;
@@ -22,6 +23,7 @@ public class UGboss : MonoBehaviour
     private bool goingUp = true;
     private bool facingLeft = true;
     private Rigidbody2D rb;
+    private Animator enemyAnim;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,7 @@ public class UGboss : MonoBehaviour
         idleMoveDir.Normalize();
         attackMoveDir.Normalize();
         rb = GetComponent<Rigidbody2D>();
+        enemyAnim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -37,7 +40,22 @@ public class UGboss : MonoBehaviour
         isTouchingUp = Physics2D.OverlapCircle(groundCheckUp.position, groundCheckRadius, groundLayer);
         isTouchingDown = Physics2D.OverlapCircle(groundCheckDown.position, groundCheckRadius, groundLayer);
         isTouchingWall = Physics2D.OverlapCircle(groundCheckWall.position, groundCheckRadius, groundLayer);
-        IdleState();
+        //IdleState();
+    }
+
+    void randomStatePicker()
+    {
+        int randomState = Random.Range(0, 2);
+        if(randomState == 0)
+        {
+            //attack up and down
+            enemyAnim.SetTrigger("AttackUpAndDown");
+        }
+        else if(randomState == 1)
+        {
+            // attack player
+            enemyAnim.SetTrigger("attackPlayer");
+        }
     }
 
     public void IdleState()
@@ -65,7 +83,7 @@ public class UGboss : MonoBehaviour
         rb.velocity = idleSpeed * idleMoveDir;
     }
 
-    void attackUpAndDown()
+    public void attackUpAndDown()
     {
         if (isTouchingUp && goingUp)
         {
@@ -90,16 +108,30 @@ public class UGboss : MonoBehaviour
         rb.velocity = attackSpeed * attackMoveDir;
     }
 
-    void attackPlayer()
+    public void attackPlayer()
     {
         //take player pos
         //normalize player pos
         //attack that pos
         flipTowardsPlayer();
         //??
-        playerPos = player.position - transform.position;
-        playerPos.Normalize();
-        rb.velocity = playerPos * attackPlayerSpeed;
+        if (!hasPlayerPosition)
+        {
+            playerPos = player.position - transform.position;
+            playerPos.Normalize();
+            hasPlayerPosition = true;
+        }
+        if (hasPlayerPosition)
+        {
+            rb.velocity = playerPos * attackPlayerSpeed;
+        }
+        if(isTouchingWall || isTouchingDown)
+        {
+            rb.velocity = Vector2.zero;
+            hasPlayerPosition = false;
+            //play slammed attack anim
+            enemyAnim.SetTrigger("Slammed");
+        }
     }
 
     void flipTowardsPlayer()
