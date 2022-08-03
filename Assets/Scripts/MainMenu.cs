@@ -94,7 +94,7 @@ public class MainMenu : MonoBehaviour
     {
         AudioManager.instance.FadeOutCurrent();
         crossfade.SetTrigger("start");
-        yield return new WaitForSeconds(0.9f);
+        yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("1stScene");
         // SceneManager.LoadScene("Cutscene");
         yield return null;
