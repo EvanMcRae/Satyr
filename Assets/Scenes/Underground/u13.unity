@@ -4417,7 +4417,7 @@ Transform:
   m_LocalScale: {x: 1.1254579, y: 1.1254579, z: 1.1254579}
   m_Children: []
   m_Father: {fileID: 1770417865}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &855059730
 SpriteRenderer:
@@ -4468,7 +4468,7 @@ SpriteRenderer:
   m_Size: {x: 32.11, y: 18.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &879316196 stripped
@@ -5582,6 +5582,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3540814773038700790, guid: 44c9bd32100ace947a22f3ce4203a8d3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fe7ac877582ee3b4892d61f77f325269, type: 2}
     - target: {fileID: 7238040170636887816, guid: 44c9bd32100ace947a22f3ce4203a8d3, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -5630,6 +5634,10 @@ PrefabInstance:
       propertyPath: justPatrols
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7238040170636887819, guid: 44c9bd32100ace947a22f3ce4203a8d3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 909c317660c1bdf46841ca03458ed150, type: 3}
     - target: {fileID: 7238040170636887823, guid: 44c9bd32100ace947a22f3ce4203a8d3, type: 3}
       propertyPath: m_Name
       value: placeholder enemy
@@ -6590,6 +6598,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3540814773038700790, guid: 44c9bd32100ace947a22f3ce4203a8d3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fe7ac877582ee3b4892d61f77f325269, type: 2}
     - target: {fileID: 7238040170636887816, guid: 44c9bd32100ace947a22f3ce4203a8d3, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -6638,6 +6650,10 @@ PrefabInstance:
       propertyPath: justPatrols
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7238040170636887819, guid: 44c9bd32100ace947a22f3ce4203a8d3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 909c317660c1bdf46841ca03458ed150, type: 3}
     - target: {fileID: 7238040170636887823, guid: 44c9bd32100ace947a22f3ce4203a8d3, type: 3}
       propertyPath: m_Name
       value: placeholder enemy (1)
@@ -10338,6 +10354,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3540814773038700790, guid: 44c9bd32100ace947a22f3ce4203a8d3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fe7ac877582ee3b4892d61f77f325269, type: 2}
     - target: {fileID: 7238040170636887816, guid: 44c9bd32100ace947a22f3ce4203a8d3, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -10386,6 +10406,10 @@ PrefabInstance:
       propertyPath: justPatrols
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7238040170636887819, guid: 44c9bd32100ace947a22f3ce4203a8d3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 909c317660c1bdf46841ca03458ed150, type: 3}
     - target: {fileID: 7238040170636887823, guid: 44c9bd32100ace947a22f3ce4203a8d3, type: 3}
       propertyPath: m_Name
       value: placeholder enemy (2)
