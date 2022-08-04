@@ -560,7 +560,12 @@ public class Player : MonoBehaviour
                 if (doubleJump_Unlocked) { canDoubleJump = false; }
                 holdingJump = true;
                 m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
-                m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 1.2f));
+
+                if (isJumpingDJ)
+                    m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * .7f));
+                else
+                    m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 1.2f));
+
                 if (limitVelOnWallJump && ((move > 0 && !m_FacingRight) || (move < 0 && m_FacingRight)))
                 {
                     limitVelOnWallJump = false;

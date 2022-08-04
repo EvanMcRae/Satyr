@@ -49,6 +49,14 @@ public class PlayerMovement : MonoBehaviour {
                 if (((Player.controller.m_IsFarWall || Player.controller.isWallSliding) && Player.controller.wallSlide_Unlocked) || Player.controller.beenOnLand >= 0.05f || Player.controller.lastOnLand < 0.15f || Player.controller.canDoubleJump)
                     jump = true;
 
+                // allows player with double jump to jump after walking off ledge
+                if (!jump && !Player.controller.isJumping && !Player.controller.isJumpingDJ && Player.controller.doubleJump_Unlocked && Player.controller.lastOnLand > 0.01f)
+                {
+                    jump = true;
+                    Player.controller.isJumpingDJ = true;
+                    Player.controller.canDoubleJump = true;
+                }
+
                 // fixes multi double jumping on rock platforms
                 if (Player.controller.isJumpingDJ && !Player.controller.canDoubleJump)
                     jump = false;
