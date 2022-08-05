@@ -15,14 +15,14 @@ public class GlowMushroom : Enemy
     // Update is called once per frame
     void Update()
     {
-        if (target.position.x > this.transform.position.x && !facingRight)
+        /*if (target.position.x > this.transform.position.x && !facingRight)
         {
             Flip();
         }
         else if (target.position.x < this.transform.position.x && facingRight)
         {
             Flip();
-        }
+        }*/
     }
 
     void OnTriggerEnter2D(Collider2D col)

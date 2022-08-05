@@ -15893,6 +15893,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 661858971}
     m_Modifications:
+    - target: {fileID: 419854014958398788, guid: b19aaddefcf812b4ca477bab1177c86b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423527104716895395, guid: b19aaddefcf812b4ca477bab1177c86b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5343501152323444713, guid: b19aaddefcf812b4ca477bab1177c86b, type: 3}
       propertyPath: m_Name
       value: glow mushroom
@@ -15964,27 +15972,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9129653124794049303, guid: b19aaddefcf812b4ca477bab1177c86b, type: 3}
   m_PrefabInstance: {fileID: 1268418888}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1268418890 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5343501152323444713, guid: b19aaddefcf812b4ca477bab1177c86b, type: 3}
-  m_PrefabInstance: {fileID: 1268418888}
-  m_PrefabAsset: {fileID: 0}
---- !u!58 &1268418891
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1268418890}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -1.152276, y: 0}
-  serializedVersion: 2
-  m_Radius: 5.760627
 --- !u!1 &1278968138
 GameObject:
   m_ObjectHideFlags: 0

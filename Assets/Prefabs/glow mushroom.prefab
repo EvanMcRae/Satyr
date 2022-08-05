@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6853980938901823472}
   - component: {fileID: 3099709093202872214}
   - component: {fileID: 4066364007408117390}
+  - component: {fileID: 1423527104716895395}
+  - component: {fileID: 419854014958398788}
   m_Layer: 0
   m_Name: glow mushroom
   m_TagString: Untagged
@@ -116,4 +118,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e7626cc6bb0a04c8134328c9d2b6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 10
+  speed: 5
+  isInvincible: 0
+  cordyceps: {fileID: 0}
   mushAnim: {fileID: 3099709093202872214}
+  target: {fileID: 0}
+--- !u!58 &1423527104716895395
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5343501152323444713}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.152276, y: 0}
+  serializedVersion: 2
+  m_Radius: 5.760627
+--- !u!58 &419854014958398788
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5343501152323444713}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.8670197, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.661438
