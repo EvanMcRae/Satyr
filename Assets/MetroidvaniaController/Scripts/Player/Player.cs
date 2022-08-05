@@ -770,14 +770,12 @@ public class Player : MonoBehaviour
         if (!invincible && !resetting && !dead)
         {
             animator.SetBool("Hit", true);
-            //		life -= damage;  orignial code
-            // need to change to int, original is using float
             int integerDamageValue = (int)damage;
             this.GetComponent<health>().playerHealth -= (integerDamageValue);
-            Vector2 damageDir = Vector3.Normalize(transform.position - position) * 85f;
+            Vector2 damageDir = Vector3.Normalize(transform.position - position) * 60f;
             damageDir.y /= 2f; // reduces vertical knockback
-                               // m_Rigidbody2D.velocity = Vector2.zero;
-                               //Debug.Log(damageDir);
+
+            m_Rigidbody2D.velocity = Vector2.zero;
             m_Rigidbody2D.AddForce(damageDir * knockBack);
             if (this.GetComponent<health>().playerHealth <= 0 && !dead)
             {
@@ -869,9 +867,9 @@ public class Player : MonoBehaviour
         m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
         GameObject.Find("Crossfade").GetComponent<Animator>().SetTrigger("start");
         StartCoroutine(am.PitchDown());
-        yield return new WaitForSeconds(0.9f);
+        yield return new WaitForSeconds(0.8f);
         AudioManager.instance.PauseCurrent();
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         SceneManager.LoadScene(GetComponent<Spawnpoint>().scene);
         if (GetComponent<Spawnpoint>().scene == "1stScene") {
             initialFall = false;
