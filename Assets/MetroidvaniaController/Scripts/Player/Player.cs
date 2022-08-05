@@ -860,6 +860,7 @@ public class Player : MonoBehaviour
     IEnumerator WaitToDead()
     {
         animator.SetBool("IsDead", true);
+        AudioManager.instance.FadeOutCurrent();
         canMove = false;
         invincible = true;
         dead = true;
@@ -868,7 +869,9 @@ public class Player : MonoBehaviour
         m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
         GameObject.Find("Crossfade").GetComponent<Animator>().SetTrigger("start");
         StartCoroutine(am.PitchDown());
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.9f);
+        AudioManager.instance.PauseCurrent();
+        yield return new WaitForSeconds(0.1f);
         SceneManager.LoadScene(GetComponent<Spawnpoint>().scene);
         if (GetComponent<Spawnpoint>().scene == "1stScene") {
             initialFall = false;
@@ -885,6 +888,7 @@ public class Player : MonoBehaviour
         GetComponent<health>().numberOfHearts = 5;
         GetComponent<Attack>().enabled = true;
         yield return new WaitForSeconds(1f);
+        AudioManager.instance.UnPauseCurrent();
         canMove = true;
     }
 

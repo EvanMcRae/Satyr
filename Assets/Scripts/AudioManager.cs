@@ -350,12 +350,20 @@ public class AudioManager : MonoBehaviour
         {
             BGM1[activePlayer].Pause();
         }
+        else
+        {
+            BGM2[activePlayer].Pause();
+        }
     }
 
     public void UnPauseCurrent() {
         if (firstSet)
         {
             BGM1[activePlayer].UnPause();
+        }
+        else
+        {
+            BGM2[activePlayer].UnPause();
         }
     }
 
