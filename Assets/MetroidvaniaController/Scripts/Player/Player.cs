@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float m_JumpForce = 2000f;                         // Amount of force added when the player jumps.
     [Range(0, .3f)][SerializeField] private float m_MovementSmoothing = .05f;   // How much to smooth out the movement
     [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
-    [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
+    [SerializeField] public LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
     [SerializeField] public Transform m_GroundCheck;                            // A position marking where to check if the player is grounded.
     [SerializeField] public Transform m_LeftGroundCheck, m_RightGroundCheck;    // Positions marking where to check if the player is solidly grounded.
     [SerializeField] public Transform m_LowGroundCheck;                         // A position marking where to check if the player will be grounded.
@@ -78,6 +78,15 @@ public class Player : MonoBehaviour
     public Ground.GroundType previousGround = Ground.GroundType.ROCK;
     public bool switchedGround;
 
+    private CapsuleCollider2D cc;
+    private Vector2 colliderSize;
+    [SerializeField] private float slopeCheckDistance;
+    private float slopeDownAngle;
+    private float slopeDownAngleOld;
+    private float slopeSideAngle;
+    private Vector2 slopeNormalPerp;
+    private bool isOnSlope;
+
     private Animator animator;
     public ParticleSystem particleJumpUp; //Trail particles
     public ParticleSystem particleJumpDown; //Explosion particles
@@ -109,6 +118,9 @@ public class Player : MonoBehaviour
         inDeathZone = false;
 
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        cc = GetComponent<CapsuleCollider2D>();
+        colliderSize = cc.size;
+
         animator = GetComponent<Animator>();
         sources = transform.GetComponents<AudioSource>();
 
@@ -139,6 +151,53 @@ public class Player : MonoBehaviour
         // {
         //     Destroy(gameObject);
         // }
+    }
+
+    private void SlopeCheck()
+    {
+        Vector2 checkPos = transform.position - new Vector3(0.0f, colliderSize.y / 2);
+        SlopeCheckHorizontal(checkPos);
+        SlopeCheckVertical(checkPos);
+    }
+
+    private void SlopeCheckHorizontal(Vector2 checkPos)
+    {
+        RaycastHit2D front = Physics2D.Raycast(checkPos, transform.right, slopeCheckDistance, m_WhatIsGround);
+        RaycastHit2D back = Physics2D.Raycast(checkPos, -transform.right, slopeCheckDistance, m_WhatIsGround);
+        if (front)
+        {
+            isOnSlope = true;
+            slopeSideAngle = Vector2.Angle(front.normal, Vector2.up);
+        }
+        else if (back)
+        {
+            isOnSlope = true;
+            slopeSideAngle = Vector2.Angle(back.normal, Vector2.up);
+        }
+        else
+        {
+            isOnSlope = false;
+            slopeSideAngle = 0.0f;
+        }
+    }
+
+    private void SlopeCheckVertical(Vector2 checkPos)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, m_WhatIsGround);
+        if (hit)
+        {
+            // Debug.DrawRay(hit.point, hit.normal, Color.red, 0.01f, false);
+            slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;
+            slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
+
+            if (slopeDownAngle != slopeDownAngleOld) {
+                isOnSlope = true;
+            }
+
+            slopeDownAngleOld = slopeDownAngle;
+            // Debug.DrawRay(hit.point, slopeNormalPerp, Color.yellow, 0.01f, false);
+            // Debug.Log(hit.point + " " + hit.normal);
+        }
     }
 
     private void FixedUpdate()
@@ -179,6 +238,8 @@ public class Player : MonoBehaviour
         if (rp != null)
             reset_point = rp.transform;
 
+        SlopeCheck();
+        
         if (lastOnLand == 0.0f)
         {
             lastOnLandLocation = transform.position;
@@ -485,6 +546,11 @@ public class Player : MonoBehaviour
 
                 // Move the character by finding the target velocity
                 Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
+
+                if (isOnSlope && m_Grounded) {
+                    targetVelocity.Set(move * 10f * -slopeNormalPerp.x, move * 10f * -slopeNormalPerp.y, 0.0f);
+                }
+
                 if (limitVelOnWallJump && limitVelOnWallJumpCooldown <= 0.2f)
                 {
                     float newX = Mathf.Lerp(m_Rigidbody2D.velocity.x, move * 12f, 0.05f);
