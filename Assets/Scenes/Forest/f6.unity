@@ -15902,6 +15902,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4066364007408117390, guid: b19aaddefcf812b4ca477bab1177c86b, type: 3}
+      propertyPath: life
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4066364007408117390, guid: b19aaddefcf812b4ca477bab1177c86b, type: 3}
+      propertyPath: cordyceps
+      value: 
+      objectReference: {fileID: 8846302485689966169, guid: c5b184494dde71247a4cf2910bcfd66c, type: 3}
+    - target: {fileID: 4066364007408117390, guid: b19aaddefcf812b4ca477bab1177c86b, type: 3}
       propertyPath: attackRange
       value: 1
       objectReference: {fileID: 0}
@@ -15916,6 +15924,10 @@ PrefabInstance:
     - target: {fileID: 5343501152323444713, guid: b19aaddefcf812b4ca477bab1177c86b, type: 3}
       propertyPath: m_Name
       value: glow mushroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343501152323444713, guid: b19aaddefcf812b4ca477bab1177c86b, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5343501152323444713, guid: b19aaddefcf812b4ca477bab1177c86b, type: 3}
       propertyPath: m_TagString
@@ -17787,6 +17799,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 227253559965505004, guid: 235e660ec62b0d547a2bfc45de950d5a, type: 3}
   m_PrefabInstance: {fileID: 1516412647}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1520932681 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5343501152323444713, guid: b19aaddefcf812b4ca477bab1177c86b, type: 3}
+  m_PrefabInstance: {fileID: 1268418888}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1520932682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520932681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b612d9e32e783a489f5ded600b2b2bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: f48c11c1d88e39a49b5a727880050983, type: 2}
 --- !u!1 &1526447316
 GameObject:
   m_ObjectHideFlags: 0

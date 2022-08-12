@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3099709093202872214}
   - component: {fileID: 4066364007408117390}
   - component: {fileID: 419854014958398788}
+  - component: {fileID: 6425246315455386765}
   m_Layer: 0
   m_Name: glow mushroom
   m_TagString: Untagged
@@ -123,6 +124,11 @@ MonoBehaviour:
   cordyceps: {fileID: 0}
   mushAnim: {fileID: 3099709093202872214}
   target: {fileID: 0}
+  attackOffset: {x: 0, y: 0, z: 0}
+  attackRange: 1
+  attackMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!58 &419854014958398788
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -139,3 +145,29 @@ CircleCollider2D:
   m_Offset: {x: 1.8670197, y: 0}
   serializedVersion: 2
   m_Radius: 2.661438
+--- !u!61 &6425246315455386765
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5343501152323444713}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.0111542, y: -0.14561462}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6.4, y: 4.8}
+    newSize: {x: 6.4, y: 4.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.60269165, y: 2.9124126}
+  m_EdgeRadius: 0
