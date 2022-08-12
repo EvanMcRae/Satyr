@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
     private float slopeDownAngleOld;
     private float slopeSideAngle;
     private Vector2 slopeNormalPerp;
-    private bool isOnSlope;
+    public bool isOnSlope;
 
     private Animator animator;
     public ParticleSystem particleJumpUp; //Trail particles
@@ -196,7 +196,6 @@ public class Player : MonoBehaviour
 
             slopeDownAngleOld = slopeDownAngle;
             // Debug.DrawRay(hit.point, slopeNormalPerp, Color.yellow, 0.01f, false);
-            // Debug.Log(hit.point + " " + hit.normal);
         }
     }
 
@@ -524,7 +523,15 @@ public class Player : MonoBehaviour
             
             if (speedBoost)
             {
-                m_Rigidbody2D.velocity = new Vector2(transform.localScale.x * m_DashForce, 0);
+                if (isOnSlope && m_Grounded)
+                {
+                    m_Rigidbody2D.velocity = new Vector2(transform.localScale.x * m_DashForce * -slopeNormalPerp.x, m_DashForce * -slopeNormalPerp.y * (m_FacingRight ? 1 : -1));
+                }
+                else
+                {
+                    m_Rigidbody2D.velocity = new Vector2(transform.localScale.x * m_DashForce, 0.0f);
+                }
+
                 // Prevent moving off screen during statue cutscenes
                 if (Statue.cutscening)
                 {
