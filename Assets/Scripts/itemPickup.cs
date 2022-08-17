@@ -18,6 +18,7 @@ public class itemPickup : MonoBehaviour
     public float x = 0;
     public float y = 0;
     public GameObject InfoBox, InfoText;
+    private bool pickedup;
     
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,7 @@ public class itemPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!PlayerMovement.paused && Input.GetKey(KeyCode.T) || Input.GetKeyDown("joystick button 1"))
+        if (!pickedup && !PlayerMovement.paused && Input.GetKey(KeyCode.T) || Input.GetKeyDown("joystick button 1"))
         {
             if (playerIsInRange == true)
             {
@@ -43,23 +44,28 @@ public class itemPickup : MonoBehaviour
                 if (item.itemID == "4")
                 {
                     Player.controller.doubleJump_Unlocked = true;
+                    StartCoroutine(UnlockAbility("Double Jump"));
                 }
                 else if (item.itemID == "9")
                 {
                     Player.controller.wallSlide_Unlocked = true;
+                    StartCoroutine(UnlockAbility("Wall Slide"));
                 }
                 else if (item.itemID == "10")
                 {
                     Player.controller.specialAttack_Unlocked = true;
+                    StartCoroutine(UnlockAbility("Special Attack"));
                 }
                 else if (item.itemID == "3")
                 {
                     Player.instance.GetComponent<PlayerMovement>().dash_Unlocked = true;
+                    StartCoroutine(UnlockAbility("Dash"));
                 }
                 else if (item.itemID == "7")
                 {
                     Player.instance.GetComponent<Attack>().shooting_Unlocked = true;
                     Player.instance.GetComponent<Attack>().canShoot = true;
+                    StartCoroutine(UnlockAbility("Bow"));
                 }
                 else if (item.itemID == "11")
                 {
@@ -73,7 +79,7 @@ public class itemPickup : MonoBehaviour
 
                 if (inventory.addToInventory(item))
                 {
-                    Destroy(this.gameObject);
+                    StartCoroutine(DestroyItem());
                 }
             }
         }
@@ -101,5 +107,21 @@ public class itemPickup : MonoBehaviour
         playerIsInRange = false;
         InfoText.GetComponent<Animator>().SetTrigger("stop");
         InfoBox.GetComponent<Animator>().SetTrigger("stop");
+    }
+
+    IEnumerator UnlockAbility(string ability)
+    {
+        InfoText.GetComponent<Text>().text = "Unlocked " + ability + "!";
+        yield return new WaitForSeconds(1.0f);
+        InfoText.GetComponent<Animator>().SetTrigger("stop");
+        InfoBox.GetComponent<Animator>().SetTrigger("stop");
+    }
+
+    IEnumerator DestroyItem()
+    {
+        pickedup = true;
+        GetComponent<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(1.1f);
+        Destroy(gameObject);
     }
 }
