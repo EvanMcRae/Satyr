@@ -3986,6 +3986,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+--- !u!1 &1610756165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5558547265355372343, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 1610756164}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1610756166 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8505851043503873944, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 1610756164}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1631958671
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4301,6 +4311,8 @@ MonoBehaviour:
   maxRotation: 0
   x: 24.47
   y: -4.06
+  InfoBox: {fileID: 0}
+  InfoText: {fileID: 0}
 --- !u!61 &1833147209
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4746,6 +4758,8 @@ MonoBehaviour:
   anyKey: 1
   labelText: 
   anchor: {fileID: 1430717862}
+  InfoBox: {fileID: 1610756166}
+  InfoText: {fileID: 1610756165}
 --- !u!61 &2069466342
 BoxCollider2D:
   m_ObjectHideFlags: 0

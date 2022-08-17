@@ -618,8 +618,10 @@ MonoBehaviour:
   textBox: {fileID: 157769806}
   autoStart: 0
   anyKey: 0
-  labelText: Press B button or T key to inspect
+  labelText: Press B button or T key to inspect.
   anchor: {fileID: 1015028797}
+  InfoBox: {fileID: 608693466}
+  InfoText: {fileID: 608693465}
 --- !u!212 &337344263
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1293,6 +1295,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &608693465 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5558547265355372343, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 608693462}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &608693466 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8505851043503873944, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 608693462}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &864631864
 PrefabInstance:
   m_ObjectHideFlags: 0

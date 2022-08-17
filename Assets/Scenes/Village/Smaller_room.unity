@@ -362,8 +362,10 @@ MonoBehaviour:
   textBox: {fileID: 1876440285}
   autoStart: 0
   anyKey: 0
-  labelText: Press B button or T key to listen
+  labelText: Press B button or T key to listen.
   anchor: {fileID: 1220311010}
+  InfoBox: {fileID: 1224780842}
+  InfoText: {fileID: 1224780841}
 --- !u!1 &346889513
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,8 +735,10 @@ MonoBehaviour:
   textBox: {fileID: 1876440285}
   autoStart: 0
   anyKey: 0
-  labelText: Press B button or T key to inspect
+  labelText: Press B button or T key to inspect.
   anchor: {fileID: 1220311010}
+  InfoBox: {fileID: 1224780842}
+  InfoText: {fileID: 1224780841}
 --- !u!114 &840214326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1436,6 +1440,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+--- !u!1 &1224780841 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5558547265355372343, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 1224780840}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1224780842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8505851043503873944, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 1224780840}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1256614788
 GameObject:
   m_ObjectHideFlags: 0
@@ -1694,8 +1708,10 @@ MonoBehaviour:
   textBox: {fileID: 1876440285}
   autoStart: 0
   anyKey: 0
-  labelText: Press B button or T key to inspect
+  labelText: Press B button or T key to inspect.
   anchor: {fileID: 1220311010}
+  InfoBox: {fileID: 1224780842}
+  InfoText: {fileID: 1224780841}
 --- !u!114 &1373802406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2001,8 +2017,10 @@ MonoBehaviour:
   textBox: {fileID: 1876440285}
   autoStart: 0
   anyKey: 0
-  labelText: Press B button or T key to inspect
+  labelText: Press B button or T key to inspect.
   anchor: {fileID: 1220311010}
+  InfoBox: {fileID: 1224780842}
+  InfoText: {fileID: 1224780841}
 --- !u!114 &1784255429
 MonoBehaviour:
   m_ObjectHideFlags: 0

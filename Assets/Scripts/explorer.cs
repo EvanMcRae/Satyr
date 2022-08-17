@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class explorer : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class explorer : MonoBehaviour
     public Transform anchor;
 
     GameObject player;
+    public GameObject InfoBox, InfoText;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,8 @@ public class explorer : MonoBehaviour
     {
         if ((Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown("joystick button 1")) && hasCollided == true && needsPrompt == true)
         {
+            InfoText.GetComponent<Animator>().SetTrigger("stop");
+            InfoBox.GetComponent<Animator>().SetTrigger("stop");
             textBox.position = new Vector3(textBox.position.x, anchor.position.y, textBox.position.z);
             needsPrompt = false;
             if(player.GetComponent<Player>().explorer == false)
@@ -63,25 +67,28 @@ public class explorer : MonoBehaviour
         }
     }
 
-    public void OnGUI()
-    {
-        if (!PlayerMovement.paused && hasCollided && needsPrompt)
-        {
-            GUI.Box(new Rect(140, Screen.height - 50, Screen.width - 300, 120), (labelText));
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             hasCollided = true;
-            labelText = "Press B button or T key to listen";
+            labelText = "Press B button or T key to listen.";
+            if (!PlayerMovement.paused && hasCollided && needsPrompt && InfoText.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("textfade_hold"))
+            {
+                InfoText.GetComponent<Text>().text = labelText;
+                InfoText.GetComponent<Animator>().SetTrigger("start");
+                InfoBox.GetComponent<Animator>().SetTrigger("start");
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (InfoText.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("textfade_start"))
+        {
+            InfoText.GetComponent<Animator>().SetTrigger("stop");
+            InfoBox.GetComponent<Animator>().SetTrigger("stop");
+        }
         hasCollided = false;
         needsPrompt = true;
         textBox.position = new Vector3(textBox.position.x, 5000f, textBox.position.z);

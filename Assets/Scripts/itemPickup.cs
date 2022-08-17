@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class itemPickup : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class itemPickup : MonoBehaviour
     public float maxRotation;
     public float x = 0;
     public float y = 0;
+    public GameObject InfoBox, InfoText;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -81,27 +84,22 @@ public class itemPickup : MonoBehaviour
 
     }
 
-    public void OnGUI()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!PlayerMovement.paused && playerIsInRange)
-        {
-            GUI.Box(new Rect(140, Screen.height - 50, Screen.width - 300, 120), (labelText));
-        }
-    }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && InfoText.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("textfade_hold"))
         {
             playerIsInRange = true;
             labelText = "Press B button or T key to pick up item";
+            InfoText.GetComponent<Text>().text = labelText;
+            InfoText.GetComponent<Animator>().SetTrigger("start");
+            InfoBox.GetComponent<Animator>().SetTrigger("start");
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         playerIsInRange = false;
+        InfoText.GetComponent<Animator>().SetTrigger("stop");
+        InfoBox.GetComponent<Animator>().SetTrigger("stop");
     }
-
 }

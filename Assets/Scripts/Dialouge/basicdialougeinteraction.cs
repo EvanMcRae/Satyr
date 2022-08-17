@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class basicdialougeinteraction : MonoBehaviour
 {
@@ -15,11 +16,12 @@ public class basicdialougeinteraction : MonoBehaviour
     public bool autoStart = false;
     public bool anyKey = false;
 
-    [SerializeField] string labelText = "Press B button or T key to listen";
+    [SerializeField] string labelText = "Press B button or T key to listen.";
 
     DialougeTrigger[] dialogueTriggers;
 
     public Transform anchor;
+    public GameObject InfoBox, InfoText;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +39,11 @@ public class basicdialougeinteraction : MonoBehaviour
         {
             if ((Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown("joystick button 1") || (anyKey && Input.anyKeyDown) || autoStart) && hasCollided == true && needsPrompt == true)
             {
+                if (InfoText.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("textfade_start"))
+                {
+                    InfoText.GetComponent<Animator>().SetTrigger("stop");
+                    InfoBox.GetComponent<Animator>().SetTrigger("stop");
+                }
                 textBox.position = new Vector3(textBox.position.x, anchor.position.y, textBox.position.z);
                 needsPrompt = false;
                 //   this.GetComponent<DialougeTrigger>().TriggerDialogue();
@@ -67,24 +74,27 @@ public class basicdialougeinteraction : MonoBehaviour
         }
     }
 
-    public void OnGUI()
-    {
-        if (!PlayerMovement.paused && hasCollided && needsPrompt && !autoStart)
-        {
-            GUI.Box(new Rect(140, Screen.height - 50, Screen.width - 300, 120), (labelText));
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             hasCollided = true;
+            if (!PlayerMovement.paused && hasCollided && needsPrompt && !autoStart && InfoText.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("textfade_hold"))
+            {
+                InfoText.GetComponent<Text>().text = labelText;
+                InfoText.GetComponent<Animator>().SetTrigger("start");
+                InfoBox.GetComponent<Animator>().SetTrigger("start");
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (InfoText.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("textfade_start"))
+        {
+            InfoText.GetComponent<Animator>().SetTrigger("stop");
+            InfoBox.GetComponent<Animator>().SetTrigger("stop");
+        }
         hasCollided = false;
         needsPrompt = true;
         textBox.position = new Vector3(textBox.position.x, 5000f, textBox.position.z);

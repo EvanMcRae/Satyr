@@ -2335,6 +2335,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &187736984 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8505851043503873944, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 514114056}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &207581773
 GameObject:
   m_ObjectHideFlags: 0
@@ -3311,6 +3316,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &262541425 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5558547265355372343, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 514114056}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &266834549
 GameObject:
   m_ObjectHideFlags: 0
@@ -6317,6 +6327,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7877828514521736297, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 141c021bc31528040bacec1a72aa50c5, type: 2}
     - target: {fileID: 8395781508151624777, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -9857,6 +9871,8 @@ MonoBehaviour:
   maxRotation: 10
   x: 119.05
   y: 17.45
+  InfoBox: {fileID: 187736984}
+  InfoText: {fileID: 262541425}
 --- !u!61 &769929706
 BoxCollider2D:
   m_ObjectHideFlags: 0

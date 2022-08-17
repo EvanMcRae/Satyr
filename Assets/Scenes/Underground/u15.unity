@@ -590,8 +590,10 @@ MonoBehaviour:
   textBox: {fileID: 1993098589}
   autoStart: 0
   anyKey: 0
-  labelText: Press T to listen
+  labelText: Press B button or T key to listen.
   anchor: {fileID: 163887463}
+  InfoBox: {fileID: 1345935160}
+  InfoText: {fileID: 1345935159}
 --- !u!114 &77016807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12235,6 +12237,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+--- !u!1 &1345935159 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5558547265355372343, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 1345935158}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1345935160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8505851043503873944, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 1345935158}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1348706011
 GameObject:
   m_ObjectHideFlags: 0

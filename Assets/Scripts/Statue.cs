@@ -126,6 +126,8 @@ public class Statue : MonoBehaviour
         AudioManager.instance.FadeInCurrent();
         GameObject.FindObjectOfType<CinematicBars>().Hide(.3f);
         GameObject.Find("SaveText").GetComponent<Animator>().SetTrigger("start");
+        yield return new WaitForSeconds(1.75f);
+        GameObject.Find("SaveText").GetComponent<Animator>().SetTrigger("stop");
         yield return null;
     }
 }

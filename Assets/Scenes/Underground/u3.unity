@@ -4693,6 +4693,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+--- !u!1 &1186359840 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5558547265355372343, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 1186359839}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1186359841 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8505851043503873944, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 1186359839}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1186359845 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3953203990649230948, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
@@ -5169,8 +5179,10 @@ MonoBehaviour:
   textBox: {fileID: 2022195292}
   autoStart: 0
   anyKey: 0
-  labelText: Press T to listen
+  labelText: Press B button or T key to listen.
   anchor: {fileID: 1960963354}
+  InfoBox: {fileID: 1186359841}
+  InfoText: {fileID: 1186359840}
 --- !u!1 &1300951494
 GameObject:
   m_ObjectHideFlags: 0

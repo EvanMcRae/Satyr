@@ -2509,6 +2509,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &933586497 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5558547265355372343, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 933586495}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &933586498 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8505851043503873944, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 933586495}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &933586502 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3953203991399682737, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
@@ -4431,8 +4441,10 @@ MonoBehaviour:
   textBox: {fileID: 513202304}
   autoStart: 0
   anyKey: 0
-  labelText: Press B button or T key to listen
+  labelText: Press B button or T key to listen.
   anchor: {fileID: 148019358}
+  InfoBox: {fileID: 933586498}
+  InfoText: {fileID: 933586497}
 --- !u!114 &2138062224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4489,12 +4501,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 148019358}
     - target: {fileID: 1756524928694106834, guid: d1eb841a6bba42544a1a9a60b2f4cb13, type: 3}
+      propertyPath: InfoBox
+      value: 
+      objectReference: {fileID: 933586498}
+    - target: {fileID: 1756524928694106834, guid: d1eb841a6bba42544a1a9a60b2f4cb13, type: 3}
       propertyPath: textBox
       value: 
       objectReference: {fileID: 513202304}
     - target: {fileID: 1756524928694106834, guid: d1eb841a6bba42544a1a9a60b2f4cb13, type: 3}
+      propertyPath: InfoText
+      value: 
+      objectReference: {fileID: 933586497}
+    - target: {fileID: 1756524928694106834, guid: d1eb841a6bba42544a1a9a60b2f4cb13, type: 3}
       propertyPath: labelText
-      value: Press B button or T key to listen
+      value: Press B button or T key to listen.
       objectReference: {fileID: 0}
     - target: {fileID: 1756524928694106835, guid: d1eb841a6bba42544a1a9a60b2f4cb13, type: 3}
       propertyPath: m_Enabled
