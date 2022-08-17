@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4066364007408117390}
   - component: {fileID: 419854014958398788}
   - component: {fileID: 6425246315455386765}
+  - component: {fileID: 3148117312712654676}
   m_Layer: 0
   m_Name: glow mushroom
   m_TagString: Untagged
@@ -129,6 +130,7 @@ MonoBehaviour:
   attackMask:
     serializedVersion: 2
     m_Bits: 0
+  dropsCordycep: 2
 --- !u!58 &419854014958398788
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -171,3 +173,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.60269165, y: 2.9124126}
   m_EdgeRadius: 0
+--- !u!114 &3148117312712654676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5343501152323444713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b612d9e32e783a489f5ded600b2b2bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: f48c11c1d88e39a49b5a727880050983, type: 2}
