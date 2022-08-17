@@ -47,11 +47,11 @@ public class enterDoor : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         playerIsInRange = false;
-        if (InfoText.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("textfade_start"))
-        {
+        // if (InfoText.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("textfade_start"))
+        // {
             InfoText.GetComponent<Animator>().SetTrigger("stop");
             InfoBox.GetComponent<Animator>().SetTrigger("stop");
-        }
+        // }
     }
 
     IEnumerator LoadNextScene()
