@@ -67,7 +67,12 @@ public class itemPickup : MonoBehaviour
                     Player.instance.GetComponent<Attack>().canShoot = true;
                     StartCoroutine(UnlockAbility("Bow"));
                 }
-                else if (item.itemID == "11")
+                else
+                {
+                    StartCoroutine(ObtainItem());
+                }
+                
+                if (item.itemID == "11")
                 {
                     Player.controller.froggy = true;
                 }
@@ -95,7 +100,7 @@ public class itemPickup : MonoBehaviour
         if (collision.gameObject.tag == "Player" && InfoText.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("textfade_hold"))
         {
             playerIsInRange = true;
-            labelText = "Press B button or T key to pick up item";
+            labelText = "Press B button or T key to pick up item.";
             InfoText.GetComponent<Text>().text = labelText;
             InfoText.GetComponent<Animator>().SetTrigger("start");
             InfoBox.GetComponent<Animator>().SetTrigger("start");
@@ -112,6 +117,14 @@ public class itemPickup : MonoBehaviour
     IEnumerator UnlockAbility(string ability)
     {
         InfoText.GetComponent<Text>().text = "Unlocked " + ability + "!";
+        yield return new WaitForSeconds(1.0f);
+        InfoText.GetComponent<Animator>().SetTrigger("stop");
+        InfoBox.GetComponent<Animator>().SetTrigger("stop");
+    }
+
+    IEnumerator ObtainItem()
+    {
+        InfoText.GetComponent<Text>().text = "Obtained " + item.itemName + "!";
         yield return new WaitForSeconds(1.0f);
         InfoText.GetComponent<Animator>().SetTrigger("stop");
         InfoBox.GetComponent<Animator>().SetTrigger("stop");
