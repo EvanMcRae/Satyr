@@ -2474,7 +2474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xBias: 0
-  yBias: 0
+  yBias: 1
   canLookDown: 1
 --- !u!61 &516395295
 BoxCollider2D:
@@ -10175,7 +10175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xBias: 0
-  yBias: 2
+  yBias: 0
   canLookDown: 1
 --- !u!61 &1761981635
 BoxCollider2D:
@@ -10190,7 +10190,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -53.68225, y: -38.834442}
+  m_Offset: {x: -52.75689, y: -38.834442}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -10201,7 +10201,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 25.973389, y: 14.383411}
+  m_Size: {x: 27.824108, y: 14.383408}
   m_EdgeRadius: 0
 --- !u!4 &1761981636
 Transform:
@@ -10772,6 +10772,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5779561665715746260, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905172090735086054, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
