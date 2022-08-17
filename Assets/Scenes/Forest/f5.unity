@@ -6986,6 +6986,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+--- !u!1 &1669499776 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5558547265355372343, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 1669499775}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1669499777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8505851043503873944, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 1669499775}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1729366627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7358,6 +7368,8 @@ MonoBehaviour:
   maxRotation: 10
   x: 82.94
   y: 18.84
+  InfoBox: {fileID: 1669499777}
+  InfoText: {fileID: 1669499776}
 --- !u!212 &1805584349
 SpriteRenderer:
   m_ObjectHideFlags: 0

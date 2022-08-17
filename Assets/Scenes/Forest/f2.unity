@@ -4159,6 +4159,8 @@ MonoBehaviour:
   maxRotation: 10
   x: 2.16
   y: 43.09
+  InfoBox: {fileID: 953088293}
+  InfoText: {fileID: 953088292}
 --- !u!212 &659815958
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6574,6 +6576,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+--- !u!1 &953088292 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5558547265355372343, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 953088291}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &953088293 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8505851043503873944, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 953088291}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &959550615
 GameObject:
   m_ObjectHideFlags: 0

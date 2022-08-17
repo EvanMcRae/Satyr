@@ -1660,6 +1660,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+--- !u!1 &1616339617 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5558547265355372343, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 1616339616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1616339618 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8505851043503873944, guid: 158b212f6976fad4da03886c774fe4f7, type: 3}
+  m_PrefabInstance: {fileID: 1616339616}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1717917176
 GameObject:
   m_ObjectHideFlags: 0
@@ -2122,6 +2132,14 @@ PrefabInstance:
       propertyPath: y
       value: -2.484
       objectReference: {fileID: 0}
+    - target: {fileID: 8846302485689966168, guid: 0dfd002df5d660e44afed1b6965a3ca1, type: 3}
+      propertyPath: InfoBox
+      value: 
+      objectReference: {fileID: 1616339618}
+    - target: {fileID: 8846302485689966168, guid: 0dfd002df5d660e44afed1b6965a3ca1, type: 3}
+      propertyPath: InfoText
+      value: 
+      objectReference: {fileID: 1616339617}
     - target: {fileID: 8846302485689966168, guid: 0dfd002df5d660e44afed1b6965a3ca1, type: 3}
       propertyPath: thisItem
       value: 
