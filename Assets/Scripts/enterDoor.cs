@@ -30,11 +30,12 @@ public class enterDoor : MonoBehaviour
             StartCoroutine(LoadNextScene());
             changeScene.changingScene = true;
         }
+        Debug.Log(gameObject.name + " " + "running");
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!PlayerMovement.paused && collision.gameObject.tag == "Player" && InfoText.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("textfade_hold"))
+        if (GetComponent<enterDoor>().enabled && !PlayerMovement.paused && collision.gameObject.tag == "Player" && InfoText.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("textfade_hold"))
         {
             playerIsInRange = true;
             labelText = "Press B button or T key to enter.";
@@ -46,12 +47,12 @@ public class enterDoor : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        playerIsInRange = false;
-        // if (InfoText.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("textfade_start"))
-        // {
+        if (GetComponent<enterDoor>().enabled)
+        {
+            playerIsInRange = false;
             InfoText.GetComponent<Animator>().SetTrigger("stop");
             InfoBox.GetComponent<Animator>().SetTrigger("stop");
-        // }
+        }
     }
 
     IEnumerator LoadNextScene()

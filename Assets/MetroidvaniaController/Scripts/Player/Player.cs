@@ -81,11 +81,13 @@ public class Player : MonoBehaviour
     private CapsuleCollider2D cc;
     private Vector2 colliderSize;
     [SerializeField] private float slopeCheckDistance;
+    [SerializeField] private float maxSlopeAngle;
     private float slopeDownAngle;
     private float slopeDownAngleOld;
     private float slopeSideAngle;
     private Vector2 slopeNormalPerp;
     public bool isOnSlope;
+    private bool canWalkOnSlope;
 
     private Animator animator;
     public ParticleSystem particleJumpUp; //Trail particles
@@ -196,6 +198,15 @@ public class Player : MonoBehaviour
 
             slopeDownAngleOld = slopeDownAngle;
             // Debug.DrawRay(hit.point, slopeNormalPerp, Color.yellow, 0.01f, false);
+        }
+
+        if (slopeDownAngle > maxSlopeAngle || slopeSideAngle > maxSlopeAngle)
+        {
+            canWalkOnSlope = false;
+        }
+        else
+        {
+            canWalkOnSlope = true;
         }
     }
 
@@ -523,7 +534,7 @@ public class Player : MonoBehaviour
             
             if (speedBoost)
             {
-                if (isOnSlope && m_Grounded)
+                if (isOnSlope && m_Grounded && !isJumping && !isJumpingDJ && canWalkOnSlope)
                 {
                     m_Rigidbody2D.velocity = new Vector2(transform.localScale.x * m_DashForce * -slopeNormalPerp.x, m_DashForce * -slopeNormalPerp.y * (m_FacingRight ? 1 : -1));
                 }
@@ -554,7 +565,7 @@ public class Player : MonoBehaviour
                 // Move the character by finding the target velocity
                 Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
 
-                if (isOnSlope && m_Grounded) {
+                if (isOnSlope && m_Grounded && !isJumping && !isJumpingDJ && canWalkOnSlope) {
                     targetVelocity.Set(move * 10f * -slopeNormalPerp.x, move * 10f * -slopeNormalPerp.y, 0.0f);
                 }
 
@@ -585,7 +596,8 @@ public class Player : MonoBehaviour
                 // And then smoothing it out and applying it to the character
                 if (move == 0.0 && m_Rigidbody2D.velocity.x != 0.0f)
                 {
-                    GetComponent<CapsuleCollider2D>().sharedMaterial = friction;
+                    if (canWalkOnSlope)
+                        GetComponent<CapsuleCollider2D>().sharedMaterial = friction;
                     m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref velocity, m_MovementSmoothing*2.5f);
                 }
                 else
@@ -609,7 +621,7 @@ public class Player : MonoBehaviour
             }
 
             // If the player should jump...
-            if (lastOnLand < 0.15f && jump && !isJumping && !canDoubleJump) // incorporates coyote time with lastOnLand
+            if (lastOnLand < 0.15f && jump && !isJumping && !canDoubleJump && slopeDownAngle <= maxSlopeAngle) // incorporates coyote time with lastOnLand
             {
                 // Add a vertical force to the player.
                 animator.SetBool("JumpUp", true);
