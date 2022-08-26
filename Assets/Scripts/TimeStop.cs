@@ -49,7 +49,7 @@ public class TimeStop : MonoBehaviour
 
     public void StopTimeDefault()
     {
-        StopTime(0.05f, 100, 0.1f);
+        StopTime(0.05f, 100, 0.3f);
     }
 
     IEnumerator StartTimeAgain(float amt)
