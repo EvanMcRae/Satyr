@@ -24,16 +24,16 @@ public class LandingSound : MonoBehaviour
             GetComponent<AudioSource>().Play();
             Player.controller.LandParticles();
             AudioManager.instance.FadeInCurrent();
-            StartCoroutine(StopTime());
-            // FindObjectOfType<CameraFollow>().ShakeCamera(0.3f);
+            // StartCoroutine(StopTime());
+            FindObjectOfType<CameraFollow>().ShakeCamera(0.3f);
             triggered = true;
             Player.controller.initialFall = true;
         }
     }
 
-    IEnumerator StopTime()
-    {
-        yield return new WaitForSecondsRealtime(0.02f);
-        Player.instance.GetComponent<TimeStop>().StopTimeDefault();
-    }
+    // IEnumerator StopTime()
+    // {
+    //     yield return new WaitForSecondsRealtime(0.02f);
+    //     Player.instance.GetComponent<TimeStop>().StopTimeDefault();
+    // }
 }
