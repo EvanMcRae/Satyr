@@ -855,7 +855,7 @@ public class Player : MonoBehaviour
         if (!invincible && !resetting && !dead)
         {
             animator.SetBool("Hit", true);
-            GetComponent<TimeStop>().StopTime(0.05f, 100, 0.1f);
+            // GetComponent<TimeStop>().StopTime(0.05f, 100, 0.1f);
             int integerDamageValue = (int)damage;
             this.GetComponent<health>().playerHealth -= (integerDamageValue);
             Vector2 damageDir = Vector3.Normalize(transform.position - position) * 60f;

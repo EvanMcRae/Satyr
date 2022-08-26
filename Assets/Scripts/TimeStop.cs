@@ -47,6 +47,11 @@ public class TimeStop : MonoBehaviour
         Time.timeScale = ChangeTime;
     }
 
+    public void StopTimeDefault()
+    {
+        StopTime(0.05f, 100, 0.1f);
+    }
+
     IEnumerator StartTimeAgain(float amt)
     {
         yield return new WaitForSecondsRealtime(amt);
