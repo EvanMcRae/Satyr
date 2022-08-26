@@ -50,6 +50,7 @@ public class TimeStop : MonoBehaviour
     public void StopTimeDefault()
     {
         StopTime(0.05f, 100, 0.3f);
+        GetComponent<Attack>().cam.GetComponent<CameraFollow>().ShakeCamera(0.2f);
     }
 
     IEnumerator StartTimeAgain(float amt)

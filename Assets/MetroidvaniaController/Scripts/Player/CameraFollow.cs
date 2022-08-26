@@ -153,7 +153,10 @@ public class CameraFollow : MonoBehaviour
         originalPos = Vector3.Lerp(transform.position, originalPos, sharpness);
         
         transform.position = originalPos;
+    }
 
+    private void Update()
+    {
         if (shakeDuration > 0)
         {
             transform.position = originalPos + Random.insideUnitSphere * shakeAmount;
