@@ -157,15 +157,18 @@ public class CameraFollow : MonoBehaviour
 
     private void Update()
     {
-        if (shakeDuration > 0)
+        if (!PlayerMovement.paused)
         {
-            transform.position = originalPos + Random.insideUnitSphere * shakeAmount;
-            shakeDuration -= Time.deltaTime * decreaseFactor;
-        }
-        else if (shakeDuration != 0)
-        {
-            transform.position = originalPos;
-            shakeDuration = 0;
+            if (shakeDuration > 0)
+            {
+                transform.position = originalPos + Random.insideUnitSphere * shakeAmount;
+                shakeDuration -= Time.deltaTime * decreaseFactor;
+            }
+            else if (shakeDuration != 0)
+            {
+                transform.position = originalPos;
+                shakeDuration = 0;
+            }
         }
     }
 
