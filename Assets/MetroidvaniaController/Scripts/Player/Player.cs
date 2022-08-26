@@ -855,6 +855,7 @@ public class Player : MonoBehaviour
         if (!invincible && !resetting && !dead)
         {
             animator.SetBool("Hit", true);
+            GetComponent<TimeStop>().StopTime(0.05f, 100, 0.1f);
             int integerDamageValue = (int)damage;
             this.GetComponent<health>().playerHealth -= (integerDamageValue);
             Vector2 damageDir = Vector3.Normalize(transform.position - position) * 60f;
@@ -948,13 +949,13 @@ public class Player : MonoBehaviour
         invincible = true;
         dead = true;
         GetComponent<Attack>().enabled = false;
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSecondsRealtime(0.4f);
         m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
         GameObject.Find("Crossfade").GetComponent<Animator>().SetTrigger("start");
         StartCoroutine(am.PitchDown());
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSecondsRealtime(0.8f);
         AudioManager.instance.PauseCurrent();
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSecondsRealtime(0.2f);
         SceneManager.LoadScene(GetComponent<Spawnpoint>().scene);
         if (GetComponent<Spawnpoint>().scene == "1stScene") {
             initialFall = false;
@@ -970,7 +971,7 @@ public class Player : MonoBehaviour
         GetComponent<health>().playerHealth = 5;
         GetComponent<health>().numberOfHearts = 5;
         GetComponent<Attack>().enabled = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSecondsRealtime(1f);
         AudioManager.instance.UnPauseCurrent();
         canMove = true;
     }
@@ -994,14 +995,14 @@ public class Player : MonoBehaviour
         resetting = true;
         StartCoroutine(WaitToMove(1));
         GameObject.Find("Crossfade").GetComponent<Animator>().SetTrigger("start");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSecondsRealtime(1f);
         GameObject.Find("Crossfade").GetComponent<Animator>().SetTrigger("stop");
         animator.SetBool("IsDead", false);
         transform.position = reset_point.position;
         FindObjectOfType<CameraFollow>().Snap(transform.position);
         m_Rigidbody2D.velocity = Vector2.zero;
         resetting = false;
-        yield return new WaitForSeconds(0.31f);
+        yield return new WaitForSecondsRealtime(0.31f);
         StartCoroutine(MakeInvincible(3f));
         GetComponent<SimpleFlash>().Flash(3f, 7);
     }
