@@ -84,11 +84,11 @@ public class CameraFollow : MonoBehaviour
             Target = Player.controller.camTarget;
             bool bowAiming = Player.instance.GetComponent<Attack>().shootStrength > 0.0f;
 
-            if (!bowAiming && canLookDown && Input.GetAxisRaw("Vertical") < -0.5) //&& !Input.GetKey(KeyCode.S)
+            if (!bowAiming && canLookDown && Input.GetAxisRaw("Vertical") < -0.5 && !InventoryNavigator.selected) //&& !Input.GetKey(KeyCode.S)
             {
                 Target.localPosition = new Vector3(Target.localPosition.x, -4.0f, 0.0f); //originally -2
             }
-            else if (!bowAiming && Input.GetAxisRaw("Vertical") > 0.5) //&& !Input.GetKey(KeyCode.W)
+            else if (!bowAiming && Input.GetAxisRaw("Vertical") > 0.5 && !InventoryNavigator.selected) //&& !Input.GetKey(KeyCode.W)
             {
                 Target.localPosition = new Vector3(Target.localPosition.x, 4.0f, 0.0f); //originally 4
             }

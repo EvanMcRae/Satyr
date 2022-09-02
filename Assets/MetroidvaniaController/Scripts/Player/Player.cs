@@ -794,7 +794,7 @@ public class Player : MonoBehaviour
                 // if (doubleJump_Unlocked) { canDoubleJump = true; }
             }
         }
-        else if (!dead && !resetting && !ReyaCutscene.cutscening && !animator.GetBool("IsBowAttacking") && !animator.GetBool("BowReleased")) // fix being stuck unable to move
+        else if (!dead && !resetting && !ReyaCutscene.cutscening && !animator.GetBool("IsBowAttacking") && !animator.GetBool("BowReleased") && !InventoryNavigator.selected) // fix being stuck unable to move
         {
             cantMove += 0.01f;
             if (cantMove > stunDuration)

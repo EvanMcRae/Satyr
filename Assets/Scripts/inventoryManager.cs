@@ -19,7 +19,7 @@ public class inventoryManager : MonoBehaviour
 
     public Image buttonImage;
 
-    bool isDisplayed = false; // whether or not the inventory screen is up
+    public bool isDisplayed = false; // whether or not the inventory screen is up
     
     // Start is called before the first frame update
     void Start()
