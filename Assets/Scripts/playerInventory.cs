@@ -72,7 +72,7 @@ public class playerInventory : MonoBehaviour
                 inventoryManager im = inventory_spaces[index].GetComponent<inventoryManager>();
                 im.item = items_added[index];
                 im.buttonImage.sprite = im.item.itemSprite;
-                inventory_spaces[index].GetComponent<Image>().enabled = true;
+                inventory_spaces[index].transform.GetComponentInChildren<Image>().enabled = true;
             }
         }
     }

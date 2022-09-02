@@ -54,7 +54,7 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!PlayerMovement.paused)
+        if (!PlayerMovement.paused && !InventoryNavigator.selected)
         {
             cam = GameObject.Find("Main Camera pre Variant");
 

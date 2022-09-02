@@ -20,7 +20,6 @@ public class InventoryNavigator : MonoBehaviour
     {
         if (firstSlot.GetComponent<inventoryManager>().isDisplayed && !selected)
         {
-            Debug.Log("shown");
             EventSystem.current.SetSelectedGameObject(firstSlot);
             selected = true;
             GetComponent<Player>().canMove = false;
@@ -32,6 +31,10 @@ public class InventoryNavigator : MonoBehaviour
             selected = false;
             GetComponent<Player>().canMove = true;
         }
-        Debug.Log(EventSystem.current.currentSelectedGameObject);
+
+        if (selected && EventSystem.current.currentSelectedGameObject == null)
+        {
+            EventSystem.current.SetSelectedGameObject(firstSlot);
+        }
     }
 }

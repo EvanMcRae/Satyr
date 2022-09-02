@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class inventoryManager : MonoBehaviour
 {
@@ -26,12 +27,12 @@ public class inventoryManager : MonoBehaviour
     {
         if (item == null)
         {
-            gameObject.GetComponent<Image>().enabled = false;
+            gameObject.GetComponentInChildren<Image>().enabled = false;
         }
 
         if (item != null)
         {
-            buttonImage.sprite = item.itemSprite;
+            gameObject.GetComponentInChildren<Image>().sprite = item.itemSprite;
         }
 
         x = transform.position.x;
@@ -52,12 +53,24 @@ public class inventoryManager : MonoBehaviour
             isDisplayed = !isDisplayed;
             Cursor.visible = isDisplayed;
             inventory.position = new Vector3(inventory.position.x, isDisplayed ? anchor.position.y : 5000f, inventory.position.z);
-            
-            if (item != null)
-            {
-                buttonImage.sprite = item.itemSprite;
-                gameObject.GetComponent<Image>().enabled = true;
-            }
+        }
+
+        if (item != null)
+        {
+            buttonImage.sprite = item.itemSprite;
+            transform.Find("Image").GetComponent<Image>().color = Color.white;
+            GetComponent<Button>().enabled = true;
+        }
+        else
+        {
+            transform.Find("Image").GetComponent<Image>().color = Color.clear;
+            GetComponent<Button>().enabled = false;
+        }
+
+
+        if (EventSystem.current.currentSelectedGameObject == gameObject)
+        {
+            showItem();
         }
     }
 
@@ -67,6 +80,7 @@ public class inventoryManager : MonoBehaviour
         {
             itemText.text = item.itemDescription;
             itemImage.sprite = item.itemSprite;
+            EventSystem.current.SetSelectedGameObject(gameObject);
         }
     }
 
