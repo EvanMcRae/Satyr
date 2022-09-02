@@ -12,12 +12,14 @@ public class InventoryNavigator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        firstSlot = GameObject.FindObjectOfType<GridLayoutGroup>().transform.Find("Button").gameObject;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        firstSlot = GameObject.FindObjectOfType<GridLayoutGroup>().transform.Find("Button").gameObject;
+        
         if (firstSlot.GetComponent<inventoryManager>().isDisplayed && !selected)
         {
             EventSystem.current.SetSelectedGameObject(firstSlot);

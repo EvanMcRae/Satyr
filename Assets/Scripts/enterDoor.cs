@@ -30,7 +30,6 @@ public class enterDoor : MonoBehaviour
             StartCoroutine(LoadNextScene());
             changeScene.changingScene = true;
         }
-        Debug.Log(gameObject.name + " " + "running");
     }
 
     private void OnTriggerStay2D(Collider2D collision)
