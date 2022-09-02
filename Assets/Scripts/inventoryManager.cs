@@ -57,6 +57,7 @@ public class inventoryManager : MonoBehaviour
 
         if (item != null)
         {
+            GetComponent<Button>().enabled = false;
             buttonImage.sprite = item.itemSprite;
             transform.Find("Image").GetComponent<Image>().color = Color.white;
             GetComponent<Button>().enabled = true;
