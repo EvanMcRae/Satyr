@@ -5239,7 +5239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: u9
   spawn: u9 top
-  noFall: 0
+  noFall: 1
 --- !u!4 &1076456494 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6743093074308911238, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
@@ -5516,11 +5516,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911238, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 6.7560825
+      value: 4.429531
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911238, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.8984
+      value: 16.6856
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911238, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10517,7 +10517,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936048934}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0014206555, y: 0, z: 0}
+  m_LocalPosition: {x: -0.076, y: -0.02, z: 0}
   m_LocalScale: {x: 0.40189606, y: 1.3997172, z: 1}
   m_Children: []
   m_Father: {fileID: 2049008670}
@@ -11374,7 +11374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911236, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_Offset.x
-      value: -0.0015853643
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6743093074308911236, guid: 1f3d04d8a4f32524a86a85b626c9ebb2, type: 3}
       propertyPath: m_UsedByEffector
