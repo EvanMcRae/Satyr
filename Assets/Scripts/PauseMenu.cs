@@ -29,7 +29,11 @@ public class PauseMenu : MonoBehaviour
     {
         AudioManager.instance.Stop();
         Player.instance.GetComponent<PlayerMovement>().TogglePause();
-        Application.Quit(); // calls SaveGame in GameSaver
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
     IEnumerator GoToMainMenu()
